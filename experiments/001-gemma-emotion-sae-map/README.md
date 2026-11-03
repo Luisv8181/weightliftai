@@ -38,6 +38,27 @@ Does Gemma 3 1B keep closely related emotional concepts distinct inside the mode
 2. Open `gemma_emotion_sae_map.ipynb` in Colab with a T4 GPU and run the cells in order. The probe set is embedded in the notebook; to swap in a new version, edit the CSV and reload it in section 6.
 3. Save `emotion_map_results.csv` and `top_features_by_concept.csv` into `outputs/` here. That folder is git-ignored, so commit a summary table instead.
 
+## Run locally (Windows + NVIDIA GPU)
+
+Use Python 3.11 or 3.12, from the repo root in PowerShell:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+# Install CUDA PyTorch FIRST. Plain `pip install torch` on Windows gives a CPU-only build.
+pip install torch --index-url https://download.pytorch.org/whl/cu128
+pip install -e ".[core,adaptation,interp]"
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0))"
+hf auth login        # paste your Hugging Face read token (accept the Gemma license first)
+```
+
+Then open `gemma_emotion_sae_map.ipynb` in VS Code (or `jupyter lab`), choose the `.venv` kernel, **skip sections 0 and 1** (install and login are already done), and run the rest.
+
+- The CUDA check should print `True` and your GPU name. If it prints `False`, reinstall torch with the line above. If `cu128` doesn't match your driver, pick the matching command at https://pytorch.org/get-started/locally/.
+- Gemma 3 1B in float32 needs about 5 GB of VRAM. With 12 GB or more, you can try the 4B model (settings are in the notebook's last cell) with `dtype=torch.bfloat16`.
+- With no GPU, it still runs on CPU. Sections 7 and 10 take a few minutes, and LoRA training is slow.
+- Put outputs in `experiments/001-gemma-emotion-sae-map/outputs/` (git-ignored).
+
 ## Known limitations
 
 - **Small probe set.** 20 sentences per concept is exploratory. Before drawing conclusions, expand to 100+ per concept per language, with native-speaker and clinical review.
