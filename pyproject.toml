@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "weightliftai"
+version = "0.1.0"
+description = "Local-first tools for inspecting, adapting, and evaluating open-weight neural networks."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = []
+
+[project.optional-dependencies]
+core = ["torch>=2.2", "transformers>=4.45", "accelerate>=0.34", "safetensors>=0.4"]
+adaptation = ["peft>=0.13", "datasets>=3.0"]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[project.scripts]
+weightliftai = "weightliftai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
