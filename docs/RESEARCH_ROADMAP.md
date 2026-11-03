@@ -4,17 +4,18 @@
 - [x] Establish project mission and scope
 - [x] Define modular architecture
 - [x] Define experiment and reproducibility protocol
-- [ ] Add Python package skeleton
-- [ ] Add hardware diagnostics
-- [ ] Add model inspection CLI
-- [ ] Add tests and quick-start example
+- [x] Add Python package skeleton
+- [x] Add hardware diagnostics
+- [x] Add model inspection CLI (configuration-only by default; optional parameter loading)
+- [x] Add initial unit tests and quick-start example
+- [ ] Run CI and verify on CPU and CUDA environments
 
 ## Phase 1 — Inspect
-- [ ] Load a small supported open-weight model
-- [ ] Report model metadata and parameter counts
-- [ ] Enumerate selected module names and tensor shapes
-- [ ] Save a provenance manifest
-- [ ] Add CPU and CUDA smoke tests
+- [x] Report model configuration and parameter counts when weights are loaded
+- [x] Enumerate selected module names and tensor shapes (first 500 entries)
+- [x] Save a provenance manifest
+- [ ] Add memory-aware dtype/device-map controls
+- [ ] Add richer sharded-checkpoint metadata inspection
 
 ## Phase 2 — Observe
 - [ ] Capture layer activations on a small controlled input
