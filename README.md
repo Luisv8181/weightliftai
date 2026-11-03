@@ -46,10 +46,11 @@ The first release should be a **local model inspection and experiment harness**,
 
 ### Milestone 1 — Activation and tensor inspection
 
-- Capture selected activations with forward hooks.
-- Summarize activation statistics without dumping sensitive prompts.
-- Inspect named tensors and parameter distributions.
-- Add safe, explicit, reversible interventions behind an experimental flag.
+- [x] Capture selected activations with forward hooks.
+- [x] Summarize activation statistics without saving raw activation tensors.
+- [x] List leaf modules and inspect exact module names.
+- [ ] Add richer activation comparison and visualization workflows.
+- [ ] Add safe, explicit, reversible interventions behind an experimental flag.
 
 ### Milestone 2 — Adaptation comparisons
 
@@ -109,6 +110,11 @@ weightliftai/
 │   ├── RESEARCH_ROADMAP.md
 │   └── EXPERIMENT_PROTOCOL.md
 ├── src/weightliftai/
+│   ├── hardware.py
+│   ├── inspect_model.py
+│   ├── activations.py
+│   ├── manifest.py
+│   └── cli.py
 ├── experiments/
 ├── tests/
 └── examples/
