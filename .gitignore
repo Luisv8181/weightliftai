@@ -16,3 +16,4 @@ experiments/*/outputs/
 *.pth
 *.bin
 .DS_Store
+*.egg-info/
