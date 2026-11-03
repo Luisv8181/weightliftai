@@ -18,10 +18,12 @@
 - [ ] Add richer sharded-checkpoint metadata inspection
 
 ## Phase 2 — Observe
-- [ ] Capture layer activations on a small controlled input
-- [ ] Compare activation statistics across examples
-- [ ] Add simple visual summaries
-- [ ] Document limits of neuron-level interpretation
+- [x] Capture selected module outputs with temporary forward hooks
+- [x] Report descriptive activation statistics without saving raw tensors
+- [x] List leaf modules and exact names through the CLI
+- [ ] Add side-by-side activation comparisons across prompts
+- [ ] Add activation visualizations
+- [ ] Document limits of neuron-level interpretation in tutorials
 
 ## Phase 3 — Adapt
 - [ ] Add LoRA/PEFT baseline
