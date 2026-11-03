@@ -2,7 +2,7 @@
 
 ## Design goal
 
-Build a modular, local-first experiment harness that separates model loading, inspection, intervention, evaluation, and artifact tracking.
+Build a modular, local-first experiment harness that separates model loading, inspection, activation observation, intervention, evaluation, and artifact tracking.
 
 ## Core data flow
 
@@ -19,6 +19,9 @@ Model + tokenizer + revision
           |
           v
   Baseline Evaluation ------> Baseline results
+          |
+          v
+  Activation Explorer -----> Selected module summaries
           |
           v
   Experiment proposal
@@ -42,10 +45,17 @@ Model + tokenizer + revision
 
 - **hardware:** detect CPU, CUDA availability, device name, VRAM when accessible.
 - **inspect_model:** report model config, parameters, layer/module names, tensor shapes and dtypes.
+- **activations:** attach temporary forward hooks to exact named modules; summarize output tensors and always remove hooks after the forward pass.
 - **manifest:** serialize provenance and environment metadata.
 - **evaluation:** run controlled benchmark prompts and store outputs/scores.
 - **interventions:** future module; all transformations must be explicit, isolated, and reversible.
 - **registry:** future module for indexing runs and artifacts.
+
+## Activation analysis behavior
+
+The first activation explorer captures outputs from user-selected module names for a single forward pass. It reports shape, dtype, finite fraction, mean, standard deviation, min/max, mean absolute value, maximum absolute value, zero fraction, and a small list of largest absolute values with flat indices.
+
+Raw activation tensors are not written to disk. Activation summaries may still disclose information about prompts, so users should only submit non-sensitive text. A module output statistic does not establish semantic meaning, causal importance, or a one-neuron/one-concept correspondence.
 
 ## Safety and integrity constraints
 
@@ -57,6 +67,7 @@ Model + tokenizer + revision
 6. Separate training/development data from held-out evaluation data.
 7. Report target-task gains alongside general regression results.
 8. Treat generated intervention proposals as untrusted hypotheses.
+9. Remove temporary hooks even if the model forward pass raises an exception.
 
 ## Consumer GPU strategy
 
