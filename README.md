@@ -25,7 +25,7 @@ The goal is not to make every model larger. It is to help developers understand 
 | Pillar | Scope |
 |---|---|
 | **Model Inspector** | Load model metadata, configuration, layers, tensor shapes, and parameter counts. |
-| **Activation Explorer** | Capture and compare selected layer activations on controlled inputs. |
+| **Activation Explorer** | Capture and compare selected module outputs and activation statistics on controlled inputs. |
 | **Adaptation Lab** | Run parameter-efficient fine-tuning such as LoRA as a practical baseline. |
 | **Weight Experimenter** | Apply explicit, reversible tensor interventions in isolated experiments. |
 | **Benchmark Lab** | Compare baseline and modified models for task performance, regressions, and resource use. |
