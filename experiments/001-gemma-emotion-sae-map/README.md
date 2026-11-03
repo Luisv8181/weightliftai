@@ -38,6 +38,21 @@ Does Gemma 3 1B keep closely related emotional concepts distinct inside the mode
 2. Open `gemma_emotion_sae_map.ipynb` in Colab with a T4 GPU and run the cells in order. The probe set is embedded in the notebook; to swap in a new version, edit the CSV and reload it in section 6.
 3. Save `emotion_map_results.csv` and `top_features_by_concept.csv` into `outputs/` here. That folder is git-ignored, so commit a summary table instead.
 
+## Visual outputs (sections 15–16)
+
+Saved to `outputs/` as self-contained HTML files that open offline in any browser:
+
+| File | What it shows |
+|---|---|
+| `concept_heatmap.html` | Every probe sentence × the top features for each emotion, grouped by emotion and language |
+| `word_highlights.html` | Pick a feature; each word glows by how strongly it fires |
+| `feature_map.html` | Emotion features as a constellation: similar directions sit together, color = emotion, size = specificity |
+| `trace_grief_es.html`, `trace_grief_en.html` | Animated replay of the model answering, with features firing at layers 7, 13, 17 and 22 on every word |
+
+The live trace also streams into the notebook while the model writes. The renderers live in `weightliftai.feature_viz` and the tracing in `weightliftai.feature_trace`, so other experiments can reuse them.
+
+Lines in the trace replay show **co-activation, not causation**. Causal tracing (attribution graphs with Gemma Scope 2 transcoders) is a natural follow-up experiment.
+
 ## Run locally (Windows + NVIDIA GPU)
 
 Use Python 3.11 or 3.12, from the repo root in PowerShell:

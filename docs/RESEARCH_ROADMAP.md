@@ -22,7 +22,7 @@
 - [x] Report descriptive activation statistics without saving raw tensors
 - [x] List leaf modules and exact names through the CLI
 - [ ] Add side-by-side activation comparisons across prompts
-- [ ] Add activation visualizations
+- [x] Add activation visualizations (SAE feature heatmap, word highlights, feature map, live trace replay: `feature_viz`, `feature_trace`)
 - [ ] Document limits of neuron-level interpretation in tutorials
 
 ## Phase 3 — Adapt
