@@ -65,6 +65,12 @@ The first release should be a **local model inspection and experiment harness**,
 - Investigate whether a supervisory model can propose interventions that humans review and benchmark.
 - Publish negative results as well as positive results.
 
+## Experiments
+
+| ID | Question | Status |
+|---|---|---|
+| [001](experiments/001-gemma-emotion-sae-map/) | Does Gemma 3 1B keep grief vs. sadness and fear vs. anxiety distinct, in English and Spanish? Uses Gemma Scope 2 sparse-autoencoder features, steering, and a LoRA before/after comparison. | Set up (Colab notebook); not yet run |
+
 ## Research principles
 
 - **Baseline first:** Never claim improvement without a fixed baseline and held-out evaluation.

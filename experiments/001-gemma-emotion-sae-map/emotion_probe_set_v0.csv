@@ -1,0 +1,101 @@
+concept,lang,text
+sadness,en,I've been feeling down all week and I can't really say why.
+sadness,en,It made me sad that nobody remembered my birthday.
+sadness,en,"Rainy days just leave me low, like everything is gray."
+sadness,en,I cried a little after the movie ended.
+sadness,en,He seemed blue after his team lost the game.
+sadness,en,I'm disappointed I didn't get the job.
+sadness,en,"Some days I just feel empty and heavy, and I don't know why."
+sadness,en,She was sad when her best friend moved to another state.
+sadness,en,"I miss how things used to be, it makes me a little sad."
+sadness,en,It hurts that my sister and I don't talk anymore.
+sadness,es,"Llevo toda la semana desanimado y no sé bien por qué."
+sadness,es,Me dio tristeza que nadie se acordara de mi cumpleaños.
+sadness,es,"Los días de lluvia me dejan bajito, como si todo estuviera gris."
+sadness,es,Lloré un poquito cuando se acabó la película.
+sadness,es,Se veía triste después de que su equipo perdió.
+sadness,es,Estoy decepcionada porque no me dieron el trabajo.
+sadness,es,"Hay días que me siento vacío y pesado, y no sé por qué."
+sadness,es,Se puso triste cuando su mejor amiga se mudó a otro estado.
+sadness,es,"Extraño cómo eran las cosas antes, me da un poco de pena."
+sadness,es,Me duele que mi hermana y yo ya no nos hablemos.
+grief,en,"Since my father died, I keep setting his plate at dinner."
+grief,en,It's been a year since we buried my grandmother and it still doesn't feel real.
+grief,en,I can't bring myself to delete my mom's voicemails.
+grief,en,"At the funeral I felt nothing, and then a week later I couldn't stop crying."
+grief,en,Her son passed away last spring and she still wears his jacket.
+grief,en,Every holiday reminds me that my brother isn't here anymore.
+grief,en,"After the miscarriage, everyone expected me to just move on."
+grief,en,I keep dreaming that my wife is still alive and then I wake up.
+grief,en,We scattered his ashes by the ocean he loved.
+grief,en,"Losing my best friend so suddenly, I don't know who I am now."
+grief,es,"Desde que murió mi papá, sigo poniendo su plato en la mesa."
+grief,es,Ya hace un año que enterramos a mi abuela y todavía no me lo creo.
+grief,es,No me atrevo a borrar los mensajes de voz de mi mamá.
+grief,es,"En el velorio no sentí nada, y una semana después no podía dejar de llorar."
+grief,es,Su hijo falleció la primavera pasada y ella todavía se pone su chaqueta.
+grief,es,Cada Navidad me recuerda que mi hermano ya no está.
+grief,es,"Después de la pérdida del embarazo, todos esperaban que yo siguiera como si nada."
+grief,es,Sueño que mi esposa sigue viva y luego me despierto.
+grief,es,Esparcimos sus cenizas en el mar que tanto quería.
+grief,es,"Perdí a mi mejor amigo de repente, y ya no sé quién soy."
+anxiety,en,"I keep thinking something bad is going to happen, even though nothing is wrong."
+anxiety,en,My mind won't stop racing about all the things I might forget tomorrow.
+anxiety,en,"Before every meeting my chest gets tight, even when it's routine."
+anxiety,en,I checked the stove three times and I'm still worried I left it on.
+anxiety,en,"What if I fail the exam, then lose the scholarship, then everything falls apart?"
+anxiety,en,I can't sleep because I'm replaying every conversation from today.
+anxiety,en,I feel on edge all the time and I can't relax.
+anxiety,en,"I haven't heard back from her in an hour, and I'm already imagining the worst."
+anxiety,en,"Money is fine right now, but I can't stop worrying about next year."
+anxiety,en,I get restless and jittery whenever I have to wait for news.
+anxiety,es,"Siento que algo malo va a pasar, aunque todo está bien."
+anxiety,es,No paro de darle vueltas a todo lo que se me puede olvidar mañana.
+anxiety,es,"Antes de cada reunión se me aprieta el pecho, aunque sea algo normal."
+anxiety,es,Revisé la estufa tres veces y todavía me preocupa haberla dejado prendida.
+anxiety,es,"¿Y si me cuelgan en el examen, pierdo la beca y todo se viene abajo?"
+anxiety,es,No puedo dormir porque repaso cada conversación del día.
+anxiety,es,Vivo con los nervios de punta y no logro relajarme.
+anxiety,es,"Hace una hora que no me contesta, y ya me estoy imaginando lo peor."
+anxiety,es,"Ahorita el dinero está bien, pero no dejo de preocuparme por el año que viene."
+anxiety,es,Me pongo inquieto y ansioso cada vez que tengo que esperar noticias.
+fear,en,A huge dog lunged at me and I froze.
+fear,en,"I heard someone trying the door handle at 3 a.m., and I couldn't breathe."
+fear,en,The car skidded on the ice and I thought we were going to crash.
+fear,en,"When the plane dropped suddenly, I grabbed the armrest in terror."
+fear,en,I saw a snake by my foot and jumped back screaming.
+fear,en,The building started shaking and we ran for the stairs.
+fear,en,A man followed me for three blocks and I was terrified.
+fear,en,The smoke alarm went off and I saw flames in the kitchen.
+fear,en,"I lost my child in the crowd for a minute, and I panicked."
+fear,en,The wave knocked me under and I couldn't find the surface.
+fear,es,Un perro enorme se me tiró encima y me quedé paralizado.
+fear,es,"Escuché que alguien trataba de abrir la puerta a las tres de la mañana, y no podía respirar."
+fear,es,El carro patinó en el hielo y pensé que nos íbamos a estrellar.
+fear,es,"Cuando el avión cayó de golpe, me agarré del asiento muerta de miedo."
+fear,es,Vi una culebra al lado de mi pie y salté gritando.
+fear,es,El edificio empezó a temblar y corrimos hacia las escaleras.
+fear,es,Un hombre me siguió tres cuadras y yo estaba aterrada.
+fear,es,Sonó la alarma de humo y vi llamas en la cocina.
+fear,es,"Perdí a mi niño entre la gente por un minuto, y me entró el pánico."
+fear,es,La ola me revolcó y no encontraba la superficie.
+neutral,en,I bought rice and beans at the store this afternoon.
+neutral,en,The meeting was moved to Thursday at ten.
+neutral,en,My cousin is painting the living room light green.
+neutral,en,The bus to Scranton leaves every forty minutes.
+neutral,en,I'm reorganizing the files on my laptop by year.
+neutral,en,We need to replace the battery in the smoke detector.
+neutral,en,The library opens at nine on Saturdays.
+neutral,en,She is learning to play the guitar on weekends.
+neutral,en,The recipe calls for two cups of flour.
+neutral,en,I watered the plants and took out the recycling.
+neutral,es,Compré arroz y habichuelas en el colmado esta tarde.
+neutral,es,La reunión se movió para el jueves a las diez.
+neutral,es,Mi primo está pintando la sala de verde clarito.
+neutral,es,La guagua para Scranton sale cada cuarenta minutos.
+neutral,es,Estoy organizando los archivos de mi laptop por año.
+neutral,es,Hay que cambiarle la batería al detector de humo.
+neutral,es,La biblioteca abre a las nueve los sábados.
+neutral,es,Ella está aprendiendo a tocar guitarra los fines de semana.
+neutral,es,La receta lleva dos tazas de harina.
+neutral,es,Regué las matas y saqué el reciclaje.
