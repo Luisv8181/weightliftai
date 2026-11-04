@@ -1,0 +1,50 @@
+[
+  {
+    "model_id": "google/gemma-3-1b-it",
+    "layer": 13,
+    "depth_pct": 52.0,
+    "algorithm": "pca",
+    "distortion_metrics": {
+      "k_neighbors": 5,
+      "trustworthiness": 0.9543,
+      "continuity": 0.9539,
+      "knn_overlap": 0.2453,
+      "distortion_warning": true,
+      "interpretive_note": "Screen-space distance in 2D is a lossy visual approximation. Never substitute 2D cluster proximity for true high-dimensional similarity or causal identity."
+    },
+    "html_path": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_3_1b_it_map_layer_13_pca.html",
+    "json_path": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_3_1b_it_map_layer_13_pca.json"
+  },
+  {
+    "model_id": "google/gemma-3-1b-it",
+    "layer": 25,
+    "depth_pct": 100.0,
+    "algorithm": "pca",
+    "distortion_metrics": {
+      "k_neighbors": 5,
+      "trustworthiness": 0.9218,
+      "continuity": 0.9355,
+      "knn_overlap": 0.1413,
+      "distortion_warning": true,
+      "interpretive_note": "Screen-space distance in 2D is a lossy visual approximation. Never substitute 2D cluster proximity for true high-dimensional similarity or causal identity."
+    },
+    "html_path": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_3_1b_it_map_layer_25_pca.html",
+    "json_path": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_3_1b_it_map_layer_25_pca.json"
+  },
+  {
+    "model_id": "google/gemma-4-E2B-it",
+    "layer": 17,
+    "depth_pct": 50.0,
+    "algorithm": "pca",
+    "distortion_metrics": {
+      "k_neighbors": 5,
+      "trustworthiness": 0.8021,
+      "continuity": 0.8808,
+      "knn_overlap": 0.1693,
+      "distortion_warning": true,
+      "interpretive_note": "Screen-space distance in 2D is a lossy visual approximation. Never substitute 2D cluster proximity for true high-dimensional similarity or causal identity."
+    },
+    "html_path": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_4_E2B_it_map_layer_17_pca.html",
+    "json_path": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_4_E2B_it_map_layer_17_pca.json"
+  }
+]

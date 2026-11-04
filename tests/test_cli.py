@@ -10,6 +10,16 @@ def test_cli_help():
     assert "activations" in res.stdout
     assert "compare" in res.stdout
     assert "atlas" in res.stdout
+    assert "map" in res.stdout
+
+
+def test_cli_map_help():
+    res = subprocess.run([sys.executable, "-m", "weightliftai.cli", "map", "--help"], capture_output=True, text=True)
+    assert res.returncode == 0
+    assert "--medical-pilot" in res.stdout
+    assert "--algorithm" in res.stdout
+    assert "--layer" in res.stdout
+    assert "--k-neighbors" in res.stdout
 
 
 def test_cli_atlas_help():

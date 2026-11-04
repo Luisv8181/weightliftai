@@ -103,6 +103,9 @@ class ProjectionArtifact(BaseModel):
     )
     coordinates: list[list[float]] = Field(..., description="List of [x, y] or [x, y, z] projected points.")
     item_ids: list[int | str] = Field(..., description="Matching item IDs for each coordinate row.")
+    distortion_metrics: dict[str, Any] | None = Field(
+        default=None, description="Distortion metrics (trustworthiness, continuity, k-NN overlap)."
+    )
 
 
 class ComparisonRun(BaseModel):

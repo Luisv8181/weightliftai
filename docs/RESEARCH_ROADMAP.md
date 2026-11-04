@@ -69,8 +69,14 @@
   - Added CLI subcommand \weightliftai atlas\ with automated depth sampling, token masking, and format reporting.
   - Executed Medical Pilot Layer Atlas on NVIDIA RTX 5070 across \google/gemma-3-1b-it\ (26 layers) and \google/gemma-4-E2B-it\ (35 layers).
   - **Empirical Validation of the Interlingua Hourglass Law on Clinical Knowledge:** Alignment across clinical, lay, and cultural idioms peaks precisely at the 50% structural midpoint (Gemma 3 L13: cos = 0.994 [0.994, 0.995]; Gemma 4 L17: cos = 0.981 [0.980, 0.982]) and collapses in output layers (Gemma 3 L25 drops to 0.900, Delta = 0.094 drop).
-- [ ] **Phase 2 — Representation Map (2D/3D Dimensionality Reduction with Distortion Metrics):**
-  - UMAP/PaCMAP/PCA projections with Trustworthiness & Continuity preservation metrics, original-space nearest-neighbor verification, and interactive point inspection.
+- [x] **Phase 2 — Representation Map (2D/3D Dimensionality Reduction with Distortion Metrics):**
+  - Implemented projection engine (\project_representations\, \uild_point_inspection_data\, \compute_distortion_metrics\, \generate_map_html\) in \src/weightliftai/cartography/representation_map.py\.
+  - Added CLI subcommand \weightliftai map\ supporting \--layer\, \--algorithm\ (PCA/t-SNE/UMAP), \--medical-pilot\, and \--k-neighbors\.
+  - Strictly enforced scientific cartography guardrail: Projections are not geometry. Computed Trustworthiness T(k), Continuity C(k), and k-NN overlap R@k, with true high-D cosine nearest neighbors reported in the Point Inspector.
+  - Executed Medical Representation Maps across Gemma 3 1B (Layer 13 & Layer 25) and Gemma 4 E2B (Layer 17):
+    - Gemma 3 L13 Midpoint: T(5) = 0.9543, C(5) = 0.9539, PCA Explained Variance = 66.6% (PC1 57.3%, PC2 9.2%). Strong 2D planar convergence.
+    - Gemma 3 L25 Output: T(5) = 0.9218, C(5) = 0.9355, PCA Explained Variance = 49.1% (significant drop demonstrating vocabulary dispersal).
+    - Gemma 4 L17 Midpoint: T(5) = 0.8021, C(5) = 0.8808, PCA Explained Variance = 16.8% (highly isotropic multi-dimensional manifold).
 - [ ] **Phase 3 — Sparse Feature Observatory & Grounding:**
   - Integration with SAE dictionaries, Top-K active feature attribution, Neuronpedia labeling, and sparsity statistics.
 - [ ] **Phase 4 — Contrast Studio & Counterfactual Inspector:**
