@@ -57,3 +57,7 @@
 - [ ] **Experiment 003 — Transcoder Causal Attribution Circuits:** Cross-layer feature attribution graphs using `gemma-scope-2-1b-it-transcoders` across English and Spanish.
 - [ ] **Experiment 004 — Mechanistic Auditing of Clinical LoRA:** Evaluate SAE manifold drift (`FVE`), centroid separation, and feature turnover across LoRA ranks on therapeutic dialogue datasets.
 - [ ] **Experiment 005 — Cross-Lingual Hub Intervention Transfer:** Compare middle-layer-only English LoRA (Layers 10–16) vs. all-layer LoRA vs. Layer-13 Contrastive Activation Steering on Spanish performance.
+
+
+## Representation Cartography
+- [ ] **Representation Cartography — Layer Atlas, Representation Map, Feature Observatory, Contrast Studio, and Circuit/Intervention Workbench.** See [`docs/REPRESENTATION_CARTOGRAPHY.md`](REPRESENTATION_CARTOGRAPHY.md) for the product thesis, scientific guardrails, data model, architecture, acceptance criteria, and phased delivery plan.
