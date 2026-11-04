@@ -53,7 +53,7 @@
 
 ## Active 5-Part Research Program
 - [x] **Experiment 001 — Bilingual Emotion SAE Map (`Gemma 3 1B` + `Qwen2.5-0.5B`):** Executed Layer-13 Gemma Scope 2 SAE mapping, Neuronpedia feature grounding, causal steering, 4-layer live token tracing, and LoRA drift check.
-- [ ] **Experiment 002 — Cultural Idioms of Distress & Counterfactual De-confounding:** 3-way parallel split (English / Pan-Hispanic Neutral Spanish / Dominican Spanish idioms) + 2×2 counterfactual feature clamping (`#1886`, `#4284`, `#293`).
+- [x] **Experiment 002 — Cultural Idioms of Distress & Counterfactual De-confounding:** Executed 3-way parallel split (English / Pan-Hispanic Neutral Spanish / Dominican Spanish idioms) across layers 7, 13, 17, 22 + 2×2 counterfactual feature clamping (`#1886`, `#4284`, `#293`). See [`docs/ROLLING_PAPER.md`](ROLLING_PAPER.md) §5.
 - [ ] **Experiment 003 — Transcoder Causal Attribution Circuits:** Cross-layer feature attribution graphs using `gemma-scope-2-1b-it-transcoders` across English and Spanish.
 - [ ] **Experiment 004 — Mechanistic Auditing of Clinical LoRA:** Evaluate SAE manifold drift (`FVE`), centroid separation, and feature turnover across LoRA ranks on therapeutic dialogue datasets.
 - [ ] **Experiment 005 — Cross-Lingual Hub Intervention Transfer:** Compare middle-layer-only English LoRA (Layers 10–16) vs. all-layer LoRA vs. Layer-13 Contrastive Activation Steering on Spanish performance.

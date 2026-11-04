@@ -1,0 +1,101 @@
+concept,lang,text,sadness_top1_f549,sadness_top2_f2697,sadness_top3_f27,grief_top1_f293,grief_top2_f384,grief_top3_f397,anxiety_top1_f397,anxiety_top2_f513,anxiety_top3_f97,fear_top1_f397,fear_top2_f513,fear_top3_f3486
+sadness,en,I've been feeling down all week and I can't really say why.,152.48497,164.42264,177.96655,61.69438,0.0,388.5331,388.5331,361.85895,301.08694,388.5331,361.85895,0.0
+sadness,en,It made me sad that nobody remembered my birthday.,223.51524,304.6409,240.51715,155.28732,477.52362,146.21866,146.21866,93.21826,89.628845,146.21866,93.21826,0.0
+sadness,en,"Rainy days just leave me low, like everything is gray.",0.0,122.320755,280.43445,0.0,0.0,155.95105,155.95105,92.57025,281.31354,155.95105,92.57025,0.0
+sadness,en,I cried a little after the movie ended.,146.2332,259.413,0.0,44.732788,0.0,75.85886,75.85886,0.0,0.0,75.85886,0.0,0.0
+sadness,en,He seemed blue after his team lost the game.,0.0,145.83505,264.86365,99.123245,364.0193,115.91702,115.91702,44.556152,0.0,115.91702,44.556152,0.0
+sadness,en,I'm disappointed I didn't get the job.,543.8789,122.93322,270.549,58.117615,0.0,300.09637,300.09637,363.4613,0.0,300.09637,363.4613,0.0
+sadness,en,"Some days I just feel empty and heavy, and I don't know why.",100.55504,83.81904,420.10083,66.18964,0.0,453.1606,453.1606,377.01422,0.0,453.1606,377.01422,0.0
+sadness,en,She was sad when her best friend moved to another state.,290.7528,319.45966,340.315,472.85004,418.52612,158.28912,158.28912,125.329346,0.0,158.28912,125.329346,0.0
+sadness,en,"I miss how things used to be, it makes me a little sad.",263.94788,304.71146,354.10547,146.63327,0.0,315.03235,315.03235,175.68481,0.0,315.03235,175.68481,0.0
+sadness,en,It hurts that my sister and I don't talk anymore.,130.4618,111.59371,0.0,497.20477,406.33234,292.13876,292.13876,308.2766,0.0,292.13876,308.2766,0.0
+sadness,es,Llevo toda la semana desanimado y no sé bien por qué.,209.27296,132.5472,223.21552,0.0,0.0,149.34207,149.34207,42.35028,285.73358,149.34207,42.35028,0.0
+sadness,es,Me dio tristeza que nadie se acordara de mi cumpleaños.,88.37883,264.81497,0.0,138.11432,399.08832,172.12375,172.12375,0.0,0.0,172.12375,0.0,0.0
+sadness,es,"Los días de lluvia me dejan bajito, como si todo estuviera gris.",0.0,118.62249,229.67703,0.0,0.0,183.4718,183.4718,0.0,264.95554,183.4718,0.0,0.0
+sadness,es,Lloré un poquito cuando se acabó la película.,159.6624,218.34981,0.0,0.0,0.0,213.79944,213.79944,0.0,0.0,213.79944,0.0,64.11772
+sadness,es,Se veía triste después de que su equipo perdió.,158.64128,260.57007,233.56863,187.87738,379.4654,166.94717,166.94717,0.0,0.0,166.94717,0.0,0.0
+sadness,es,Estoy decepcionada porque no me dieron el trabajo.,503.58838,130.39056,207.91312,0.0,0.0,231.51846,231.51846,147.17029,0.0,231.51846,147.17029,0.0
+sadness,es,"Hay días que me siento vacío y pesado, y no sé por qué.",128.88133,141.07196,306.85962,0.0,0.0,172.87457,172.87457,126.95801,0.0,172.87457,126.95801,0.0
+sadness,es,Se puso triste cuando su mejor amiga se mudó a otro estado.,267.21472,304.5844,143.9484,523.43097,349.8003,148.12582,148.12582,0.0,0.0,148.12582,0.0,0.0
+sadness,es,"Extraño cómo eran las cosas antes, me da un poco de pena.",271.56573,216.48027,38.75061,0.0,0.0,232.64316,232.64316,137.1643,0.0,232.64316,137.1643,0.0
+sadness,es,Me duele que mi hermana y yo ya no nos hablemos.,97.2036,79.269875,0.0,429.47925,205.70184,167.04056,167.04056,139.90271,0.0,167.04056,139.90271,0.0
+grief,en,"Since my father died, I keep setting his plate at dinner.",0.0,96.15056,0.0,378.48273,411.94348,449.79657,449.79657,423.51538,0.0,449.79657,423.51538,0.0
+grief,en,It's been a year since we buried my grandmother and it still doesn't feel real.,0.0,198.23387,398.20642,368.51154,360.6371,407.78976,407.78976,325.6394,0.0,407.78976,325.6394,0.0
+grief,en,I can't bring myself to delete my mom's voicemails.,135.26921,0.0,0.0,503.7409,375.47455,187.44778,187.44778,176.66302,0.0,187.44778,176.66302,0.0
+grief,en,"At the funeral I felt nothing, and then a week later I couldn't stop crying.",72.61157,277.78223,0.0,165.37317,0.0,446.04407,446.04407,218.36243,85.06467,446.04407,218.36243,0.0
+grief,en,Her son passed away last spring and she still wears his jacket.,0.0,225.33383,0.0,317.12762,389.43964,354.5291,354.5291,395.4355,0.0,354.5291,395.4355,0.0
+grief,en,Every holiday reminds me that my brother isn't here anymore.,48.21663,242.22266,0.0,503.33667,495.7746,208.1185,208.1185,110.040344,171.72491,208.1185,110.040344,0.0
+grief,en,"After the miscarriage, everyone expected me to just move on.",0.0,133.11252,0.0,163.89096,0.0,303.266,303.266,162.22626,253.17053,303.266,162.22626,0.0
+grief,en,I keep dreaming that my wife is still alive and then I wake up.,59.343033,103.88177,52.00836,604.0069,437.81097,362.4723,362.4723,395.6189,0.0,362.4723,395.6189,66.174194
+grief,en,We scattered his ashes by the ocean he loved.,93.69121,54.143623,0.0,202.23984,397.29962,194.64343,194.64343,364.5465,0.0,194.64343,364.5465,0.0
+grief,en,"Losing my best friend so suddenly, I don't know who I am now.",56.519196,122.57576,182.50696,525.5672,386.90417,406.76514,406.76514,319.4649,0.0,406.76514,319.4649,68.42546
+grief,es,"Desde que murió mi papá, sigo poniendo su plato en la mesa.",0.0,109.59274,0.0,381.77997,332.3062,0.0,0.0,152.92133,0.0,0.0,152.92133,0.0
+grief,es,Ya hace un año que enterramos a mi abuela y todavía no me lo creo.,0.0,81.983,0.0,275.95255,352.88434,219.72,219.72,83.661194,0.0,219.72,83.661194,0.0
+grief,es,No me atrevo a borrar los mensajes de voz de mi mamá.,180.07536,0.0,0.0,508.9231,227.72351,114.08557,114.08557,0.0,0.0,114.08557,0.0,60.278797
+grief,es,"En el velorio no sentí nada, y una semana después no podía dejar de llorar.",68.99693,281.84744,0.0,46.32158,0.0,94.55191,94.55191,0.0,64.048904,94.55191,0.0,72.26045
+grief,es,Su hijo falleció la primavera pasada y ella todavía se pone su chaqueta.,0.0,169.28766,0.0,343.546,0.0,278.56128,278.56128,117.210754,0.0,278.56128,117.210754,62.51975
+grief,es,Cada Navidad me recuerda que mi hermano ya no está.,58.535355,205.0327,0.0,435.9933,439.58893,192.35913,192.35913,167.90851,97.5163,192.35913,167.90851,0.0
+grief,es,"Después de la pérdida del embarazo, todos esperaban que yo siguiera como si nada.",55.009583,75.232605,0.0,152.73413,0.0,331.91144,331.91144,144.0628,343.0197,331.91144,144.0628,0.0
+grief,es,Sueño que mi esposa sigue viva y luego me despierto.,0.0,91.50023,0.0,544.7189,178.41034,281.19354,281.19354,0.0,0.0,281.19354,0.0,63.931377
+grief,es,Esparcimos sus cenizas en el mar que tanto quería.,0.0,0.0,0.0,0.0,271.64032,215.44193,215.44193,0.0,0.0,215.44193,0.0,65.114975
+grief,es,"Perdí a mi mejor amigo de repente, y ya no sé quién soy.",0.0,104.9063,0.0,538.58185,123.37628,174.82486,174.82486,0.0,0.0,174.82486,0.0,0.0
+anxiety,en,"I keep thinking something bad is going to happen, even though nothing is wrong.",59.65323,68.63465,77.80893,76.45337,0.0,75.85895,75.85895,169.48291,194.29965,75.85895,169.48291,73.19299
+anxiety,en,My mind won't stop racing about all the things I might forget tomorrow.,123.7661,0.0,0.0,47.5952,0.0,428.0908,428.0908,474.62292,337.61035,428.0908,474.62292,0.0
+anxiety,en,"Before every meeting my chest gets tight, even when it's routine.",0.0,0.0,347.16028,58.19037,143.16412,387.1494,387.1494,0.0,302.71243,387.1494,0.0,0.0
+anxiety,en,I checked the stove three times and I'm still worried I left it on.,396.83777,0.0,182.30963,0.0,0.0,459.20166,459.20166,409.99677,0.0,459.20166,409.99677,106.56784
+anxiety,en,"What if I fail the exam, then lose the scholarship, then everything falls apart?",0.0,62.27198,0.0,76.840225,0.0,393.44568,393.44568,418.85596,370.7433,393.44568,418.85596,0.0
+anxiety,en,I can't sleep because I'm replaying every conversation from today.,56.35443,0.0,0.0,107.25264,0.0,460.20193,460.20193,388.88177,426.33923,460.20193,388.88177,69.83742
+anxiety,en,I feel on edge all the time and I can't relax.,159.67091,54.356426,240.66174,0.0,0.0,407.1509,407.1509,386.7713,264.1907,407.1509,386.7713,0.0
+anxiety,en,"I haven't heard back from her in an hour, and I'm already imagining the worst.",62.31717,53.836014,0.0,250.24918,330.2235,425.98407,425.98407,436.544,0.0,425.98407,436.544,61.73817
+anxiety,en,"Money is fine right now, but I can't stop worrying about next year.",277.20776,85.92186,315.1173,68.5094,0.0,427.58786,427.58786,442.74695,0.0,427.58786,442.74695,0.0
+anxiety,en,I get restless and jittery whenever I have to wait for news.,252.6739,57.576534,199.71094,47.56755,0.0,309.44305,309.44305,306.49493,0.0,309.44305,306.49493,0.0
+anxiety,es,"Siento que algo malo va a pasar, aunque todo está bien.",0.0,99.60509,93.322815,65.53267,0.0,0.0,0.0,0.0,349.3069,0.0,0.0,90.35602
+anxiety,es,No paro de darle vueltas a todo lo que se me puede olvidar mañana.,0.0,61.74914,0.0,0.0,0.0,182.31985,182.31985,39.423126,324.9629,182.31985,39.423126,0.0
+anxiety,es,"Antes de cada reunión se me aprieta el pecho, aunque sea algo normal.",0.0,131.9321,340.0791,0.0,0.0,311.16202,311.16202,0.0,234.77112,311.16202,0.0,0.0
+anxiety,es,Revisé la estufa tres veces y todavía me preocupa haberla dejado prendida.,281.61536,0.0,0.0,97.361725,0.0,258.31293,258.31293,131.74658,0.0,258.31293,131.74658,0.0
+anxiety,es,"¿Y si me cuelgan en el examen, pierdo la beca y todo se viene abajo?",0.0,53.327087,0.0,0.0,0.0,256.9207,256.9207,160.05103,334.19348,256.9207,160.05103,74.54921
+anxiety,es,No puedo dormir porque repaso cada conversación del día.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,398.3399,0.0,0.0,0.0
+anxiety,es,Vivo con los nervios de punta y no logro relajarme.,0.0,0.0,0.0,85.115555,0.0,138.72342,138.72342,0.0,0.0,138.72342,0.0,0.0
+anxiety,es,"Hace una hora que no me contesta, y ya me estoy imaginando lo peor.",78.739685,0.0,0.0,144.71136,0.0,261.4407,261.4407,48.809326,0.0,261.4407,48.809326,59.859615
+anxiety,es,"Ahorita el dinero está bien, pero no dejo de preocuparme por el año que viene.",242.14012,92.96215,142.78464,63.011505,0.0,101.98688,101.98688,0.0,0.0,101.98688,0.0,62.38428
+anxiety,es,Me pongo inquieto y ansioso cada vez que tengo que esperar noticias.,207.09856,102.99811,142.1287,61.082413,0.0,0.0,0.0,0.0,235.10043,0.0,0.0,60.34988
+fear,en,A huge dog lunged at me and I froze.,0.0,0.0,0.0,62.594193,0.0,323.52112,323.52112,457.6396,0.0,323.52112,457.6396,167.33832
+fear,en,"I heard someone trying the door handle at 3 a.m., and I couldn't breathe.",91.28734,0.0,0.0,138.7438,0.0,320.83295,320.83295,387.83936,0.0,320.83295,387.83936,119.879074
+fear,en,The car skidded on the ice and I thought we were going to crash.,0.0,0.0,0.0,141.83582,0.0,508.34344,508.34344,394.55804,0.0,508.34344,394.55804,168.06302
+fear,en,"When the plane dropped suddenly, I grabbed the armrest in terror.",248.47166,0.0,57.94809,68.07051,0.0,288.02496,288.02496,433.0769,0.0,288.02496,433.0769,192.00664
+fear,en,I saw a snake by my foot and jumped back screaming.,62.74962,0.0,78.67297,57.360718,274.28168,88.28406,88.28406,68.46991,0.0,88.28406,68.46991,195.19888
+fear,en,The building started shaking and we ran for the stairs.,55.003983,0.0,0.0,0.0,0.0,392.20618,392.20618,251.70105,0.0,392.20618,251.70105,223.24477
+fear,en,A man followed me for three blocks and I was terrified.,325.11713,0.0,296.48566,135.1193,0.0,300.04242,300.04242,360.4298,0.0,300.04242,360.4298,136.93356
+fear,en,The smoke alarm went off and I saw flames in the kitchen.,0.0,0.0,0.0,85.157776,0.0,371.50925,371.50925,424.77277,0.0,371.50925,424.77277,254.30827
+fear,en,"I lost my child in the crowd for a minute, and I panicked.",143.2831,70.671906,73.23511,368.72827,271.53143,434.11224,434.11224,399.4779,0.0,434.11224,399.4779,181.72224
+fear,en,The wave knocked me under and I couldn't find the surface.,0.0,0.0,0.0,43.970963,0.0,287.8641,287.8641,342.02356,0.0,287.8641,342.02356,152.00616
+fear,es,Un perro enorme se me tiró encima y me quedé paralizado.,143.83629,63.419117,151.37384,100.269394,0.0,269.85712,269.85712,160.37042,0.0,269.85712,160.37042,149.26625
+fear,es,"Escuché que alguien trataba de abrir la puerta a las tres de la mañana, y no podía respirar.",82.7997,74.28162,0.0,105.14995,0.0,132.95944,132.95944,0.0,0.0,132.95944,0.0,117.48581
+fear,es,El carro patinó en el hielo y pensé que nos íbamos a estrellar.,53.426346,59.90602,0.0,54.745102,0.0,239.63196,239.63196,40.272827,0.0,239.63196,40.272827,129.48
+fear,es,"Cuando el avión cayó de golpe, me agarré del asiento muerta de miedo.",194.42632,0.0,0.0,0.0,0.0,191.69943,191.69943,258.3499,0.0,191.69943,258.3499,156.6549
+fear,es,Vi una culebra al lado de mi pie y salté gritando.,62.753235,78.12065,0.0,0.0,100.408875,160.45413,160.45413,0.0,0.0,160.45413,0.0,149.84564
+fear,es,El edificio empezó a temblar y corrimos hacia las escaleras.,0.0,0.0,0.0,0.0,0.0,49.506134,49.506134,0.0,0.0,49.506134,0.0,171.44829
+fear,es,Un hombre me siguió tres cuadras y yo estaba aterrada.,332.90094,84.14495,204.26904,90.17793,0.0,186.6608,186.6608,184.13629,0.0,186.6608,184.13629,111.73549
+fear,es,Sonó la alarma de humo y vi llamas en la cocina.,0.0,0.0,0.0,82.41745,0.0,0.0,0.0,47.248962,0.0,0.0,47.248962,232.72417
+fear,es,"Perdí a mi niño entre la gente por un minuto, y me entró el pánico.",140.83812,65.07642,0.0,291.8396,123.37665,248.55112,248.55112,147.73987,0.0,248.55112,147.73987,187.46506
+fear,es,La ola me revolcó y no encontraba la superficie.,0.0,0.0,0.0,0.0,0.0,224.776,224.776,0.0,0.0,224.776,0.0,127.92062
+neutral,en,I bought rice and beans at the store this afternoon.,0.0,0.0,0.0,47.430603,0.0,75.85864,75.85864,48.447693,0.0,75.85864,48.447693,69.456894
+neutral,en,The meeting was moved to Thursday at ten.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,en,My cousin is painting the living room light green.,0.0,0.0,131.10974,427.45447,0.0,0.0,0.0,129.21417,0.0,0.0,129.21417,0.0
+neutral,en,The bus to Scranton leaves every forty minutes.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,283.8011,0.0,0.0,70.502045
+neutral,en,I'm reorganizing the files on my laptop by year.,0.0,0.0,0.0,74.21303,245.49164,75.85846,75.85846,219.6502,0.0,75.85846,219.6502,0.0
+neutral,en,We need to replace the battery in the smoke detector.,0.0,0.0,0.0,0.0,0.0,114.923706,114.923706,0.0,0.0,114.923706,0.0,154.8564
+neutral,en,The library opens at nine on Saturdays.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,en,She is learning to play the guitar on weekends.,0.0,0.0,0.0,67.47153,0.0,158.2887,158.2887,0.0,0.0,158.2887,0.0,0.0
+neutral,en,The recipe calls for two cups of flour.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,en,I watered the plants and took out the recycling.,0.0,0.0,0.0,84.78583,0.0,75.85852,75.85852,0.0,0.0,75.85852,0.0,0.0
+neutral,es,Compré arroz y habichuelas en el colmado esta tarde.,0.0,58.425476,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,es,La reunión se movió para el jueves a las diez.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,es,Mi primo está pintando la sala de verde clarito.,0.0,0.0,97.71838,202.57413,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,es,La guagua para Scranton sale cada cuarenta minutos.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,193.03363,0.0,0.0,59.774014
+neutral,es,Estoy organizando los archivos de mi laptop por año.,0.0,0.0,0.0,56.699005,251.75519,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,es,Hay que cambiarle la batería al detector de humo.,0.0,0.0,0.0,0.0,0.0,143.16226,143.16226,0.0,0.0,143.16226,0.0,134.3904
+neutral,es,La biblioteca abre a las nueve los sábados.,0.0,56.036514,0.0,0.0,0.0,113.64044,113.64044,0.0,0.0,113.64044,0.0,0.0
+neutral,es,Ella está aprendiendo a tocar guitarra los fines de semana.,0.0,0.0,0.0,0.0,0.0,58.405457,58.405457,0.0,0.0,58.405457,0.0,0.0
+neutral,es,La receta lleva dos tazas de harina.,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+neutral,es,Regué las matas y saqué el reciclaje.,0.0,85.54968,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0

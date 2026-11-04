@@ -1,0 +1,161 @@
+split,item_id,concept,variant,lang,text
+dialect_parallel,1,sadness,en,en,I have been feeling down all week and I do not really know why.
+dialect_parallel,1,sadness,es_neutral,es,Me he sentido desanimado toda la semana y no sé realmente por qué.
+dialect_parallel,1,sadness,es_do,es,Llevo la semana entera bajito de ánimo y ni sé decirte por qué.
+dialect_parallel,2,sadness,en,en,"Rainy days leave me feeling low, as if everything around me is gray."
+dialect_parallel,2,sadness,es_neutral,es,"Los días lluviosos me dejan triste, como si todo a mi alrededor fuera gris."
+dialect_parallel,2,sadness,es_do,es,"Los días de aguacero me dejan apachurrado, como con un nublado encima."
+dialect_parallel,3,sadness,en,en,I felt sad when nobody at work remembered my birthday.
+dialect_parallel,3,sadness,es_neutral,es,Me sentí triste cuando nadie en el trabajo recordó mi cumpleaños.
+dialect_parallel,3,sadness,es_do,es,Me dio una pena grandísima que nadie en el trabajo se acordara de mi cumpleaños.
+dialect_parallel,4,sadness,en,en,I was disappointed after hearing that I did not get the job.
+dialect_parallel,4,sadness,es_neutral,es,Me sentí decepcionado al saber que no obtuve el empleo.
+dialect_parallel,4,sadness,es_do,es,Me quedé desencantado cuando me dijeron que no me dieron el puesto.
+dialect_parallel,5,sadness,en,en,Some afternoons I just feel empty and tired for no clear reason.
+dialect_parallel,5,sadness,es_neutral,es,Algunas tardes simplemente me siento vacío y cansado sin razón clara.
+dialect_parallel,5,sadness,es_do,es,Hay tardes que me entra un desgano y un vacío raro sin motivo.
+dialect_parallel,6,sadness,en,en,She looked sad on the bus ride home after her team lost.
+dialect_parallel,6,sadness,es_neutral,es,Ella se veía triste en el autobús de regreso a casa después de que su equipo perdió.
+dialect_parallel,6,sadness,es_do,es,Ella iba cabizbaja en la guagua pa' su casa después que su equipo perdió.
+dialect_parallel,7,sadness,en,en,It hurts that my childhood friend and I barely speak anymore.
+dialect_parallel,7,sadness,es_neutral,es,Me duele que mi amigo de la infancia y yo apenas hablemos ahora.
+dialect_parallel,7,sadness,es_do,es,Me da sentimiento que mi pana de toda la vida y yo ya ni nos hablemos.
+dialect_parallel,8,sadness,en,en,I cried quietly after finishing the movie by myself.
+dialect_parallel,8,sadness,es_neutral,es,Lloré en silencio después de terminar de ver la película solo.
+dialect_parallel,8,sadness,es_do,es,Se me salieron las lágrimas calladito cuando se acabó la película.
+dialect_parallel,9,sadness,en,en,I miss how simple our weekends used to be a few years ago.
+dialect_parallel,9,sadness,es_neutral,es,Extraño lo sencillos que solían ser nuestros fines de semana hace unos años.
+dialect_parallel,9,sadness,es_do,es,"Me hace falta cómo eran los fines de semana antes, me entra una nostalgia."
+dialect_parallel,10,sadness,en,en,"Walking back from the corner store, I felt a quiet wave of loneliness."
+dialect_parallel,10,sadness,es_neutral,es,"Caminando de regreso de la tienda, sentí una silenciosa ola de soledad."
+dialect_parallel,10,sadness,es_do,es,Volviendo del colmado me entró una soledad callada que me dejó sin ánimo.
+dialect_parallel,11,grief,en,en,"Since my father died, I keep setting his plate at the dinner table."
+dialect_parallel,11,grief,es_neutral,es,"Desde que murió mi padre, sigo poniendo su plato en la mesa para cenar."
+dialect_parallel,11,grief,es_do,es,"Desde que mi papá faltó, sigo poniéndole su plato en la mesa a la hora de comer."
+dialect_parallel,12,grief,en,en,"A year after burying my grandmother, the house feels impossibly quiet."
+dialect_parallel,12,grief,es_neutral,es,"Un año después de enterrar a mi abuela, la casa se siente increíblemente silenciosa."
+dialect_parallel,12,grief,es_do,es,Ya va un año del entierro de mi abuela y esta casa se siente vacía de verdad.
+dialect_parallel,13,grief,en,en,I cannot bring myself to delete the voice messages my mother left me.
+dialect_parallel,13,grief,es_neutral,es,No soy capaz de borrar los mensajes de voz que me dejó mi madre.
+dialect_parallel,13,grief,es_do,es,No tengo corazón para borrar las notas de voz que me dejó mi vieja antes de irse.
+dialect_parallel,14,grief,en,en,"At the funeral I felt numb, and a week later I could not stop weeping."
+dialect_parallel,14,grief,es_neutral,es,"En el funeral me sentí insensible, y una semana después no podía dejar de llorar."
+dialect_parallel,14,grief,es_do,es,"En el velorio me quedé frío, y a la semana fue que me desmonté a llorar sin consuelo."
+dialect_parallel,15,grief,en,en,Her son passed away last spring and she folds his clothes every Sunday.
+dialect_parallel,15,grief,es_neutral,es,Su hijo falleció la primavera pasada y ella dobla su ropa cada domingo.
+dialect_parallel,15,grief,es_do,es,Su muchacho partió el año pasado y ella sigue doblándole su ropa todos los domingos.
+dialect_parallel,16,grief,en,en,Every holiday dinner reminds our family that my brother is gone forever.
+dialect_parallel,16,grief,es_neutral,es,Cada cena navideña le recuerda a nuestra familia que mi hermano se fue para siempre.
+dialect_parallel,16,grief,es_do,es,Cada Nochebuena nos pega el luto de ver la silla vacía de mi hermano.
+dialect_parallel,17,grief,en,en,"After losing the pregnancy, everyone expected me to return to normal quickly."
+dialect_parallel,17,grief,es_neutral,es,"Después de perder el embarazo, todos esperaban que volviera a la normalidad rápido."
+dialect_parallel,17,grief,es_do,es,"Después de aquella pérdida, la gente quería que yo siguiera como si nada hubiera pasado."
+dialect_parallel,18,grief,en,en,"I dream that my late wife is talking to me in the kitchen, then I wake up alone."
+dialect_parallel,18,grief,es_neutral,es,Sueño que mi difunta esposa habla conmigo en la cocina y luego despierto solo.
+dialect_parallel,18,grief,es_do,es,Sueño clarito que mi difunta esposa me está colando café y cuando despierto me da un dolor en el alma.
+dialect_parallel,19,grief,en,en,We scattered my uncle's ashes along the coast where he grew up.
+dialect_parallel,19,grief,es_neutral,es,Esparcimos las cenizas de mi tío a lo largo de la costa donde creció.
+dialect_parallel,19,grief,es_do,es,Fuimos a tirar las cenizas de mi tío en la playa que tanto él adoraba.
+dialect_parallel,20,grief,en,en,Losing my best friend so suddenly left a hole in my life I cannot fill.
+dialect_parallel,20,grief,es_neutral,es,Perder a mi mejor amigo tan repentinamente dejó un vacío en mi vida que no puedo llenar.
+dialect_parallel,20,grief,es_do,es,La partida tan de repente de mi hermano del alma me dejó un hueco que no se llena con nada.
+dialect_parallel,21,anxiety,en,en,I keep thinking something bad is about to happen even when everything is fine.
+dialect_parallel,21,anxiety,es_neutral,es,Sigo pensando que algo malo está por suceder incluso cuando todo está bien.
+dialect_parallel,21,anxiety,es_do,es,Tengo un presentimiento malo dándome mente aunque todo esté tranquilo.
+dialect_parallel,22,anxiety,en,en,My thoughts race all night about small tasks I might forget tomorrow.
+dialect_parallel,22,anxiety,es_neutral,es,Mis pensamientos se aceleran toda la noche por pequeñas tareas que podría olvidar mañana.
+dialect_parallel,22,anxiety,es_do,es,Me paso la noche entera dándole mente a mil cosas que se me pueden pasar mañana.
+dialect_parallel,23,anxiety,en,en,"Before every routine meeting at work, my chest feels tight and restless."
+dialect_parallel,23,anxiety,es_neutral,es,"Antes de cada reunión rutinaria en el trabajo, siento opresión e inquietud en el pecho."
+dialect_parallel,23,anxiety,es_do,es,Antes de cualquier reunión normalita se me aprieta el pecho y me entra una desesperación.
+dialect_parallel,24,anxiety,en,en,I checked the kitchen stove three times and I am still worried I left it on.
+dialect_parallel,24,anxiety,es_neutral,es,Revisé la estufa de la cocina tres veces y todavía me preocupa haberla dejado encendida.
+dialect_parallel,24,anxiety,es_do,es,Chequeé la estufa tres veces y sigo con el pendiente de haberla dejado prendida.
+dialect_parallel,25,anxiety,en,en,"What if I fail the exam, lose my scholarship, and ruin my entire future?"
+dialect_parallel,25,anxiety,es_neutral,es,"¿Qué pasa si repruebo el examen, pierdo mi beca y arruino todo mi futuro?"
+dialect_parallel,25,anxiety,es_do,es,"¿Y si me cuelgan en ese examen, pierdo la beca y se me cae el mundo encima?"
+dialect_parallel,26,anxiety,en,en,I cannot fall asleep because I keep replaying every conversation from today.
+dialect_parallel,26,anxiety,es_neutral,es,No puedo conciliar el sueño porque sigo repitiendo cada conversación de hoy.
+dialect_parallel,26,anxiety,es_do,es,No pego un ojo en la cama dándole vuelta y vuelta a todo lo que dije hoy.
+dialect_parallel,27,anxiety,en,en,I feel constantly on edge and unable to relax my shoulders.
+dialect_parallel,27,anxiety,es_neutral,es,Me siento constantemente tenso e incapaz de relajar los hombros.
+dialect_parallel,27,anxiety,es_do,es,Vivo con los nervios de punta y una intranquilidad que no me deja quieto.
+dialect_parallel,28,anxiety,en,en,She has not replied in an hour and my mind is already imagining the worst.
+dialect_parallel,28,anxiety,es_neutral,es,Ella no ha respondido en una hora y mi mente ya está imaginando lo peor.
+dialect_parallel,28,anxiety,es_do,es,Lleva una hora sin contestarme y ya tengo la cabeza volada pensando lo peor.
+dialect_parallel,29,anxiety,en,en,"Our finances are stable right now, yet I cannot stop worrying about next year."
+dialect_parallel,29,anxiety,es_neutral,es,"Nuestras finanzas están estables ahora, pero no puedo dejar de preocuparme por el próximo año."
+dialect_parallel,29,anxiety,es_do,es,"Ahorita los cuartos alcanzan, pero no dejo de mortificarme pensando en el año que viene."
+dialect_parallel,30,anxiety,en,en,Waiting for medical test results makes me jittery and short of breath.
+dialect_parallel,30,anxiety,es_neutral,es,Esperar los resultados de los análisis médicos me pone nervioso y con falta de aire.
+dialect_parallel,30,anxiety,es_do,es,Esperar esos resultados médicos me tiene al darme un ataque de nervios y con un sofoco.
+dialect_parallel,31,fear,en,en,A large aggressive dog lunged at me on the sidewalk and I froze.
+dialect_parallel,31,fear,es_neutral,es,Un perro grande y agresivo se lanzó contra mí en la acera y me quedé inmóvil.
+dialect_parallel,31,fear,es_do,es,Un perro grandísimo me tiró un tarascazo en la acera y me quedé frío del susto.
+dialect_parallel,32,fear,en,en,I heard someone forcing the bedroom door handle at 3 a.m. and could not breathe.
+dialect_parallel,32,fear,es_neutral,es,Escuché a alguien forzando la manija de la puerta a las tres de la mañana y no pude respirar.
+dialect_parallel,32,fear,es_do,es,Oí a alguien forcejeando el llavín a las tres de la mañana y se me fue el aire del terror.
+dialect_parallel,33,fear,en,en,The car skidded across the wet highway toward the guardrail and I screamed.
+dialect_parallel,33,fear,es_neutral,es,El automóvil derrapó por la autopista mojada hacia la barandilla y grité.
+dialect_parallel,33,fear,es_do,es,El carro patinó en la pista mojada directo a la baranda y pegué un grito del espanto.
+dialect_parallel,34,fear,en,en,"When the airplane dropped suddenly in turbulence, I gripped the seat in terror."
+dialect_parallel,34,fear,es_neutral,es,"Cuando el avión cayó repentinamente por la turbulencia, me aferré al asiento con terror."
+dialect_parallel,34,fear,es_do,es,"Cuando ese avión dio el bajón de golpe, me agarré del asiento muerto del miedo."
+dialect_parallel,35,fear,en,en,I saw a venomous snake coiled near my shoe and jumped backward.
+dialect_parallel,35,fear,es_neutral,es,Vi una serpiente venenosa enrollada cerca de mi zapato y salté hacia atrás.
+dialect_parallel,35,fear,es_do,es,Vi una culebra pegadita de mi pie y di un brinco pa' atrás con el corazón en la boca.
+dialect_parallel,36,fear,en,en,The walls started shaking violently during the earthquake and we ran outside.
+dialect_parallel,36,fear,es_neutral,es,Las paredes comenzaron a temblar violentamente durante el terremoto y corrimos afuera.
+dialect_parallel,36,fear,es_do,es,La casa empezó a remecerse durísimo con el temblor y salimos huyendo pa' la calle.
+dialect_parallel,37,fear,en,en,A stranger followed me down three dark streets at night and I panicked.
+dialect_parallel,37,fear,es_neutral,es,Un desconocido me siguió por tres calles oscuras de noche y entré en pánico.
+dialect_parallel,37,fear,es_do,es,Un tipo raro me cayó atrás por tres calles oscuras y me entró un pánico horrible.
+dialect_parallel,38,fear,en,en,The smoke alarm shrieked and I saw bright flames climbing the kitchen curtains.
+dialect_parallel,38,fear,es_neutral,es,La alarma de humo sonó y vi llamas brillantes subiendo por las cortinas de la cocina.
+dialect_parallel,38,fear,es_do,es,Sonó la alarma y vi la candela subiendo por la cortina de la cocina.
+dialect_parallel,39,fear,en,en,I lost sight of my toddler in the crowded terminal and my heart pounded in terror.
+dialect_parallel,39,fear,es_neutral,es,Perdí de vista a mi hijo pequeño en la terminal llena de gente y mi corazón latió con terror.
+dialect_parallel,39,fear,es_do,es,Se me perdió el niño en aquel gentío y sentí que se me salía el corazón del susto.
+dialect_parallel,40,fear,en,en,The ocean wave pulled me underwater and I could not find the surface.
+dialect_parallel,40,fear,es_neutral,es,La ola del mar me arrastró bajo el agua y no podía encontrar la superficie.
+dialect_parallel,40,fear,es_do,es,El olón me revolcó en el fondo y me vi ahogándome sin hallar por dónde salir.
+counterfactual_2x2,101,explicit_grief,explicit_grief,en,"Since my father died last year, I still set his coffee mug on the table every morning."
+counterfactual_2x2,102,explicit_grief,explicit_grief,en,My grandmother passed away in May and I still cannot delete her voicemails.
+counterfactual_2x2,103,explicit_grief,explicit_grief,en,"After the funeral, my mother still keeps my brother's bedroom exactly as he left it."
+counterfactual_2x2,104,explicit_grief,explicit_grief,en,"It has been two years since we buried my husband, and I still reach for his hand."
+counterfactual_2x2,105,explicit_grief,explicit_grief,en,Her son died in the accident and she still wears his winter coat.
+counterfactual_2x2,106,explicit_grief,explicit_grief,es,"Desde que murió mi papá el año pasado, todavía le sirvo su taza de café cada mañana."
+counterfactual_2x2,107,explicit_grief,explicit_grief,es,Mi abuela falleció en mayo y todavía no puedo borrar sus mensajes de voz.
+counterfactual_2x2,108,explicit_grief,explicit_grief,es,"Después del entierro, mi mamá todavía guarda el cuarto de mi hermano intacto."
+counterfactual_2x2,109,explicit_grief,explicit_grief,es,Ya van dos años desde que enterramos a mi esposo y todavía busco su mano.
+counterfactual_2x2,110,explicit_grief,explicit_grief,es,Su hijo murió en el accidente y ella todavía se pone su abrigo.
+counterfactual_2x2,111,implicit_grief,implicit_grief,en,"I dialed the familiar number out of habit, then remembered nobody would ever answer that phone again."
+counterfactual_2x2,112,implicit_grief,implicit_grief,en,Buying a single ticket instead of two made the silence in the theater unbearable.
+counterfactual_2x2,113,implicit_grief,implicit_grief,en,"The closet on the left side of the hallway remains untouched, smelling faintly of cedar and old cologne."
+counterfactual_2x2,114,implicit_grief,implicit_grief,en,Cooking half the recipe feels pointless when the chair across from me stays empty every evening.
+counterfactual_2x2,115,implicit_grief,implicit_grief,en,Donating the boxed winter sweaters felt like erasing the last physical trace of our years together.
+counterfactual_2x2,116,implicit_grief,implicit_grief,es,Marqué aquel número por pura costumbre y de golpe recordé que ya nadie me va a contestar jamás.
+counterfactual_2x2,117,implicit_grief,implicit_grief,es,Comprar un solo boleto en vez de dos hizo que el silencio en la sala fuera insoportable.
+counterfactual_2x2,118,implicit_grief,implicit_grief,es,"El armario del lado izquierdo permanece intacto, con aquel olor suave a cedro y colonia antigua."
+counterfactual_2x2,119,implicit_grief,implicit_grief,es,Cocinar la mitad de la receta no tiene sentido cuando la silla frente a mí queda vacía cada noche.
+counterfactual_2x2,120,implicit_grief,implicit_grief,es,Entregar aquellas cajas de ropa se sintió como borrar la última huella de los años que compartimos.
+counterfactual_2x2,121,lexical_trap_neutral,lexical_trap_neutral,en,My grandfather is a retired historian who still catalogs nineteenth-century funeral records for the county museum.
+counterfactual_2x2,122,lexical_trap_neutral,lexical_trap_neutral,en,My mother works as a probate lawyer and still reviews estate documents after a client has died.
+counterfactual_2x2,123,lexical_trap_neutral,lexical_trap_neutral,en,My brother is an archaeologist who still studies how ancient kings were buried in stone tombs.
+counterfactual_2x2,124,lexical_trap_neutral,lexical_trap_neutral,en,"My father's old lawnmower battery finally died yesterday, but the backup charger still works fine."
+counterfactual_2x2,125,lexical_trap_neutral,lexical_trap_neutral,en,My aunt is a florist who still delivers white lilies to the neighborhood funeral home on Tuesdays.
+counterfactual_2x2,126,lexical_trap_neutral,lexical_trap_neutral,es,Mi abuelo es un historiador jubilado que todavía cataloga actas de entierros antiguos para el museo.
+counterfactual_2x2,127,lexical_trap_neutral,lexical_trap_neutral,es,Mi mamá trabaja como abogada sucesoral y todavía revisa testamentos cuando un cliente ha fallecido.
+counterfactual_2x2,128,lexical_trap_neutral,lexical_trap_neutral,es,Mi hermano es arqueólogo y todavía estudia cómo enterraban a los reyes antiguos en tumbas de piedra.
+counterfactual_2x2,129,lexical_trap_neutral,lexical_trap_neutral,es,"La batería vieja del taladro de mi papá murió ayer, pero el cargador de repuesto todavía funciona bien."
+counterfactual_2x2,130,lexical_trap_neutral,lexical_trap_neutral,es,Mi tía tiene una floristería y todavía entrega arreglos a la funeraria del barrio todos los martes.
+counterfactual_2x2,131,baseline_neutral,baseline_neutral,en,The public library opens at nine on Saturday mornings and closes at five.
+counterfactual_2x2,132,baseline_neutral,baseline_neutral,en,I organized the project spreadsheets by quarter and backed them up to the drive.
+counterfactual_2x2,133,baseline_neutral,baseline_neutral,en,"The recipe requires two cups of flour, warm water, and a pinch of salt."
+counterfactual_2x2,134,baseline_neutral,baseline_neutral,en,The regional train departs from platform four every thirty minutes.
+counterfactual_2x2,135,baseline_neutral,baseline_neutral,en,We replaced the air filter in the hallway unit before summer started.
+counterfactual_2x2,136,baseline_neutral,baseline_neutral,es,La biblioteca pública abre a las nueve los sábados por la mañana y cierra a las cinco.
+counterfactual_2x2,137,baseline_neutral,baseline_neutral,es,Organicé las hojas de cálculo del proyecto por trimestre y las guardé en el disco.
+counterfactual_2x2,138,baseline_neutral,baseline_neutral,es,"La receta lleva dos tazas de harina, agua tibia y una pizca de sal."
+counterfactual_2x2,139,baseline_neutral,baseline_neutral,es,El tren regional sale del andén cuatro cada treinta minutos.
+counterfactual_2x2,140,baseline_neutral,baseline_neutral,es,Cambiamos el filtro de aire del pasillo antes de que empezara el verano.

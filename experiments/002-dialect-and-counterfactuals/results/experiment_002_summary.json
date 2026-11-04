@@ -1,0 +1,298 @@
+{
+  "experiment_id": "002-dialect-and-counterfactuals",
+  "timestamp_utc": "2026-11-04T03:57:47.698030+00:00",
+  "model_id": "google/gemma-3-1b-it",
+  "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+  "sae_release": "gemma-scope-2-1b-it-res",
+  "layers_evaluated": [
+    7,
+    13,
+    17,
+    22
+  ],
+  "dataset_path": "experiments/002-dialect-and-counterfactuals/dialect_and_counterfactual_probes_v0.csv",
+  "dataset_sha256": "dd52ec7dea4312fb5c57fbc578376527b7a62d46e955eadd92cd5f5986b73f5d",
+  "dataset_rows": 160,
+  "hardware": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch_version": "2.10.0+cu128",
+  "runtime_seconds": 36.92,
+  "part_a_dialect_by_layer": {
+    "7": {
+      "cv_en": 0.75,
+      "cv_es_neutral": 0.75,
+      "cv_es_do": 0.775,
+      "en->es_neutral": 0.925,
+      "en->es_do": 0.8,
+      "es_neutral->es_do": 0.875,
+      "es_do->es_neutral": 0.775,
+      "es_neutral->en": 0.975,
+      "es_do->en": 0.7,
+      "item_cos_en~es_neutral": 0.693,
+      "item_cos_en~es_do": 0.554,
+      "item_cos_es_neutral~es_do": 0.69
+    },
+    "13": {
+      "cv_en": 0.875,
+      "cv_es_neutral": 0.875,
+      "cv_es_do": 0.775,
+      "en->es_neutral": 1.0,
+      "en->es_do": 0.925,
+      "es_neutral->es_do": 0.95,
+      "es_do->es_neutral": 0.825,
+      "es_neutral->en": 0.975,
+      "es_do->en": 0.775,
+      "item_cos_en~es_neutral": 0.743,
+      "item_cos_en~es_do": 0.616,
+      "item_cos_es_neutral~es_do": 0.74
+    },
+    "17": {
+      "cv_en": 0.85,
+      "cv_es_neutral": 0.8,
+      "cv_es_do": 0.725,
+      "en->es_neutral": 0.95,
+      "en->es_do": 0.825,
+      "es_neutral->es_do": 0.875,
+      "es_do->es_neutral": 0.9,
+      "es_neutral->en": 0.975,
+      "es_do->en": 0.775,
+      "item_cos_en~es_neutral": 0.625,
+      "item_cos_en~es_do": 0.477,
+      "item_cos_es_neutral~es_do": 0.65
+    },
+    "22": {
+      "cv_en": 0.85,
+      "cv_es_neutral": 0.625,
+      "cv_es_do": 0.6,
+      "en->es_neutral": 0.85,
+      "en->es_do": 0.7,
+      "es_neutral->es_do": 0.9,
+      "es_do->es_neutral": 0.775,
+      "es_neutral->en": 0.95,
+      "es_do->en": 0.55,
+      "item_cos_en~es_neutral": 0.391,
+      "item_cos_en~es_do": 0.314,
+      "item_cos_es_neutral~es_do": 0.68
+    }
+  },
+  "part_b_key_features_2x2": [
+    {
+      "feature": 293,
+      "explicit_grief_mean": 375.35,
+      "explicit_grief_hit": 1.0,
+      "implicit_grief_mean": 81.86,
+      "implicit_grief_hit": 0.5,
+      "lexical_trap_neutral_mean": 406.2,
+      "lexical_trap_neutral_hit": 1.0,
+      "baseline_neutral_mean": 5.0,
+      "baseline_neutral_hit": 0.1
+    },
+    {
+      "feature": 1886,
+      "explicit_grief_mean": 245.24,
+      "explicit_grief_hit": 1.0,
+      "implicit_grief_mean": 42.99,
+      "implicit_grief_hit": 0.5,
+      "lexical_trap_neutral_mean": 163.19,
+      "lexical_trap_neutral_hit": 1.0,
+      "baseline_neutral_mean": 0.0,
+      "baseline_neutral_hit": 0.0
+    },
+    {
+      "feature": 4284,
+      "explicit_grief_mean": 405.1,
+      "explicit_grief_hit": 1.0,
+      "implicit_grief_mean": 50.61,
+      "implicit_grief_hit": 0.7,
+      "lexical_trap_neutral_mean": 415.81,
+      "lexical_trap_neutral_hit": 1.0,
+      "baseline_neutral_mean": 0.0,
+      "baseline_neutral_hit": 0.0
+    },
+    {
+      "feature": 384,
+      "explicit_grief_mean": 332.5,
+      "explicit_grief_hit": 0.9,
+      "implicit_grief_mean": 37.93,
+      "implicit_grief_hit": 0.1,
+      "lexical_trap_neutral_mean": 47.26,
+      "lexical_trap_neutral_hit": 0.2,
+      "baseline_neutral_mean": 0.0,
+      "baseline_neutral_hit": 0.0
+    },
+    {
+      "feature": 397,
+      "explicit_grief_mean": 265.93,
+      "explicit_grief_hit": 1.0,
+      "implicit_grief_mean": 107.13,
+      "implicit_grief_hit": 0.7,
+      "lexical_trap_neutral_mean": 58.1,
+      "lexical_trap_neutral_hit": 0.7,
+      "baseline_neutral_mean": 54.28,
+      "baseline_neutral_hit": 0.3
+    },
+    {
+      "feature": 2697,
+      "explicit_grief_mean": 143.93,
+      "explicit_grief_hit": 1.0,
+      "implicit_grief_mean": 32.09,
+      "implicit_grief_hit": 0.4,
+      "lexical_trap_neutral_mean": 65.9,
+      "lexical_trap_neutral_hit": 0.6,
+      "baseline_neutral_mean": 6.28,
+      "baseline_neutral_hit": 0.1
+    },
+    {
+      "feature": 549,
+      "explicit_grief_mean": 0.0,
+      "explicit_grief_hit": 0.0,
+      "implicit_grief_mean": 14.06,
+      "implicit_grief_hit": 0.2,
+      "lexical_trap_neutral_mean": 0.0,
+      "lexical_trap_neutral_hit": 0.0,
+      "baseline_neutral_mean": 0.0,
+      "baseline_neutral_hit": 0.0
+    },
+    {
+      "feature": 514,
+      "explicit_grief_mean": 39.69,
+      "explicit_grief_hit": 0.7,
+      "implicit_grief_mean": 90.78,
+      "implicit_grief_hit": 0.8,
+      "lexical_trap_neutral_mean": 26.76,
+      "lexical_trap_neutral_hit": 0.6,
+      "baseline_neutral_mean": 0.0,
+      "baseline_neutral_hit": 0.0
+    }
+  ],
+  "part_b_true_grief_features": [
+    {
+      "feature": 602,
+      "true_grief_score": 86.15,
+      "explicit_grief_mean": 86.15,
+      "implicit_grief_mean": 110.95,
+      "lexical_trap_mean": 0.0,
+      "neutral_mean": 0.0,
+      "label": "facial expressions and states"
+    },
+    {
+      "feature": 701,
+      "true_grief_score": 69.41,
+      "explicit_grief_mean": 73.41,
+      "implicit_grief_mean": 69.41,
+      "lexical_trap_mean": 0.0,
+      "neutral_mean": 0.0,
+      "label": "eternity and sorrow"
+    },
+    {
+      "feature": 2323,
+      "true_grief_score": 55.23,
+      "explicit_grief_mean": 78.52,
+      "implicit_grief_mean": 64.89,
+      "lexical_trap_mean": 7.08,
+      "neutral_mean": 9.67,
+      "label": "prepositions followed by 'a'"
+    },
+    {
+      "feature": 160,
+      "true_grief_score": 54.67,
+      "explicit_grief_mean": 234.09,
+      "implicit_grief_mean": 253.01,
+      "lexical_trap_mean": 179.42,
+      "neutral_mean": 159.35,
+      "label": "descriptive and persuasive language that conveys instructional intent, emotional significance, or substantive meaning."
+    },
+    {
+      "feature": 397,
+      "true_grief_score": 49.03,
+      "explicit_grief_mean": 265.93,
+      "implicit_grief_mean": 107.13,
+      "lexical_trap_mean": 58.1,
+      "neutral_mean": 54.28,
+      "label": null
+    },
+    {
+      "feature": 909,
+      "true_grief_score": 42.76,
+      "explicit_grief_mean": 124.98,
+      "implicit_grief_mean": 53.18,
+      "lexical_trap_mean": 10.42,
+      "neutral_mean": 0.0,
+      "label": null
+    },
+    {
+      "feature": 766,
+      "true_grief_score": 41.07,
+      "explicit_grief_mean": 41.07,
+      "implicit_grief_mean": 66.81,
+      "lexical_trap_mean": 0.0,
+      "neutral_mean": 0.0,
+      "label": null
+    },
+    {
+      "feature": 551,
+      "true_grief_score": 36.71,
+      "explicit_grief_mean": 67.16,
+      "implicit_grief_mean": 80.01,
+      "lexical_trap_mean": 30.45,
+      "neutral_mean": 28.01,
+      "label": "sentence connectors"
+    },
+    {
+      "feature": 508,
+      "true_grief_score": 35.4,
+      "explicit_grief_mean": 141.61,
+      "implicit_grief_mean": 203.31,
+      "lexical_trap_mean": 106.21,
+      "neutral_mean": 68.81,
+      "label": null
+    },
+    {
+      "feature": 1005,
+      "true_grief_score": 35.3,
+      "explicit_grief_mean": 81.34,
+      "implicit_grief_mean": 45.32,
+      "lexical_trap_mean": 0.0,
+      "neutral_mean": 10.02,
+      "label": "I, me, my, myself"
+    }
+  ],
+  "part_b_probe_clamping": {
+    "unclamped": {
+      "overall_auroc": 0.652,
+      "explicit_grief_recall": 1.0,
+      "implicit_grief_recall": 0.1,
+      "lexical_trap_false_positive_rate": 1.0,
+      "baseline_neutral_false_positive_rate": 0.0,
+      "explicit_grief_mean_prob": 0.998,
+      "implicit_grief_mean_prob": 0.112,
+      "lexical_trap_mean_prob": 0.958
+    },
+    "clamped_1886_4284_293": {
+      "overall_auroc": 0.647,
+      "explicit_grief_recall": 1.0,
+      "implicit_grief_recall": 0.0,
+      "lexical_trap_false_positive_rate": 0.9,
+      "baseline_neutral_false_positive_rate": 0.0,
+      "explicit_grief_mean_prob": 0.973,
+      "implicit_grief_mean_prob": 0.055,
+      "lexical_trap_mean_prob": 0.827
+    }
+  },
+  "part_b_causal_logprob_shift": {
+    "explicit_grief_clamp_lexical_1886_4284_293": {
+      "mean_logprob_base": -2.615,
+      "mean_logprob_clamped": -2.909,
+      "mean_delta_logprob": -0.295
+    },
+    "lexical_trap_clamp_lexical_1886_4284_293": {
+      "mean_logprob_base": -5.185,
+      "mean_logprob_clamped": -5.645,
+      "mean_delta_logprob": -0.46
+    },
+    "implicit_grief_clamp_true_top3": {
+      "mean_logprob_base": -6.454,
+      "mean_logprob_clamped": -6.499,
+      "mean_delta_logprob": -0.045
+    }
+  }
+}

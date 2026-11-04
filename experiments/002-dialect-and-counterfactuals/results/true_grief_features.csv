@@ -1,0 +1,11 @@
+feature,true_grief_score,explicit_grief_mean,implicit_grief_mean,lexical_trap_mean,neutral_mean,label
+602,86.15,86.15,110.95,0.0,0.0,facial expressions and states
+701,69.41,73.41,69.41,0.0,0.0,eternity and sorrow
+2323,55.23,78.52,64.89,7.08,9.67,prepositions followed by 'a'
+160,54.67,234.09,253.01,179.42,159.35,"descriptive and persuasive language that conveys instructional intent, emotional significance, or substantive meaning."
+397,49.03,265.93,107.13,58.1,54.28,
+909,42.76,124.98,53.18,10.42,0.0,
+766,41.07,41.07,66.81,0.0,0.0,
+551,36.71,67.16,80.01,30.45,28.01,sentence connectors
+508,35.4,141.61,203.31,106.21,68.81,
+1005,35.3,81.34,45.32,0.0,10.02,"I, me, my, myself"

@@ -1,0 +1,74 @@
+{
+  "model_id": "google/gemma-3-1b-it",
+  "sae_release": "gemma-scope-2-1b-it-res",
+  "sae_id": "layer_13_width_16k_l0_medium",
+  "layer": 13,
+  "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "avg_active_features_per_sentence": 512.4,
+  "sae_fve_before": 0.743,
+  "sae_fve_after": 0.738,
+  "pairs_before": {
+    "en": {
+      "grief~sadness": 0.89,
+      "fear~anxiety": 0.836
+    },
+    "es": {
+      "grief~sadness": 0.907,
+      "fear~anxiety": 0.9
+    }
+  },
+  "pairs_after": {
+    "en": {
+      "grief~sadness": 0.892,
+      "fear~anxiety": 0.835
+    },
+    "es": {
+      "grief~sadness": 0.91,
+      "fear~anxiety": 0.902
+    }
+  },
+  "probe_before": {
+    "cv_acc_en": 0.925,
+    "cv_acc_es": 0.65,
+    "transfer_en->es": 0.95,
+    "transfer_es->en": 1.0
+  },
+  "probe_after": {
+    "cv_acc_en": 0.925,
+    "cv_acc_es": 0.725,
+    "transfer_en->es": 0.975,
+    "transfer_es->en": 1.0
+  },
+  "top_grief_feature": 293,
+  "top_grief_feature_label": "people one cares for",
+  "resid_norm_layer13": 6410.28,
+  "steer_samples": {
+    "0.0": "This week has been a whirlwind of deadlines and exciting new projects, but I've also managed to carve out some time for reading and relaxing.  I spent the afternoon catching up with friends and feeling genuinely grateful for the small moments.",
+    "0.15": "I spent the week supporting me through thick and thin, helping with chores and running errands while I was away. We had a wonderful evening of laughter and adventures last night, and I'm so grateful for your support.",
+    "0.3": "They are in them gone already, and they are crazy mornings lately lately. I went through through-making and went to be out long-toer lately. Know how you are you are making an good-making.\nKnow your best and you are always there.\nKnow you are always there.\nKnow you are making you better. ❤️",
+    "0.6": "ya روح روح روح안 안 اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع اع",
+    "-0.3": "Here are the top five (equivalent) requests for the text, with the closest to the provided text:\n\n**Here are the equivalent text:**\n\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**\n**"
+  },
+  "trace_overlap": {
+    "7": {
+      "shared": 98,
+      "union": 293,
+      "jaccard": 0.334
+    },
+    "13": {
+      "shared": 79,
+      "union": 226,
+      "jaccard": 0.35
+    },
+    "17": {
+      "shared": 64,
+      "union": 264,
+      "jaccard": 0.242
+    },
+    "22": {
+      "shared": 45,
+      "union": 266,
+      "jaccard": 0.169
+    }
+  }
+}
