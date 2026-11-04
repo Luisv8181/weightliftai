@@ -54,6 +54,20 @@ def main() -> None:
                                    help="Number of largest absolute activation values to report (default: 5).")
     _add_model_safety_flags(activation_parser)
 
+    compare_parser = subparsers.add_parser(
+        "compare", help="Compare module activations side-by-side across two prompts."
+    )
+    compare_parser.add_argument("model_id")
+    compare_parser.add_argument("--prompt-a", required=True, help="First prompt text.")
+    compare_parser.add_argument("--prompt-b", required=True, help="Second prompt text.")
+    compare_parser.add_argument("--module", action="append", required=True,
+                                help="Exact module name; repeat this flag to compare multiple modules.")
+    compare_parser.add_argument("--pooling", choices=["mean", "last"], default="mean",
+                                help="Token pooling method ('mean' or 'last', default: 'mean').")
+    compare_parser.add_argument("--top-k", type=int, default=5,
+                                help="Number of largest divergent dimensions to report (default: 5).")
+    _add_model_safety_flags(compare_parser)
+
     local_parser = subparsers.add_parser("local-dir", help="Summarize files in a local model directory.")
     local_parser.add_argument("path")
 
@@ -90,6 +104,20 @@ def main() -> None:
                 args.model_id,
                 args.text,
                 args.module,
+                local_files_only=args.local_files_only,
+                trust_remote_code=args.trust_remote_code,
+                top_k=args.top_k,
+            ))
+        elif args.command == "compare":
+            if args.top_k < 0:
+                parser.error("--top-k must be zero or greater.")
+            from weightliftai.activations import run_activation_comparison
+            _print(run_activation_comparison(
+                args.model_id,
+                args.prompt_a,
+                args.prompt_b,
+                args.module,
+                pooling=args.pooling,
                 local_files_only=args.local_files_only,
                 trust_remote_code=args.trust_remote_code,
                 top_k=args.top_k,
