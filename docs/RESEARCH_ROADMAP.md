@@ -60,4 +60,20 @@
 
 
 ## Representation Cartography
-- [ ] **Representation Cartography — Layer Atlas, Representation Map, Feature Observatory, Contrast Studio, and Circuit/Intervention Workbench.** See [`docs/REPRESENTATION_CARTOGRAPHY.md`](REPRESENTATION_CARTOGRAPHY.md) for the product thesis, scientific guardrails, data model, architecture, acceptance criteria, and phased delivery plan.
+- [x] **Phase 0 — Core Schemas, Validation Engine & Medical Terminology Pilot:**
+  - Implemented immutable Pydantic schemas (CaptureSpec, RepresentationArtifact, ProjectionArtifact, MedicalConcept, ConceptSynonym, KnowledgeProbe, DatasetRef, ModelRef) in \src/weightliftai/cartography/schemas.py\.
+  - Implemented automated cross-split leakage, matched pair balance, and self-referential cycle validation in \src/weightliftai/cartography/validators.py\.
+  - Constructed the 50-concept NLM MeSH 2026 Medical Pilot dataset (\examples/medical_pilot/medical_pilot_50_concepts.json\): 150 balanced probes across 3 variants (canonical_clinical, plain_lay, cultural_idiom), 0 PHI, public domain.
+- [x] **Phase 1 — Layer Atlas & Trajectory Engine:**
+  - Implemented single-pass multi-depth residual stream capture (\extract_layer_representations\), paired bootstrap 95% CIs (\compute_layer_metrics\), and self-contained interactive HTML reporting (\generate_atlas_html\) in \src/weightliftai/cartography/layer_atlas.py\.
+  - Added CLI subcommand \weightliftai atlas\ with automated depth sampling, token masking, and format reporting.
+  - Executed Medical Pilot Layer Atlas on NVIDIA RTX 5070 across \google/gemma-3-1b-it\ (26 layers) and \google/gemma-4-E2B-it\ (35 layers).
+  - **Empirical Validation of the Interlingua Hourglass Law on Clinical Knowledge:** Alignment across clinical, lay, and cultural idioms peaks precisely at the 50% structural midpoint (Gemma 3 L13: cos = 0.994 [0.994, 0.995]; Gemma 4 L17: cos = 0.981 [0.980, 0.982]) and collapses in output layers (Gemma 3 L25 drops to 0.900, Delta = 0.094 drop).
+- [ ] **Phase 2 — Representation Map (2D/3D Dimensionality Reduction with Distortion Metrics):**
+  - UMAP/PaCMAP/PCA projections with Trustworthiness & Continuity preservation metrics, original-space nearest-neighbor verification, and interactive point inspection.
+- [ ] **Phase 3 — Sparse Feature Observatory & Grounding:**
+  - Integration with SAE dictionaries, Top-K active feature attribution, Neuronpedia labeling, and sparsity statistics.
+- [ ] **Phase 4 — Contrast Studio & Counterfactual Inspector:**
+  - Matched-pair counterfactual diffs, dialect separation vectors, and semantic control verification.
+- [ ] **Phase 5 — Circuit & Intervention Workbench:**
+  - Reversible activation patching, feature clamping, and ablation impact analysis with before/after behavioral evaluation.

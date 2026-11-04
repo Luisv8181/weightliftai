@@ -1,0 +1,177 @@
+{
+  "model_id": "google/gemma-4-E2B-it",
+  "total_layers": 35,
+  "evaluated_layers": [
+    0,
+    8,
+    17,
+    26,
+    34
+  ],
+  "sample_count": 150,
+  "concepts_count": 50,
+  "variants": [
+    "canonical_clinical",
+    "cultural_idiom",
+    "plain_lay"
+  ],
+  "timestamp_utc": "2026-11-04T19:13:39.961817+00:00",
+  "html_report": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_4_E2B_it_medical_atlas.html",
+  "layer_metrics": {
+    "0": {
+      "n_samples": 150,
+      "feature_dim": 1536,
+      "pairwise_cosines": {
+        "canonical_clinical~cultural_idiom": {
+          "mean": 0.971,
+          "ci_95": [
+            0.969,
+            0.974
+          ],
+          "n_items": 50
+        },
+        "canonical_clinical~plain_lay": {
+          "mean": 0.981,
+          "ci_95": [
+            0.98,
+            0.983
+          ],
+          "n_items": 50
+        },
+        "cultural_idiom~plain_lay": {
+          "mean": 0.979,
+          "ci_95": [
+            0.978,
+            0.981
+          ],
+          "n_items": 50
+        }
+      },
+      "depth_pct": 0.0
+    },
+    "8": {
+      "n_samples": 150,
+      "feature_dim": 1536,
+      "pairwise_cosines": {
+        "canonical_clinical~cultural_idiom": {
+          "mean": 0.976,
+          "ci_95": [
+            0.974,
+            0.977
+          ],
+          "n_items": 50
+        },
+        "canonical_clinical~plain_lay": {
+          "mean": 0.979,
+          "ci_95": [
+            0.977,
+            0.98
+          ],
+          "n_items": 50
+        },
+        "cultural_idiom~plain_lay": {
+          "mean": 0.979,
+          "ci_95": [
+            0.978,
+            0.98
+          ],
+          "n_items": 50
+        }
+      },
+      "depth_pct": 23.5
+    },
+    "17": {
+      "n_samples": 150,
+      "feature_dim": 1536,
+      "pairwise_cosines": {
+        "canonical_clinical~cultural_idiom": {
+          "mean": 0.981,
+          "ci_95": [
+            0.98,
+            0.982
+          ],
+          "n_items": 50
+        },
+        "canonical_clinical~plain_lay": {
+          "mean": 0.984,
+          "ci_95": [
+            0.983,
+            0.985
+          ],
+          "n_items": 50
+        },
+        "cultural_idiom~plain_lay": {
+          "mean": 0.984,
+          "ci_95": [
+            0.983,
+            0.984
+          ],
+          "n_items": 50
+        }
+      },
+      "depth_pct": 50.0
+    },
+    "26": {
+      "n_samples": 150,
+      "feature_dim": 1536,
+      "pairwise_cosines": {
+        "canonical_clinical~cultural_idiom": {
+          "mean": 0.955,
+          "ci_95": [
+            0.953,
+            0.956
+          ],
+          "n_items": 50
+        },
+        "canonical_clinical~plain_lay": {
+          "mean": 0.969,
+          "ci_95": [
+            0.968,
+            0.971
+          ],
+          "n_items": 50
+        },
+        "cultural_idiom~plain_lay": {
+          "mean": 0.958,
+          "ci_95": [
+            0.956,
+            0.959
+          ],
+          "n_items": 50
+        }
+      },
+      "depth_pct": 76.5
+    },
+    "34": {
+      "n_samples": 150,
+      "feature_dim": 1536,
+      "pairwise_cosines": {
+        "canonical_clinical~cultural_idiom": {
+          "mean": 0.978,
+          "ci_95": [
+            0.976,
+            0.98
+          ],
+          "n_items": 50
+        },
+        "canonical_clinical~plain_lay": {
+          "mean": 0.989,
+          "ci_95": [
+            0.988,
+            0.99
+          ],
+          "n_items": 50
+        },
+        "cultural_idiom~plain_lay": {
+          "mean": 0.981,
+          "ci_95": [
+            0.978,
+            0.983
+          ],
+          "n_items": 50
+        }
+      },
+      "depth_pct": 100.0
+    }
+  }
+}

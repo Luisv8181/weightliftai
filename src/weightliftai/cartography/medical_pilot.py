@@ -6,6 +6,7 @@ representation cartography and clinical knowledge-grounding benchmarks.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -14,6 +15,7 @@ import pandas as pd
 
 from weightliftai.cartography.schemas import (
     ConceptSynonym,
+    DatasetRef,
     KnowledgeProbe,
     MedicalConcept,
 )
@@ -44,6 +46,19 @@ class MedicalPilotDataset:
         self.synonyms: list[ConceptSynonym] = [ConceptSynonym(**s) for s in raw.get("synonyms", [])]
         self.probes: list[KnowledgeProbe] = [KnowledgeProbe(**p) for p in raw.get("probes", [])]
 
+        sha256 = hashlib.sha256(self.path.read_bytes()).hexdigest()
+        self.dataset_ref = DatasetRef(
+            dataset_id="medical_pilot_50_concepts",
+            version=str(self.metadata.get("version", "1.0.0")),
+            sha256=sha256,
+            total_items=len(self.probes),
+            languages=["en", "es"],
+            dialects=["es_do"],
+            provenance_notes="NLM MeSH 2026 public domain medical concepts with Dominican Spanish idioms.",
+            is_synthetic=False,
+            has_human_review=True,
+        )
+
         # Automatic schema integrity & leakage validation
         self.validation_report = validate_knowledge_probes(self.probes, self.concepts)
 
@@ -60,17 +75,22 @@ class MedicalPilotDataset:
         """Filter probes by split, variant, or language."""
         results = self.probes
         if split:
-            results = [p for p in results if p.split == split]
+            target_split = "validation" if split == "val" else split
+            results = [p for p in results if p.split == target_split]
         if variant:
             results = [p for p in results if p.variant == variant]
         if language:
             results = [p for p in results if p.language == language]
         return results
 
-    def to_dataframe(self) -> pd.DataFrame:
+    def to_dataframe(self, split: str | None = None) -> pd.DataFrame:
         """Convert probes into a pandas DataFrame ready for representation extraction."""
+        probes = self.probes
+        if split:
+            target_split = "validation" if split == "val" else split
+            probes = [p for p in probes if p.split == target_split]
         rows = []
-        for p in self.probes:
+        for p in probes:
             rows.append({
                 "probe_id": p.probe_id,
                 "item_id": p.concept_ref,
@@ -91,3 +111,7 @@ class MedicalPilotDataset:
             expected_variants=["canonical_clinical", "plain_lay", "cultural_idiom"],
         )
         return df
+
+    def to_matched_dataframe(self, split: str | None = None) -> pd.DataFrame:
+        """Alias for to_dataframe."""
+        return self.to_dataframe(split=split)

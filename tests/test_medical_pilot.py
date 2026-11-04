@@ -13,6 +13,8 @@ def test_medical_pilot_loading_and_counts():
     assert ds.validation_report["status"] == "valid"
     assert ds.validation_report["unique_concepts_probed"] == 50
     assert ds.validation_report["leakage_detected"] is False
+    assert ds.dataset_ref.dataset_id == "medical_pilot_50_concepts"
+    assert len(ds.dataset_ref.sha256) == 64
 
 
 def test_medical_pilot_probes_filtering():
@@ -41,6 +43,11 @@ def test_medical_pilot_to_dataframe_matched_validation():
     assert set(df["variant"].unique()) == {"canonical_clinical", "plain_lay", "cultural_idiom"}
     assert set(df["lang"].unique()) == {"en", "es"}
     assert df["item_id"].nunique() == 50
+
+    df_test = ds.to_matched_dataframe(split="test")
+    assert len(df_test) == 30
+    assert df_test["item_id"].nunique() == 10
+    assert set(df_test["variant"].unique()) == {"canonical_clinical", "plain_lay", "cultural_idiom"}
 
 
 def test_medical_pilot_provenance_and_licensing():
