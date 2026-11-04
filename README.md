@@ -71,6 +71,10 @@ WeightLiftAI is designed as an open-weight model interpretability, evaluation, a
 
 A proposed next product direction: a local-first visual research interface for mapping model representations across layers, languages, dialects, and affective concepts. It connects layer-wise activation capture, original-space similarity metrics, SAE feature exploration, matched counterfactuals, and later causal circuit experiments. Projections are visual aids, not literal pictures of a model's conceptual space. See [**`docs/REPRESENTATION_CARTOGRAPHY.md`**](docs/REPRESENTATION_CARTOGRAPHY.md) for the product plan, architecture, research guardrails, milestones, and references.
 
+## Agent Handoff & Medical Knowledge Research
+
+For coding agents and collaborators, start with [**`docs/AGENT_HANDOFF.md`**](docs/AGENT_HANDOFF.md). It summarizes the current research direction, prior work and tools to learn from, operating instructions, immediate priorities, and a proposed medical knowledge research track. The medical track separates terminology/knowledge grounding, multilingual clinical language, model representations, and safety evaluation; it is research-only and explicitly excludes patient data and clinical deployment.
+
 ## Experiments
 
 > 📄 **Rolling Research Paper:** For the complete scientific manuscript, mathematical definitions, confidence intervals, pre-registered claims register, and independent audit checklist, see [**`docs/ROLLING_PAPER.md`**](docs/ROLLING_PAPER.md). Automated machine-readable run logs are tracked in [**`docs/AUDIT_LEDGER.jsonl`**](docs/AUDIT_LEDGER.jsonl).
