@@ -67,6 +67,10 @@ WeightLiftAI is designed as an open-weight model interpretability, evaluation, a
 - [ ] Cross-layer causal attribution graphs with Gemma Scope 2 MLP transcoders.
 - [ ] Task-vector arithmetic and targeted weight edits across compatible model checkpoints.
 
+## Representation Cartography
+
+A proposed next product direction: a local-first visual research interface for mapping model representations across layers, languages, dialects, and affective concepts. It connects layer-wise activation capture, original-space similarity metrics, SAE feature exploration, matched counterfactuals, and later causal circuit experiments. Projections are visual aids, not literal pictures of a model's conceptual space. See [**`docs/REPRESENTATION_CARTOGRAPHY.md`**](docs/REPRESENTATION_CARTOGRAPHY.md) for the product plan, architecture, research guardrails, milestones, and references.
+
 ## Experiments
 
 > 📄 **Rolling Research Paper:** For the complete scientific manuscript, mathematical definitions, confidence intervals, pre-registered claims register, and independent audit checklist, see [**`docs/ROLLING_PAPER.md`**](docs/ROLLING_PAPER.md). Automated machine-readable run logs are tracked in [**`docs/AUDIT_LEDGER.jsonl`**](docs/AUDIT_LEDGER.jsonl).
