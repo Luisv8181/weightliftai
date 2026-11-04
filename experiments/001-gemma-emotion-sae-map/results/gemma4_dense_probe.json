@@ -1,0 +1,115 @@
+{
+  "experiment_id": "001c-gemma4-dense-probe",
+  "timestamp_utc": "2026-11-04T05:15:10.684104+00:00",
+  "model_id": "google/gemma-4-E2B-it",
+  "model_revision": "4adf15748de9e1a0097b6274cee9c15836c41c37",
+  "device": "cuda",
+  "dtype": "torch.bfloat16",
+  "load_time_seconds": 20.63,
+  "layers_evaluated": [
+    0,
+    8,
+    17,
+    26,
+    34
+  ],
+  "part1_emotion_hourglass": [
+    {
+      "cv_en": 0.425,
+      "grief~sadness_en": 0.998478889465332,
+      "fear~anxiety_en": 0.9961068034172058,
+      "cv_es": 0.475,
+      "grief~sadness_es": 0.998725950717926,
+      "fear~anxiety_es": 0.9980608224868774,
+      "transfer_en->es": 0.475,
+      "transfer_es->en": 0.7,
+      "layer": 0,
+      "depth_pct": 0.0
+    },
+    {
+      "cv_en": 0.5,
+      "grief~sadness_en": 0.9977192878723145,
+      "fear~anxiety_en": 0.9963546395301819,
+      "cv_es": 0.525,
+      "grief~sadness_es": 0.9976463317871094,
+      "fear~anxiety_es": 0.9972580671310425,
+      "transfer_en->es": 0.7,
+      "transfer_es->en": 0.675,
+      "layer": 8,
+      "depth_pct": 23.5
+    },
+    {
+      "cv_en": 0.6,
+      "grief~sadness_en": 0.9980607032775879,
+      "fear~anxiety_en": 0.9972149133682251,
+      "cv_es": 0.525,
+      "grief~sadness_es": 0.9980632662773132,
+      "fear~anxiety_es": 0.9975736141204834,
+      "transfer_en->es": 0.625,
+      "transfer_es->en": 0.825,
+      "layer": 17,
+      "depth_pct": 50.0
+    },
+    {
+      "cv_en": 0.525,
+      "grief~sadness_en": 0.996816098690033,
+      "fear~anxiety_en": 0.9951167702674866,
+      "cv_es": 0.6,
+      "grief~sadness_es": 0.9970823526382446,
+      "fear~anxiety_es": 0.9957786798477173,
+      "transfer_en->es": 0.6,
+      "transfer_es->en": 0.575,
+      "layer": 26,
+      "depth_pct": 76.5
+    },
+    {
+      "cv_en": 0.475,
+      "grief~sadness_en": 0.9992308616638184,
+      "fear~anxiety_en": 0.9989306926727295,
+      "cv_es": 0.325,
+      "grief~sadness_es": 0.9987630248069763,
+      "fear~anxiety_es": 0.9981045722961426,
+      "transfer_en->es": 0.25,
+      "transfer_es->en": 0.35,
+      "layer": 34,
+      "depth_pct": 100.0
+    }
+  ],
+  "part2_dialect_geometry": [
+    {
+      "layer": 0,
+      "depth_pct": 0.0,
+      "cos_en_neutral": 0.984,
+      "cos_en_dominican": 0.981,
+      "dialect_gap": 0.002
+    },
+    {
+      "layer": 8,
+      "depth_pct": 23.5,
+      "cos_en_neutral": 0.983,
+      "cos_en_dominican": 0.981,
+      "dialect_gap": 0.003
+    },
+    {
+      "layer": 17,
+      "depth_pct": 50.0,
+      "cos_en_neutral": 0.987,
+      "cos_en_dominican": 0.984,
+      "dialect_gap": 0.002
+    },
+    {
+      "layer": 26,
+      "depth_pct": 76.5,
+      "cos_en_neutral": 0.961,
+      "cos_en_dominican": 0.96,
+      "dialect_gap": 0.001
+    },
+    {
+      "layer": 34,
+      "depth_pct": 100.0,
+      "cos_en_neutral": 0.982,
+      "cos_en_dominican": 0.981,
+      "dialect_gap": 0.001
+    }
+  ]
+}
