@@ -140,12 +140,16 @@ All sentences were written by the research team with AI assistance. **None have 
 
 ### 5.1 Part A: three-way parallel dialect split (RQ1, RQ2)
 
+![Figure 1: The Interlingua Hourglass](figures/fig1_interlingua_hourglass.png)
+
 | Layer | CV en | CV es_neutral | CV es_do | en→es_neutral | en→es_do | es_do→en | cos en~es_neutral | cos en~es_do | cos es_neutral~es_do |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 7 | 0.750 | 0.750 | 0.775 | 0.925 | 0.800 | 0.700 | 0.693 | 0.554 | 0.690 |
 | **13** | **0.875** | **0.875** | **0.775** | **1.000** | **0.925** | **0.775** | **0.743** | **0.616** | **0.740** |
 | 17 | 0.850 | 0.800 | 0.725 | 0.950 | 0.825 | 0.775 | 0.625 | 0.477 | 0.650 |
 | 22 | 0.850 | 0.625 | 0.600 | 0.850 | 0.700 | 0.550 | 0.391 | 0.314 | 0.680 |
+
+![Figure 3: Representational Geometry of Dialect](figures/fig3_dialect_geometry_gap.png)
 
 **Observations**
 1. Layer 13 gives the best accuracy and transfer for every variant. Transfer drops by layer 22, which matches Exp. 001 and the Qwen probe.
@@ -155,6 +159,8 @@ All sentences were written by the research team with AI assistance. **None have 
 5. The CV gap between Dominican idioms and the other variants (0.775 vs. 0.875) **is not significant at n=40** (CIs [0.62, 0.88] vs. [0.74, 0.95]).
 
 ### 5.2 Part B: counterfactual test of grief features (RQ3)
+
+![Figure 2: The Lexical Shortcut Trap](figures/fig2_lexical_shortcut_trap.png)
 
 **B.1: Layer-13 activations of Exp. 001's top grief features** (mean activation / fraction of sentences where it fires):
 

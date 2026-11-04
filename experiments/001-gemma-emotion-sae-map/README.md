@@ -12,17 +12,18 @@ Does Gemma 3 1B keep closely related emotional concepts distinct inside the mode
 2. Grief and sadness share many features; the model separates them less than fear and anxiety.
 3. A classifier trained on English feature patterns transfers to Spanish above chance (0.25). If so, part of the representation is language-independent.
 
-## Setup
+## Setup & Provenance
 
 | Item | Value |
 |---|---|
-| Base model | `google/gemma-3-1b-it` (record the revision hash when run) |
-| Interpretability map | Gemma Scope 2, SAELens release `gemma-scope-2-1b-it-res`, SAE `layer_13_width_16k_l0_medium` (residual stream after layer 13) |
-| Feature browser | https://www.neuronpedia.org/gemma-3-1b-it/13-gemmascope-2-res-16k |
-| Probe set | `emotion_probe_set_v0.csv`: 5 concepts (sadness, grief, anxiety, fear, neutral) × 2 languages × 10 sentences = 100 |
-| Pooling | Max activation per feature over each sentence's tokens, excluding BOS and padding |
-| Hardware | Colab T4 (free tier), float32 |
-| Weights | Unchanged in sections 1–12; section 13 adds a LoRA adapter as a separate artifact |
+| Base model | `google/gemma-3-1b-it` (revision commit: `dcc83ea841ab6100d6b47a070329e1ba4cf78752`) |
+| Interpretability map | Gemma Scope 2, SAELens release `gemma-scope-2-1b-it-res`, SAE `layer_13_width_16k_l0_medium` (residual stream after layer 13), plus layers 7, 17, 22 for generation tracing |
+| Feature browser | https://www.neuronpedia.org/gemma-3-1b-it/13-gemmascope-2-res-16k (cached in `results/neuronpedia_labels.json`) |
+| Probe set | `emotion_probe_set_v0.csv`: 5 concepts (sadness, grief, anxiety, fear, neutral) × 2 languages × 10 sentences = 100 sentences (SHA-256: `ee81d06db9ef65b0dda7dfb2e68274150bf4c314e5743da58adeb4c55b597a41`) |
+| Pooling | Max activation per feature over each sentence's content tokens, excluding BOS (`token 0`) and padding |
+| Hardware & OS | Local NVIDIA GeForce RTX 5070 Laptop GPU (8 GB VRAM), CUDA 12.8, Windows 11 |
+| Environment | PyTorch 2.10.0+cu128, Transformers 5.17.0, SAELens 6.54.14, scikit-learn 1.8.0, PEFT 0.18.1 |
+| Weights | Unchanged in baseline; section 13 trains an in-memory LoRA adapter (`r=8, alpha=16`, target `q_proj, v_proj`) |
 
 ## Metrics
 
@@ -83,6 +84,8 @@ Then open `gemma_emotion_sae_map.ipynb` in VS Code (or `jupyter lab`), choose th
 - **SAE drift.** The published SAE was trained on the unmodified model. After fine-tuning, a lower variance explained means the map is less trustworthy.
 
 ## Results
+
+![Figure 1: The Interlingua Hourglass](../../docs/figures/fig1_interlingua_hourglass.png)
 
 | Metric | Baseline | After LoRA | Difference |
 |---|---:|---:|---:|

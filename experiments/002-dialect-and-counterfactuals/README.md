@@ -18,19 +18,27 @@
 
 ## Headline results
 
-**Part A, layer 13** (best layer for every variant):
+### Part A: 3-Way Dialect Representation Geometry (RQ2)
 
-| | en | es_neutral | es_do |
+![Figure 3: Representational Geometry of Dialect](../../docs/figures/fig3_dialect_geometry_gap.png)
+
+**Layer 13 Performance** (peak representation depth):
+
+| Metric | en | es_neutral | es_do |
 |---|---:|---:|---:|
-| 5-fold CV accuracy | 0.875 | 0.875 | 0.775 |
-| Transfer from en | — | 1.000 | 0.925 |
-| Item cosine with en | — | 0.743 | 0.616 |
+| 5-fold CV accuracy | 0.875 [0.74, 0.95] | 0.875 [0.74, 0.95] | 0.775 [0.62, 0.88] |
+| Zero-shot transfer from en | — | 1.000 [0.91, 1.00] | 0.925 [0.80, 0.97] |
+| Item-level cosine with en | — | 0.743 | 0.616 |
 
-- Dominican idioms sit further from English at every layer tested.
-- Transfer is asymmetric: en→es_do 0.925, but es_do→en 0.775.
-- Accuracy gaps are **not significant at n=40**.
+- **Persistent dialect gap:** Dominican idioms sit further from English at every layer tested (item cosine `0.616` vs `0.743` at L13).
+- **Asymmetric transfer:** en→es_do scores 0.925, but es_do→en scores 0.775.
+- **Sample size limitation:** Classification accuracy gaps are not statistically significant at n=40 (confidence intervals overlap).
 
-**Part B:** Features #293, #1886, and #4284 fire **as strongly on neutral trap sentences** (a mortician, a probate lawyer, "the battery died") as on real grief. A grief probe flags **10/10** trap sentences as grief and catches only **1/10** implicit-grief sentences. Zeroing the three features barely helps, so the keyword shortcut is spread across many features. The model's own output shows the same pattern: p(" grief") is ~40× lower after implicit grief than after explicit grief.
+### Part B: 2×2 Counterfactual Lexical Shortcut Trap (RQ3)
+
+![Figure 2: The Lexical Shortcut Trap](../../docs/figures/fig2_lexical_shortcut_trap.png)
+
+Features #293, #1886, and #4284 fire **as strongly on neutral trap sentences** (a mortician, a probate lawyer, "the battery died") as on real grief. A grief probe flags **10/10 (100%)** trap sentences as grief and catches only **1/10 (10%)** implicit-grief sentences. Zeroing the three features barely helps, showing that the keyword shortcut is distributed across many features in the SAE dictionary. The model's own output shows the same pattern: p(" grief") is ~40× lower after implicit grief than after explicit grief.
 
 **Withdrawn claim:** "#293/#1886/#4284 are grief features" (Exp. 001). They are keyword features.
 

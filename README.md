@@ -31,39 +31,41 @@ The goal is not to make every model larger. It is to help developers understand 
 | **Benchmark Lab** | Compare baseline and modified models for task performance, regressions, and resource use. |
 | **Experiment Registry** | Record model identifiers, revisions, configs, seeds, interventions, metrics, and artifacts. |
 
-## Initial scope
+## Milestones & Capabilities
 
-The first release should be a **local model inspection and experiment harness**, not an autonomous self-modifying agent.
+WeightLiftAI is designed as an open-weight model interpretability, evaluation, and intervention laboratory.
 
 ### Milestone 0 — Reproducible local baseline
+- [x] Detect available hardware and report CUDA/CPU diagnostics (`weightliftai hardware`).
+- [x] Load supported Hugging Face causal language models (`google/gemma-3-1b-it`, `Qwen/Qwen2.5-0.5B-Instruct`).
+- [x] Print model configuration, layer count, parameter count, and tensor shapes (`weightliftai inspect`).
+- [x] Save immutable baseline manifests with environment provenance (`weightliftai.manifest`).
+- [x] Run evaluation sets and save artifacts without modifying base model weights.
 
-- Detect available hardware and report CUDA/CPU availability.
-- Load a supported Hugging Face causal language model.
-- Print model configuration, layer count, parameter count, and tensor shapes.
-- Save a baseline manifest.
-- Run a small, user-provided evaluation set and save outputs.
-- Keep model weights unchanged.
+### Milestone 1 — Multi-depth activation & feature inspection
+- [x] Capture selected activations with temporary forward hooks and guarantee cleanup on exceptions.
+- [x] Summarize descriptive activation statistics without storing raw multi-gigabyte tensors to disk.
+- [x] List leaf modules and exact sub-layer names (`weightliftai modules`).
+- [x] Multi-layer Sparse Autoencoder (SAE) encoding and tracing via SAELens across depths (`7, 13, 17, 22`).
+- [x] Publication-grade interactive visualization suite:
+  - 16,384-feature concept heatmaps (`concept_heatmap_html`)
+  - Word-level activation glow highlights (`token_highlight_html`)
+  - 2D constellation feature maps (`feature_map_html`)
+  - Animated token-by-token generation replays across 4 layers (`trace_replay_html`)
+- [x] Safe, explicit, reversible interventions:
+  - Causal SAE feature steering with customizable strength dials
+  - Error-preserving residual stream feature clamping (`h + dec(f_zero) - dec(f)`)
 
-### Milestone 1 — Activation and tensor inspection
+### Milestone 2 — Adaptation comparisons & audit harness
+- [x] Add LoRA/PEFT baseline adapter training with non-destructive in-memory attachments.
+- [x] Pre-registered mechanistic audit protocol: evaluate SAE manifold drift (`FVE`), centroid similarity, and held-out cross-lingual transfer before vs. after adaptation.
+- [ ] Scale adaptation from pilot format checks to full multi-turn clinical dialogue corpora (`counsel-chat`, `esconv`).
 
-- [x] Capture selected activations with forward hooks.
-- [x] Summarize activation statistics without saving raw activation tensors.
-- [x] List leaf modules and inspect exact module names.
-- [ ] Add richer activation comparison and visualization workflows.
-- [ ] Add safe, explicit, reversible interventions behind an experimental flag.
-
-### Milestone 2 — Adaptation comparisons
-
-- Add LoRA/PEFT as a strong practical baseline.
-- Compare full-precision and adapter-based variants where hardware permits.
-- Track quality, latency, memory use, and regression tests.
-
-### Milestone 3 — Weight-space research
-
-- Explore task vectors and model merging where architectures and tensor shapes are compatible.
-- Test targeted weight edits with strict safeguards.
-- Investigate whether a supervisory model can propose interventions that humans review and benchmark.
-- Publish negative results as well as positive results.
+### Milestone 3 — Weight-space & circuit research
+- [x] Causal shortcut de-confounding via 2×2 counterfactual splits and feature zero-clamping.
+- [x] Rigorous publication of negative and falsified results in the living paper claims register.
+- [ ] Cross-layer causal attribution graphs with Gemma Scope 2 MLP transcoders.
+- [ ] Task-vector arithmetic and targeted weight edits across compatible model checkpoints.
 
 ## Experiments
 
@@ -134,9 +136,9 @@ weightliftai/
 
 ## Status
 
-**Research foundation — early development.**
+**Active Local Research Platform & Mechanistic Laboratory.**
 
-The repository currently establishes the project's scope and research principles. Runnable capabilities will be added incrementally and documented with tested commands.
+WeightLiftAI has completed its initial model inspection, multi-depth activation hooking, SAE encoding, and reversible intervention foundations. Two formal experiments (001 and 002) have been executed, visualized, and audited on consumer hardware (NVIDIA RTX 5070), with active research focusing on cross-lingual affective geometry, cultural idioms of distress, and counterfactual shortcut elimination. All research findings, pre-registered hypotheses, and reproducibility checklists are maintained in [`docs/ROLLING_PAPER.md`](docs/ROLLING_PAPER.md) and [`docs/AUDIT_LEDGER.jsonl`](docs/AUDIT_LEDGER.jsonl).
 
 ## Contributing
 
