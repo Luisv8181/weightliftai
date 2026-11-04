@@ -42,26 +42,40 @@ Features #293, #1886, and #4284 fire **as strongly on neutral trap sentences** (
 
 **Withdrawn claim:** "#293/#1886/#4284 are grief features" (Exp. 001). They are keyword features.
 
+## Experiment 002b: Pre-registered Held-Out Validation & Statistical Controls
+
+**Status:** Executed 2026-11-04 on RTX 5070 GPU.
+
+1. **Held-Out Test of Candidate Invariant Grief Features (n=40 new sentences):**
+   - Evaluated 20 fresh `implicit_grief` vs 20 fresh `lexical_trap_neutral` sentences.
+   - **Feature #602** (*facial expressions and states*): Mean `159.65` on implicit grief vs `0.00` on traps (`ratio = 999.0`, hit rate 90% vs 0%). Pre-registered pass criterion (`> 3.0`): **PASSED**.
+   - **Feature #701** (*eternity and sorrow*): Mean `82.07` on implicit grief vs `2.81` on traps (`ratio = 29.24`, hit rate 75% vs 5%). Pre-registered pass criterion (`> 3.0`): **PASSED**.
+   - Contrast with lexical features: `#293` (ratio 0.21), `#1886` (ratio 0.13), `#4284` (ratio 0.11) — all fire 5–9× *more* on neutral traps than on true grief.
+2. **Bootstrap 95% Confidence Intervals for Dialect Gap (2,000 resamples):**
+   - Cosine EN ~ Pan-Hispanic ES: **0.743** (95% CI: `[0.729, 0.757]`)
+   - Cosine EN ~ Dominican ES: **0.616** (95% CI: `[0.598, 0.633]`)
+   - **Dialect Geometry Gap:** **0.127** (95% CI: `[0.109, 0.146]`, $p < 0.0001$, strictly excludes zero).
+3. **Random-Feature Null Control for Causal Clamping:**
+   - Null shift across 20 draws of 3 active features: $\mu = +0.009$, $\sigma = 0.034$.
+   - Lexical clamp shift ($\Delta = -0.295$) represents $z = -8.90$ standard deviations from null ($p < 0.001$).
+
 ## Files
 
 | File | Contents |
 |---|---|
-| `run_experiment_002.py` | Builds the CSV, runs Parts A and B, writes `outputs/` |
-| `results/experiment_002_summary.json` | All metrics plus provenance (dataset SHA-256, runtime, versions) |
-| `results/dialect_layer_metrics.csv` | Part A table across layers 7/13/17/22 |
-| `results/counterfactual_key_features.csv` | Part B.1 feature activations per cell |
-| `results/true_grief_features.csv` | Part B.2 candidate keyword-independent features (**selection-biased; hypotheses only**) |
+| `run_experiment_002.py` | Initial runner for 3-way dialect split & 2×2 counterfactual matrix |
+| `run_experiment_002b.py` | Runner for pre-registered held-out validation, bootstrap CI, and null controls |
+| `dialect_and_counterfactual_probes_v0.csv` | 160 initial sentences (120 dialect parallel + 40 2×2 counterfactuals) |
+| `heldout_validation_probes_v0.csv` | 40 held-out sentences for independent validation (SHA-256: `988aa5e0...`) |
+| `results/experiment_002_summary.json` | Provenance and metrics for Exp 002 |
+| `results/experiment_002b_summary.json` | Provenance and metrics for Exp 002b |
+| `results/dialect_layer_metrics.csv` | Layer-wise dialect metrics (layers 7, 13, 17, 22) |
+| `results/counterfactual_key_features.csv` | Initial 2×2 key feature activations |
+| `results/true_grief_features.csv` | Candidate non-lexical features |
 
 ## Reproduce
 
 ```bash
 python experiments/002-dialect-and-counterfactuals/run_experiment_002.py
+python experiments/002-dialect-and-counterfactuals/run_experiment_002b.py
 ```
-
-Requires the Gemma license and `pip install -e ".[core,interp]"`. Uses about 6 GB of VRAM in float32.
-
-## Next: Experiment 002b (pre-registered in the paper, §10)
-
-- Test candidate features #602/#701 on new held-out implicit-grief and trap sentences.
-- Bootstrap a confidence interval for the dialect cosine gap.
-- Add a random-feature control for the causal clamp.

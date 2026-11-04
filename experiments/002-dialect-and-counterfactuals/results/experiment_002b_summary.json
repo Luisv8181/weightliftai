@@ -1,0 +1,120 @@
+{
+  "experiment_id": "002b-heldout-validation-and-controls",
+  "timestamp_utc": "2026-11-04T04:21:23.016118+00:00",
+  "model_id": "google/gemma-3-1b-it",
+  "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+  "sae_release": "gemma-scope-2-1b-it-res",
+  "heldout_dataset_sha256": "988aa5e0fcdb7e5669534a0bd66f3ea3e1ce2e3a696f1a19de17f8cddeb515bb",
+  "part1_heldout_feature_evaluation": [
+    {
+      "feature": 602,
+      "implicit_mean": 159.65,
+      "implicit_hit": 0.9,
+      "trap_mean": 0.0,
+      "trap_hit": 0.0,
+      "ratio_implicit_to_trap": 999.0,
+      "preregistered_pass_ratio_gt_3": true
+    },
+    {
+      "feature": 701,
+      "implicit_mean": 82.07,
+      "implicit_hit": 0.75,
+      "trap_mean": 2.81,
+      "trap_hit": 0.05,
+      "ratio_implicit_to_trap": 29.24,
+      "preregistered_pass_ratio_gt_3": true
+    },
+    {
+      "feature": 2323,
+      "implicit_mean": 87.46,
+      "implicit_hit": 0.5,
+      "trap_mean": 16.63,
+      "trap_hit": 0.15,
+      "ratio_implicit_to_trap": 5.26,
+      "preregistered_pass_ratio_gt_3": true
+    },
+    {
+      "feature": 160,
+      "implicit_mean": 269.63,
+      "implicit_hit": 1.0,
+      "trap_mean": 221.47,
+      "trap_hit": 1.0,
+      "ratio_implicit_to_trap": 1.22,
+      "preregistered_pass_ratio_gt_3": false
+    },
+    {
+      "feature": 293,
+      "implicit_mean": 76.19,
+      "implicit_hit": 0.65,
+      "trap_mean": 364.6,
+      "trap_hit": 1.0,
+      "ratio_implicit_to_trap": 0.21,
+      "preregistered_pass_ratio_gt_3": false
+    },
+    {
+      "feature": 1886,
+      "implicit_mean": 16.19,
+      "implicit_hit": 0.2,
+      "trap_mean": 127.99,
+      "trap_hit": 0.85,
+      "ratio_implicit_to_trap": 0.13,
+      "preregistered_pass_ratio_gt_3": false
+    },
+    {
+      "feature": 4284,
+      "implicit_mean": 44.26,
+      "implicit_hit": 0.5,
+      "trap_mean": 398.81,
+      "trap_hit": 1.0,
+      "ratio_implicit_to_trap": 0.11,
+      "preregistered_pass_ratio_gt_3": false
+    }
+  ],
+  "part2_bootstrap_dialect_gap": {
+    "mean_en_es_neutral": 0.743,
+    "ci_en_es_neutral": [
+      0.729,
+      0.757
+    ],
+    "mean_en_es_do": 0.616,
+    "ci_en_es_do": [
+      0.598,
+      0.633
+    ],
+    "mean_dialect_gap": 0.127,
+    "ci_dialect_gap_95": [
+      0.109,
+      0.146
+    ],
+    "excludes_zero": true
+  },
+  "part3_causal_clamp_random_control": {
+    "lexical_features_shift": -0.295,
+    "random_control_mean": 0.009,
+    "random_control_std": 0.034,
+    "z_score": -8.9,
+    "empirical_p": 0.0,
+    "control_draws": [
+      0.006,
+      -0.072,
+      0.047,
+      -0.001,
+      -0.003,
+      0.127,
+      -0.001,
+      0.009,
+      0.014,
+      0.002,
+      0.001,
+      0.006,
+      0.007,
+      0.014,
+      -0.004,
+      0.0,
+      -0.003,
+      0.026,
+      0.004,
+      0.001
+    ]
+  }
+}

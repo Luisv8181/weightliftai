@@ -1,0 +1,41 @@
+item_id,concept,lang,text
+1,implicit_grief,en,"Turning the key in the front door, the deafening quiet of the hallway hit me all over again."
+2,implicit_grief,en,"I instinctively reached across the empty passenger seat to share the joke, only to grab thin air."
+3,implicit_grief,en,Packing away the worn gardening gloves felt like surrendering the very last afternoon we had.
+4,implicit_grief,en,"The half-empty bottle of favorite cologne sits by the sink, gathering dust I cannot bring myself to wipe."
+5,implicit_grief,en,"Every time the kettle whistles, my heart leaps for a split second before remembering the silence."
+6,implicit_grief,en,Seeing their handwriting on the old grocery list pinned to the fridge brought an ache in my chest.
+7,implicit_grief,en,"Walking past the bench where we watched sunsets, I had to stop and catch my breath through tears."
+8,implicit_grief,en,Renewing only one passport at the post office was a quiet reminder of everything that changed.
+9,implicit_grief,en,"The house has grown colder lately, as if warmth disappeared the day the voices stopped."
+10,implicit_grief,en,"I found their half-read novel on the nightstand with the corner folded, exactly as it was left."
+11,implicit_grief,es,"Al girar la llave en la puerta principal, el silencio abrumador del pasillo me golpeó de nuevo."
+12,implicit_grief,es,"Instintivamente estiré la mano hacia el asiento vacío del carro para hacer el chiste, y solo agarré aire."
+13,implicit_grief,es,Guardar aquellos guantes gastados de jardinería se sintió como entregar la última tarde que tuvimos.
+14,implicit_grief,es,"El frasco de colonia a medio terminar sigue junto al lavamanos, agarrando un polvo que no me atrevo a limpiar."
+15,implicit_grief,es,"Cada vez que la cafetera hierve, el corazón me da un vuelco por un segundo antes de recordar el vacío."
+16,implicit_grief,es,Ver su letra en la lista vieja de compras pegada a la nevera me dejó un nudo en el pecho.
+17,implicit_grief,es,Pasar frente al banco donde mirábamos el atardecer me obligó a pararme a secarme las lágrimas.
+18,implicit_grief,es,Renovar un solo pasaporte en la oficina fue un recordatorio silencioso de todo lo que cambió.
+19,implicit_grief,es,"La casa se siente más fría últimamente, como si la calidez se hubiera ido el día que cesaron las risas."
+20,implicit_grief,es,"Encontré su novela a medio leer sobre la mesita de noche con la esquina doblada, intacta."
+21,lexical_trap_neutral,en,My uncle is a cemetery groundskeeper who still mows the historic lawn around the memorial chapel every Thursday.
+22,lexical_trap_neutral,en,My sister works at a genetics lab and still studies how cellular death mechanisms protect healthy tissue.
+23,lexical_trap_neutral,en,My grandmother enjoys genealogical research and still preserves nineteenth-century obituary records for our town archive.
+24,lexical_trap_neutral,en,My brother is an electrical engineer and still checks whether the dead battery in the generator can be recycled.
+25,lexical_trap_neutral,en,My cousin is a documentary filmmaker who still edits footage about ancient funeral customs in northern Europe.
+26,lexical_trap_neutral,en,The town librarian's father still archives historical microfilm reels documenting the Great Fire casualties.
+27,lexical_trap_neutral,en,My mother is an archivist who still scans handwritten death certificates from the colonial era for online records.
+28,lexical_trap_neutral,en,My father is a stonemason who still carves ornamental granite markers for civil war monuments.
+29,lexical_trap_neutral,en,My aunt runs a boutique flower shop and still arranges white carnations for corporate memorial services.
+30,lexical_trap_neutral,en,The biology teacher's brother still demonstrates how yeast cultures cease activity when temperatures drop too low.
+31,lexical_trap_neutral,es,Mi tío cuida el césped del camposanto histórico y todavía poda los jardines alrededor de la capilla cada jueves.
+32,lexical_trap_neutral,es,Mi hermana trabaja en un laboratorio de genética y todavía estudia cómo la muerte celular protege al tejido sano.
+33,lexical_trap_neutral,es,A mi abuela le gusta la genealogía y todavía conserva actas de defunción del siglo diecinueve para el archivo municipal.
+34,lexical_trap_neutral,es,Mi hermano es ingeniero eléctrico y todavía revisa si la batería muerta del generador se puede reciclar.
+35,lexical_trap_neutral,es,Mi primo es documentalista y todavía edita videos sobre las costumbres funerarias antiguas del norte de Europa.
+36,lexical_trap_neutral,es,El papá de la bibliotecaria todavía clasifica microfilmes con los registros históricos de los fallecidos en el gran incendio.
+37,lexical_trap_neutral,es,Mi mamá es archivista y todavía digitaliza certificados coloniales de defunción para la base de datos pública.
+38,lexical_trap_neutral,es,Mi papá es cantero y todavía talla placas de granito para los monumentos cívicos conmemorativos.
+39,lexical_trap_neutral,es,Mi tía tiene una floristería y todavía prepara arreglos de claveles blancos para actos conmemorativos de empresas.
+40,lexical_trap_neutral,es,El hermano del profesor de biología todavía demuestra cómo las levaduras mueren cuando baja demasiado la temperatura.
