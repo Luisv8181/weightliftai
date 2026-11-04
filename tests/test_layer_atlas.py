@@ -8,6 +8,7 @@ torch = pytest.importorskip("torch")
 
 from weightliftai.cartography.layer_atlas import (
     compute_layer_metrics,
+    content_token_mask,
     extract_layer_representations,
     generate_atlas_html,
 )
@@ -143,6 +144,61 @@ def test_compute_layer_metrics():
     assert "mean" in metrics["pairwise_cosines"]["canonical~lay"]
     assert "ci_95" in metrics["pairwise_cosines"]["canonical~lay"]
     assert len(metrics["pairwise_cosines"]["canonical~lay"]["ci_95"]) == 2
+    assert "unrelated_negative_control" in metrics
+    assert "mean" in metrics["unrelated_negative_control"]
+    assert "delta_over_unrelated_baseline" in metrics["pairwise_cosines"]["canonical~lay"]
+
+
+def test_content_token_mask_left_right_padding_and_single_token():
+    # Right padding: BOS, tok1, tok2, pad, pad
+    attn_right = torch.tensor([[1, 1, 1, 0, 0]])
+    m_right = content_token_mask(attn_right)
+    # BOS (index 0) zeroed, tok1 and tok2 (index 1, 2) kept
+    assert m_right.tolist() == [[0, 1, 1, 0, 0]]
+
+    # Left padding: pad, pad, BOS, tok1, tok2
+    attn_left = torch.tensor([[0, 0, 1, 1, 1]])
+    m_left = content_token_mask(attn_left)
+    # BOS (index 2) zeroed, tok1 and tok2 (index 3, 4) kept
+    assert m_left.tolist() == [[0, 0, 0, 1, 1]]
+
+    # Single token sequence: pad, tok1, pad
+    attn_single = torch.tensor([[0, 1, 0]])
+    m_single = content_token_mask(attn_single)
+    # Must preserve single token rather than zeroing entire sequence
+    assert m_single.tolist() == [[0, 1, 0]]
+
+
+def test_extract_layer_representations_last_token_padding_handling():
+    model = MockTransformerModel(n_layers=2, dim=16)
+    tok = MockTokenizer()
+    # One short text (2 words + BOS = 3 tokens), one longer text (5 words + BOS = 6 tokens)
+    # The short text will have 3 padding tokens on the right
+    texts = ["short one", "this is a longer test sentence"]
+
+    acts_last_pool = extract_layer_representations(
+        model=model,
+        tokenizer=tok,
+        texts=texts,
+        layers=[0],
+        pooling="last",
+        batch_size=2,
+    )
+    assert acts_last_pool[0].shape == (2, 16)
+    assert np.isfinite(acts_last_pool[0]).all()
+
+    acts_last_mask = extract_layer_representations(
+        model=model,
+        tokenizer=tok,
+        texts=texts,
+        layers=[0],
+        token_mask="last",
+        pooling="mean",
+        batch_size=2,
+    )
+    assert acts_last_mask[0].shape == (2, 16)
+    # Pooling="last" and token_mask="last" with pooling="mean" must yield identical vectors
+    np.testing.assert_allclose(acts_last_pool[0], acts_last_mask[0], rtol=1e-5)
 
 
 def test_generate_atlas_html():

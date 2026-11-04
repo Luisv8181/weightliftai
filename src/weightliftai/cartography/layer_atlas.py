@@ -48,12 +48,19 @@ def find_decoder_layers(model: Any):
 
 
 def content_token_mask(attention_mask: Any):
-    """Zero out padding tokens and the first non-padding token (BOS)."""
+    """Zero out padding tokens and the first non-padding token (BOS).
+    
+    Handles left padding, right padding, and preserves single-token sequences
+    so representation vectors are never entirely zeroed out.
+    """
     import torch
 
     mask = attention_mask.clone()
-    first_tok = mask.float().argmax(1)
-    mask[torch.arange(len(first_tok)), first_tok] = 0
+    for b in range(mask.shape[0]):
+        valid = (mask[b] == 1).nonzero(as_tuple=True)[0]
+        if len(valid) > 1:
+            # Zero out the first valid content position (BOS)
+            mask[b, valid[0]] = 0
     return mask
 
 
@@ -69,7 +76,16 @@ def extract_layer_representations(
     batch_size: int = 16,
     device: Any = None,
 ) -> dict[int, np.ndarray]:
-    """Capture layer activations across requested depths in a single controlled pass."""
+    """Capture layer activations across requested depths in a single controlled pass.
+    
+    Site definitions:
+    - 'residual': output of the transformer block (post-block residual stream x_{L+1}).
+    - 'attention': output of self-attention submodule prior to residual add.
+    - 'mlp': output of feed-forward submodule prior to residual add.
+    
+    Token masking and pooling properly handle left/right padding and non-padding
+    token selection across variable-length batches.
+    """
     import torch
 
     decoder_blocks = find_decoder_layers(model)
@@ -122,27 +138,44 @@ def extract_layer_representations(
                 enc = {k: v.to(device) for k, v in enc.items() if hasattr(v, "to")}
                 model(**enc)
 
-                # Token masking
+                # Token masking with robust left/right padding handling
                 attn_mask = enc.get("attention_mask")
                 if attn_mask is not None:
                     if token_mask == "content":
                         mask = content_token_mask(attn_mask)[..., None].float()
                     elif token_mask == "all":
                         mask = attn_mask[..., None].float()
-                    else:  # "last"
-                        mask = torch.zeros_like(attn_mask)[..., None].float()
-                        mask[:, -1, :] = 1.0
+                    else:  # "last" non-padding token
+                        last_mask = torch.zeros_like(attn_mask).float()
+                        for b in range(attn_mask.shape[0]):
+                            valid = (attn_mask[b] == 1).nonzero(as_tuple=True)[0]
+                            if len(valid) > 0:
+                                last_mask[b, valid[-1]] = 1.0
+                            else:
+                                last_mask[b, -1] = 1.0
+                        mask = last_mask[..., None]
                 else:
                     mask = torch.ones_like(cache[layers[0]][..., :1]).float()
 
                 denom = mask.sum(1).clamp(min=1.0)
+
+                # Precompute last valid token indices per row for pooling == "last"
+                last_indices = []
+                if attn_mask is not None:
+                    for b in range(attn_mask.shape[0]):
+                        valid = (attn_mask[b] == 1).nonzero(as_tuple=True)[0]
+                        last_indices.append(valid[-1].item() if len(valid) > 0 else -1)
+                else:
+                    last_indices = [-1] * len(batch_texts)
 
                 for L in layers:
                     h = cache[L]
                     if pooling == "mean":
                         pooled = ((h * mask).sum(1) / denom).cpu().numpy()
                     elif pooling == "last":
-                        pooled = h[:, -1, :].cpu().numpy()
+                        # Index at the true last non-padding token position
+                        last_vecs = [h[b, last_indices[b]] for b in range(h.shape[0])]
+                        pooled = torch.stack(last_vecs).cpu().numpy()
                     elif pooling == "max":
                         # Set masked positions to -inf before max
                         h_masked = h.clone()
@@ -199,8 +232,38 @@ def compute_layer_metrics(
                     cos_list.append(dot)
             pair_cosines[pair_key] = cos_list
 
-    # Bootstrap 95% confidence intervals per pair
+    # Calculate unrelated-concept negative control baseline (null distribution)
+    item_arr = np.array(df_clean[item_id_col])
+    n_samples = len(embeddings)
+    cos_matrix = emb_norm @ emb_norm.T
+
+    # Distinct concept pairs (upper triangle)
+    diff_mask = (item_arr[:, None] != item_arr[None, :]) & np.triu(np.ones((n_samples, n_samples), dtype=bool), k=1)
+    unrelated_cos = cos_matrix[diff_mask]
+
     rng = np.random.default_rng(seed)
+    unrelated_stats: dict[str, Any] = {}
+    unrel_mean = 0.0
+
+    if len(unrelated_cos) > 0:
+        unrel_mean = float(unrelated_cos.mean())
+        if n_bootstrap > 0 and len(unrelated_cos) > 1:
+            sample_unrel = unrelated_cos if len(unrelated_cos) <= 5000 else rng.choice(unrelated_cos, size=5000, replace=False)
+            u_boot_idx = rng.integers(0, len(sample_unrel), size=(n_bootstrap, len(sample_unrel)))
+            u_boot_means = sample_unrel[u_boot_idx].mean(axis=1)
+            u_ci_low = float(np.percentile(u_boot_means, 2.5))
+            u_ci_high = float(np.percentile(u_boot_means, 97.5))
+        else:
+            u_ci_low, u_ci_high = unrel_mean, unrel_mean
+        unrelated_stats = {
+            "mean": round(unrel_mean, 4),
+            "mean_raw": unrel_mean,
+            "ci_95": [round(u_ci_low, 4), round(u_ci_high, 4)],
+            "ci_95_raw": [u_ci_low, u_ci_high],
+            "n_pairs": int(len(unrelated_cos)),
+        }
+
+    # Paired concept-level bootstrap 95% confidence intervals per pair
     bootstrap_results = {}
     for pair_key, cos_vals in pair_cosines.items():
         if not cos_vals:
@@ -214,16 +277,23 @@ def compute_layer_metrics(
             ci_high = float(np.percentile(boot_means, 97.5))
         else:
             ci_low, ci_high = mean_val, mean_val
+
+        delta_over_unrelated = float(mean_val - unrel_mean) if unrelated_stats else None
+
         bootstrap_results[pair_key] = {
-            "mean": round(mean_val, 3),
-            "ci_95": [round(ci_low, 3), round(ci_high, 3)],
+            "mean": round(mean_val, 4),
+            "mean_raw": mean_val,
+            "ci_95": [round(ci_low, 4), round(ci_high, 4)],
+            "ci_95_raw": [ci_low, ci_high],
             "n_items": len(arr),
+            "delta_over_unrelated_baseline": round(delta_over_unrelated, 4) if delta_over_unrelated is not None else None,
         }
 
     return {
         "n_samples": len(embeddings),
         "feature_dim": int(embeddings.shape[1]),
         "pairwise_cosines": bootstrap_results,
+        "unrelated_negative_control": unrelated_stats,
     }
 
 
@@ -257,18 +327,24 @@ def generate_atlas_html(
     for row in layers_data:
         L = row["layer"]
         dp = row["depth_pct"]
+        unrel = layer_metrics[L].get("unrelated_negative_control", {})
+        unrel_col = f"<td style='padding:8px 12px;color:#ffb35c'><b>{unrel.get('mean', '—')}</b> <span style='color:#8ea3ad;font-size:11px'>[{unrel.get('ci_95', ['—', '—'])[0]}, {unrel.get('ci_95', ['—', '—'])[1]}]</span></td>" if unrel else "<td style='padding:8px 12px;color:#8ea3ad'>—</td>"
+
         cols = [f"<td style='padding:8px 12px;font-weight:600'>{L}</td><td style='padding:8px 12px;color:#8ea3ad'>{dp:.1f}%</td>"]
         for p in pair_list:
             p_data = row["pairs"].get(p)
             if p_data:
                 mean = p_data["mean"]
                 ci = p_data.get("ci_95", [mean, mean])
-                cols.append(f"<td style='padding:8px 12px'><b>{mean:.3f}</b> <span style='color:#8ea3ad;font-size:11px'>[{ci[0]:.2f}, {ci[1]:.2f}]</span></td>")
+                delta_str = f" <span style='font-size:10px;color:#3fe0c5'>(&Delta;+{p_data['delta_over_unrelated_baseline']:.3f})</span>" if p_data.get("delta_over_unrelated_baseline") is not None else ""
+                cols.append(f"<td style='padding:8px 12px'><b>{mean:.3f}</b> <span style='color:#8ea3ad;font-size:11px'>[{ci[0]:.2f}, {ci[1]:.2f}]</span>{delta_str}</td>")
             else:
                 cols.append("<td style='padding:8px 12px;color:#8ea3ad'>—</td>")
+        cols.append(unrel_col)
         table_rows.append(f"<tr style='border-bottom:1px solid #23324a'>{''.join(cols)}</tr>")
 
     headers = [f"<th style='padding:8px 12px;text-align:left;color:#8ea3ad'>{html.escape(p)}</th>" for p in pair_list]
+    headers.append("<th style='padding:8px 12px;text-align:left;color:#ffb35c'>Unrelated Control (Null)</th>")
 
     return f"""<!doctype html>
 <html lang="en">

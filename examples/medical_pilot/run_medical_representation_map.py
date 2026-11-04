@@ -14,6 +14,7 @@ Saves JSON projection artifacts and self-contained HTML maps in examples/medical
 from __future__ import annotations
 
 import gc
+import hashlib
 import json
 import os
 import sys
@@ -107,9 +108,11 @@ def run_map_pipeline(
 
     print(f"Projecting {len(embeddings)} vectors with {algorithm.upper()}...")
     item_ids = [str(x) for x in df["item_id"]]
-    proj_artifact, coords = project_representations(
+    source_sha = hashlib.sha256(embeddings.tobytes()).hexdigest()
+    proj_artifact, raw_coords, disp_coords = project_representations(
         embeddings=embeddings,
         item_ids=item_ids,
+        source_sha256=source_sha,
         algorithm=algorithm,
         n_components=2,
         random_seed=42,
@@ -120,15 +123,18 @@ def run_map_pipeline(
     print(f"Distortion Diagnostics (k=5):")
     print(f"  - Trustworthiness T(k): {dist.get('trustworthiness')}")
     print(f"  - Continuity C(k):      {dist.get('continuity')}")
-    print(f"  - k-NN Overlap R@k:     {dist.get('knn_overlap')}")
+    print(f"  - k-NN Inter/k:         {dist.get('knn_intersection_over_k')}")
+    print(f"  - k-NN Jaccard:         {dist.get('knn_jaccard')}")
     if proj_artifact.explained_variance_ratio:
         pc1, pc2 = proj_artifact.explained_variance_ratio[:2]
-        print(f"  - PCA Variance:         PC1={pc1*100:.1f}%, PC2={pc2*100:.1f}% (Total: {(pc1+pc2)*100:.1f}%)")
+        total_v = (pc1 + pc2) * 100
+        print(f"  - PCA Variance:         PC1={pc1*100:.1f}%, PC2={pc2*100:.1f}% (Total: {total_v:.1f}%, Discarded: {100.0 - total_v:.1f}%)")
 
     points_data = build_point_inspection_data(
         df=df,
         embeddings=embeddings,
-        coordinates=coords,
+        coordinates=raw_coords,
+        display_coordinates=disp_coords,
         k_neighbors=5,
     )
 

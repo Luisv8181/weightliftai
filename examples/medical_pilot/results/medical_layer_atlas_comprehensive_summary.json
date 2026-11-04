@@ -1,0 +1,1358 @@
+[
+  {
+    "model_id": "google/gemma-3-1b-it",
+    "model_commit": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+    "tokenizer_commit": "main",
+    "dataset_id": "medical_pilot_50_concepts",
+    "dataset_sha256": "d2b3f204af93bffa54bc56e0d506c711d9635752113e9117ad82212a666941dc",
+    "split": "test",
+    "total_layers": 26,
+    "evaluated_layers": [
+      0,
+      7,
+      13,
+      19,
+      25
+    ],
+    "sample_count": 30,
+    "concepts_count": 10,
+    "variants": [
+      "canonical_clinical",
+      "cultural_idiom",
+      "plain_lay"
+    ],
+    "resampling_unit": "paired item_id (concept level)",
+    "bootstrap_iterations": 2000,
+    "timestamp_utc": "2026-11-04T19:36:34.914320+00:00",
+    "html_report": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_3_1b_it_medical_atlas_test.html",
+    "layer_metrics": {
+      "0": {
+        "n_samples": 30,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9538,
+            "mean_raw": 0.9538011848926544,
+            "ci_95": [
+              0.9488,
+              0.9581
+            ],
+            "ci_95_raw": [
+              0.9487724348902702,
+              0.9581354936957359
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.009
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9599,
+            "mean_raw": 0.9599097430706024,
+            "ci_95": [
+              0.9549,
+              0.9646
+            ],
+            "ci_95_raw": [
+              0.954850719422102,
+              0.9645512172579764
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0029
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.962,
+            "mean_raw": 0.9620316624641418,
+            "ci_95": [
+              0.9573,
+              0.9663
+            ],
+            "ci_95_raw": [
+              0.9573385059833527,
+              0.9662507461011409
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0008
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9628,
+          "mean_raw": 0.9628110527992249,
+          "ci_95": [
+            0.9615,
+            0.9641
+          ],
+          "ci_95_raw": [
+            0.9615072011947632,
+            0.9640658497810364
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 0.0
+      },
+      "7": {
+        "n_samples": 30,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9932,
+            "mean_raw": 0.9932062804698945,
+            "ci_95": [
+              0.9927,
+              0.9937
+            ],
+            "ci_95_raw": [
+              0.9926834322512149,
+              0.9936924055218697
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0018
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.995,
+            "mean_raw": 0.9950448274612427,
+            "ci_95": [
+              0.9942,
+              0.9958
+            ],
+            "ci_95_raw": [
+              0.994165011048317,
+              0.9958347056806088
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9956,
+            "mean_raw": 0.9956458210945129,
+            "ci_95": [
+              0.995,
+              0.9962
+            ],
+            "ci_95_raw": [
+              0.9949685174226761,
+              0.9962285901606083
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0006
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.995,
+          "mean_raw": 0.9950301647186279,
+          "ci_95": [
+            0.9948,
+            0.9952
+          ],
+          "ci_95_raw": [
+            0.9948487877845764,
+            0.9952069520950317
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 28.0
+      },
+      "13": {
+        "n_samples": 30,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9948,
+            "mean_raw": 0.9948414087295532,
+            "ci_95": [
+              0.9943,
+              0.9953
+            ],
+            "ci_95_raw": [
+              0.9943354050815105,
+              0.9952725873887539
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0008
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9957,
+            "mean_raw": 0.9956733584403992,
+            "ci_95": [
+              0.9948,
+              0.9965
+            ],
+            "ci_95_raw": [
+              0.9947833621501923,
+              0.9964591346681118
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0001
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9968,
+            "mean_raw": 0.9968315362930298,
+            "ci_95": [
+              0.9965,
+              0.9972
+            ],
+            "ci_95_raw": [
+              0.9964726865291595,
+              0.9972075894474983
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0012
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9956,
+          "mean_raw": 0.9956035017967224,
+          "ci_95": [
+            0.9955,
+            0.9957
+          ],
+          "ci_95_raw": [
+            0.995483934879303,
+            0.995723307132721
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 52.0
+      },
+      "19": {
+        "n_samples": 30,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9817,
+            "mean_raw": 0.9817018389701844,
+            "ci_95": [
+              0.9802,
+              0.983
+            ],
+            "ci_95_raw": [
+              0.980188096165657,
+              0.9830399844050407
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.003
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.986,
+            "mean_raw": 0.9859866738319397,
+            "ci_95": [
+              0.9833,
+              0.9882
+            ],
+            "ci_95_raw": [
+              0.9832531709969045,
+              0.988190334290266
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0012
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9862,
+            "mean_raw": 0.9861547827720643,
+            "ci_95": [
+              0.9855,
+              0.9868
+            ],
+            "ci_95_raw": [
+              0.9855446232855319,
+              0.9868216753005982
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0014
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9847,
+          "mean_raw": 0.9847429394721985,
+          "ci_95": [
+            0.9843,
+            0.9852
+          ],
+          "ci_95_raw": [
+            0.9842971563339233,
+            0.9851980209350586
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 76.0
+      },
+      "25": {
+        "n_samples": 30,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9011,
+            "mean_raw": 0.9011062622070313,
+            "ci_95": [
+              0.8835,
+              0.9181
+            ],
+            "ci_95_raw": [
+              0.8834674708545208,
+              0.9180991320312023
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0267
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9374,
+            "mean_raw": 0.9374116957187653,
+            "ci_95": [
+              0.9151,
+              0.9553
+            ],
+            "ci_95_raw": [
+              0.9150770916044711,
+              0.9552928008139133
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0096
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9221,
+            "mean_raw": 0.9221020221710206,
+            "ci_95": [
+              0.914,
+              0.9298
+            ],
+            "ci_95_raw": [
+              0.9140409861505032,
+              0.9297524373233318
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0057
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9278,
+          "mean_raw": 0.927793025970459,
+          "ci_95": [
+            0.9247,
+            0.9308
+          ],
+          "ci_95_raw": [
+            0.9247114062309265,
+            0.9307532906532288
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 100.0
+      }
+    }
+  },
+  {
+    "model_id": "google/gemma-3-1b-it",
+    "model_commit": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+    "tokenizer_commit": "main",
+    "dataset_id": "medical_pilot_50_concepts",
+    "dataset_sha256": "d2b3f204af93bffa54bc56e0d506c711d9635752113e9117ad82212a666941dc",
+    "split": "all",
+    "total_layers": 26,
+    "evaluated_layers": [
+      0,
+      7,
+      13,
+      19,
+      25
+    ],
+    "sample_count": 150,
+    "concepts_count": 50,
+    "variants": [
+      "canonical_clinical",
+      "cultural_idiom",
+      "plain_lay"
+    ],
+    "resampling_unit": "paired item_id (concept level)",
+    "bootstrap_iterations": 2000,
+    "timestamp_utc": "2026-11-04T19:36:42.252654+00:00",
+    "html_report": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_3_1b_it_medical_atlas_all.html",
+    "layer_metrics": {
+      "0": {
+        "n_samples": 150,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9483,
+            "mean_raw": 0.9483278667926789,
+            "ci_95": [
+              0.9446,
+              0.9519
+            ],
+            "ci_95_raw": [
+              0.9446120722591876,
+              0.9518876518309117
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.01
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9578,
+            "mean_raw": 0.9577694272994995,
+            "ci_95": [
+              0.9541,
+              0.9611
+            ],
+            "ci_95_raw": [
+              0.9541047917902469,
+              0.9611495150625706
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0006
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9614,
+            "mean_raw": 0.9613567101955414,
+            "ci_95": [
+              0.9592,
+              0.9632
+            ],
+            "ci_95_raw": [
+              0.9592449154555797,
+              0.9631653661131858
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.003
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9584,
+          "mean_raw": 0.9583590030670166,
+          "ci_95": [
+            0.9576,
+            0.9586
+          ],
+          "ci_95_raw": [
+            0.9576491713523865,
+            0.9585949182510376
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 0.0
+      },
+      "7": {
+        "n_samples": 150,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9929,
+            "mean_raw": 0.9929158473014832,
+            "ci_95": [
+              0.9925,
+              0.9933
+            ],
+            "ci_95_raw": [
+              0.9925364617705345,
+              0.9932702338993549
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0018
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9955,
+            "mean_raw": 0.9954885935783386,
+            "ci_95": [
+              0.9951,
+              0.9958
+            ],
+            "ci_95_raw": [
+              0.9951439897119999,
+              0.9958272732794285
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0008
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9955,
+            "mean_raw": 0.9955464708805084,
+            "ci_95": [
+              0.9952,
+              0.9958
+            ],
+            "ci_95_raw": [
+              0.995215868651867,
+              0.9958464480042458
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0008
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9947,
+          "mean_raw": 0.9947101473808289,
+          "ci_95": [
+            0.9946,
+            0.9948
+          ],
+          "ci_95_raw": [
+            0.994633674621582,
+            0.9947531223297119
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 28.0
+      },
+      "13": {
+        "n_samples": 150,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9944,
+            "mean_raw": 0.9944311952590943,
+            "ci_95": [
+              0.9942,
+              0.9947
+            ],
+            "ci_95_raw": [
+              0.9941554348766805,
+              0.994694328904152
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0007
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9958,
+            "mean_raw": 0.9958041667938232,
+            "ci_95": [
+              0.9955,
+              0.9961
+            ],
+            "ci_95_raw": [
+              0.9954990790188313,
+              0.9960759014189243
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0007
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9966,
+            "mean_raw": 0.9966089367866516,
+            "ci_95": [
+              0.9964,
+              0.9968
+            ],
+            "ci_95_raw": [
+              0.9963729958832264,
+              0.9968393877744675
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0015
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9951,
+          "mean_raw": 0.9951414465904236,
+          "ci_95": [
+            0.9951,
+            0.9952
+          ],
+          "ci_95_raw": [
+            0.9950908422470093,
+            0.9951677918434143
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 52.0
+      },
+      "19": {
+        "n_samples": 150,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9802,
+            "mean_raw": 0.9801561987400055,
+            "ci_95": [
+              0.9794,
+              0.9809
+            ],
+            "ci_95_raw": [
+              0.9794005211293697,
+              0.9808685268461704
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0027
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9855,
+            "mean_raw": 0.9855322396755218,
+            "ci_95": [
+              0.9847,
+              0.9864
+            ],
+            "ci_95_raw": [
+              0.9846846670210362,
+              0.9863742739558219
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0027
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9853,
+            "mean_raw": 0.9852991926670075,
+            "ci_95": [
+              0.9847,
+              0.9859
+            ],
+            "ci_95_raw": [
+              0.9846724924743175,
+              0.98588452231884
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0025
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9828,
+          "mean_raw": 0.9828422665596008,
+          "ci_95": [
+            0.9826,
+            0.9829
+          ],
+          "ci_95_raw": [
+            0.9826057553291321,
+            0.9828892350196838
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 76.0
+      },
+      "25": {
+        "n_samples": 150,
+        "feature_dim": 1152,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.8998,
+            "mean_raw": 0.8998347723484039,
+            "ci_95": [
+              0.8935,
+              0.9058
+            ],
+            "ci_95_raw": [
+              0.8935162639915943,
+              0.9058377111554146
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0264
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9429,
+            "mean_raw": 0.9429018151760101,
+            "ci_95": [
+              0.9366,
+              0.949
+            ],
+            "ci_95_raw": [
+              0.936572220146656,
+              0.9490364415347576
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0167
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.921,
+            "mean_raw": 0.9210337269306182,
+            "ci_95": [
+              0.9168,
+              0.9251
+            ],
+            "ci_95_raw": [
+              0.9168224233984947,
+              0.9250846874117852
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0052
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9262,
+          "mean_raw": 0.9262466430664062,
+          "ci_95": [
+            0.925,
+            0.9268
+          ],
+          "ci_95_raw": [
+            0.9250034689903259,
+            0.9267899394035339
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 100.0
+      }
+    }
+  },
+  {
+    "model_id": "google/gemma-4-E2B-it",
+    "model_commit": "4adf15748de9e1a0097b6274cee9c15836c41c37",
+    "tokenizer_commit": "main",
+    "dataset_id": "medical_pilot_50_concepts",
+    "dataset_sha256": "d2b3f204af93bffa54bc56e0d506c711d9635752113e9117ad82212a666941dc",
+    "split": "test",
+    "total_layers": 35,
+    "evaluated_layers": [
+      0,
+      8,
+      17,
+      26,
+      34
+    ],
+    "sample_count": 30,
+    "concepts_count": 10,
+    "variants": [
+      "canonical_clinical",
+      "cultural_idiom",
+      "plain_lay"
+    ],
+    "resampling_unit": "paired item_id (concept level)",
+    "bootstrap_iterations": 2000,
+    "timestamp_utc": "2026-11-04T19:37:13.501675+00:00",
+    "html_report": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_4_E2B_it_medical_atlas_test.html",
+    "layer_metrics": {
+      "0": {
+        "n_samples": 30,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9733,
+            "mean_raw": 0.9732534945011139,
+            "ci_95": [
+              0.9705,
+              0.9761
+            ],
+            "ci_95_raw": [
+              0.9704853901267051,
+              0.9760648901760578
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0085
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9828,
+            "mean_raw": 0.9828492939472199,
+            "ci_95": [
+              0.9814,
+              0.9843
+            ],
+            "ci_95_raw": [
+              0.9814348362386226,
+              0.9843260592222214
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0011
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9817,
+            "mean_raw": 0.9817220330238342,
+            "ci_95": [
+              0.9802,
+              0.9833
+            ],
+            "ci_95_raw": [
+              0.9801657012104988,
+              0.9833042766153812
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9818,
+          "mean_raw": 0.9817712903022766,
+          "ci_95": [
+            0.9812,
+            0.9824
+          ],
+          "ci_95_raw": [
+            0.9811546206474304,
+            0.9823755621910095
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 0.0
+      },
+      "8": {
+        "n_samples": 30,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9776,
+            "mean_raw": 0.9775935411453247,
+            "ci_95": [
+              0.9761,
+              0.9792
+            ],
+            "ci_95_raw": [
+              0.9761137388646604,
+              0.9791758024692535
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0016
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.979,
+            "mean_raw": 0.9789890646934509,
+            "ci_95": [
+              0.9755,
+              0.9818
+            ],
+            "ci_95_raw": [
+              0.9755050750076771,
+              0.9817794628441334
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0002
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9798,
+            "mean_raw": 0.9797942459583282,
+            "ci_95": [
+              0.9774,
+              0.9822
+            ],
+            "ci_95_raw": [
+              0.9774262072145938,
+              0.982185052037239
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0006
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9792,
+          "mean_raw": 0.9791765213012695,
+          "ci_95": [
+            0.9787,
+            0.9796
+          ],
+          "ci_95_raw": [
+            0.9786995649337769,
+            0.9796026349067688
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 23.5
+      },
+      "17": {
+        "n_samples": 30,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9821,
+            "mean_raw": 0.9821422100067139,
+            "ci_95": [
+              0.9806,
+              0.9834
+            ],
+            "ci_95_raw": [
+              0.980614795088768,
+              0.9833802351355553
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0017
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9847,
+            "mean_raw": 0.9846968472003936,
+            "ci_95": [
+              0.9833,
+              0.986
+            ],
+            "ci_95_raw": [
+              0.9832882356643677,
+              0.9859924300014973
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0009
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9842,
+            "mean_raw": 0.9841599881649017,
+            "ci_95": [
+              0.9824,
+              0.9857
+            ],
+            "ci_95_raw": [
+              0.9824270384013652,
+              0.9857295615971088
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0004
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9838,
+          "mean_raw": 0.9837997555732727,
+          "ci_95": [
+            0.9835,
+            0.9841
+          ],
+          "ci_95_raw": [
+            0.9834789037704468,
+            0.9841224551200867
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 50.0
+      },
+      "26": {
+        "n_samples": 30,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.956,
+            "mean_raw": 0.95599564909935,
+            "ci_95": [
+              0.9542,
+              0.9579
+            ],
+            "ci_95_raw": [
+              0.9542328971624374,
+              0.9579152934253217
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0093
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9692,
+            "mean_raw": 0.9692235231399536,
+            "ci_95": [
+              0.9658,
+              0.972
+            ],
+            "ci_95_raw": [
+              0.9657710863649845,
+              0.9720035016536712
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0039
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.96,
+            "mean_raw": 0.9599876403808594,
+            "ci_95": [
+              0.9574,
+              0.9625
+            ],
+            "ci_95_raw": [
+              0.9574396483600139,
+              0.9624867689609528
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0053
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9653,
+          "mean_raw": 0.9653220772743225,
+          "ci_95": [
+            0.9644,
+            0.9663
+          ],
+          "ci_95_raw": [
+            0.9643675684928894,
+            0.9662930965423584
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 76.5
+      },
+      "34": {
+        "n_samples": 30,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9803,
+            "mean_raw": 0.9803209185600281,
+            "ci_95": [
+              0.9759,
+              0.9839
+            ],
+            "ci_95_raw": [
+              0.9759409812092781,
+              0.9839482897520065
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0064
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9898,
+            "mean_raw": 0.9898453891277313,
+            "ci_95": [
+              0.9871,
+              0.9922
+            ],
+            "ci_95_raw": [
+              0.9870990636944771,
+              0.9921778792142868
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": 0.0032
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9834,
+            "mean_raw": 0.9833888351917267,
+            "ci_95": [
+              0.9781,
+              0.9867
+            ],
+            "ci_95_raw": [
+              0.9780746625363826,
+              0.9867006579041481
+            ],
+            "n_items": 10,
+            "delta_over_unrelated_baseline": -0.0033
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9867,
+          "mean_raw": 0.9866905212402344,
+          "ci_95": [
+            0.986,
+            0.9873
+          ],
+          "ci_95_raw": [
+            0.9859704375267029,
+            0.9873499870300293
+          ],
+          "n_pairs": 405
+        },
+        "depth_pct": 100.0
+      }
+    }
+  },
+  {
+    "model_id": "google/gemma-4-E2B-it",
+    "model_commit": "4adf15748de9e1a0097b6274cee9c15836c41c37",
+    "tokenizer_commit": "main",
+    "dataset_id": "medical_pilot_50_concepts",
+    "dataset_sha256": "d2b3f204af93bffa54bc56e0d506c711d9635752113e9117ad82212a666941dc",
+    "split": "all",
+    "total_layers": 35,
+    "evaluated_layers": [
+      0,
+      8,
+      17,
+      26,
+      34
+    ],
+    "sample_count": 150,
+    "concepts_count": 50,
+    "variants": [
+      "canonical_clinical",
+      "cultural_idiom",
+      "plain_lay"
+    ],
+    "resampling_unit": "paired item_id (concept level)",
+    "bootstrap_iterations": 2000,
+    "timestamp_utc": "2026-11-04T19:37:50.172530+00:00",
+    "html_report": "C:\\Users\\luisv\\Projects\\weightliftai\\examples\\medical_pilot\\results\\google_gemma_4_E2B_it_medical_atlas_all.html",
+    "layer_metrics": {
+      "0": {
+        "n_samples": 150,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9713,
+            "mean_raw": 0.9713380610942841,
+            "ci_95": [
+              0.9691,
+              0.9734
+            ],
+            "ci_95_raw": [
+              0.9691000692844391,
+              0.9734083293974399
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0082
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9814,
+            "mean_raw": 0.9814313137531281,
+            "ci_95": [
+              0.98,
+              0.9827
+            ],
+            "ci_95_raw": [
+              0.9799780660867692,
+              0.9827339435219765
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0019
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9795,
+            "mean_raw": 0.9794867718219757,
+            "ci_95": [
+              0.9783,
+              0.9806
+            ],
+            "ci_95_raw": [
+              0.9783006955683231,
+              0.9806139725148677
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0001
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9795,
+          "mean_raw": 0.9795477986335754,
+          "ci_95": [
+            0.9792,
+            0.9797
+          ],
+          "ci_95_raw": [
+            0.9792481660842896,
+            0.9796907305717468
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 0.0
+      },
+      "8": {
+        "n_samples": 150,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9755,
+            "mean_raw": 0.9755281865596771,
+            "ci_95": [
+              0.974,
+              0.9769
+            ],
+            "ci_95_raw": [
+              0.974014756500721,
+              0.9769129365980626
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0022
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9785,
+            "mean_raw": 0.9785004079341888,
+            "ci_95": [
+              0.9772,
+              0.9799
+            ],
+            "ci_95_raw": [
+              0.9771592343151569,
+              0.979894503980875
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0008
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9793,
+            "mean_raw": 0.9792944204807281,
+            "ci_95": [
+              0.978,
+              0.9805
+            ],
+            "ci_95_raw": [
+              0.9779925156533718,
+              0.9805252597630024
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0015
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9777,
+          "mean_raw": 0.9777487516403198,
+          "ci_95": [
+            0.9775,
+            0.9778
+          ],
+          "ci_95_raw": [
+            0.9775240421295166,
+            0.9778392314910889
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 23.5
+      },
+      "17": {
+        "n_samples": 150,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9812,
+            "mean_raw": 0.9811918473243714,
+            "ci_95": [
+              0.9804,
+              0.982
+            ],
+            "ci_95_raw": [
+              0.9803516008853912,
+              0.982040254175663
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0016
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9838,
+            "mean_raw": 0.9838025665283203,
+            "ci_95": [
+              0.983,
+              0.9846
+            ],
+            "ci_95_raw": [
+              0.9830324292182923,
+              0.9846029908359051
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.001
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9836,
+            "mean_raw": 0.9835951805114747,
+            "ci_95": [
+              0.9828,
+              0.9844
+            ],
+            "ci_95_raw": [
+              0.9828124237954617,
+              0.9843707109689712
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0008
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9828,
+          "mean_raw": 0.9828355312347412,
+          "ci_95": [
+            0.9827,
+            0.9829
+          ],
+          "ci_95_raw": [
+            0.9827152490615845,
+            0.982922375202179
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 50.0
+      },
+      "26": {
+        "n_samples": 150,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9549,
+            "mean_raw": 0.9548623311519623,
+            "ci_95": [
+              0.9533,
+              0.9564
+            ],
+            "ci_95_raw": [
+              0.9532574567198754,
+              0.9564198723435402
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0093
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9695,
+            "mean_raw": 0.9694567203521729,
+            "ci_95": [
+              0.9677,
+              0.9711
+            ],
+            "ci_95_raw": [
+              0.9677408806979656,
+              0.9711499149799347
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0053
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9577,
+            "mean_raw": 0.9577112972736359,
+            "ci_95": [
+              0.9561,
+              0.9591
+            ],
+            "ci_95_raw": [
+              0.9561061077415943,
+              0.9591288754045963
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0065
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.9642,
+          "mean_raw": 0.9641844034194946,
+          "ci_95": [
+            0.9639,
+            0.9645
+          ],
+          "ci_95_raw": [
+            0.9639227986335754,
+            0.9644868969917297
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 76.5
+      },
+      "34": {
+        "n_samples": 150,
+        "feature_dim": 1536,
+        "pairwise_cosines": {
+          "canonical_clinical~cultural_idiom": {
+            "mean": 0.9782,
+            "mean_raw": 0.9781906223297119,
+            "ci_95": [
+              0.9763,
+              0.98
+            ],
+            "ci_95_raw": [
+              0.9762870406806469,
+              0.9800050804018974
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0068
+          },
+          "canonical_clinical~plain_lay": {
+            "mean": 0.9893,
+            "mean_raw": 0.9892820310592652,
+            "ci_95": [
+              0.9883,
+              0.9903
+            ],
+            "ci_95_raw": [
+              0.9882819086909294,
+              0.9902511591911316
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": 0.0043
+          },
+          "cultural_idiom~plain_lay": {
+            "mean": 0.9805,
+            "mean_raw": 0.9805364072322845,
+            "ci_95": [
+              0.9783,
+              0.9826
+            ],
+            "ci_95_raw": [
+              0.9783327295482158,
+              0.9825614963471889
+            ],
+            "n_items": 50,
+            "delta_over_unrelated_baseline": -0.0044
+          }
+        },
+        "unrelated_negative_control": {
+          "mean": 0.985,
+          "mean_raw": 0.9849604964256287,
+          "ci_95": [
+            0.9847,
+            0.9852
+          ],
+          "ci_95_raw": [
+            0.9847499132156372,
+            0.9851635694503784
+          ],
+          "n_pairs": 11025
+        },
+        "depth_pct": 100.0
+      }
+    }
+  }
+]

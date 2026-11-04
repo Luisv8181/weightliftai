@@ -89,7 +89,8 @@ def main() -> None:
     map_parser.add_argument("model_id", help="Hugging Face model ID or path.")
     map_parser.add_argument("--dataset", help="Path to matched dataset CSV/JSON.")
     map_parser.add_argument("--medical-pilot", action="store_true", help="Use built-in 50-concept medical pilot dataset.")
-    map_parser.add_argument("--split", choices=["all", "train", "val", "test"], default="all", help="Dataset split (default: all).")
+    map_parser.add_argument("--split", choices=["all", "train", "val", "test"], default="test",
+                            help="Dataset split (default: test; use 'all' for exploratory mapping).")
     map_parser.add_argument("--layer", type=int, default=13, help="Layer index to project (default: 13).")
     map_parser.add_argument("--algorithm", choices=["pca", "tsne", "umap"], default="pca", help="Projection method (default: pca).")
     map_parser.add_argument("--k-neighbors", type=int, default=5, help="Number of nearest neighbors for distortion diagnostics (default: 5).")
@@ -283,6 +284,7 @@ def main() -> None:
                 },
             })
         elif args.command == "map":
+            import hashlib
             from pathlib import Path
             import torch
             from transformers import AutoTokenizer
@@ -296,6 +298,9 @@ def main() -> None:
                 generate_map_html,
                 project_representations,
             )
+
+            if args.split == "all":
+                print("Notice: --split all is an exploratory setting over combined data. Held-out evaluations should use --split test.", file=sys.stderr)
 
             if args.medical_pilot:
                 pilot = MedicalPilotDataset()
@@ -371,9 +376,11 @@ def main() -> None:
 
             print(f"Projecting {len(embeddings)} vectors with {args.algorithm.upper()} and computing distortion diagnostics...", file=sys.stderr)
             item_ids = [str(x) for x in df.get("item_id", range(len(df)))]
-            proj_artifact, coords = project_representations(
+            source_sha = hashlib.sha256(embeddings.tobytes()).hexdigest()
+            proj_artifact, raw_coords, disp_coords = project_representations(
                 embeddings=embeddings,
                 item_ids=item_ids,
+                source_sha256=source_sha,
                 algorithm=args.algorithm,
                 n_components=2,
                 k_neighbors=args.k_neighbors,
@@ -382,7 +389,8 @@ def main() -> None:
             points_data = build_point_inspection_data(
                 df=df,
                 embeddings=embeddings,
-                coordinates=coords,
+                coordinates=raw_coords,
+                display_coordinates=disp_coords,
                 k_neighbors=args.k_neighbors,
             )
 

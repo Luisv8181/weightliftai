@@ -19,21 +19,26 @@ def test_compute_distortion_metrics():
     low_dim = high_dim[:, :2]
 
     metrics = compute_distortion_metrics(high_dim, low_dim, k_neighbors=5)
+    assert metrics["status"] == "valid"
     assert "trustworthiness" in metrics
     assert "continuity" in metrics
-    assert "knn_overlap" in metrics
+    assert "knn_intersection_over_k" in metrics
+    assert "knn_jaccard" in metrics
     assert "distortion_warning" in metrics
     assert "interpretive_note" in metrics
 
     assert 0.0 <= metrics["trustworthiness"] <= 1.0
     assert 0.0 <= metrics["continuity"] <= 1.0
-    assert 0.0 <= metrics["knn_overlap"] <= 1.0
+    assert 0.0 <= metrics["knn_intersection_over_k"] <= 1.0
+    assert 0.0 <= metrics["knn_jaccard"] <= 1.0
     assert isinstance(metrics["distortion_warning"], bool)
 
-    # Edge case: very small sample
-    small_m = compute_distortion_metrics(high_dim[:2], low_dim[:2])
-    assert small_m["trustworthiness"] == 1.0
-    assert small_m["distortion_warning"] is False
+    # Edge case: very small sample (withhold scores rather than reporting fake 1.0)
+    small_m = compute_distortion_metrics(high_dim[:3], low_dim[:3])
+    assert small_m["status"] == "insufficient_samples"
+    assert small_m["trustworthiness"] is None
+    assert small_m["continuity"] is None
+    assert small_m["distortion_warning"] is True
 
 
 def test_project_representations_pca():
@@ -41,7 +46,7 @@ def test_project_representations_pca():
     embeddings = rng.normal(size=(25, 64))
     item_ids = [f"item_{i}" for i in range(25)]
 
-    artifact, coords = project_representations(
+    artifact, raw_coords, disp_coords = project_representations(
         embeddings,
         item_ids,
         algorithm="pca",
@@ -55,7 +60,10 @@ def test_project_representations_pca():
     assert artifact.n_components == 2
     assert len(artifact.coordinates) == 25
     assert len(artifact.coordinates[0]) == 2
-    assert coords.shape == (25, 2)
+    assert raw_coords.shape == (25, 2)
+    assert disp_coords.shape == (25, 2)
+    assert artifact.source_artifact_sha256 != "placeholder_sha256"
+    assert len(artifact.source_artifact_sha256) == 64
     assert artifact.explained_variance_ratio is not None
     assert len(artifact.explained_variance_ratio) == 2
     assert sum(artifact.explained_variance_ratio) <= 1.0001
@@ -68,7 +76,7 @@ def test_project_representations_tsne():
     embeddings = rng.normal(size=(20, 16))
     item_ids = [f"id_{i}" for i in range(20)]
 
-    artifact, coords = project_representations(
+    artifact, raw_coords, disp_coords = project_representations(
         embeddings,
         item_ids,
         algorithm="tsne",
@@ -78,7 +86,8 @@ def test_project_representations_tsne():
     )
 
     assert artifact.algorithm == "tsne"
-    assert coords.shape == (20, 2)
+    assert raw_coords.shape == (20, 2)
+    assert disp_coords.shape == (20, 2)
     assert artifact.explained_variance_ratio is None
     assert artifact.distortion_metrics is not None
 
@@ -131,14 +140,29 @@ def test_build_point_inspection_data():
     assert all("low_dim_euclidean" in mp for mp in p0["matched_partners"])
 
 
+def test_build_point_inspection_data_non_contiguous_index():
+    df = pd.DataFrame([
+        {"item_id": "D01", "concept": "Hypertension", "variant": "canonical_clinical", "lang": "en", "split": "test", "text": "Clinical 1"},
+        {"item_id": "D01", "concept": "Hypertension", "variant": "plain_lay", "lang": "en", "split": "test", "text": "Lay 1"},
+        {"item_id": "D01", "concept": "Hypertension", "variant": "cultural_idiom", "lang": "es", "split": "test", "text": "Idiom 1"},
+    ], index=[10, 25, 99])  # non-contiguous index
+
+    embeddings = np.ones((3, 8))
+    coords = np.zeros((3, 2))
+    points = build_point_inspection_data(df, embeddings, coords, k_neighbors=2)
+    assert len(points) == 3
+    assert points[0]["point_idx"] == 0
+    assert len(points[0]["matched_partners"]) == 2
+
+
 def test_generate_map_html():
     df = pd.DataFrame([
         {"item_id": "D01", "concept": "Hypertension", "variant": "canonical_clinical", "lang": "en", "split": "test", "text": "Hypertension"},
         {"item_id": "D01", "concept": "Hypertension", "variant": "plain_lay", "lang": "en", "split": "test", "text": "High BP"},
     ])
     embeddings = np.array([[1.0, 0.0], [0.9, 0.1]])
-    artifact, coords = project_representations(embeddings, ["D01", "D01"], algorithm="pca", random_seed=42)
-    points = build_point_inspection_data(df, embeddings, coords, k_neighbors=1)
+    artifact, raw_coords, disp_coords = project_representations(embeddings, ["D01", "D01"], algorithm="pca", random_seed=42)
+    points = build_point_inspection_data(df, embeddings, raw_coords, display_coordinates=disp_coords, k_neighbors=1)
 
     html_out = generate_map_html(
         model_name="google/gemma-3-1b-it",

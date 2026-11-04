@@ -16,6 +16,7 @@ while strictly preserving high-D metric traceability and reporting projection di
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 from datetime import datetime, timezone
@@ -40,27 +41,38 @@ def compute_distortion_metrics(
     
     Adheres to the Representation Cartography guardrail: Projections are not geometry.
     Never substitute screen-space Euclidean distance for original-space metrics.
+    
+    Distance conventions:
+    - High-dimensional space: Cosine distance (1 - cos_sim)
+    - Low-dimensional space: Euclidean distance
     """
     n_samples = len(high_dim)
     k = min(k_neighbors, max(1, n_samples - 2))
 
-    if n_samples < 4:
+    if n_samples < 5 or n_samples <= k + 1:
         return {
+            "status": "insufficient_samples",
             "k_neighbors": k,
-            "trustworthiness": 1.0,
-            "continuity": 1.0,
-            "knn_overlap": 1.0,
-            "distortion_warning": False,
-            "interpretive_note": "Sample size too small for statistical distortion diagnostics.",
+            "trustworthiness": None,
+            "continuity": None,
+            "knn_intersection_over_k": None,
+            "knn_jaccard": None,
+            "distortion_warning": True,
+            "interpretive_note": (
+                f"Sample size (n={n_samples}) is too small for statistical distortion diagnostics "
+                f"with k={k}. Metrics withheld to avoid reporting ungrounded scores."
+            ),
         }
 
-    # Trustworthiness: penalizes points close in low-D that were NOT close in high-D
-    t_val = float(trustworthiness(high_dim, low_dim, n_neighbors=k))
+    # Trustworthiness: High-D cosine distance, Low-D Euclidean distance
+    # Penalizes points close in low-D that were NOT close in high-D
+    t_val = float(trustworthiness(high_dim, low_dim, n_neighbors=k, metric="cosine"))
 
-    # Continuity: dual of trustworthiness (swap high-D and low-D)
-    c_val = float(trustworthiness(low_dim, high_dim, n_neighbors=k))
+    # Continuity: Low-D Euclidean distance to High-D cosine distance
+    # Penalizes points close in high-D that were NOT close in low-D
+    c_val = float(trustworthiness(low_dim, high_dim, n_neighbors=k, metric="euclidean"))
 
-    # k-NN Neighborhood Overlap (Jaccard / intersection ratio)
+    # High-D Cosine Similarity Matrix
     norm_high = np.linalg.norm(high_dim, axis=1, keepdims=True) + 1e-9
     high_norm = high_dim / norm_high
     cos_sim = high_norm @ high_norm.T
@@ -69,7 +81,8 @@ def compute_distortion_metrics(
     diff = low_dim[:, None, :] - low_dim[None, :, :]
     dist_low = np.linalg.norm(diff, axis=-1)
 
-    overlaps = []
+    intersections = []
+    jaccards = []
     for i in range(n_samples):
         # Exclude self
         high_order = np.argsort(-cos_sim[i])
@@ -78,17 +91,22 @@ def compute_distortion_metrics(
         low_order = np.argsort(dist_low[i])
         low_nn = set([idx for idx in low_order if idx != i][:k])
 
-        overlap = len(high_nn & low_nn) / float(k)
-        overlaps.append(overlap)
+        inter = len(high_nn & low_nn)
+        union = len(high_nn | low_nn)
+        intersections.append(inter / float(k))
+        jaccards.append(inter / float(union) if union > 0 else 0.0)
 
-    mean_overlap = float(np.mean(overlaps))
-    warning = bool(t_val < 0.80 or c_val < 0.80 or mean_overlap < 0.50)
+    mean_intersection = float(np.mean(intersections))
+    mean_jaccard = float(np.mean(jaccards))
+    warning = bool(t_val < 0.85 or c_val < 0.85 or mean_intersection < 0.40)
 
     return {
+        "status": "valid",
         "k_neighbors": k,
         "trustworthiness": round(t_val, 4),
         "continuity": round(c_val, 4),
-        "knn_overlap": round(mean_overlap, 4),
+        "knn_intersection_over_k": round(mean_intersection, 4),
+        "knn_jaccard": round(mean_jaccard, 4),
         "distortion_warning": warning,
         "interpretive_note": (
             "Screen-space distance in 2D is a lossy visual approximation. "
@@ -101,18 +119,29 @@ def project_representations(
     embeddings: np.ndarray,
     item_ids: Sequence[str | int],
     *,
+    source_sha256: str | None = None,
     algorithm: Literal["pca", "umap", "tsne"] = "pca",
     n_components: int = 2,
     random_seed: int = 42,
-    source_sha256: str = "placeholder_sha256",
     k_neighbors: int = 5,
     **kwargs: Any,
-) -> tuple[ProjectionArtifact, np.ndarray]:
-    """Fit dimensionality reduction with deterministic parameters and compute distortion diagnostics."""
+) -> tuple[ProjectionArtifact, np.ndarray, np.ndarray]:
+    """Fit dimensionality reduction with deterministic parameters and compute distortion diagnostics.
+    
+    Returns:
+        (projection_artifact, raw_coordinates, display_coordinates)
+        where raw_coordinates are unscaled coordinates used for distortion diagnostics,
+        and display_coordinates preserve isotropic aspect ratios for rendering.
+    """
     if n_components not in (2, 3):
         raise ValueError("n_components must be 2 or 3.")
     if len(embeddings) != len(item_ids):
         raise ValueError(f"Mismatch: {len(embeddings)} embeddings vs {len(item_ids)} item_ids.")
+
+    # Enforce real source SHA-256 (reject placeholders)
+    if not source_sha256 or "placeholder" in source_sha256.lower():
+        # Compute exact cryptographic digest of input tensor bytes
+        source_sha256 = hashlib.sha256(embeddings.tobytes()).hexdigest()
 
     explained_var = None
     if algorithm == "pca":
@@ -147,15 +176,19 @@ def project_representations(
     else:
         raise ValueError(f"Unsupported algorithm: {algorithm}. Choose 'pca', 'umap', or 'tsne'.")
 
-    # Center and scale coordinates into normalized box [-10, 10] for consistent rendering
-    coords_arr = np.asarray(coords, dtype=float)
-    c_min = coords_arr.min(axis=0)
-    c_max = coords_arr.max(axis=0)
-    c_span = np.where((c_max - c_min) == 0, 1.0, (c_max - c_min))
-    norm_coords = ((coords_arr - c_min) / c_span * 20.0 - 10.0)
+    raw_coords = np.asarray(coords, dtype=float)
 
-    # Compute distortion metrics
-    dist_metrics = compute_distortion_metrics(embeddings, norm_coords, k_neighbors=k_neighbors)
+    # Compute distortion metrics on RAW projection coordinates (Issue #2 requirement)
+    dist_metrics = compute_distortion_metrics(embeddings, raw_coords, k_neighbors=k_neighbors)
+
+    # Isotropic aspect-ratio-preserving scaling for 2D display viewport [-10, 10]
+    c_min = raw_coords.min(axis=0)
+    c_max = raw_coords.max(axis=0)
+    c_center = (c_min + c_max) / 2.0
+    c_span = np.maximum(c_max - c_min, 1e-9)
+    max_span = float(max(c_span[0], c_span[1]))
+    scale = 18.0 / (max_span if max_span > 1e-9 else 1.0)
+    display_coords = (raw_coords - c_center) * scale
 
     artifact = ProjectionArtifact(
         artifact_version="v1",
@@ -164,12 +197,12 @@ def project_representations(
         n_components=n_components,
         random_seed=random_seed,
         explained_variance_ratio=explained_var,
-        coordinates=[[round(float(c), 4) for c in row] for row in norm_coords],
+        coordinates=[[round(float(c), 4) for c in row] for row in raw_coords],
         item_ids=list(item_ids),
         distortion_metrics=dist_metrics,
     )
 
-    return artifact, norm_coords
+    return artifact, raw_coords, display_coords
 
 
 def build_point_inspection_data(
@@ -177,6 +210,7 @@ def build_point_inspection_data(
     embeddings: np.ndarray,
     coordinates: np.ndarray,
     *,
+    display_coordinates: np.ndarray | None = None,
     k_neighbors: int = 5,
     item_id_col: str = "item_id",
     concept_col: str = "concept",
@@ -185,15 +219,24 @@ def build_point_inspection_data(
     lang_col: str = "lang",
     split_col: str = "split",
 ) -> list[dict[str, Any]]:
-    """Build enriched inspection data with true high-D nearest neighbors and matched triad alignment."""
+    """Build enriched inspection data with true high-D nearest neighbors and matched triad alignment.
+    
+    Guarantees index safety by resetting DataFrame indices to match array positions.
+    """
+    df_clean = df.reset_index(drop=True)
     n_samples = len(embeddings)
+    if len(df_clean) != n_samples:
+        raise ValueError(f"Mismatch: {len(df_clean)} DataFrame rows vs {n_samples} embeddings.")
+
+    disp_coords = display_coordinates if display_coordinates is not None else coordinates
+
     norm = np.linalg.norm(embeddings, axis=1, keepdims=True) + 1e-9
     emb_norm = embeddings / norm
     cos_matrix = emb_norm @ emb_norm.T
 
-    # Index by item_id to find triad partners
+    # Index by item_id to find triad partners using clean positional indices
     item_map: dict[Any, dict[str, int]] = {}
-    for idx, row in df.iterrows():
+    for idx, row in df_clean.iterrows():
         it = row.get(item_id_col)
         var = row.get(variant_col, "default")
         if it not in item_map:
@@ -202,7 +245,7 @@ def build_point_inspection_data(
 
     points = []
     for i in range(n_samples):
-        row = df.iloc[i]
+        row = df_clean.iloc[i]
         it_id = row.get(item_id_col, f"item_{i}")
         var = row.get(variant_col, "unknown")
         concept_lbl = row.get(concept_col, str(it_id))
@@ -216,12 +259,12 @@ def build_point_inspection_data(
         for r_idx in ranked:
             if r_idx == i:
                 continue
-            r_row = df.iloc[r_idx]
+            r_row = df_clean.iloc[r_idx]
             nn_list.append({
                 "item_id": str(r_row.get(item_id_col, "")),
                 "concept": str(r_row.get(concept_col, "")),
                 "variant": str(r_row.get(variant_col, "")),
-                "cosine": round(float(cos_matrix[i, r_idx]), 3),
+                "cosine": round(float(cos_matrix[i, r_idx]), 4),
                 "text": str(r_row.get(text_col, ""))[:60] + "...",
             })
             if len(nn_list) >= k_neighbors:
@@ -234,12 +277,13 @@ def build_point_inspection_data(
                 if p_idx == i:
                     continue
                 true_cos = float(cos_matrix[i, p_idx])
+                # True 2D Euclidean distance on raw coordinates
                 low_dist = float(np.linalg.norm(coordinates[i] - coordinates[p_idx]))
                 partners.append({
                     "variant": p_var,
-                    "target_concept": str(df.iloc[p_idx].get(concept_col, "")),
-                    "high_dim_cosine": round(true_cos, 3),
-                    "low_dim_euclidean": round(low_dist, 3),
+                    "target_concept": str(df_clean.iloc[p_idx].get(concept_col, "")),
+                    "high_dim_cosine": round(true_cos, 4),
+                    "low_dim_euclidean": round(low_dist, 4),
                 })
 
         points.append({
@@ -250,8 +294,10 @@ def build_point_inspection_data(
             "lang": lang,
             "split": split,
             "text": txt,
-            "x": round(float(coordinates[i, 0]), 4),
-            "y": round(float(coordinates[i, 1]), 4),
+            "raw_x": round(float(coordinates[i, 0]), 4),
+            "raw_y": round(float(coordinates[i, 1]), 4),
+            "x": round(float(disp_coords[i, 0]), 4),
+            "y": round(float(disp_coords[i, 1]), 4),
             "nearest_neighbors": nn_list,
             "matched_partners": partners,
         })
@@ -278,13 +324,18 @@ def generate_map_html(
     algo_name = projection_artifact.algorithm.upper()
     exp_var = projection_artifact.explained_variance_ratio
 
-    points_json = json.dumps(points_data)
-    dist_json = json.dumps(dist)
+    points_json = json.dumps(points_data).replace("</script>", "<\\/script>").replace("<!--", "<\\!--")
+    dist_json = json.dumps(dist).replace("</script>", "<\\/script>").replace("<!--", "<\\!--")
+
+    knn_inter = dist.get("knn_intersection_over_k", dist.get("knn_overlap", "N/A"))
+    knn_jaccard = dist.get("knn_jaccard", "N/A")
 
     var_stats = exp_var and len(exp_var) >= 2
     pc1_str = f"{exp_var[0] * 100:.1f}%" if var_stats else "N/A"
     pc2_str = f"{exp_var[1] * 100:.1f}%" if var_stats else "N/A"
-    pc_total_str = f"{(exp_var[0] + exp_var[1]) * 100:.1f}%" if var_stats else "N/A"
+    pc_total = (exp_var[0] + exp_var[1]) * 100 if var_stats else 0.0
+    pc_total_str = f"{pc_total:.1f}%" if var_stats else "N/A"
+    unexplained_str = f"({100.0 - pc_total:.1f}% discarded in 2D)" if var_stats else ""
 
     depth_label = f" (Depth: {depth_pct:.1f}%)" if depth_pct is not None else ""
 
@@ -560,22 +611,22 @@ def generate_map_html(
     <div class="metric-card">
       <div class="metric-label">Trustworthiness T(k)</div>
       <div class="metric-val">{t_val}</div>
-      <div class="metric-note">Penalizes false 2D neighbors (Target: &ge; 0.85)</div>
+      <div class="metric-note">Cosine high-D &rarr; Euclidean 2D</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Continuity C(k)</div>
       <div class="metric-val">{c_val}</div>
-      <div class="metric-note">Penalizes false 2D tears (Target: &ge; 0.85)</div>
+      <div class="metric-note">Euclidean 2D &rarr; Cosine high-D</div>
     </div>
     <div class="metric-card">
-      <div class="metric-label">k-NN Overlap R@k</div>
-      <div class="metric-val">{knn_val}</div>
+      <div class="metric-label">k-NN Overlap (Inter/k | Jaccard)</div>
+      <div class="metric-val">{knn_inter} | {knn_jaccard}</div>
       <div class="metric-note">Neighborhood preservation (k={dist.get("k_neighbors", 5)})</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">PCA Variance (PC1+PC2)</div>
       <div class="metric-val">{pc_total_str}</div>
-      <div class="metric-note">PC1: {pc1_str} | PC2: {pc2_str}</div>
+      <div class="metric-note">PC1: {pc1_str} | PC2: {pc2_str} {unexplained_str}</div>
     </div>
   </div>
 
