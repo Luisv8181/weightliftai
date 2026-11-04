@@ -69,7 +69,11 @@ The first release should be a **local model inspection and experiment harness**,
 
 | ID | Question | Status |
 |---|---|---|
-| [001](experiments/001-gemma-emotion-sae-map/) | Does Gemma 3 1B keep grief vs. sadness and fear vs. anxiety distinct, in English and Spanish? Uses Gemma Scope 2 sparse-autoencoder features, interactive feature views, a live word-by-word trace across four layers, steering, and a LoRA before/after comparison. | Set up (Colab notebook); not yet run |
+| [001](experiments/001-gemma-emotion-sae-map/) | Does Gemma 3 1B keep grief vs. sadness and fear vs. anxiety distinct, in English and Spanish? Uses Gemma Scope 2 sparse-autoencoder features, interactive feature views, a live word-by-word trace across four layers, steering, and a LoRA before/after comparison. | **Executed** on RTX 5070 (`FVE=0.743`, EN CV `92.5%`, ES CV `65.0% -> 72.5%` after LoRA, cross-lingual transfer `95.0%` EN→ES / `100.0%` ES→EN) |
+| 002 | Cultural idioms of distress (Dominican Spanish vs. Pan-Hispanic Spanish vs. English) and counterfactual lexical shortcut de-confounding (`still` / `death` / `family` feature clamping). | Planned |
+| 003 | Cross-lingual causal attribution circuits using Gemma Scope 2 MLP transcoders (`gemma-scope-2-1b-it-transcoders`). | Planned |
+| 004 | Mechanistic auditing of clinical/empathetic LoRA fine-tuning (`counsel-chat` / `esconv`) via SAE variance explained drift and feature turnover. | Planned |
+| 005 | Cross-lingual targeted intervention transfer ("Train in English, transfer to Spanish" via middle-layer hub LoRA vs. full LoRA vs. CAA steering). | Planned |
 
 ## Research principles
 

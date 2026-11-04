@@ -8,7 +8,7 @@
 - [x] Add hardware diagnostics
 - [x] Add model inspection CLI (configuration-only by default; optional parameter loading)
 - [x] Add initial unit tests and quick-start example
-- [ ] Run CI and verify on CPU and CUDA environments
+- [x] Run CI and verify on CPU and CUDA environments (verified on GitHub Actions Ubuntu CPU + local Windows 11 NVIDIA RTX 5070 CUDA 12.8)
 
 ## Phase 1 — Inspect
 - [x] Report model configuration and parameter counts when weights are loaded
@@ -50,3 +50,10 @@
 - Automatic edits to users' source checkpoints
 - Claims that one neuron represents one concept
 - Clinical deployment or use with sensitive records
+
+## Active 5-Part Research Program
+- [x] **Experiment 001 — Bilingual Emotion SAE Map (`Gemma 3 1B` + `Qwen2.5-0.5B`):** Executed Layer-13 Gemma Scope 2 SAE mapping, Neuronpedia feature grounding, causal steering, 4-layer live token tracing, and LoRA drift check.
+- [ ] **Experiment 002 — Cultural Idioms of Distress & Counterfactual De-confounding:** 3-way parallel split (English / Pan-Hispanic Neutral Spanish / Dominican Spanish idioms) + 2×2 counterfactual feature clamping (`#1886`, `#4284`, `#293`).
+- [ ] **Experiment 003 — Transcoder Causal Attribution Circuits:** Cross-layer feature attribution graphs using `gemma-scope-2-1b-it-transcoders` across English and Spanish.
+- [ ] **Experiment 004 — Mechanistic Auditing of Clinical LoRA:** Evaluate SAE manifold drift (`FVE`), centroid separation, and feature turnover across LoRA ranks on therapeutic dialogue datasets.
+- [ ] **Experiment 005 — Cross-Lingual Hub Intervention Transfer:** Compare middle-layer-only English LoRA (Layers 10–16) vs. all-layer LoRA vs. Layer-13 Contrastive Activation Steering on Spanish performance.

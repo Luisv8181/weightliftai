@@ -1,6 +1,6 @@
 # Experiment 001 — Emotion feature map in Gemma 3 1B (EN/ES)
 
-**Status:** set up, not yet run on the real model. The notebook's analysis code was tested on synthetic features, and its model cells were tested on a tiny randomly initialized Gemma 3. Neither test produces findings.
+**Status:** Executed on `google/gemma-3-1b-it` (NVIDIA GeForce RTX 5070 Laptop GPU, `float32`, PyTorch `2.10.0+cu128`).
 
 ## Research question
 
@@ -86,10 +86,40 @@ Then open `gemma_emotion_sae_map.ipynb` in VS Code (or `jupyter lab`), choose th
 
 | Metric | Baseline | After LoRA | Difference |
 |---|---:|---:|---:|
-| SAE variance explained | | | |
-| grief~sadness similarity (EN / ES) | | | |
-| fear~anxiety similarity (EN / ES) | | | |
-| Probe accuracy EN / ES | | | |
-| Transfer EN→ES / ES→EN | | | |
+| SAE variance explained | 0.743 | 0.738 | -0.005 |
+| grief~sadness similarity (EN / ES) | 0.890 / 0.907 | 0.892 / 0.910 | +0.002 / +0.003 |
+| fear~anxiety similarity (EN / ES) | 0.836 / 0.900 | 0.835 / 0.902 | -0.001 / +0.002 |
+| Probe accuracy EN / ES | 0.925 / 0.650 | 0.925 / 0.725 | 0.000 / +0.075 |
+| Transfer EN→ES / ES→EN | 0.950 / 1.000 | 0.975 / 1.000 | +0.025 / 0.000 |
 
-*Not yet run.*
+### Multi-layer live trace overlap (EN vs. ES grief generation)
+
+| Layer | Shared top-5 features | Union of top-5 features | Jaccard overlap |
+|---:|---:|---:|---:|
+| 7 | 98 | 293 | 33% |
+| 13 | 79 | 226 | 35% |
+| 17 | 64 | 264 | 24% |
+| 22 | 45 | 266 | 17% |
+
+### Top Layer-13 SAE Features by Concept (`gemma-scope-2-1b-it-res`)
+
+| Concept | Feature ID | Specificity vs. Neutral | Concept Hit Rate | Neutral Hit Rate | Neuronpedia Automated Label |
+|---|---:|---:|---:|---:|---|
+| **Grief** | `293` | `300.01` | `0.95` | `0.35` | *people one cares for* |
+| **Grief** | `384` | `234.20` | `0.75` | `0.10` | *programming and reasoning* |
+| **Grief** | `1886` | `168.97` | `1.00` | `0.10` | *death or mortality* |
+| **Grief** | `4284` | `151.80` | `0.65` | `0.15` | *still* (lexical habit cue: *"still wears his jacket" / "todavía"*) |
+| **Sadness** | `549` | `186.81` | `0.85` | `0.00` | *expressing emotions + prepositions* |
+| **Sadness** | `2697` | `180.29` | `1.00` | `0.15` | *melancholic and sad feelings* |
+| **Sadness** | `514` | `140.87` | `0.90` | `0.00` | *emotions, psychology, and abstract concepts* |
+| **Anxiety** | `397` | `223.45` | `0.85` | `0.40` | *(shared negative-affect backbone across all 4 concepts)* |
+| **Anxiety** | `97` | `164.79` | `0.60` | `0.10` | *all, every, each, everything* (ruminative generalization) |
+| **Fear** | `513` | `198.04` | `0.80` | `0.15` | *addressing user needs or intentions* |
+| **Fear** | `1641` | `136.30` | `1.00` | `0.30` | *past tense descriptions* |
+| **Fear** | `602` | `132.74` | `1.00` | `0.05` | *facial expressions and states* |
+
+### Cross-Model Comparison: `Qwen/Qwen2.5-0.5B-Instruct` (Dense Residual Stream)
+
+Running the same 100-sentence bilingual probe set across layers `0, 6, 12, 18, 23` of `Qwen/Qwen2.5-0.5B-Instruct` confirmed the same **middle-late interlingua hub** pattern:
+- Within-language probe accuracy peaks at the final layer (**Layer 23**: `0.825` EN, `0.650` ES).
+- Zero-shot cross-lingual transfer peaks in the middle-late layers (**Layer 18**: `0.825` EN→ES, `0.950` ES→EN; **Layer 12**: `0.975` ES→EN) before dropping sharply at the final output layer (**Layer 23**: `0.550` EN→ES, `0.625` ES→EN).

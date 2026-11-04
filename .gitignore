@@ -17,3 +17,4 @@ experiments/*/outputs/
 *.bin
 .DS_Store
 *.egg-info/
+outputs/
