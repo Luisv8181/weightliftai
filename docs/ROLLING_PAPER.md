@@ -238,15 +238,17 @@ We constructed 40 completely new sentences (20 implicit grief without any keywor
 
 | Feature (Label) | Held-Out Implicit Mean | Implicit Hit Rate | Held-Out Trap Mean | Trap Hit Rate | Ratio (Implicit/Trap) | Pre-registered Pass (Ratio > 3)? |
 |---|---:|---:|---:|---:|---:|---|
-| **#602** (*facial expressions and states*) | **159.65** | **0.90** | **0.00** | **0.00** | **999.00** | **PASSED** |
+| **#602** (*facial expressions and states*) | **159.65** | **0.90** | **0.00** | **0.00** | **Undefined (trap=0)** | **PASSED** |
 | **#701** (*eternity and sorrow*) | **82.07** | **0.75** | **2.81** | **0.05** | **29.24** | **PASSED** |
-| **#2323** (*prepositions followed by 'a'*) | 87.46 | 0.50 | 16.63 | 0.15 | 5.26 | **PASSED** |
+| #2323 (*prepositions followed by 'a'*) | 87.46 | 0.50 | 16.63 | 0.15 | 5.26 | Syntactic artifact (excluded) |
 | #160 (*substantive meaning*) | 269.63 | 1.00 | 221.47 | 1.00 | 1.22 | Failed (non-specific) |
 | #293 (*people one cares for*) | 76.19 | 0.65 | 364.60 | 1.00 | 0.21 | Lexical shortcut (fires 5× more on traps) |
 | #1886 (*death or mortality*) | 16.19 | 0.20 | 127.99 | 0.85 | 0.13 | Lexical shortcut (fires 8× more on traps) |
 | #4284 (*"still"*) | 44.26 | 0.50 | 398.81 | 1.00 | 0.11 | Lexical shortcut (fires 9× more on traps) |
 
-**Result:** The pre-registered criterion (`mean_implicit > 3 * mean_trap`) was **met by both #602 and #701**. Feature #602 activated on 90% of held-out implicit grief sentences while remaining completely inactive (0.00 activation across all 20) on lexical trap sentences. Feature #701 activated at 29.2× higher intensity on grief than on traps. Claim C7 is now **supported on held-out data**.
+*Reconciliation of Feature #2323:* Although feature #2323 numerically exceeded the ratio threshold ($5.26 > 3.0$), its Neuronpedia explanation (*prepositions followed by 'a'*) is syntactic rather than affective. It activated primarily on Spanish relational grammar (e.g. *a su pérdida*, *a la soledad*). It is therefore classified as a grammatical artifact rather than an invariant emotion feature and is excluded from Claim C7.
+
+**Result:** The pre-registered criterion (`mean_implicit > 3 * mean_trap`) was **met by both #602 and #701**. Feature #602 activated on 90% of held-out implicit grief sentences while remaining completely inactive (0.00 activation across all 20) on lexical trap sentences (producing a zero denominator). Feature #701 activated at 29.2× higher intensity on grief than on traps. Claim C7 is now **supported on held-out data**.
 
 **2. Bootstrap Confidence Intervals for the Dialect Representation Gap:**
 Running 2,000 bootstrap resamples over the 40 matched semantic triplets at Layer 13:
@@ -259,7 +261,7 @@ Because the bootstrap 95% confidence interval strictly excludes zero, the repres
 **3. Random-Feature Control for Causal Clamping:**
 We compared the log-probability shift of the token `" grief"` when zero-clamping lexical features (`#1886, #4284, #293`, $\Delta = -0.295$) against 20 independent draws of 3 random active Layer-13 features:
 - Null control distribution: $\mu = +0.009$, $\sigma = 0.034$ (95% range `[-0.040, +0.089]`).
-- The lexical shortcut clamping shift represents a $z$-score of **$-8.90$ standard deviations** from the null distribution ($p < 0.001$).
+- The lexical shortcut clamping shift represents a $z$-score of **$-8.90$ standard deviations** from the null distribution ($p_{\text{norm}} < 0.001$). Under a permutation test with $N=20$ random draws where zero draws were as extreme as the observed shift, the empirical resolution bound is $p \le 1/20 = 0.05$.
 
 
 ---
@@ -300,7 +302,7 @@ We compared the log-probability shift of the token `" grief"` when zero-clamping
 | C4 | Dominican idioms are classified less accurately than pan-Hispanic Spanish | **Not significant** (n=40) | §5.1 |
 | C5 | Features #293, #1886, #4284 are "grief features" (Exp. 001 reading) | **WITHDRAWN.** They are keyword features | §5.2 B.1, §5.3 |
 | C6 | A Split-A grief probe detects grief without grief keywords | **Refuted** (recall 0.10) | §5.2 B.3 |
-| C7 | Features #602, #701 encode grief independently of keywords | **Supported on held-out set** (n=40 new sentences; #602 ratio 999.0, #701 ratio 29.2) | §5.2 B.2, §5.3 |
+| C7 | Features #602, #701 encode grief independently of keywords | **Supported on held-out set** (n=40 new sentences; #602 trap=0.0 / 0% false positives, #701 ratio 29.2×; #2323 excluded as syntax) | §5.2 B.2, §5.3 |
 | C8 | LoRA on placeholder data improved Spanish separation | **Not supported** (within noise) | §4 |
 | C9 | The Exp. 001 Spanish gap (0.650) was caused by Spanish itself | **Likely false.** Parallel pan-Hispanic Spanish scores 0.875 | §5.1 obs. 4 |
 | C10 | Exp. 001 en→es transfer beat es CV because English separates cleanly at small n | **Untested speculation** (stated informally in an earlier session) | — |

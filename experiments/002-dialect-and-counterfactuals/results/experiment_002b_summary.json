@@ -1,6 +1,6 @@
 {
   "experiment_id": "002b-heldout-validation-and-controls",
-  "timestamp_utc": "2026-11-04T04:21:23.016118+00:00",
+  "timestamp_utc": "2026-11-04T18:35:44.340722+00:00",
   "model_id": "google/gemma-3-1b-it",
   "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
   "sae_release": "gemma-scope-2-1b-it-res",
@@ -12,7 +12,8 @@
       "implicit_hit": 0.9,
       "trap_mean": 0.0,
       "trap_hit": 0.0,
-      "ratio_implicit_to_trap": 999.0,
+      "ratio_implicit_to_trap": null,
+      "ratio_display": "undefined (trap_mean=0.0)",
       "preregistered_pass_ratio_gt_3": true
     },
     {
@@ -22,6 +23,7 @@
       "trap_mean": 2.81,
       "trap_hit": 0.05,
       "ratio_implicit_to_trap": 29.24,
+      "ratio_display": "29.24",
       "preregistered_pass_ratio_gt_3": true
     },
     {
@@ -31,6 +33,7 @@
       "trap_mean": 16.63,
       "trap_hit": 0.15,
       "ratio_implicit_to_trap": 5.26,
+      "ratio_display": "5.26",
       "preregistered_pass_ratio_gt_3": true
     },
     {
@@ -40,6 +43,7 @@
       "trap_mean": 221.47,
       "trap_hit": 1.0,
       "ratio_implicit_to_trap": 1.22,
+      "ratio_display": "1.22",
       "preregistered_pass_ratio_gt_3": false
     },
     {
@@ -49,6 +53,7 @@
       "trap_mean": 364.6,
       "trap_hit": 1.0,
       "ratio_implicit_to_trap": 0.21,
+      "ratio_display": "0.21",
       "preregistered_pass_ratio_gt_3": false
     },
     {
@@ -58,6 +63,7 @@
       "trap_mean": 127.99,
       "trap_hit": 0.85,
       "ratio_implicit_to_trap": 0.13,
+      "ratio_display": "0.13",
       "preregistered_pass_ratio_gt_3": false
     },
     {
@@ -67,6 +73,7 @@
       "trap_mean": 398.81,
       "trap_hit": 1.0,
       "ratio_implicit_to_trap": 0.11,
+      "ratio_display": "0.11",
       "preregistered_pass_ratio_gt_3": false
     }
   ],
@@ -93,7 +100,9 @@
     "random_control_mean": 0.009,
     "random_control_std": 0.034,
     "z_score": -8.9,
-    "empirical_p": 0.0,
+    "empirical_p_bound": "p <= 0.05 (0/20 extreme draws)",
+    "extreme_draws_count": 0,
+    "total_draws": 20,
     "control_draws": [
       0.006,
       -0.072,

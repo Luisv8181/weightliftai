@@ -158,9 +158,15 @@ for fid in TEST_FEATS:
     trap_mean = float(trap_vals.mean())
     imp_hit = float((imp_vals > 0).mean())
     trap_hit = float((trap_vals > 0).mean())
-    ratio = imp_mean / max(1e-3, trap_mean) if trap_mean > 0 else (999.0 if imp_mean > 0 else 1.0)
-    # Pre-registered criterion: ratio > 3.0
-    passed = bool(ratio > 3.0 and imp_hit >= 0.5)
+    if trap_mean == 0.0:
+        ratio_val = None
+        ratio_display = "undefined (trap_mean=0.0)"
+        passed = bool(imp_mean > 0.0 and imp_hit >= 0.5)
+    else:
+        ratio_val = round(imp_mean / trap_mean, 2)
+        ratio_display = str(ratio_val)
+        passed = bool(ratio_val > 3.0 and imp_hit >= 0.5)
+
     part1_results.append(
         {
             "feature": fid,
@@ -168,7 +174,8 @@ for fid in TEST_FEATS:
             "implicit_hit": round(imp_hit, 2),
             "trap_mean": round(trap_mean, 2),
             "trap_hit": round(trap_hit, 2),
-            "ratio_implicit_to_trap": round(ratio, 2),
+            "ratio_implicit_to_trap": ratio_val,
+            "ratio_display": ratio_display,
             "preregistered_pass_ratio_gt_3": passed,
         }
     )
@@ -301,11 +308,13 @@ for d_idx in range(20):
 rand_mean = float(np.mean(random_draws_shifts))
 rand_std = float(np.std(random_draws_shifts))
 z_score = (lexical_shift - rand_mean) / (rand_std + 1e-9)
-empirical_p = float((np.array(random_draws_shifts) <= lexical_shift).mean())
+empirical_count = int((np.array(random_draws_shifts) <= lexical_shift).sum())
+n_draws = len(random_draws_shifts)
+empirical_bound_str = f"p <= {1 / n_draws:.2f} ({empirical_count}/{n_draws} extreme draws)" if empirical_count == 0 else f"p = {empirical_count / n_draws:.3f}"
 
 print(f"Lexical Features (#1886, #4284, #293) Delta Log-Prob: {lexical_shift:.3f}")
 print(f"Random 3-Feature Control (20 draws): mean={rand_mean:.3f}, std={rand_std:.3f}, 95% range=[{np.percentile(random_draws_shifts, 2.5):.3f}, {np.percentile(random_draws_shifts, 97.5):.3f}]")
-print(f"Z-Score vs Null: {z_score:.2f} (Empirical p = {empirical_p:.3f})")
+print(f"Z-Score vs Null: {z_score:.2f} (Empirical bound: {empirical_bound_str})")
 
 # ---------------------------------------------------------------------------
 # 6. Save JSON Summary & Verified Artifacts
@@ -332,7 +341,9 @@ summary_002b = {
         "random_control_mean": round(rand_mean, 3),
         "random_control_std": round(rand_std, 3),
         "z_score": round(z_score, 2),
-        "empirical_p": round(empirical_p, 3),
+        "empirical_p_bound": empirical_bound_str,
+        "extreme_draws_count": empirical_count,
+        "total_draws": n_draws,
         "control_draws": [round(x, 3) for x in random_draws_shifts],
     },
 }

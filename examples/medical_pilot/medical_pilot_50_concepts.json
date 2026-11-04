@@ -1,0 +1,4222 @@
+{
+  "dataset_metadata": {
+    "name": "Medical Terminology Pilot — 50 Concepts",
+    "version": "v1.0",
+    "license": "Public Domain (NLM / MeSH 2026)",
+    "total_concepts": 50,
+    "total_synonyms": 150,
+    "total_probes": 150,
+    "splits": {
+      "train": 90,
+      "validation": 30,
+      "test": 30
+    },
+    "phi_status": "Zero PHI; synthetic/public health terminology only."
+  },
+  "concepts": [
+    {
+      "concept_id": "MESH:D003866",
+      "source": "MeSH",
+      "source_id": "D003866",
+      "release": "2026_01",
+      "preferred_label": "Depressive Disorder",
+      "definition": "A depressive disorder characterized by persistent sadness, low mood, and loss of interest.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003866"
+    },
+    {
+      "concept_id": "MESH:D001007",
+      "source": "MeSH",
+      "source_id": "D001007",
+      "release": "2026_01",
+      "preferred_label": "Anxiety Disorders",
+      "definition": "Disorders characterized by excessive and persistent fear, worry, and anxiety.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D001007"
+    },
+    {
+      "concept_id": "MESH:D010146",
+      "source": "MeSH",
+      "source_id": "D010146",
+      "release": "2026_01",
+      "preferred_label": "Panic Disorder",
+      "definition": "Recurrent unexpected panic attacks characterized by sudden surges of overwhelming fear.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D010146"
+    },
+    {
+      "concept_id": "MESH:D007333",
+      "source": "MeSH",
+      "source_id": "D007333",
+      "release": "2026_01",
+      "preferred_label": "Sleep Initiation and Maintenance Disorders",
+      "definition": "Disorders characterized by difficulty falling asleep, frequent awakenings, or poor sleep quality.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D007333"
+    },
+    {
+      "concept_id": "MESH:D005221",
+      "source": "MeSH",
+      "source_id": "D005221",
+      "release": "2026_01",
+      "preferred_label": "Fatigue",
+      "definition": "A feeling of weariness, tiredness, or lack of energy that is not relieved by rest.",
+      "semantic_type": "Finding",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D005221"
+    },
+    {
+      "concept_id": "MESH:D000855",
+      "source": "MeSH",
+      "source_id": "D000855",
+      "release": "2026_01",
+      "preferred_label": "Anorexia",
+      "definition": "Lack or loss of the appetite for food, resulting in reduced caloric intake.",
+      "semantic_type": "Finding",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D000855"
+    },
+    {
+      "concept_id": "MESH:D011605",
+      "source": "MeSH",
+      "source_id": "D011605",
+      "release": "2026_01",
+      "preferred_label": "Psychomotor Agitation",
+      "definition": "A series of unintentional and purposeless motions that stem from mental tension.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D011605"
+    },
+    {
+      "concept_id": "MESH:D000786",
+      "source": "MeSH",
+      "source_id": "D000786",
+      "release": "2026_01",
+      "preferred_label": "Anhedonia",
+      "definition": "Inability to experience pleasure from activities usually found enjoyable.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D000786"
+    },
+    {
+      "concept_id": "MESH:D013313",
+      "source": "MeSH",
+      "source_id": "D013313",
+      "release": "2026_01",
+      "preferred_label": "Stress, Psychological",
+      "definition": "Mental or emotional strain resulting from adverse or demanding circumstances.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D013313"
+    },
+    {
+      "concept_id": "MESH:D003704",
+      "source": "MeSH",
+      "source_id": "D003704",
+      "release": "2026_01",
+      "preferred_label": "Dementia",
+      "definition": "An acquired organic mental disorder characterized by deterioration of memory and reasoning.",
+      "semantic_type": "Mental or Behavioral Dysfunction",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003704"
+    },
+    {
+      "concept_id": "MESH:D009203",
+      "source": "MeSH",
+      "source_id": "D009203",
+      "release": "2026_01",
+      "preferred_label": "Myocardial Infarction",
+      "definition": "Necrosis of myocardial tissue due to prolonged ischemia resulting from coronary occlusion.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D009203"
+    },
+    {
+      "concept_id": "MESH:D006973",
+      "source": "MeSH",
+      "source_id": "D006973",
+      "release": "2026_01",
+      "preferred_label": "Hypertension",
+      "definition": "Persistently high arterial blood pressure exceeding established clinical thresholds.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D006973"
+    },
+    {
+      "concept_id": "MESH:D000787",
+      "source": "MeSH",
+      "source_id": "D000787",
+      "release": "2026_01",
+      "preferred_label": "Angina Pectoris",
+      "definition": "Precordial chest discomfort caused by transient myocardial ischemia without infarction.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D000787"
+    },
+    {
+      "concept_id": "MESH:D001145",
+      "source": "MeSH",
+      "source_id": "D001145",
+      "release": "2026_01",
+      "preferred_label": "Arrhythmias, Cardiac",
+      "definition": "Any variation from the normal rate or rhythm of the heartbeat.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D001145"
+    },
+    {
+      "concept_id": "MESH:D013575",
+      "source": "MeSH",
+      "source_id": "D013575",
+      "release": "2026_01",
+      "preferred_label": "Syncope",
+      "definition": "A transient loss of consciousness accompanied by loss of postural tone, followed by spontaneous recovery.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D013575"
+    },
+    {
+      "concept_id": "MESH:D004487",
+      "source": "MeSH",
+      "source_id": "D004487",
+      "release": "2026_01",
+      "preferred_label": "Edema",
+      "definition": "Abnormal fluid accumulation in the intercellular spaces of body tissues.",
+      "semantic_type": "Pathologic Function",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D004487"
+    },
+    {
+      "concept_id": "MESH:D002561",
+      "source": "MeSH",
+      "source_id": "D002561",
+      "release": "2026_01",
+      "preferred_label": "Cerebrovascular Accident",
+      "definition": "An acute neurological deficit resulting from impaired blood perfusion to cerebral parenchyma.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D002561"
+    },
+    {
+      "concept_id": "MESH:D006937",
+      "source": "MeSH",
+      "source_id": "D006937",
+      "release": "2026_01",
+      "preferred_label": "Hypercholesterolemia",
+      "definition": "An elevated level of total or low-density lipoprotein cholesterol in the circulating blood.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D006937"
+    },
+    {
+      "concept_id": "MESH:D000740",
+      "source": "MeSH",
+      "source_id": "D000740",
+      "release": "2026_01",
+      "preferred_label": "Anemia",
+      "definition": "A reduction in the concentration of hemoglobin, hematocrit, or red blood cell count.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D000740"
+    },
+    {
+      "concept_id": "MESH:D010179",
+      "source": "MeSH",
+      "source_id": "D010179",
+      "release": "2026_01",
+      "preferred_label": "Hypotension",
+      "definition": "Abnormally low blood pressure below values standard for physiologic age and context.",
+      "semantic_type": "Finding",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D010179"
+    },
+    {
+      "concept_id": "MESH:D004417",
+      "source": "MeSH",
+      "source_id": "D004417",
+      "release": "2026_01",
+      "preferred_label": "Dyspnea",
+      "definition": "Difficult, labored, uncomfortable breathing or perceived shortness of breath.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D004417"
+    },
+    {
+      "concept_id": "MESH:D001249",
+      "source": "MeSH",
+      "source_id": "D001249",
+      "release": "2026_01",
+      "preferred_label": "Asthma",
+      "definition": "A chronic inflammatory disorder of the airways leading to recurrent bronchial obstruction.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D001249"
+    },
+    {
+      "concept_id": "MESH:D003371",
+      "source": "MeSH",
+      "source_id": "D003371",
+      "release": "2026_01",
+      "preferred_label": "Cough",
+      "definition": "A sudden, explosive exhalation of air serving as a protective reflex to clear airways.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003371"
+    },
+    {
+      "concept_id": "MESH:D011014",
+      "source": "MeSH",
+      "source_id": "D011014",
+      "release": "2026_01",
+      "preferred_label": "Pneumonia",
+      "definition": "Infection and inflammation of the lung parenchyma, typically involving the alveoli.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D011014"
+    },
+    {
+      "concept_id": "MESH:D029424",
+      "source": "MeSH",
+      "source_id": "D029424",
+      "release": "2026_01",
+      "preferred_label": "Pulmonary Disease, Chronic Obstructive",
+      "definition": "A chronic lung disease marked by long-term breathing problems and poor airflow.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D029424"
+    },
+    {
+      "concept_id": "MESH:D014927",
+      "source": "MeSH",
+      "source_id": "D014927",
+      "release": "2026_01",
+      "preferred_label": "Wheezing",
+      "definition": "A continuous coarse whistling sound produced in the respiratory airways during breathing.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D014927"
+    },
+    {
+      "concept_id": "MESH:D006469",
+      "source": "MeSH",
+      "source_id": "D006469",
+      "release": "2026_01",
+      "preferred_label": "Hemoptysis",
+      "definition": "The coughing up of blood or blood-stained mucus from the bronchi, larynx, trachea, or lungs.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D006469"
+    },
+    {
+      "concept_id": "MESH:D012220",
+      "source": "MeSH",
+      "source_id": "D012220",
+      "release": "2026_01",
+      "preferred_label": "Rhinitis",
+      "definition": "Inflammation of the mucous membrane inside the nose, causing sneezing and discharge.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D012220"
+    },
+    {
+      "concept_id": "MESH:D012891",
+      "source": "MeSH",
+      "source_id": "D012891",
+      "release": "2026_01",
+      "preferred_label": "Sleep Apnea Syndromes",
+      "definition": "Disorders characterized by temporary cessations of breathing during sleep.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D012891"
+    },
+    {
+      "concept_id": "MESH:D007251",
+      "source": "MeSH",
+      "source_id": "D007251",
+      "release": "2026_01",
+      "preferred_label": "Influenza, Human",
+      "definition": "An acute viral infection of the respiratory tract caused by influenza viruses.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D007251"
+    },
+    {
+      "concept_id": "MESH:D003920",
+      "source": "MeSH",
+      "source_id": "D003920",
+      "release": "2026_01",
+      "preferred_label": "Diabetes Mellitus",
+      "definition": "A group of metabolic disorders characterized by sustained elevated blood glucose levels.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003920"
+    },
+    {
+      "concept_id": "MESH:D009325",
+      "source": "MeSH",
+      "source_id": "D009325",
+      "release": "2026_01",
+      "preferred_label": "Nausea",
+      "definition": "An unpleasant feeling of revulsion and urge to vomit.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D009325"
+    },
+    {
+      "concept_id": "MESH:D014839",
+      "source": "MeSH",
+      "source_id": "D014839",
+      "release": "2026_01",
+      "preferred_label": "Vomiting",
+      "definition": "The forceful expulsion of stomach contents through the mouth.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D014839"
+    },
+    {
+      "concept_id": "MESH:D003967",
+      "source": "MeSH",
+      "source_id": "D003967",
+      "release": "2026_01",
+      "preferred_label": "Diarrhea",
+      "definition": "Condition of having at least three loose, liquid, or watery bowel movements per day.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003967"
+    },
+    {
+      "concept_id": "MESH:D003248",
+      "source": "MeSH",
+      "source_id": "D003248",
+      "release": "2026_01",
+      "preferred_label": "Constipation",
+      "definition": "Infrequent or difficult evacuation of feces from the bowel.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003248"
+    },
+    {
+      "concept_id": "MESH:D005764",
+      "source": "MeSH",
+      "source_id": "D005764",
+      "release": "2026_01",
+      "preferred_label": "Gastroesophageal Reflux",
+      "definition": "The backward flow of gastric contents into the esophagus causing irritation.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D005764"
+    },
+    {
+      "concept_id": "MESH:D015746",
+      "source": "MeSH",
+      "source_id": "D015746",
+      "release": "2026_01",
+      "preferred_label": "Abdominal Pain",
+      "definition": "Discomfort or painful sensation felt in the abdominal area between the chest and groin.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D015746"
+    },
+    {
+      "concept_id": "MESH:D007565",
+      "source": "MeSH",
+      "source_id": "D007565",
+      "release": "2026_01",
+      "preferred_label": "Jaundice",
+      "definition": "Yellow pigmentation of the skin, conjunctiva, and mucous membranes caused by hyperbilirubinemia.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D007565"
+    },
+    {
+      "concept_id": "MESH:D003556",
+      "source": "MeSH",
+      "source_id": "D003556",
+      "release": "2026_01",
+      "preferred_label": "Cystitis",
+      "definition": "Inflammation of the urinary bladder, commonly caused by bacterial infection.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D003556"
+    },
+    {
+      "concept_id": "MESH:D009765",
+      "source": "MeSH",
+      "source_id": "D009765",
+      "release": "2026_01",
+      "preferred_label": "Obesity",
+      "definition": "A medical condition in which excess body fat accumulates to an extent that impairs health.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D009765"
+    },
+    {
+      "concept_id": "MESH:D006261",
+      "source": "MeSH",
+      "source_id": "D006261",
+      "release": "2026_01",
+      "preferred_label": "Headache",
+      "definition": "Pain in the head, upper neck, or scalp resulting from diverse etiologies.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D006261"
+    },
+    {
+      "concept_id": "MESH:D008881",
+      "source": "MeSH",
+      "source_id": "D008881",
+      "release": "2026_01",
+      "preferred_label": "Migraine Disorders",
+      "definition": "A primary neurological headache disorder characterized by recurrent throbbing pain.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D008881"
+    },
+    {
+      "concept_id": "MESH:D004244",
+      "source": "MeSH",
+      "source_id": "D004244",
+      "release": "2026_01",
+      "preferred_label": "Dizziness",
+      "definition": "An impairment in spatial perception and stability, including vertigo, presyncope, and disequilibrium.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D004244"
+    },
+    {
+      "concept_id": "MESH:D005334",
+      "source": "MeSH",
+      "source_id": "D005334",
+      "release": "2026_01",
+      "preferred_label": "Fever",
+      "definition": "An abnormal elevation of body temperature above normal circadian range.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D005334"
+    },
+    {
+      "concept_id": "MESH:D002921",
+      "source": "MeSH",
+      "source_id": "D002921",
+      "release": "2026_01",
+      "preferred_label": "Chills",
+      "definition": "A feeling of coldness accompanied by involuntary muscular shivering during fever.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D002921"
+    },
+    {
+      "concept_id": "MESH:D001168",
+      "source": "MeSH",
+      "source_id": "D001168",
+      "release": "2026_01",
+      "preferred_label": "Arthritis",
+      "definition": "Inflammation of one or more joints, causing pain, swelling, and stiffness.",
+      "semantic_type": "Disease or Syndrome",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D001168"
+    },
+    {
+      "concept_id": "MESH:D017116",
+      "source": "MeSH",
+      "source_id": "D017116",
+      "release": "2026_01",
+      "preferred_label": "Low Back Pain",
+      "definition": "Pain, muscle tension, or stiffness localized below the costal margin and above the gluteal folds.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D017116"
+    },
+    {
+      "concept_id": "MESH:D012640",
+      "source": "MeSH",
+      "source_id": "D012640",
+      "release": "2026_01",
+      "preferred_label": "Seizures",
+      "definition": "Sudden, uncontrolled electrical disturbances in the brain causing changes in behavior or movements.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D012640"
+    },
+    {
+      "concept_id": "MESH:D010292",
+      "source": "MeSH",
+      "source_id": "D010292",
+      "release": "2026_01",
+      "preferred_label": "Paresthesia",
+      "definition": "An abnormal sensation, such as tingling, tickling, pricking, or burning of the skin.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D010292"
+    },
+    {
+      "concept_id": "MESH:D011537",
+      "source": "MeSH",
+      "source_id": "D011537",
+      "release": "2026_01",
+      "preferred_label": "Pruritus",
+      "definition": "An unpleasant cutaneous sensation that provokes the desire to scratch.",
+      "semantic_type": "Sign or Symptom",
+      "language": "en",
+      "license": "Public Domain (NLM)",
+      "provenance": "https://id.nlm.nih.gov/mesh/D011537"
+    }
+  ],
+  "synonyms": [
+    {
+      "concept_ref": "MESH:D003866",
+      "term": "Major depression or feeling severely down",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003866",
+      "term": "Depresión o desánimo severo",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003866",
+      "term": "Estar bajito de ánimo o con una pena honda que no se quita",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D001007",
+      "term": "Chronic anxiety or severe nervous tension",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D001007",
+      "term": "Ansiedad crónica o nerviosismo excesivo",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D001007",
+      "term": "Tener los nervios de punta o una intranquilidad constante",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D010146",
+      "term": "Panic attack or sudden severe fright episode",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D010146",
+      "term": "Ataque de pánico o crisis de angustia",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D010146",
+      "term": "Un sofocón repentino o ataque de nervios con miedo a morir",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D007333",
+      "term": "Insomnia or severe difficulty sleeping",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D007333",
+      "term": "Insomnio crónico o problemas para dormir",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D007333",
+      "term": "Desvelo total o pasar la noche entera sin pegar un ojo",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D005221",
+      "term": "Chronic fatigue or persistent severe exhaustion",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D005221",
+      "term": "Fatiga extrema o agotamiento constante",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D005221",
+      "term": "Estar derrengado o desguañangado sin fuerzas para nada",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D000855",
+      "term": "Loss of appetite or not wanting to eat",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D000855",
+      "term": "Pérdida de apetito o falta de ganas de comer",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D000855",
+      "term": "Estar desganado o no entrarle ni un bocado de comida",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D011605",
+      "term": "Inability to sit still or nervous restlessness",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D011605",
+      "term": "Agitación psicomotora o inquietud motora",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D011605",
+      "term": "Tener una intranquilidad en el cuerpo que no deja estarse quieto",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D000786",
+      "term": "Loss of pleasure or not enjoying hobbies anymore",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D000786",
+      "term": "Anhedonia o incapacidad para sentir placer",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D000786",
+      "term": "No encontrarle gracia ni gusto a ninguna cosa en la vida",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D013313",
+      "term": "Severe mental strain or feeling overwhelmed",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D013313",
+      "term": "Estrés emocional intenso o agobio",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D013313",
+      "term": "Estar con el agua al cuello o cargado de problemas",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D003704",
+      "term": "Memory decline or progressive confusion",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003704",
+      "term": "Deterioro cognitivo o demencia",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003704",
+      "term": "Perder el hilo o estar ido de la mente por la edad",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D009203",
+      "term": "Heart attack",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D009203",
+      "term": "Infarto al miocardio",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D009203",
+      "term": "Ataque al corazón con dolor opresivo",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D006973",
+      "term": "High blood pressure",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D006973",
+      "term": "Presión arterial alta",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D006973",
+      "term": "Tener la presión por las nubes",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D000787",
+      "term": "Chest tightness on exertion",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D000787",
+      "term": "Angina de pecho",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D000787",
+      "term": "Una opresión o apretón en el pecho al hacer fuerza",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D001145",
+      "term": "Heart fluttering or irregular heartbeat",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D001145",
+      "term": "Arritmia o palpitaciones irregulares",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D001145",
+      "term": "Sentir que el corazón se le desboca o le da un salto",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D013575",
+      "term": "Fainting or passing out",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D013575",
+      "term": "Desmayo o síncope",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D013575",
+      "term": "Darle un soponcio o desvanecerse de golpe",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D004487",
+      "term": "Fluid retention or swelling in the feet",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D004487",
+      "term": "Hinchazón o retención de líquido",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D004487",
+      "term": "Tener los pies y las canillas abotagadas de líquido",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D002561",
+      "term": "Stroke",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D002561",
+      "term": "Derrame cerebral o accidente cerebrovascular",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D002561",
+      "term": "Una trombosis o derrame en la cabeza",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D006937",
+      "term": "High cholesterol",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D006937",
+      "term": "Colesterol elevado",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D006937",
+      "term": "Tener la grasa de la sangre por encima de lo normal",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D000740",
+      "term": "Low blood count or iron deficiency",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D000740",
+      "term": "Anemia ferropénica",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D000740",
+      "term": "Estar anémico o tener la sangre débil",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D010179",
+      "term": "Low blood pressure or feeling faint",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D010179",
+      "term": "Presión arterial baja",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D010179",
+      "term": "Un bajón de presión con mareo",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D004417",
+      "term": "Shortness of breath or struggling to breathe",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D004417",
+      "term": "Dificultad respiratoria o falta de aire",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D004417",
+      "term": "Un ahogo en el pecho o no alcanzarle el aire",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D001249",
+      "term": "Asthma attack or bronchial spasms",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D001249",
+      "term": "Asma bronquial",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D001249",
+      "term": "Una apretazón asmática en los bronquios",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D003371",
+      "term": "Hacking cough or dry persistent tickle",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003371",
+      "term": "Tos seca o productiva",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003371",
+      "term": "Una tos perruna que no deja descansar la garganta",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D011014",
+      "term": "Lung infection or pneumonia",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D011014",
+      "term": "Neumonía bacteriana o viral",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D011014",
+      "term": "Una pulmonía con fiebre alta y pecho cerrado",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D029424",
+      "term": "COPD, chronic bronchitis, or emphysema",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D029424",
+      "term": "Enfermedad pulmonar obstructiva crónica (EPOC)",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D029424",
+      "term": "Tener el pecho tapado de por vida por el tabaco",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D014927",
+      "term": "Whistling sound when breathing",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D014927",
+      "term": "Sibilancias respiratorias",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D014927",
+      "term": "Un pito o silbido en el pecho al respirar",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D006469",
+      "term": "Coughing up blood",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D006469",
+      "term": "Hemoptisis o expectoración con sangre",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D006469",
+      "term": "Echar sangre por la boca al toser",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D012220",
+      "term": "Stuffy or runny nose and congestion",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D012220",
+      "term": "Rinitis alérgica o congestión nasal",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D012220",
+      "term": "Tener un romadizo o la nariz completamente tapada",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D012891",
+      "term": "Sleep apnea or choking sounds during sleep",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D012891",
+      "term": "Apnea obstructiva del sueño",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D012891",
+      "term": "Quedarse sin aire y ahogarse roncando en la noche",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D007251",
+      "term": "The flu with high fever and body aches",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D007251",
+      "term": "Gripe o influenza estacional",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D007251",
+      "term": "Una gripe mala que tumba con dolor de cuerpo",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D003920",
+      "term": "High blood sugar or diabetes",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003920",
+      "term": "Diabetes mellitus",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003920",
+      "term": "Tener el azúcar alta en la sangre",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D009325",
+      "term": "Feeling sick to the stomach",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D009325",
+      "term": "Náuseas o ganas de vomitar",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D009325",
+      "term": "Tener basca o mareo en la boca del estómago",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D014839",
+      "term": "Throwing up or emesis",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D014839",
+      "term": "Vómitos repetidos",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D014839",
+      "term": "Devolver todo lo que come",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D003967",
+      "term": "Loose watery stools",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003967",
+      "term": "Diarrea aguda",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003967",
+      "term": "Tener soltura o un daño de estómago",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D003248",
+      "term": "Difficulty having bowel movements",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003248",
+      "term": "Estreñimiento crónico",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003248",
+      "term": "Estar trancado del estómago o estreñido",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D005764",
+      "term": "Acid reflux or burning heartburn",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D005764",
+      "term": "Reflujo gastroesofágico o acidez",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D005764",
+      "term": "Agrura, acedía o un ardor que sube a la garganta",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D015746",
+      "term": "Stomach ache or belly cramps",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D015746",
+      "term": "Dolor abdominal o cólico",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D015746",
+      "term": "Retorcijón de barriga o cólico de estómago",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D007565",
+      "term": "Yellowish skin and eyes",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D007565",
+      "term": "Ictericia clínica",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D007565",
+      "term": "Ponerse amarillo de la cara y de los ojos",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D003556",
+      "term": "Bladder infection or painful urination",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D003556",
+      "term": "Cistitis o infección urinaria",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D003556",
+      "term": "Tener mal de orina con ardor al orinar",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D009765",
+      "term": "Severe excess body weight",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D009765",
+      "term": "Obesidad clínica",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D009765",
+      "term": "Sobrepeso marcado con grasa corporal excesiva",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D006261",
+      "term": "Headache or dull aching head pain",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D006261",
+      "term": "Cefalea o dolor de cabeza",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D006261",
+      "term": "Un dolor de cabeza sordo o pesadez en la frente",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D008881",
+      "term": "Severe pulsing migraine with light sensitivity",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D008881",
+      "term": "Migraña con aura o jaqueca pulsátil",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D008881",
+      "term": "Una jaqueca que le late en un lado de la cabeza con mareo",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D004244",
+      "term": "Dizziness or feeling lightheaded and unsteady",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D004244",
+      "term": "Mareo o inestabilidad al caminar",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D004244",
+      "term": "Un mareo que le da vueltas la cabeza o embobamiento",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D005334",
+      "term": "High temperature or running a fever",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D005334",
+      "term": "Fiebre alta",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D005334",
+      "term": "Tener una calentura que quema",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D002921",
+      "term": "Shivering cold spells and shakes",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D002921",
+      "term": "Escalofríos o temblores de frío",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D002921",
+      "term": "Una temblequera de frío o tiritona",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D001168",
+      "term": "Joint stiffness and arthritis pain",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D001168",
+      "term": "Artritis articular",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D001168",
+      "term": "Dolor en las coyunturas de los huesos",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D017116",
+      "term": "Lower back pain or lumbar ache",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D017116",
+      "term": "Lumbalgia o dolor de espalda baja",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D017116",
+      "term": "Dolor de cintura que no lo deja enderezar",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D012640",
+      "term": "Convulsions or epileptic fit",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D012640",
+      "term": "Convulsiones o crisis epilépticas",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D012640",
+      "term": "Un ataque convulsivo con temblores",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D010292",
+      "term": "Pins and needles or numbness in limbs",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D010292",
+      "term": "Parestesia u hormigueo",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D010292",
+      "term": "Un adormecimiento y hormigueo en las manos",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    },
+    {
+      "concept_ref": "MESH:D011537",
+      "term": "Severe skin itching",
+      "language": "en",
+      "dialect": "en_US",
+      "term_type": "lay_expression",
+      "provenance": "MeSH / MedlinePlus consumer health crosswalk",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard plain English lay term"
+    },
+    {
+      "concept_ref": "MESH:D011537",
+      "term": "Prurito cutáneo o picor",
+      "language": "es",
+      "dialect": "es_standard",
+      "term_type": "synonym",
+      "provenance": "DeCS / MeSH bilingual descriptor",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Standard pan-Hispanic translation"
+    },
+    {
+      "concept_ref": "MESH:D011537",
+      "term": "Una rasquiña desesperante en la piel",
+      "language": "es",
+      "dialect": "es_DO",
+      "term_type": "cultural_idiom",
+      "provenance": "Dominican sociolinguistic clinical field vocabulary",
+      "reviewer_status": "reviewed",
+      "reviewer_notes": "Verified Dominican colloquial/idiomatic health phrase"
+    }
+  ],
+  "probes": [
+    {
+      "probe_id": "probe_001_en_canonical",
+      "concept_ref": "MESH:D003866",
+      "text": "The patient describes persistent feelings of worthlessness and depressive disorder.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Depressive Disorder",
+      "distractors": [
+        "Anxiety Disorders",
+        "Panic Disorder"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_001_en_lay",
+      "concept_ref": "MESH:D003866",
+      "text": "I have been feeling completely down and unable to enjoy anything for weeks.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Depressive Disorder",
+      "distractors": [
+        "Anxiety Disorders",
+        "Panic Disorder"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_001_es_idiom",
+      "concept_ref": "MESH:D003866",
+      "text": "Llevo semanas bajito de ánimo y con una pena en el pecho que no me deja vivir.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Depressive Disorder",
+      "distractors": [
+        "Anxiety Disorders",
+        "Panic Disorder"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_002_en_canonical",
+      "concept_ref": "MESH:D001007",
+      "text": "Clinical assessment shows persistent apprehension consistent with anxiety disorders.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Anxiety Disorders",
+      "distractors": [
+        "Panic Disorder",
+        "Sleep Initiation and Maintenance Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_002_en_lay",
+      "concept_ref": "MESH:D001007",
+      "text": "My nerves are constantly on edge and I feel worried about everything all day.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Anxiety Disorders",
+      "distractors": [
+        "Panic Disorder",
+        "Sleep Initiation and Maintenance Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_002_es_idiom",
+      "concept_ref": "MESH:D001007",
+      "text": "Ando con los nervios de punta y un desespero por dentro que no se me calma.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Anxiety Disorders",
+      "distractors": [
+        "Panic Disorder",
+        "Sleep Initiation and Maintenance Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_003_en_canonical",
+      "concept_ref": "MESH:D010146",
+      "text": "Sudden onset tachycardia and diaphoresis characteristic of a panic disorder episode.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Panic Disorder",
+      "distractors": [
+        "Sleep Initiation and Maintenance Disorders",
+        "Fatigue"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_003_en_lay",
+      "concept_ref": "MESH:D010146",
+      "text": "Out of nowhere my heart began racing and I felt terrified that I was dying.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Panic Disorder",
+      "distractors": [
+        "Sleep Initiation and Maintenance Disorders",
+        "Fatigue"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_003_es_idiom",
+      "concept_ref": "MESH:D010146",
+      "text": "De repente me dio un sofocón tan grande que sentí que me iba a morir en ese instante.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Panic Disorder",
+      "distractors": [
+        "Sleep Initiation and Maintenance Disorders",
+        "Fatigue"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_004_en_canonical",
+      "concept_ref": "MESH:D007333",
+      "text": "Polysomnography confirms severe sleep initiation and maintenance disorders.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Sleep Initiation and Maintenance Disorders",
+      "distractors": [
+        "Fatigue",
+        "Anorexia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_004_en_lay",
+      "concept_ref": "MESH:D007333",
+      "text": "I have trouble falling asleep and wake up repeatedly throughout the night.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Sleep Initiation and Maintenance Disorders",
+      "distractors": [
+        "Fatigue",
+        "Anorexia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_004_es_idiom",
+      "concept_ref": "MESH:D007333",
+      "text": "Paso la noche entera desvelado dando vueltas en la cama sin poder pegar un ojo.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Sleep Initiation and Maintenance Disorders",
+      "distractors": [
+        "Fatigue",
+        "Anorexia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_005_en_canonical",
+      "concept_ref": "MESH:D005221",
+      "text": "The subject presents with debilitating chronic fatigue lasting over six months.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Fatigue",
+      "distractors": [
+        "Anorexia",
+        "Psychomotor Agitation"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_005_en_lay",
+      "concept_ref": "MESH:D005221",
+      "text": "I am exhausted every morning and completely drained no matter how much I sleep.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Fatigue",
+      "distractors": [
+        "Anorexia",
+        "Psychomotor Agitation"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_005_es_idiom",
+      "concept_ref": "MESH:D005221",
+      "text": "Me siento derrengado desde que me levanto, como si no tuviera fuerzas ni para caminar.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Fatigue",
+      "distractors": [
+        "Anorexia",
+        "Psychomotor Agitation"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_006_en_canonical",
+      "concept_ref": "MESH:D000855",
+      "text": "Severe secondary anorexia noted with unintentional weight loss over eight weeks.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Anorexia",
+      "distractors": [
+        "Psychomotor Agitation",
+        "Anhedonia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_006_en_lay",
+      "concept_ref": "MESH:D000855",
+      "text": "I have lost all appetite and food simply does not appeal to me anymore.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Anorexia",
+      "distractors": [
+        "Psychomotor Agitation",
+        "Anhedonia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_006_es_idiom",
+      "concept_ref": "MESH:D000855",
+      "text": "Estoy completamente desganado y por más que me insistan no me entra ni un bocado.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Anorexia",
+      "distractors": [
+        "Psychomotor Agitation",
+        "Anhedonia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_007_en_canonical",
+      "concept_ref": "MESH:D011605",
+      "text": "Observation reveals marked psychomotor agitation and repetitive pacing.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Psychomotor Agitation",
+      "distractors": [
+        "Anhedonia",
+        "Stress, Psychological"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_007_en_lay",
+      "concept_ref": "MESH:D011605",
+      "text": "I feel an intense restlessness inside that prevents me from sitting in one place.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Psychomotor Agitation",
+      "distractors": [
+        "Anhedonia",
+        "Stress, Psychological"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_007_es_idiom",
+      "concept_ref": "MESH:D011605",
+      "text": "Tengo una zozobra en el cuerpo que no me permite estarme tranquilo ni dos minutos.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Psychomotor Agitation",
+      "distractors": [
+        "Anhedonia",
+        "Stress, Psychological"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_008_en_canonical",
+      "concept_ref": "MESH:D000786",
+      "text": "Marked anhedonia is evident regarding social and vocational activities.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Anhedonia",
+      "distractors": [
+        "Stress, Psychological",
+        "Dementia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_008_en_lay",
+      "concept_ref": "MESH:D000786",
+      "text": "Nothing brings me joy or interest anymore, not even spending time with my grandchildren.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Anhedonia",
+      "distractors": [
+        "Stress, Psychological",
+        "Dementia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_008_es_idiom",
+      "concept_ref": "MESH:D000786",
+      "text": "A nada de lo que antes me gustaba le encuentro gracia ni gusto hoy en día.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Anhedonia",
+      "distractors": [
+        "Stress, Psychological",
+        "Dementia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_009_en_canonical",
+      "concept_ref": "MESH:D013313",
+      "text": "Occupational psychological stress is aggravating the patient's tension headaches.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Stress, Psychological",
+      "distractors": [
+        "Dementia",
+        "Myocardial Infarction"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_009_en_lay",
+      "concept_ref": "MESH:D013313",
+      "text": "The pressure at work has left me completely overwhelmed and unable to cope.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Stress, Psychological",
+      "distractors": [
+        "Dementia",
+        "Myocardial Infarction"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_009_es_idiom",
+      "concept_ref": "MESH:D013313",
+      "text": "Siento que tengo el agua al cuello de tantas preocupaciones que se me juntaron.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Stress, Psychological",
+      "distractors": [
+        "Dementia",
+        "Myocardial Infarction"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_010_en_canonical",
+      "concept_ref": "MESH:D003704",
+      "text": "Neurocognitive screening reveals progressive memory deficits consistent with early dementia.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Dementia",
+      "distractors": [
+        "Myocardial Infarction",
+        "Hypertension"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_010_en_lay",
+      "concept_ref": "MESH:D003704",
+      "text": "She frequently forgets family names and gets confused about what year it is.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Dementia",
+      "distractors": [
+        "Myocardial Infarction",
+        "Hypertension"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_010_es_idiom",
+      "concept_ref": "MESH:D003704",
+      "text": "Mi abuela se le están olvidando las cosas de diario y a veces se queda como ida.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Dementia",
+      "distractors": [
+        "Myocardial Infarction",
+        "Hypertension"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_011_en_canonical",
+      "concept_ref": "MESH:D009203",
+      "text": "Electrocardiogram confirms acute ST-elevation myocardial infarction.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Myocardial Infarction",
+      "distractors": [
+        "Hypertension",
+        "Angina Pectoris"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_011_en_lay",
+      "concept_ref": "MESH:D009203",
+      "text": "He experienced an acute heart attack with crushing pain radiating to the left arm.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Myocardial Infarction",
+      "distractors": [
+        "Hypertension",
+        "Angina Pectoris"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_011_es_idiom",
+      "concept_ref": "MESH:D009203",
+      "text": "Le dio un ataque al corazón fulminante mientras caminaba hacia el trabajo.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Myocardial Infarction",
+      "distractors": [
+        "Hypertension",
+        "Angina Pectoris"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_012_en_canonical",
+      "concept_ref": "MESH:D006973",
+      "text": "Serial ambulatory measurements confirm stage 2 essential hypertension.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Hypertension",
+      "distractors": [
+        "Angina Pectoris",
+        "Arrhythmias, Cardiac"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_012_en_lay",
+      "concept_ref": "MESH:D006973",
+      "text": "Her routine checkup showed her high blood pressure needs medication adjustments.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Hypertension",
+      "distractors": [
+        "Angina Pectoris",
+        "Arrhythmias, Cardiac"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_012_es_idiom",
+      "concept_ref": "MESH:D006973",
+      "text": "Ayer fui a la clínica porque sentía un zumbido y tenía la presión por las nubes.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Hypertension",
+      "distractors": [
+        "Angina Pectoris",
+        "Arrhythmias, Cardiac"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_013_en_canonical",
+      "concept_ref": "MESH:D000787",
+      "text": "Stable angina pectoris provoked consistently upon climbing two flights of stairs.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Angina Pectoris",
+      "distractors": [
+        "Arrhythmias, Cardiac",
+        "Syncope"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_013_en_lay",
+      "concept_ref": "MESH:D000787",
+      "text": "Whenever I walk fast uphill, I get a tight squeezing ache across my breastbone.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Angina Pectoris",
+      "distractors": [
+        "Arrhythmias, Cardiac",
+        "Syncope"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_013_es_idiom",
+      "concept_ref": "MESH:D000787",
+      "text": "Cada vez que subo una cuesta me entra un apretón en el pecho que me obliga a pararme.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Angina Pectoris",
+      "distractors": [
+        "Arrhythmias, Cardiac",
+        "Syncope"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_014_en_canonical",
+      "concept_ref": "MESH:D001145",
+      "text": "Holter monitor recordings document intermittent episodes of cardiac arrhythmias.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Arrhythmias, Cardiac",
+      "distractors": [
+        "Syncope",
+        "Edema"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_014_en_lay",
+      "concept_ref": "MESH:D001145",
+      "text": "My heart suddenly fluttered and skipped several beats while I was resting.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Arrhythmias, Cardiac",
+      "distractors": [
+        "Syncope",
+        "Edema"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_014_es_idiom",
+      "concept_ref": "MESH:D001145",
+      "text": "Siento a cada rato que el corazón se me desboca en el pecho como si fuera a salirse.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Arrhythmias, Cardiac",
+      "distractors": [
+        "Syncope",
+        "Edema"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_015_en_canonical",
+      "concept_ref": "MESH:D013575",
+      "text": "Vasovagal syncope occurred immediately following rapid postural change.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Syncope",
+      "distractors": [
+        "Edema",
+        "Cerebrovascular Accident"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_015_en_lay",
+      "concept_ref": "MESH:D013575",
+      "text": "She stood up too quickly from her chair and passed out on the rug.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Syncope",
+      "distractors": [
+        "Edema",
+        "Cerebrovascular Accident"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_015_es_idiom",
+      "concept_ref": "MESH:D013575",
+      "text": "Al pararse de golpe le dio un soponcio y cayó redonda al suelo sin conocimiento.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Syncope",
+      "distractors": [
+        "Edema",
+        "Cerebrovascular Accident"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_016_en_canonical",
+      "concept_ref": "MESH:D004487",
+      "text": "Bilateral lower extremity edema noted with 2+ pitting up to the mid-calf.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Edema",
+      "distractors": [
+        "Cerebrovascular Accident",
+        "Hypercholesterolemia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_016_en_lay",
+      "concept_ref": "MESH:D004487",
+      "text": "Her ankles are visibly swollen by late evening from fluid retention.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Edema",
+      "distractors": [
+        "Cerebrovascular Accident",
+        "Hypercholesterolemia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_016_es_idiom",
+      "concept_ref": "MESH:D004487",
+      "text": "Al llegar la tarde tengo los tobillos y las canillas tan hinchadas que no me entran los zapatos.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Edema",
+      "distractors": [
+        "Cerebrovascular Accident",
+        "Hypercholesterolemia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_017_en_canonical",
+      "concept_ref": "MESH:D002561",
+      "text": "Emergency neuroimaging confirms acute ischemic cerebrovascular accident in the middle cerebral territory.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Cerebrovascular Accident",
+      "distractors": [
+        "Hypercholesterolemia",
+        "Anemia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_017_en_lay",
+      "concept_ref": "MESH:D002561",
+      "text": "He suffered an acute stroke that resulted in weakness along his right side.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Cerebrovascular Accident",
+      "distractors": [
+        "Hypercholesterolemia",
+        "Anemia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_017_es_idiom",
+      "concept_ref": "MESH:D002561",
+      "text": "A su tío le dio una trombosis en la cabeza que le durmió todo el lado izquierdo.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Cerebrovascular Accident",
+      "distractors": [
+        "Hypercholesterolemia",
+        "Anemia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_018_en_canonical",
+      "concept_ref": "MESH:D006937",
+      "text": "Fasting lipid panel demonstrates familial hypercholesterolemia requiring statin therapy.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Hypercholesterolemia",
+      "distractors": [
+        "Anemia",
+        "Hypotension"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_018_en_lay",
+      "concept_ref": "MESH:D006937",
+      "text": "The laboratory report shows elevated cholesterol levels that warrant dietary adjustments.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Hypercholesterolemia",
+      "distractors": [
+        "Anemia",
+        "Hypotension"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_018_es_idiom",
+      "concept_ref": "MESH:D006937",
+      "text": "El doctor me dijo que tengo la grasa de la sangre muy alta y me prohibió las frituras.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Hypercholesterolemia",
+      "distractors": [
+        "Anemia",
+        "Hypotension"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_019_en_canonical",
+      "concept_ref": "MESH:D000740",
+      "text": "Laboratory CBC findings confirm microcytic hypochromic anemia secondary to chronic blood loss.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Anemia",
+      "distractors": [
+        "Hypotension",
+        "Dyspnea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_019_en_lay",
+      "concept_ref": "MESH:D000740",
+      "text": "Her blood test showed low hemoglobin indicating iron-deficiency anemia.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Anemia",
+      "distractors": [
+        "Hypotension",
+        "Dyspnea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_019_es_idiom",
+      "concept_ref": "MESH:D000740",
+      "text": "La niña anda descolorida y débil porque los análisis le salieron con una anemia fuerte.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Anemia",
+      "distractors": [
+        "Hypotension",
+        "Dyspnea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_020_en_canonical",
+      "concept_ref": "MESH:D010179",
+      "text": "Orthostatic hypotension documented with a 25 mmHg systolic drop upon standing.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Hypotension",
+      "distractors": [
+        "Dyspnea",
+        "Asthma"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_020_en_lay",
+      "concept_ref": "MESH:D010179",
+      "text": "I felt very lightheaded when my blood pressure dropped abruptly.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Hypotension",
+      "distractors": [
+        "Dyspnea",
+        "Asthma"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_020_es_idiom",
+      "concept_ref": "MESH:D010179",
+      "text": "Me dio un bajón de presión repentino y tuve que sentarme en el suelo del mareo.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Hypotension",
+      "distractors": [
+        "Dyspnea",
+        "Asthma"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_021_en_canonical",
+      "concept_ref": "MESH:D004417",
+      "text": "The patient reports acute exertional dyspnea on walking less than 50 meters.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Dyspnea",
+      "distractors": [
+        "Asthma",
+        "Cough"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_021_en_lay",
+      "concept_ref": "MESH:D004417",
+      "text": "I feel short of breath and winded simply walking from the kitchen to the bedroom.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Dyspnea",
+      "distractors": [
+        "Asthma",
+        "Cough"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_021_es_idiom",
+      "concept_ref": "MESH:D004417",
+      "text": "Siento un ahogo tremendo en el pecho que me deja sin aire con solo subir unos escalones.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Dyspnea",
+      "distractors": [
+        "Asthma",
+        "Cough"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_022_en_canonical",
+      "concept_ref": "MESH:D001249",
+      "text": "Spirometry demonstrates reversible airflow limitation diagnostic of bronchial asthma.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Asthma",
+      "distractors": [
+        "Cough",
+        "Pneumonia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_022_en_lay",
+      "concept_ref": "MESH:D001249",
+      "text": "Cold weather triggered an asthma flare-up with audible wheezing and tightness.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Asthma",
+      "distractors": [
+        "Cough",
+        "Pneumonia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_022_es_idiom",
+      "concept_ref": "MESH:D001249",
+      "text": "Con la humedad me dio una apretazón asmática que necesité usar la bombita tres veces.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Asthma",
+      "distractors": [
+        "Cough",
+        "Pneumonia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_023_en_canonical",
+      "concept_ref": "MESH:D003371",
+      "text": "Subacute post-infectious cough persisting for more than four weeks.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Cough",
+      "distractors": [
+        "Pneumonia",
+        "Pulmonary Disease, Chronic Obstructive"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_023_en_lay",
+      "concept_ref": "MESH:D003371",
+      "text": "A dry persistent cough has kept me awake for the past two weeks.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Cough",
+      "distractors": [
+        "Pneumonia",
+        "Pulmonary Disease, Chronic Obstructive"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_023_es_idiom",
+      "concept_ref": "MESH:D003371",
+      "text": "Llevo días con una tos perruna que me raspa la garganta y no me deja dormir de noche.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Cough",
+      "distractors": [
+        "Pneumonia",
+        "Pulmonary Disease, Chronic Obstructive"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_024_en_canonical",
+      "concept_ref": "MESH:D011014",
+      "text": "Chest radiography demonstrates right lower lobe consolidation consistent with pneumonia.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Pneumonia",
+      "distractors": [
+        "Pulmonary Disease, Chronic Obstructive",
+        "Wheezing"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_024_en_lay",
+      "concept_ref": "MESH:D011014",
+      "text": "The physician confirmed a bacterial lung infection requiring antibiotic treatment.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Pneumonia",
+      "distractors": [
+        "Pulmonary Disease, Chronic Obstructive",
+        "Wheezing"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_024_es_idiom",
+      "concept_ref": "MESH:D011014",
+      "text": "El médico le diagnosticó una pulmonía de cuidado por haberse mojado en el aguacero.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Pneumonia",
+      "distractors": [
+        "Pulmonary Disease, Chronic Obstructive",
+        "Wheezing"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_025_en_canonical",
+      "concept_ref": "MESH:D029424",
+      "text": "Severe airway obstruction noted on spirometry compatible with chronic obstructive pulmonary disease.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Pulmonary Disease, Chronic Obstructive",
+      "distractors": [
+        "Wheezing",
+        "Hemoptysis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_025_en_lay",
+      "concept_ref": "MESH:D029424",
+      "text": "His decades of smoking resulted in chronic obstructive lung disease and daily breathlessness.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Pulmonary Disease, Chronic Obstructive",
+      "distractors": [
+        "Wheezing",
+        "Hemoptysis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_025_es_idiom",
+      "concept_ref": "MESH:D029424",
+      "text": "Por fumar tantos años quedó con el pecho tapado crónico y vive pegado al oxígeno.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Pulmonary Disease, Chronic Obstructive",
+      "distractors": [
+        "Wheezing",
+        "Hemoptysis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_026_en_canonical",
+      "concept_ref": "MESH:D014927",
+      "text": "Auscultation of the lungs reveals diffuse bilateral expiratory wheezing.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Wheezing",
+      "distractors": [
+        "Hemoptysis",
+        "Rhinitis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_026_en_lay",
+      "concept_ref": "MESH:D014927",
+      "text": "You can hear a high-pitched whistling noise in my chest every time I exhale.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Wheezing",
+      "distractors": [
+        "Hemoptysis",
+        "Rhinitis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_026_es_idiom",
+      "concept_ref": "MESH:D014927",
+      "text": "Cada vez que suelto el aire se me oye un pito clarito adentro del pecho.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Wheezing",
+      "distractors": [
+        "Hemoptysis",
+        "Rhinitis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_027_en_canonical",
+      "concept_ref": "MESH:D006469",
+      "text": "The presence of frank hemoptysis warrants immediate bronchoscopy evaluation.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Hemoptysis",
+      "distractors": [
+        "Rhinitis",
+        "Sleep Apnea Syndromes"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_027_en_lay",
+      "concept_ref": "MESH:D006469",
+      "text": "He urgently sought emergency care after noticing streaks of blood in his sputum.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Hemoptysis",
+      "distractors": [
+        "Rhinitis",
+        "Sleep Apnea Syndromes"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_027_es_idiom",
+      "concept_ref": "MESH:D006469",
+      "text": "Se asustó muchísimo cuando empezó a toser y vio que estaba echando sangre viva.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Hemoptysis",
+      "distractors": [
+        "Rhinitis",
+        "Sleep Apnea Syndromes"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_028_en_canonical",
+      "concept_ref": "MESH:D012220",
+      "text": "Symptoms are consistent with seasonal allergic rhinitis triggered by pollen allergens.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Rhinitis",
+      "distractors": [
+        "Sleep Apnea Syndromes",
+        "Influenza, Human"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_028_en_lay",
+      "concept_ref": "MESH:D012220",
+      "text": "Seasonal allergies cause constant nasal dripping, sneezing, and sinus congestion.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Rhinitis",
+      "distractors": [
+        "Sleep Apnea Syndromes",
+        "Influenza, Human"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_028_es_idiom",
+      "concept_ref": "MESH:D012220",
+      "text": "Tengo un romadizo que no se me corta y la nariz tan tapada que tengo que respirar por la boca.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Rhinitis",
+      "distractors": [
+        "Sleep Apnea Syndromes",
+        "Influenza, Human"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_029_en_canonical",
+      "concept_ref": "MESH:D012891",
+      "text": "Diagnostic sleep study demonstrates an apnea-hypopnea index diagnostic of obstructive sleep apnea.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Sleep Apnea Syndromes",
+      "distractors": [
+        "Influenza, Human",
+        "Diabetes Mellitus"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_029_en_lay",
+      "concept_ref": "MESH:D012891",
+      "text": "His partner observed that he frequently stops breathing and chokes during heavy snoring.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Sleep Apnea Syndromes",
+      "distractors": [
+        "Influenza, Human",
+        "Diabetes Mellitus"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_029_es_idiom",
+      "concept_ref": "MESH:D012891",
+      "text": "Mi marido ronca fuertísimo y a cada rato parece que se queda sin aire y se ahoga.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Sleep Apnea Syndromes",
+      "distractors": [
+        "Influenza, Human",
+        "Diabetes Mellitus"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_030_en_canonical",
+      "concept_ref": "MESH:D007251",
+      "text": "Rapid nasopharyngeal swab confirms influenza type A infection.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "train",
+      "expected_label": "Influenza, Human",
+      "distractors": [
+        "Diabetes Mellitus",
+        "Nausea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_030_en_lay",
+      "concept_ref": "MESH:D007251",
+      "text": "She caught the seasonal flu and spent three days bedridden with high fever and muscle aches.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "train",
+      "expected_label": "Influenza, Human",
+      "distractors": [
+        "Diabetes Mellitus",
+        "Nausea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_030_es_idiom",
+      "concept_ref": "MESH:D007251",
+      "text": "Me dio una gripe mala que me tumbó en la cama con dolor de cuerpo y fiebre de cuarenta.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "train",
+      "expected_label": "Influenza, Human",
+      "distractors": [
+        "Diabetes Mellitus",
+        "Nausea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_031_en_canonical",
+      "concept_ref": "MESH:D003920",
+      "text": "Glycated hemoglobin (HbA1c) measurement confirms poorly controlled type 2 diabetes mellitus.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Diabetes Mellitus",
+      "distractors": [
+        "Nausea",
+        "Vomiting"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_031_en_lay",
+      "concept_ref": "MESH:D003920",
+      "text": "The routine blood check showed elevated blood sugar consistent with early diabetes.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Diabetes Mellitus",
+      "distractors": [
+        "Nausea",
+        "Vomiting"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_031_es_idiom",
+      "concept_ref": "MESH:D003920",
+      "text": "El médico me advirtió que tengo el azúcar por encima de trescientos y tengo que cuidarme.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Diabetes Mellitus",
+      "distractors": [
+        "Nausea",
+        "Vomiting"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_032_en_canonical",
+      "concept_ref": "MESH:D009325",
+      "text": "Persistent medication-induced nausea managed with antiemetic therapeutics.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Nausea",
+      "distractors": [
+        "Vomiting",
+        "Diarrhea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_032_en_lay",
+      "concept_ref": "MESH:D009325",
+      "text": "I experienced intense nausea after breakfast and felt like throwing up all morning.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Nausea",
+      "distractors": [
+        "Vomiting",
+        "Diarrhea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_032_es_idiom",
+      "concept_ref": "MESH:D009325",
+      "text": "Desde temprano tengo una basca en el estómago que cualquier olor a comida me revuelve.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Nausea",
+      "distractors": [
+        "Vomiting",
+        "Diarrhea"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_033_en_canonical",
+      "concept_ref": "MESH:D014839",
+      "text": "Protracted post-operative vomiting requiring intravenous rehydration.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Vomiting",
+      "distractors": [
+        "Diarrhea",
+        "Constipation"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_033_en_lay",
+      "concept_ref": "MESH:D014839",
+      "text": "The child was throwing up repeatedly throughout the night and could not hold down water.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Vomiting",
+      "distractors": [
+        "Diarrhea",
+        "Constipation"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_033_es_idiom",
+      "concept_ref": "MESH:D014839",
+      "text": "El niño no para de devolver todo lo que toma y ya no le queda nada en el estómago.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Vomiting",
+      "distractors": [
+        "Diarrhea",
+        "Constipation"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_034_en_canonical",
+      "concept_ref": "MESH:D003967",
+      "text": "Acute watery diarrhea secondary to foodborne enterotoxin exposure.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Diarrhea",
+      "distractors": [
+        "Constipation",
+        "Gastroesophageal Reflux"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_034_en_lay",
+      "concept_ref": "MESH:D003967",
+      "text": "Severe diarrhea has caused rapid fluid loss and abdominal cramping over two days.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Diarrhea",
+      "distractors": [
+        "Constipation",
+        "Gastroesophageal Reflux"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_034_es_idiom",
+      "concept_ref": "MESH:D003967",
+      "text": "Me cayó mal la comida de la calle y me dio una soltura de estómago con retortijones.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Diarrhea",
+      "distractors": [
+        "Constipation",
+        "Gastroesophageal Reflux"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_035_en_canonical",
+      "concept_ref": "MESH:D003248",
+      "text": "Chronic functional constipation unresponsive to initial osmotic laxatives.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Constipation",
+      "distractors": [
+        "Gastroesophageal Reflux",
+        "Abdominal Pain"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_035_en_lay",
+      "concept_ref": "MESH:D003248",
+      "text": "I have been severely constipated and have not had a bowel movement in four days.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Constipation",
+      "distractors": [
+        "Gastroesophageal Reflux",
+        "Abdominal Pain"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_035_es_idiom",
+      "concept_ref": "MESH:D003248",
+      "text": "Llevo cuatro días trancado del estómago con el vientre duro y dolor al intentar ir.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Constipation",
+      "distractors": [
+        "Gastroesophageal Reflux",
+        "Abdominal Pain"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_036_en_canonical",
+      "concept_ref": "MESH:D005764",
+      "text": "Upper endoscopy demonstrates mucosal erosions typical of gastroesophageal reflux disease.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Gastroesophageal Reflux",
+      "distractors": [
+        "Abdominal Pain",
+        "Jaundice"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_036_en_lay",
+      "concept_ref": "MESH:D005764",
+      "text": "Painful burning heartburn rises into my throat every time I lie down after dinner.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Gastroesophageal Reflux",
+      "distractors": [
+        "Abdominal Pain",
+        "Jaundice"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_036_es_idiom",
+      "concept_ref": "MESH:D005764",
+      "text": "Tengo una agrura tremenda en el pecho que me sube como un fuego ácido a la garganta.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Gastroesophageal Reflux",
+      "distractors": [
+        "Abdominal Pain",
+        "Jaundice"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_037_en_canonical",
+      "concept_ref": "MESH:D015746",
+      "text": "Acute right lower quadrant abdominal pain with tenderness on palpation.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Abdominal Pain",
+      "distractors": [
+        "Jaundice",
+        "Cystitis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_037_en_lay",
+      "concept_ref": "MESH:D015746",
+      "text": "A sharp cramping pain in my lower abdomen began abruptly three hours ago.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Abdominal Pain",
+      "distractors": [
+        "Jaundice",
+        "Cystitis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_037_es_idiom",
+      "concept_ref": "MESH:D015746",
+      "text": "Me dio un retorcijón de barriga tan fuerte que me dobló del dolor por completo.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Abdominal Pain",
+      "distractors": [
+        "Jaundice",
+        "Cystitis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_038_en_canonical",
+      "concept_ref": "MESH:D007565",
+      "text": "Marked scleral icterus and cutaneous jaundice evident upon physical examination.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Jaundice",
+      "distractors": [
+        "Cystitis",
+        "Obesity"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_038_en_lay",
+      "concept_ref": "MESH:D007565",
+      "text": "His family noticed that the whites of his eyes and his face had turned distinctly yellow.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Jaundice",
+      "distractors": [
+        "Cystitis",
+        "Obesity"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_038_es_idiom",
+      "concept_ref": "MESH:D007565",
+      "text": "Enseguida nos dimos cuenta de que algo andaba mal porque se le pusieron los ojos amarillitos.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Jaundice",
+      "distractors": [
+        "Cystitis",
+        "Obesity"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_039_en_canonical",
+      "concept_ref": "MESH:D003556",
+      "text": "Urinalysis with positive nitrites and leukocyte esterase confirms acute uncomplicated cystitis.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Cystitis",
+      "distractors": [
+        "Obesity",
+        "Headache"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_039_en_lay",
+      "concept_ref": "MESH:D003556",
+      "text": "I experience painful burning sensations whenever I urinate along with constant urgency.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Cystitis",
+      "distractors": [
+        "Obesity",
+        "Headache"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_039_es_idiom",
+      "concept_ref": "MESH:D003556",
+      "text": "Tengo un mal de orina que me quema cada vez que voy al baño y voy a cada ratico.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Cystitis",
+      "distractors": [
+        "Obesity",
+        "Headache"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_040_en_canonical",
+      "concept_ref": "MESH:D009765",
+      "text": "Body mass index calculation confirms class II clinical obesity.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "validation",
+      "expected_label": "Obesity",
+      "distractors": [
+        "Headache",
+        "Migraine Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_040_en_lay",
+      "concept_ref": "MESH:D009765",
+      "text": "Substantial excess body weight has placed severe chronic stress on his knee joints.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "validation",
+      "expected_label": "Obesity",
+      "distractors": [
+        "Headache",
+        "Migraine Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_040_es_idiom",
+      "concept_ref": "MESH:D009765",
+      "text": "Tiene un sobrepeso tan grande que las rodillas ya no le aguantan el peso para caminar.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "validation",
+      "expected_label": "Obesity",
+      "distractors": [
+        "Headache",
+        "Migraine Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_041_en_canonical",
+      "concept_ref": "MESH:D006261",
+      "text": "The subject complains of recurrent bilateral tension-type headache.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Headache",
+      "distractors": [
+        "Migraine Disorders",
+        "Dizziness"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_041_en_lay",
+      "concept_ref": "MESH:D006261",
+      "text": "I have had a dull persistent headache pressing around my temples since noon.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Headache",
+      "distractors": [
+        "Migraine Disorders",
+        "Dizziness"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_041_es_idiom",
+      "concept_ref": "MESH:D006261",
+      "text": "Tengo un dolor de cabeza constante como si me estuvieran apretando la frente con una venda.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Headache",
+      "distractors": [
+        "Migraine Disorders",
+        "Dizziness"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_042_en_canonical",
+      "concept_ref": "MESH:D008881",
+      "text": "Unilateral pulsatile cephalalgia with photophobia diagnostic of episodic migraine.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Migraine Disorders",
+      "distractors": [
+        "Dizziness",
+        "Fever"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_042_en_lay",
+      "concept_ref": "MESH:D008881",
+      "text": "A throbbing migraine on the left side of my head makes light and sound unbearable.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Migraine Disorders",
+      "distractors": [
+        "Dizziness",
+        "Fever"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_042_es_idiom",
+      "concept_ref": "MESH:D008881",
+      "text": "Me dio una jaqueca que me late en la sien izquierda y no soporto ni la luz ni el ruido.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Migraine Disorders",
+      "distractors": [
+        "Dizziness",
+        "Fever"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_043_en_canonical",
+      "concept_ref": "MESH:D004244",
+      "text": "Benign paroxysmal positional vertigo confirmed during clinical Hallpike maneuvers.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Dizziness",
+      "distractors": [
+        "Fever",
+        "Chills"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_043_en_lay",
+      "concept_ref": "MESH:D004244",
+      "text": "The room began spinning around me as soon as I rolled over in bed.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Dizziness",
+      "distractors": [
+        "Fever",
+        "Chills"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_043_es_idiom",
+      "concept_ref": "MESH:D004244",
+      "text": "Al girar la cabeza sentí un mareo de repente que sentí que el cuarto entero me daba vueltas.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Dizziness",
+      "distractors": [
+        "Fever",
+        "Chills"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_044_en_canonical",
+      "concept_ref": "MESH:D005334",
+      "text": "Core temperature recording indicates high-grade pyrexia at 39.4 degrees Celsius.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Fever",
+      "distractors": [
+        "Chills",
+        "Arthritis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_044_en_lay",
+      "concept_ref": "MESH:D005334",
+      "text": "He has been burning up with a high fever reaching over one hundred and two degrees.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Fever",
+      "distractors": [
+        "Chills",
+        "Arthritis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_044_es_idiom",
+      "concept_ref": "MESH:D005334",
+      "text": "El muchacho está hirviendo en calentura desde anoche y no le baja con nada.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Fever",
+      "distractors": [
+        "Chills",
+        "Arthritis"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_045_en_canonical",
+      "concept_ref": "MESH:D002921",
+      "text": "Rigors and severe chills accompanied the acute bacteremic temperature spike.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Chills",
+      "distractors": [
+        "Arthritis",
+        "Low Back Pain"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_045_en_lay",
+      "concept_ref": "MESH:D002921",
+      "text": "I began shaking uncontrollably with teeth-chattering chills under two thick blankets.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Chills",
+      "distractors": [
+        "Arthritis",
+        "Low Back Pain"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_045_es_idiom",
+      "concept_ref": "MESH:D002921",
+      "text": "Me dio una temblequera de frío tan brava que me castañeaban los dientes tapado con tres colchas.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Chills",
+      "distractors": [
+        "Arthritis",
+        "Low Back Pain"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_046_en_canonical",
+      "concept_ref": "MESH:D001168",
+      "text": "Radiographs show joint space narrowing and periarticular osteophytes typical of osteoarthritis.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Arthritis",
+      "distractors": [
+        "Low Back Pain",
+        "Seizures"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_046_en_lay",
+      "concept_ref": "MESH:D001168",
+      "text": "My fingers and knees are stiff, swollen, and ache when the morning weather turns damp.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Arthritis",
+      "distractors": [
+        "Low Back Pain",
+        "Seizures"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_046_es_idiom",
+      "concept_ref": "MESH:D001168",
+      "text": "Con el sereno de la noche me duele hasta la última coyuntura de los dedos.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Arthritis",
+      "distractors": [
+        "Low Back Pain",
+        "Seizures"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_047_en_canonical",
+      "concept_ref": "MESH:D017116",
+      "text": "Mechanical lumbar spine strain resulting in acute non-radicular low back pain.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Low Back Pain",
+      "distractors": [
+        "Seizures",
+        "Paresthesia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_047_en_lay",
+      "concept_ref": "MESH:D017116",
+      "text": "I strained my lower back lifting a heavy crate and can barely bend over today.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Low Back Pain",
+      "distractors": [
+        "Seizures",
+        "Paresthesia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_047_es_idiom",
+      "concept_ref": "MESH:D017116",
+      "text": "Hice una mala fuerza y me dio un dolor de cintura que no me deja ni enderezarme.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Low Back Pain",
+      "distractors": [
+        "Seizures",
+        "Paresthesia"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_048_en_canonical",
+      "concept_ref": "MESH:D012640",
+      "text": "Electroencephalogram demonstrates generalized spike-and-wave discharges during tonic-clonic seizures.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Seizures",
+      "distractors": [
+        "Paresthesia",
+        "Pruritus"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_048_en_lay",
+      "concept_ref": "MESH:D012640",
+      "text": "The patient experienced an unexpected seizure marked by jerking movements of all limbs.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Seizures",
+      "distractors": [
+        "Paresthesia",
+        "Pruritus"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_048_es_idiom",
+      "concept_ref": "MESH:D012640",
+      "text": "Le dio un ataque convulsivo de la nada y empezó a sacudirse entero en el suelo.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Seizures",
+      "distractors": [
+        "Paresthesia",
+        "Pruritus"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_049_en_canonical",
+      "concept_ref": "MESH:D010292",
+      "text": "Nerve conduction studies indicate median neuropathy causing index finger paresthesia.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Paresthesia",
+      "distractors": [
+        "Pruritus",
+        "Depressive Disorder"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_049_en_lay",
+      "concept_ref": "MESH:D010292",
+      "text": "I feel a persistent prickly sensation of pins and needles across my fingertips.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Paresthesia",
+      "distractors": [
+        "Pruritus",
+        "Depressive Disorder"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_049_es_idiom",
+      "concept_ref": "MESH:D010292",
+      "text": "Siento un adormecimiento y un hormigueo raro en los dedos de las manos que no se me quita.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Paresthesia",
+      "distractors": [
+        "Pruritus",
+        "Depressive Disorder"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_050_en_canonical",
+      "concept_ref": "MESH:D011537",
+      "text": "Excoriations present secondary to chronic generalized cholestatic pruritus.",
+      "language": "en",
+      "variant": "canonical_clinical",
+      "split": "test",
+      "expected_label": "Pruritus",
+      "distractors": [
+        "Depressive Disorder",
+        "Anxiety Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_050_en_lay",
+      "concept_ref": "MESH:D011537",
+      "text": "An intense skin itch keeps me scratching my arms constantly throughout the day.",
+      "language": "en",
+      "variant": "plain_lay",
+      "split": "test",
+      "expected_label": "Pruritus",
+      "distractors": [
+        "Depressive Disorder",
+        "Anxiety Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    },
+    {
+      "probe_id": "probe_050_es_idiom",
+      "concept_ref": "MESH:D011537",
+      "text": "Tengo una rasquiña en los brazos que por más que me rasco no encuentro alivio.",
+      "language": "es",
+      "variant": "cultural_idiom",
+      "split": "test",
+      "expected_label": "Pruritus",
+      "distractors": [
+        "Depressive Disorder",
+        "Anxiety Disorders"
+      ],
+      "reviewer_status": "reviewed"
+    }
+  ]
+}
