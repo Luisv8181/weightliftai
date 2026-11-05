@@ -144,7 +144,8 @@ def main() -> None:
 
     patch_parser = subparsers.add_parser("patch", help="Weight-space programming diagnostics and tests.")
     patch_sub = patch_parser.add_subparsers(dest="patch_command", required=True)
-    patch_sub.add_parser("test-defect", help="Run the reproducible known-defect recovery experiment.")
+    patch_sub.add_parser("test-defect", help="Run the reproducible known-defect recovery experiment (oracle test).")
+    patch_sub.add_parser("test-blind", help="Run the leakage-free blind weight-repair benchmark with full baseline ladder.")
     insp_p = patch_sub.add_parser("inspect", help="Inspect model parameter shapes, norms, and checksums.")
     insp_p.add_argument("model_id", help="Model ID or path.")
     _add_model_safety_flags(insp_p)
@@ -580,6 +581,11 @@ def main() -> None:
             if args.patch_command == "test-defect":
                 from weightliftai.weight_programming.toy_defect import run_known_defect_experiment
                 res = run_known_defect_experiment()
+                _print(res)
+            elif args.patch_command == "test-blind":
+                from weightliftai.weight_programming.blind_benchmark import BlindRepairBenchmark
+                bm = BlindRepairBenchmark()
+                res = bm.run_full_benchmark()
                 _print(res)
             elif args.patch_command == "inspect":
                 import torch

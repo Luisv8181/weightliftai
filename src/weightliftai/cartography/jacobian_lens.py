@@ -1,8 +1,19 @@
-"""Jacobian Lens and J-Space Analysis Module.
+"""Jacobian Lens and Output Sensitivity Prototype (Research Prototype).
 
+Status: Level 2 Output Sensitivity Prototype (see docs/RESEARCH_VALIDATION_PROTOCOL.md).
 Investigates activation-to-output influence in transformer decoder models by computing
 Vector-Jacobian Products (VJP) and directional derivatives between intermediate residual
 stream activations and final hidden states / vocabulary logits.
+
+Explicit Limitations & Disclosures:
+1. Mathematical Verification != Mechanism Discovery: Passing finite-difference derivative
+   checks verifies autograd calculus, not that a semantic feature or causal circuit is found.
+2. Candidate Shortlist Bias: In compare_logit_lens_and_jacobian_lens(), candidate tokens are
+   currently filtered to top-k of direct Logit Lens; this can miss candidates outside the shortlist.
+3. Normalization: Computations currently project through residual stream / unembedding directly
+   and do not yet account for all model-family specific final RMSNorm/LayerNorm scaling dynamics.
+4. Prompt-Specific vs. Global: Single-prompt readouts reflect local directional sensitivity;
+   global claims require context aggregation (see aggregate_jacobian_corpus).
 
 References:
 - Anthropic (2026): A global workspace in language models
@@ -146,16 +157,19 @@ def check_finite_differences(
     position: int = -1,
     site: Literal["residual", "attention", "mlp"] = "residual",
     target_site: Literal["final_residual", "logits"] = "final_residual",
+    attention_mask: torch.Tensor | None = None,
     epsilon: float = 1e-4,
     dims_to_check: int = 5,
 ) -> dict[str, Any]:
     """Verify analytical autograd VJP against numerical finite differences on sampled dimensions.
     
-    Provides mathematical proof of gradient accuracy.
+    Guarantees that autograd hooks and forward pass kwargs (including masks and positions)
+    match central finite differences.
     """
     analytical_vjp = compute_vjp(
         model, input_ids, layer_idx, target_vector,
-        position=position, site=site, target_site=target_site
+        position=position, site=site, target_site=target_site,
+        attention_mask=attention_mask,
     )
     
     hidden_dim = analytical_vjp.shape[0]
@@ -182,7 +196,10 @@ def check_finite_differences(
 
                 perturb_hook = source_layer.register_forward_hook(perturb_fn)
                 with torch.no_grad():
-                    out = model(input_ids)
+                    kwargs: dict[str, Any] = {}
+                    if attention_mask is not None:
+                        kwargs["attention_mask"] = attention_mask
+                    out = model(input_ids, **kwargs)
                     if target_site == "logits":
                         val = out.logits
                     else:
@@ -281,11 +298,18 @@ def compare_logit_lens_and_jacobian_lens(
         for tid, val in zip(top_logit_ids.cpu(), top_logit_vals.cpu())
     ]
 
-    # 3. Jacobian Lens: for the top candidate tokens, compute directional gradient
+    # Model's actual final prediction logits at target position
+    final_logits = outputs.logits[0, pos_idx].detach()
+    _, top_output_ids = torch.topk(final_logits, k=min(top_k, final_logits.shape[-1]))
+
+    # Form unbiased candidate pool (union of logit lens candidates and final model predictions)
+    candidate_pool = torch.unique(torch.cat([top_logit_ids, top_output_ids]))
+
+    # 3. Jacobian Lens: for candidate tokens, compute directional gradient
     # v_k = W_U[k]
     jacobian_scores = []
     jacobian_vectors = []
-    for tid in top_logit_ids:
+    for tid in candidate_pool:
         v_k = W_U[tid]  # [hidden_dim]
         # VJP gives direction in layer l that most increases target token logit
         vjp_dir = compute_vjp(
@@ -297,21 +321,21 @@ def compare_logit_lens_and_jacobian_lens(
         jacobian_scores.append(align_score)
         jacobian_vectors.append(vjp_dir)
 
-    # Rank top tokens by Jacobian influence alignment
+    # Rank tokens by Jacobian influence alignment
     sorted_indices = np.argsort(jacobian_scores)[::-1]
+    top_j_indices = sorted_indices[:top_k]
     jacobian_top_list = [
         {
-            "token_id": int(top_logit_ids[idx].cpu()),
-            "token": tokenizer.decode([top_logit_ids[idx].cpu()]),
+            "token_id": int(candidate_pool[idx].cpu()),
+            "token": tokenizer.decode([candidate_pool[idx].cpu()]),
             "score": float(jacobian_scores[idx]),
         }
-        for idx in sorted_indices
+        for idx in top_j_indices
     ]
 
     # 4. Diagnostics: Cosine similarity between Logit Lens direction and Jacobian VJP
-    # Average Jacobian direction across the top candidates
     avg_vjp = torch.stack(jacobian_vectors).mean(dim=0).float()
-    avg_wu = W_U[top_logit_ids].mean(dim=0).float()
+    avg_wu = W_U[candidate_pool].mean(dim=0).float()
     
     cos_sim = float(
         torch.nn.functional.cosine_similarity(
@@ -319,9 +343,10 @@ def compare_logit_lens_and_jacobian_lens(
         ).item()
     )
 
-    # Random baseline direction comparison
+    # Norm-matched random baseline direction comparison
     torch.manual_seed(42)
     rand_dir = torch.randn_like(avg_vjp)
+    rand_dir = rand_dir / torch.norm(rand_dir) * torch.norm(avg_vjp)
     random_cos_sim = float(
         torch.nn.functional.cosine_similarity(
             avg_wu.unsqueeze(0), rand_dir.unsqueeze(0)
@@ -329,18 +354,19 @@ def compare_logit_lens_and_jacobian_lens(
     )
 
     # Spearman rank correlation of scores among candidate tokens
-    logit_ranks = np.arange(len(top_logit_ids))
-    j_ranks = np.argsort(np.argsort(jacobian_scores)[::-1])
-    spearman_corr, _ = spearmanr(logit_ranks, j_ranks)
+    logit_scores_pool = [float(logit_lens_scores[tid].item()) for tid in candidate_pool]
+    spearman_corr, _ = spearmanr(logit_scores_pool, jacobian_scores)
 
     return {
         "layer": layer_idx,
         "position": pos_idx,
         "token": token_str,
+        "candidate_pool_size": len(candidate_pool),
+        "shortlist_mode": "union_logit_and_final_prediction",
         "logit_lens_top_k": logit_top_list,
         "jacobian_lens_top_k": jacobian_top_list,
         "cosine_similarity": cos_sim,
-        "random_baseline_cosine_similarity": random_cos_sim,
+        "norm_matched_random_cosine_similarity": random_cos_sim,
         "rank_correlation_spearman": float(spearman_corr) if not np.isnan(spearman_corr) else 1.0,
     }
 

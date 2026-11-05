@@ -35,6 +35,7 @@ class TinyModel(torch.nn.Module):
 
 
 def test_capture_selected_module():
+    torch.manual_seed(0)
     model = TinyModel()
     result = capture_activations(model, {"input": torch.ones(1, 3)}, ["layers.1"])
     assert result["layers.1"]["shape"] == [1, 4]
