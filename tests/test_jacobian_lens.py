@@ -110,8 +110,10 @@ def test_compare_logit_lens_and_jacobian_lens():
     assert result["layer"] == 1
     assert len(result["logit_lens_top_k"]) == 5
     assert len(result["jacobian_lens_top_k"]) == 5
+    assert result["candidate_pool_size"] >= 5
+    assert result["shortlist_mode"] == "union_logit_and_final_prediction"
     assert -1.0 <= result["cosine_similarity"] <= 1.0
-    assert -1.0 <= result["random_baseline_cosine_similarity"] <= 1.0
+    assert -1.0 <= result["norm_matched_random_cosine_similarity"] <= 1.0
     assert -1.0 <= result["rank_correlation_spearman"] <= 1.0
 
 

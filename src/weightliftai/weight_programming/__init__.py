@@ -4,6 +4,7 @@ Provides declarative parameter patches, safety budgets, sandboxed execution,
 and independent evaluation.
 """
 
+from weightliftai.weight_programming.blind_benchmark import BlindRepairBenchmark
 from weightliftai.weight_programming.evaluator import IndependentEvaluator
 from weightliftai.weight_programming.inspector import (
     compute_model_fingerprint,
@@ -31,6 +32,7 @@ from weightliftai.weight_programming.toy_defect import (
 __all__ = [
     "AllowlistViolationError",
     "BaseModelMismatchError",
+    "BlindRepairBenchmark",
     "BudgetViolationError",
     "IndependentEvaluator",
     "PatchBudget",
