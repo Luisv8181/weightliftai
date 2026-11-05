@@ -15,13 +15,12 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from weightliftai.weight_programming.inspector import validate_patch_against_budget
+from weightliftai.weight_programming.inspector import hash_tensor_bytes, validate_patch_against_budget
 from weightliftai.weight_programming.schemas import PatchBudget, WeightPatch
 
 
 def _hash_tensor(param: nn.Parameter) -> str:
-    arr = param.detach().cpu().float().numpy()
-    return hashlib.sha256(arr.tobytes()).hexdigest()
+    return hash_tensor_bytes(param)
 
 
 @contextmanager

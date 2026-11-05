@@ -1,9 +1,9 @@
 {
   "dataset_id": "dominican_spanish_pilot_50",
-  "version": "1.0",
-  "description": "50 matched triads of culturally grounded Dominican Spanish expressions, neutral Spanish controls, and pragmatic vs literal English translations with negative controls.",
-  "license": "CC-BY-4.0",
-  "governance": "Consented, non-identifiable conversational Dominican Spanish research dataset. No private user data or voice recordings.",
+  "version": "1.0-provisional",
+  "description": "Provisional 50-concept matched research curriculum comparing Dominican Spanish expressions, neutral Spanish controls, English pragmatic intent, and factual negative controls.",
+  "status": "provisional_curriculum",
+  "governance": "Author-curated provisional research curriculum. Not an IRB-governed multi-speaker field corpus; does not contain private user conversations or identifiable voice recordings.",
   "items": [
     {
       "concept_id": "DOM-001",

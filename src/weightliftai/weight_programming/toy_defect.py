@@ -1,11 +1,18 @@
-"""Reproducible Known-Defect Recovery Experiment.
+"""Reproducible Known-Defect Recovery Experiment (Oracle Infrastructure Test).
 
-Implements Initial Experiment #1 from docs/WEIGHT_SPACE_PROGRAMMING.md:
-1. Synthesizes a ground-truth MLP for multi-feature function approximation.
-2. Injects a controlled weight corruption (known defect).
-3. Evaluates baseline vs corrupted performance.
-4. Synthesizes an exact declarative candidate repair patch.
-5. Verifies repair with independent evaluation, distribution-shift tests, and regression gates.
+Status: Level 0 / Level 1 Infrastructure Test (see docs/RESEARCH_VALIDATION_PROTOCOL.md).
+Implements Initial Experiment #1 from docs/WEIGHT_SPACE_PROGRAMMING.md to validate the
+parameter sandboxing, reversible rollback, and independent regression evaluation pipeline.
+
+SCIENTIFIC DISCLOSURE & LIMITATIONS:
+1. Oracle Reconstruction: In this infrastructure test, the candidate repair delta is
+   computed directly as (clean_fc2_w - corrupted_w) using access to the ground-truth
+   clean checkpoint. It serves as an oracle upper bound to test that the budget enforcement,
+   sandboxed rollback, and regression evaluation gates work.
+2. NOT Blind Repair: This experiment does NOT test whether an AI agent or optimizer
+   can diagnose a failure from empirical behavior alone and discover a restorative delta
+   without an answer key. Blind repair requires the separate benchmark specified in
+   docs/BLIND_WEIGHT_REPAIR_BENCHMARK.md.
 """
 
 from __future__ import annotations

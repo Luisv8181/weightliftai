@@ -51,9 +51,9 @@ class DominicanPilotDataset:
             total_items=len(self.items),
             languages=["es", "en"],
             dialects=["es_do"],
-            provenance_notes="Culturally grounded Dominican Spanish phrases matched with neutral Spanish and English pragmatic controls.",
-            is_synthetic=False,
-            has_human_review=True,
+            provenance_notes="Provisional author-curated curriculum for structural representation analysis. Lacks formal multi-speaker IRB or external panel review.",
+            is_synthetic=True,
+            has_human_review=False,
         )
 
         self.validation_report = self._validate_dataset()

@@ -1,8 +1,19 @@
-"""Jacobian Lens and J-Space Analysis Module.
+"""Jacobian Lens and Output Sensitivity Prototype (Research Prototype).
 
+Status: Level 2 Output Sensitivity Prototype (see docs/RESEARCH_VALIDATION_PROTOCOL.md).
 Investigates activation-to-output influence in transformer decoder models by computing
 Vector-Jacobian Products (VJP) and directional derivatives between intermediate residual
 stream activations and final hidden states / vocabulary logits.
+
+Explicit Limitations & Disclosures:
+1. Mathematical Verification != Mechanism Discovery: Passing finite-difference derivative
+   checks verifies autograd calculus, not that a semantic feature or causal circuit is found.
+2. Candidate Shortlist Bias: In compare_logit_lens_and_jacobian_lens(), candidate tokens are
+   currently filtered to top-k of direct Logit Lens; this can miss candidates outside the shortlist.
+3. Normalization: Computations currently project through residual stream / unembedding directly
+   and do not yet account for all model-family specific final RMSNorm/LayerNorm scaling dynamics.
+4. Prompt-Specific vs. Global: Single-prompt readouts reflect local directional sensitivity;
+   global claims require context aggregation (see aggregate_jacobian_corpus).
 
 References:
 - Anthropic (2026): A global workspace in language models

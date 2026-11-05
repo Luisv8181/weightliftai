@@ -14,19 +14,39 @@ import torch.nn as nn
 
 from weightliftai.weight_programming.schemas import (
     AllowlistViolationError,
+    BaseModelMismatchError,
     BudgetViolationError,
     PatchBudget,
     WeightPatch,
 )
 
 
+def hash_tensor_bytes(param: nn.Parameter) -> str:
+    """Hash exact native parameter tensor bytes, preserving dtype and shape without float32 casting."""
+    hasher = hashlib.sha256()
+    hasher.update(str(param.dtype).encode("utf-8"))
+    hasher.update(np.array(param.shape, dtype=np.int64).tobytes())
+    t = param.detach().cpu().contiguous()
+    hasher.update(t.view(torch.uint8).numpy().tobytes())
+    return hasher.hexdigest()
+
+
+def compute_model_fingerprint(model: nn.Module) -> str:
+    """Compute deterministic cryptographic root SHA256 of all model parameters."""
+    hasher = hashlib.sha256()
+    for name, param in sorted(model.named_parameters()):
+        hasher.update(name.encode("utf-8"))
+        hasher.update(hash_tensor_bytes(param).encode("utf-8"))
+    return hasher.hexdigest()
+
+
 def inspect_model_parameters(model: nn.Module) -> dict[str, dict[str, Any]]:
-    """Return an exact inspection dictionary for all model parameters."""
+    """Return an exact inspection dictionary for all model parameters with native byte hashes."""
     report = {}
     for name, param in model.named_parameters():
         arr = param.detach().cpu().float().numpy()
         l2 = float(np.linalg.norm(arr))
-        param_hash = hashlib.sha256(arr.tobytes()).hexdigest()
+        param_hash = hash_tensor_bytes(param)
         report[name] = {
             "shape": list(param.shape),
             "dtype": str(param.dtype),
@@ -43,21 +63,32 @@ def validate_patch_against_budget(
     patch: WeightPatch,
     budget: PatchBudget,
 ) -> dict[str, Any]:
-    """Validate candidate patch against budget constraints and tensor allowlists.
+    """Validate candidate patch against budget constraints, allowlists, and base checkpoint fingerprint.
     
     Raises:
-    - AllowlistViolationError if an unpermitted tensor is targeted.
-    - BudgetViolationError if tensor count, L2 norm, or relative norm limits are exceeded.
+    - BaseModelMismatchError if patch declared a base fingerprint that does not match the model.
+    - AllowlistViolationError if an unpermitted tensor is targeted or tied-parameter conflict exists.
+    - BudgetViolationError if tensor count, non-finite values (NaN/Inf), L2 norm, or relative norm limits are exceeded.
     """
-    model_params = dict(model.named_parameters())
-    
-    # Check tensor count budget
+    # 1. Base model fingerprint verification
+    if patch.base_model_fingerprint is not None:
+        actual_fingerprint = compute_model_fingerprint(model)
+        if actual_fingerprint != patch.base_model_fingerprint:
+            raise BaseModelMismatchError(
+                f"Base model fingerprint mismatch: expected {patch.base_model_fingerprint}, got {actual_fingerprint}"
+            )
+
+    # 2. Reject empty patch
+    if len(patch.deltas) == 0:
+        raise BudgetViolationError("Patch contains no parameter deltas.")
+
+    # 3. Check tensor count budget
     if len(patch.deltas) > budget.max_changed_tensors:
         raise BudgetViolationError(
             f"Patch modifies {len(patch.deltas)} tensors; budget limit is {budget.max_changed_tensors}"
         )
 
-    # Check allowlist if configured
+    # 4. Check allowlist if configured
     if budget.allowed_tensor_names is not None:
         allowed_set = set(budget.allowed_tensor_names)
         unauthorized = set(patch.deltas.keys()) - allowed_set
@@ -66,6 +97,20 @@ def validate_patch_against_budget(
                 f"Patch targets tensors not on allowlist: {sorted(unauthorized)}"
             )
 
+    # 5. Check tied-weight / memory-aliasing conflicts across all parameter paths
+    tensor_ptr_map: dict[int, str] = {}
+    for p_name, p in model.named_parameters(remove_duplicate=False):
+        ptr = p.data_ptr()
+        if ptr in tensor_ptr_map:
+            other = tensor_ptr_map[ptr]
+            if (p_name in patch.deltas) != (other in patch.deltas):
+                raise AllowlistViolationError(
+                    f"Tied-parameter conflict: '{p_name}' shares storage with '{other}', but only one is declared in patch."
+                )
+        else:
+            tensor_ptr_map[ptr] = p_name
+
+    model_params = dict(model.named_parameters(remove_duplicate=False))
     total_delta_l2_sq = 0.0
     validation_details = {}
 
@@ -73,6 +118,12 @@ def validate_patch_against_budget(
         if name not in model_params:
             raise ValueError(f"Target tensor '{name}' does not exist in model.")
         
+        # 6. Reject non-finite values (NaN / Inf)
+        if not np.isfinite(delta).all():
+            raise BudgetViolationError(
+                f"Tensor '{name}' delta contains non-finite values (NaN or Inf)."
+            )
+
         orig_p = model_params[name].detach().cpu().float().numpy()
         if orig_p.shape != delta.shape:
             raise ValueError(

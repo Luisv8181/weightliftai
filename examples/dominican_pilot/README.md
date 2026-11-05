@@ -17,7 +17,9 @@ This dataset comprises 50 curated triads comparing:
 - **Regional Representation:** Includes expressions across Santo Domingo, Cibao, and broader Dominican discourse.
 - **Partitioning:** Partitioned into 30 train, 10 validation, and 10 held-out test concepts.
 
-## Data Governance & Licensing
+## Data Governance, Status & Disclosures
 
-- **License:** CC-BY-4.0
-- **Governance:** Consented, non-identifiable conversational texts. Excludes private user messages and voice recordings.
+- **Status:** Provisional Research Curriculum (Author-Curated).
+- **Intended Purpose:** Initial structural representation analysis, layer atlas extraction, and 2D mapping diagnostics.
+- **Scientific Limitations:** This pilot is an author-curated curriculum, NOT an IRB-approved, field-recorded multi-speaker corpus. It does not carry formal multi-speaker informed consent or external native-speaker panel verification. Causal claims or cultural proficiency claims must not be asserted based on this provisional set alone.
+- **Next Steps:** Recruitment of an independent panel of native Dominican Spanish speakers from diverse regions (Cibao, Capital, Sur) to annotate regional variation, register acceptability, and disagreement distributions.
