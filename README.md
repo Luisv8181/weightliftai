@@ -71,6 +71,10 @@ WeightLiftAI is designed as an open-weight model interpretability, evaluation, a
 
 A proposed next product direction: a local-first visual research interface for mapping model representations across layers, languages, dialects, and affective concepts. It connects layer-wise activation capture, original-space similarity metrics, SAE feature exploration, matched counterfactuals, and later causal circuit experiments. Projections are visual aids, not literal pictures of a model's conceptual space. See [**`docs/REPRESENTATION_CARTOGRAPHY.md`**](docs/REPRESENTATION_CARTOGRAPHY.md) for the product plan, architecture, research guardrails, milestones, and references.
 
+## Jacobian Lens & J-Space Research
+
+A proposed research module will investigate whether Jacobian Lens methods can reveal stable, verbalizable activation directions in small open-weight models. This extends representation cartography from similarity/probe analysis toward output-influence analysis, while keeping J-space distinct from parameter/weight space. The work is currently a research specification—not an implemented capability—and requires numerical validation, context-averaged readouts, controls, and causal tests before claims. See [**`docs/JACOBIAN_LENS_RESEARCH.md`**](docs/JACOBIAN_LENS_RESEARCH.md) and [Issue #6](https://github.com/Luisv8181/weightliftai/issues/6).
+
 ## Agent Handoff & Medical Knowledge Research
 
 For coding agents and collaborators, start with [**`docs/AGENT_HANDOFF.md`**](docs/AGENT_HANDOFF.md). It summarizes the current research direction, prior work and tools to learn from, operating instructions, immediate priorities, and a proposed medical knowledge research track. The medical track separates terminology/knowledge grounding, multilingual clinical language, model representations, and safety evaluation; it is research-only and explicitly excludes patient data and clinical deployment.
