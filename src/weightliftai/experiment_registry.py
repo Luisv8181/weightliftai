@@ -3,6 +3,9 @@
 This module records experiment plans and lifecycle events. It deliberately does not
 load models, execute generated code, or modify checkpoints; those belong in a
 separate, explicitly approved execution layer.
+
+Features tamper-evident cryptographic event hash chaining, preregistration immutability
+enforcement, and mandatory human authorization gates.
 """
 from __future__ import annotations
 
@@ -15,6 +18,7 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA_VERSION = "1.0"
+GENESIS_HASH = "0" * 64
 STATES = (
     "draft",
     "preregistered",
@@ -41,6 +45,14 @@ TRANSITIONS = {
     "inconclusive": set(),
 }
 _ID_RE = re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9._-]{0,79}$")
+
+
+class EventChainTamperedError(ValueError):
+    """Raised when the cryptographic event hash chain fails verification."""
+
+
+class PreregistrationTamperedError(ValueError):
+    """Raised when an immutable preregistered specification has been modified."""
 
 
 def utc_now() -> str:
@@ -101,6 +113,7 @@ def build_experiment_manifest(
             "code_commit": None,
             "environment_lock_hash": None,
             "manifest_sha256": None,
+            "preregistered_evaluation_sha256": None,
         },
         "results": {},
         "limitations": [],
@@ -158,15 +171,88 @@ def load_experiment(path: str | Path) -> dict[str, Any]:
     return manifest
 
 
-def append_event(experiment_dir: str | Path, event_type: str, payload: dict[str, Any]) -> None:
-    """Append an event; existing history is never rewritten."""
+def append_event(experiment_dir: str | Path, event_type: str, payload: dict[str, Any]) -> dict[str, Any]:
+    """Append a tamper-evident event to the cryptographic event hash chain."""
     if not event_type.strip():
         raise ValueError("event_type must not be empty")
     directory = Path(experiment_dir)
     directory.mkdir(parents=True, exist_ok=True)
-    event = {"timestamp_utc": utc_now(), "event_type": event_type, "payload": payload}
-    with (directory / "events.jsonl").open("a", encoding="utf-8") as stream:
-        stream.write(canonical_json(event) + "\n")
+    events_file = directory / "events.jsonl"
+
+    events = []
+    if events_file.exists():
+        for line in events_file.read_text(encoding="utf-8").splitlines():
+            line_s = line.strip()
+            if line_s:
+                events.append(json.loads(line_s))
+
+    seq = len(events)
+    if seq == 0:
+        prev_hash = GENESIS_HASH
+    else:
+        last = events[-1]
+        prev_hash = last.get("event_hash") or sha256_json(last)
+
+    event_record = {
+        "sequence_number": seq,
+        "timestamp_utc": utc_now(),
+        "event_type": event_type,
+        "payload": payload,
+        "prev_hash": prev_hash,
+    }
+    event_record["event_hash"] = sha256_json(event_record)
+
+    with events_file.open("a", encoding="utf-8") as stream:
+        stream.write(canonical_json(event_record) + "\n")
+    return event_record
+
+
+def verify_event_chain(experiment_dir: str | Path) -> dict[str, Any]:
+    """Verify cryptographic integrity of the append-only event log."""
+    directory = Path(experiment_dir)
+    events_file = directory / "events.jsonl"
+    if not events_file.exists():
+        return {"valid": True, "event_count": 0, "head_hash": None}
+
+    lines = [l.strip() for l in events_file.read_text(encoding="utf-8").splitlines() if l.strip()]
+    expected_prev = GENESIS_HASH
+
+    for i, line in enumerate(lines):
+        try:
+            event = json.loads(line)
+        except Exception as exc:
+            raise EventChainTamperedError(f"Line {i} is not valid JSON") from exc
+
+        # Verify sequence number
+        if "sequence_number" in event and event["sequence_number"] != i:
+            raise EventChainTamperedError(
+                f"Event at line {i} has unexpected sequence_number: {event['sequence_number']} != {i}"
+            )
+
+        # Verify prev_hash
+        if "prev_hash" in event and event["prev_hash"] != expected_prev:
+            raise EventChainTamperedError(
+                f"Event at line {i} has broken hash link: prev_hash {event['prev_hash']} != {expected_prev}"
+            )
+
+        # Verify event_hash
+        if "event_hash" in event:
+            recorded_hash = event["event_hash"]
+            computed_payload = {k: v for k, v in event.items() if k != "event_hash"}
+            computed_hash = sha256_json(computed_payload)
+            if recorded_hash != computed_hash:
+                raise EventChainTamperedError(
+                    f"Event at line {i} has invalid event_hash: {recorded_hash} != {computed_hash}"
+                )
+            expected_prev = recorded_hash
+        else:
+            expected_prev = sha256_json(event)
+
+    return {
+        "valid": True,
+        "event_count": len(lines),
+        "head_hash": expected_prev if lines else None,
+    }
 
 
 def transition_experiment(
@@ -178,15 +264,44 @@ def transition_experiment(
     approval_reference: str | None = None,
 ) -> dict[str, Any]:
     """Apply a permitted lifecycle transition and record who authorized it."""
+    from weightliftai.governance import HumanApprovalGate
+
     directory = Path(experiment_dir)
     manifest = load_experiment(directory)
     current = manifest["state"]
+
     if new_state not in TRANSITIONS.get(current, set()):
         raise ValueError(f"invalid transition: {current} -> {new_state}")
     if not actor.strip() or not rationale.strip():
         raise ValueError("actor and rationale are required")
-    if new_state in {"intervention_ready", "accepted"} and not approval_reference:
-        raise ValueError(f"approval_reference is required before {new_state}")
+
+    # Preregistration Immutability Guardrail
+    if current != "draft":
+        prereg_hash = manifest["provenance"].get("preregistered_evaluation_sha256")
+        if prereg_hash:
+            current_eval_hash = sha256_json(manifest.get("evaluation", {}))
+            if current_eval_hash != prereg_hash:
+                raise PreregistrationTamperedError(
+                    "Preregistered evaluation parameters were modified after protocol freeze. "
+                    "Evaluation tampering is strictly prohibited under the validation protocol."
+                )
+
+    if new_state in {"intervention_ready", "accepted"}:
+        if not approval_reference:
+            raise ValueError(f"approval_reference is required before {new_state}")
+        gate_name = "INTERVENTION_READY" if new_state == "intervention_ready" else "PROMOTION"
+        if not HumanApprovalGate.verify_token(gate_name, approval_reference):
+            raise ValueError(
+                f"Invalid human approval reference for {gate_name}: '{approval_reference}'. "
+                "Must be a valid human-signed token (e.g. 'human-approval-xyz123' or 'human-promotion-xyz123')."
+            )
+
+    # When freezing into preregistered state, seal the evaluation parameters
+    if new_state == "preregistered":
+        manifest["provenance"]["preregistered_evaluation_sha256"] = sha256_json(
+            manifest["evaluation"]
+        )
+
     manifest["state"] = new_state
     manifest["updated_at_utc"] = utc_now()
     _write_json_atomic(directory / "manifest.json", manifest)
@@ -231,6 +346,30 @@ def record_results(
         "actor": actor, "source_hashes": source_hashes, "metrics_sha256": sha256_json(results)
     })
     return manifest
+
+
+def request_hidden_test_access(
+    experiment_dir: str | Path,
+    *,
+    actor: str,
+    approval_reference: str,
+) -> dict[str, Any]:
+    """Record authorized access to a sealed hidden test set requiring human gate token."""
+    from weightliftai.governance import HumanApprovalGate
+
+    if not HumanApprovalGate.verify_token("HIDDEN_TEST_ACCESS", approval_reference):
+        raise ValueError(
+            f"Invalid human approval reference for hidden test access: '{approval_reference}'. "
+            "Must be a human-signed token (e.g. 'human-hidden_test_access-xyz123')."
+        )
+    directory = Path(experiment_dir)
+    manifest = load_experiment(directory)
+    if manifest["state"] not in {"evaluated", "intervention_complete"}:
+        raise ValueError("Hidden test access only permitted during formal evaluation stages.")
+    return append_event(directory, "hidden_test_accessed", {
+        "actor": actor,
+        "approval_reference": approval_reference,
+    })
 
 
 def read_events(experiment_dir: str | Path) -> list[dict[str, Any]]:
