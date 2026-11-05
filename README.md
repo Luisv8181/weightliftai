@@ -75,6 +75,10 @@ A proposed next product direction: a local-first visual research interface for m
 
 A proposed research module will investigate whether Jacobian Lens methods can reveal stable, verbalizable activation directions in small open-weight models. This extends representation cartography from similarity/probe analysis toward output-influence analysis, while keeping J-space distinct from parameter/weight space. The work is currently a research specification—not an implemented capability—and requires numerical validation, context-averaged readouts, controls, and causal tests before claims. See [**`docs/JACOBIAN_LENS_RESEARCH.md`**](docs/JACOBIAN_LENS_RESEARCH.md) and [Issue #6](https://github.com/Luisv8181/weightliftai/issues/6).
 
+## Weight-Space Programming & Continuous Model Improvement
+
+A proposed research direction explores whether language models can inspect neural-network weights, diagnose controlled defects, generate small specialist networks, and propose bounded repairs. The long-term architecture pairs a local optimization specialist with deterministic diagnostics, sandboxed patch generation, independent evaluation, distribution-shift testing, and human-approved promotion. This is a research specification—not an implemented capability or a claim of general autonomous weight editing. See [**`docs/WEIGHT_SPACE_PROGRAMMING.md`**](docs/WEIGHT_SPACE_PROGRAMMING.md) and [Issue #8](https://github.com/Luisv8181/weightliftai/issues/8).
+
 ## Agent Handoff & Medical Knowledge Research
 
 For coding agents and collaborators, start with [**`docs/AGENT_HANDOFF.md`**](docs/AGENT_HANDOFF.md). It summarizes the current research direction, prior work and tools to learn from, operating instructions, immediate priorities, and a proposed medical knowledge research track. The medical track separates terminology/knowledge grounding, multilingual clinical language, model representations, and safety evaluation; it is research-only and explicitly excludes patient data and clinical deployment.
