@@ -74,6 +74,7 @@ def main() -> None:
     atlas_parser.add_argument("model_id", help="Hugging Face model ID or path.")
     atlas_parser.add_argument("--dataset", help="Path to matched dataset CSV/JSON.")
     atlas_parser.add_argument("--medical-pilot", action="store_true", help="Use built-in 50-concept medical pilot dataset.")
+    atlas_parser.add_argument("--dominican-pilot", action="store_true", help="Use built-in 50-concept Dominican Spanish pilot dataset.")
     atlas_parser.add_argument("--split", choices=["all", "train", "val", "test"], default="test", help="Dataset split to evaluate (default: test).")
     atlas_parser.add_argument("--layers", default="samples", help="Comma-separated layer indices, 'all', or 'samples' (5 depths: 0, 25%%, 50%%, 75%%, 100%%).")
     atlas_parser.add_argument("--pooling", choices=["mean", "last", "max"], default="mean", help="Token pooling method (default: mean).")
@@ -89,6 +90,7 @@ def main() -> None:
     map_parser.add_argument("model_id", help="Hugging Face model ID or path.")
     map_parser.add_argument("--dataset", help="Path to matched dataset CSV/JSON.")
     map_parser.add_argument("--medical-pilot", action="store_true", help="Use built-in 50-concept medical pilot dataset.")
+    map_parser.add_argument("--dominican-pilot", action="store_true", help="Use built-in 50-concept Dominican Spanish pilot dataset.")
     map_parser.add_argument("--split", choices=["all", "train", "val", "test"], default="test",
                             help="Dataset split (default: test; use 'all' for exploratory mapping).")
     map_parser.add_argument("--layer", type=int, default=13, help="Layer index to project (default: 13).")
@@ -100,6 +102,52 @@ def main() -> None:
     map_parser.add_argument("--batch-size", type=int, default=8, help="Batch size for extraction (default: 8).")
     map_parser.add_argument("--out-dir", default="map_output", help="Directory to save map artifacts and HTML report.")
     _add_model_safety_flags(map_parser)
+
+    exp_parser = subparsers.add_parser("experiment", help="Manage controlled scientific experiments.")
+    exp_sub = exp_parser.add_subparsers(dest="exp_command", required=True)
+
+    init_p = exp_sub.add_parser("init", help="Create an experiment manifest in draft state.")
+    init_p.add_argument("--root-dir", default="experiments", help="Root directory for experiments (default: experiments).")
+    init_p.add_argument("--id", help="Safe experiment ID (optional).")
+    init_p.add_argument("--hypothesis", required=True, help="Preregistered scientific hypothesis.")
+    init_p.add_argument("--model-id", required=True, help="Model identifier.")
+    init_p.add_argument("--model-revision", required=True, help="Immutable model revision or commit hash.")
+    init_p.add_argument("--dataset-id", required=True, help="Dataset identifier.")
+    init_p.add_argument("--split", required=True, help="Dataset split.")
+    init_p.add_argument("--metric", required=True, help="Preregistered primary metric name.")
+    init_p.add_argument("--criterion", required=True, help="Preregistered success criterion.")
+
+    trans_p = exp_sub.add_parser("transition", help="Transition an experiment lifecycle state.")
+    trans_p.add_argument("path", help="Path to experiment run directory.")
+    trans_p.add_argument("--to", required=True, help="Target state.")
+    trans_p.add_argument("--actor", required=True, help="Authorizing researcher or agent identity.")
+    trans_p.add_argument("--rationale", required=True, help="Reason for transition.")
+    trans_p.add_argument("--approval-ref", help="Mandatory approval reference before intervention_ready and accepted.")
+
+    rec_p = exp_sub.add_parser("record", help="Record baseline or intervention metrics.")
+    rec_p.add_argument("path", help="Path to experiment run directory.")
+    rec_p.add_argument("--actor", required=True, help="Recording actor.")
+    rec_p.add_argument("--metrics-json", required=True, help="JSON string or file path containing metric key-values.")
+    rec_p.add_argument("--source-hashes-json", required=True, help="JSON string or file path mapping artifacts to SHA256 hashes.")
+
+    hist_p = exp_sub.add_parser("history", help="Show manifest and event history.")
+    hist_p.add_argument("path", help="Path to experiment run directory.")
+
+    jac_parser = subparsers.add_parser("jacobian", help="Compute Jacobian Lens output influence and diagnostics.")
+    jac_parser.add_argument("model_id", help="Model ID or path.")
+    jac_parser.add_argument("--text", required=True, help="Input prompt text.")
+    jac_parser.add_argument("--layer", type=int, default=0, help="Layer index to analyze.")
+    jac_parser.add_argument("--top-k", type=int, default=5, help="Number of candidate tokens to evaluate (default: 5).")
+    jac_parser.add_argument("--position", type=int, default=-1, help="Token position (default: -1 for last token).")
+    jac_parser.add_argument("--device", default="auto", help="Compute device ('cuda', 'cpu', 'auto').")
+    _add_model_safety_flags(jac_parser)
+
+    patch_parser = subparsers.add_parser("patch", help="Weight-space programming diagnostics and tests.")
+    patch_sub = patch_parser.add_subparsers(dest="patch_command", required=True)
+    patch_sub.add_parser("test-defect", help="Run the reproducible known-defect recovery experiment.")
+    insp_p = patch_sub.add_parser("inspect", help="Inspect model parameter shapes, norms, and checksums.")
+    insp_p.add_argument("model_id", help="Model ID or path.")
+    _add_model_safety_flags(insp_p)
 
     local_parser = subparsers.add_parser("local-dir", help="Summarize files in a local model directory.")
     local_parser.add_argument("path")
@@ -166,8 +214,13 @@ def main() -> None:
                 generate_atlas_html,
             )
             from weightliftai.cartography.medical_pilot import MedicalPilotDataset
+            from weightliftai.cartography.dominican_pilot import DominicanPilotDataset
 
-            if args.medical_pilot:
+            if args.dominican_pilot:
+                pilot = DominicanPilotDataset()
+                df = pilot.to_matched_dataframe(split=None if args.split == "all" else args.split)
+                dataset_name = pilot.dataset_ref.dataset_id
+            elif args.medical_pilot:
                 pilot = MedicalPilotDataset()
                 df = pilot.to_matched_dataframe(split=None if args.split == "all" else args.split)
                 dataset_name = pilot.dataset_ref.dataset_id
@@ -181,7 +234,7 @@ def main() -> None:
                     df = pd.read_json(p)
                 dataset_name = p.stem
             else:
-                parser.error("Either --dataset or --medical-pilot must be specified.")
+                parser.error("Either --dataset, --medical-pilot, or --dominican-pilot must be specified.")
 
             if args.device == "auto":
                 dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -302,7 +355,13 @@ def main() -> None:
             if args.split == "all":
                 print("Notice: --split all is an exploratory setting over combined data. Held-out evaluations should use --split test.", file=sys.stderr)
 
-            if args.medical_pilot:
+            from weightliftai.cartography.dominican_pilot import DominicanPilotDataset
+
+            if args.dominican_pilot:
+                pilot = DominicanPilotDataset()
+                df = pilot.to_matched_dataframe(split=None if args.split == "all" else args.split)
+                dataset_name = pilot.dataset_ref.dataset_id
+            elif args.medical_pilot:
                 pilot = MedicalPilotDataset()
                 df = pilot.to_matched_dataframe(split=None if args.split == "all" else args.split)
                 dataset_name = pilot.dataset_ref.dataset_id
@@ -316,7 +375,7 @@ def main() -> None:
                     df = pd.read_json(p)
                 dataset_name = p.stem
             else:
-                parser.error("Either --dataset or --medical-pilot must be specified.")
+                parser.error("Either --dataset, --medical-pilot, or --dominican-pilot must be specified.")
 
             if args.device == "auto":
                 dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -425,6 +484,115 @@ def main() -> None:
                 "projection_artifact_file": str(proj_path),
                 "html_report": str(html_path),
             })
+        elif args.command == "experiment":
+            from pathlib import Path
+            from weightliftai.experiment_registry import (
+                build_experiment_manifest,
+                create_experiment,
+                load_experiment,
+                read_events,
+                record_results,
+                transition_experiment,
+            )
+
+            if args.exp_command == "init":
+                manifest = build_experiment_manifest(
+                    hypothesis=args.hypothesis,
+                    model={"model_id": args.model_id, "revision": args.model_revision},
+                    evaluation={
+                        "dataset_id": args.dataset_id,
+                        "split": args.split,
+                        "primary_metric": args.metric,
+                        "success_criterion": args.criterion,
+                    },
+                    experiment_id=args.id,
+                )
+                exp_path = create_experiment(args.root_dir, manifest)
+                _print({"status": "created", "experiment_path": str(exp_path), "manifest": manifest})
+            elif args.exp_command == "transition":
+                updated = transition_experiment(
+                    args.path,
+                    args.to,
+                    actor=args.actor,
+                    rationale=args.rationale,
+                    approval_reference=args.approval_ref,
+                )
+                _print({"status": "transitioned", "state": updated["state"], "manifest": updated})
+            elif args.exp_command == "record":
+                # Parse metrics
+                m_str = args.metrics_json
+                if Path(m_str).exists():
+                    m_data = json.loads(Path(m_str).read_text(encoding="utf-8"))
+                else:
+                    m_data = json.loads(m_str)
+
+                # Parse source hashes
+                h_str = args.source_hashes_json
+                if Path(h_str).exists():
+                    h_data = json.loads(Path(h_str).read_text(encoding="utf-8"))
+                else:
+                    h_data = json.loads(h_str)
+
+                updated = record_results(
+                    args.path,
+                    m_data,
+                    actor=args.actor,
+                    source_hashes=h_data,
+                )
+                _print({"status": "results_recorded", "manifest": updated})
+            elif args.exp_command == "history":
+                manifest = load_experiment(args.path)
+                events = read_events(args.path)
+                _print({"manifest": manifest, "events": events})
+        elif args.command == "jacobian":
+            import torch
+            from transformers import AutoModelForCausalLM, AutoTokenizer
+            from weightliftai.cartography.jacobian_lens import compare_logit_lens_and_jacobian_lens
+
+            if args.device == "auto":
+                dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            else:
+                dev = torch.device(args.device)
+
+            tokenizer = AutoTokenizer.from_pretrained(
+                args.model_id,
+                local_files_only=args.local_files_only,
+                trust_remote_code=args.trust_remote_code,
+            )
+            model = AutoModelForCausalLM.from_pretrained(
+                args.model_id,
+                torch_dtype=torch.float32,
+                device_map="auto" if dev.type == "cuda" else None,
+                local_files_only=args.local_files_only,
+                trust_remote_code=args.trust_remote_code,
+            )
+            result = compare_logit_lens_and_jacobian_lens(
+                model=model,
+                tokenizer=tokenizer,
+                text=args.text,
+                layer_idx=args.layer,
+                top_k=args.top_k,
+                position=args.position,
+                device=dev,
+            )
+            _print(result)
+        elif args.command == "patch":
+            if args.patch_command == "test-defect":
+                from weightliftai.weight_programming.toy_defect import run_known_defect_experiment
+                res = run_known_defect_experiment()
+                _print(res)
+            elif args.patch_command == "inspect":
+                import torch
+                from transformers import AutoModelForCausalLM
+                from weightliftai.weight_programming.inspector import inspect_model_parameters
+                model = AutoModelForCausalLM.from_pretrained(
+                    args.model_id,
+                    torch_dtype=torch.float32,
+                    low_cpu_mem_usage=True,
+                    local_files_only=args.local_files_only,
+                    trust_remote_code=args.trust_remote_code,
+                )
+                _print(inspect_model_parameters(model))
         elif args.command == "local-dir":
             _print(inspect_local_directory(args.path))
     except Exception as exc:

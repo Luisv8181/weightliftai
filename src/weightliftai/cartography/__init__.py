@@ -1,5 +1,13 @@
 """Representation Cartography & Knowledge Grounding module."""
 
+from weightliftai.cartography.dominican_pilot import DominicanPilotDataset
+from weightliftai.cartography.jacobian_lens import (
+    aggregate_jacobian_corpus,
+    check_finite_differences,
+    compare_logit_lens_and_jacobian_lens,
+    compute_vjp,
+    get_unembedding_weight,
+)
 from weightliftai.cartography.layer_atlas import (
     compute_layer_metrics,
     content_token_mask,
@@ -41,6 +49,7 @@ __all__ = [
     "ConceptRelation",
     "ConceptSynonym",
     "DatasetRef",
+    "DominicanPilotDataset",
     "KnowledgeProbe",
     "MedicalConcept",
     "MedicalPilotDataset",
@@ -48,14 +57,19 @@ __all__ = [
     "ProjectionArtifact",
     "RepresentationArtifact",
     "ValidationError",
+    "aggregate_jacobian_corpus",
     "build_point_inspection_data",
+    "check_finite_differences",
+    "compare_logit_lens_and_jacobian_lens",
     "compute_distortion_metrics",
     "compute_layer_metrics",
+    "compute_vjp",
     "content_token_mask",
     "extract_layer_representations",
     "find_decoder_layers",
     "generate_atlas_html",
     "generate_map_html",
+    "get_unembedding_weight",
     "project_representations",
     "validate_concept_relations",
     "validate_knowledge_probes",
