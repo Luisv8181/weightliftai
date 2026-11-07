@@ -1,0 +1,274 @@
+{
+  "timestamp": "2026-11-07 16:49:41",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "elapsed_seconds": 10.23,
+  "total_stimuli": 18,
+  "categories": {
+    "dominican_idiom": 6,
+    "crisis_signal": 6,
+    "neutral_control": 6
+  },
+  "num_layers": 24,
+  "layer_profiles": [
+    {
+      "layer_index": 0,
+      "idiom_sensitivity": 7.2785,
+      "crisis_sensitivity": 4.3951,
+      "neutral_sensitivity": 4.4277,
+      "idiom_alignment": 0.928,
+      "crisis_alignment": 0.7585,
+      "differential_ratio": 1.3183
+    },
+    {
+      "layer_index": 1,
+      "idiom_sensitivity": 5.5436,
+      "crisis_sensitivity": 3.3484,
+      "neutral_sensitivity": 3.5224,
+      "idiom_alignment": 0.9176,
+      "crisis_alignment": 0.7401,
+      "differential_ratio": 1.2622
+    },
+    {
+      "layer_index": 2,
+      "idiom_sensitivity": 4.5259,
+      "crisis_sensitivity": 2.7798,
+      "neutral_sensitivity": 3.0492,
+      "idiom_alignment": 0.9023,
+      "crisis_alignment": 0.7219,
+      "differential_ratio": 1.198
+    },
+    {
+      "layer_index": 3,
+      "idiom_sensitivity": 3.8056,
+      "crisis_sensitivity": 2.4387,
+      "neutral_sensitivity": 2.6358,
+      "idiom_alignment": 0.8945,
+      "crisis_alignment": 0.7284,
+      "differential_ratio": 1.1845
+    },
+    {
+      "layer_index": 4,
+      "idiom_sensitivity": 3.2464,
+      "crisis_sensitivity": 2.1751,
+      "neutral_sensitivity": 2.3664,
+      "idiom_alignment": 0.8791,
+      "crisis_alignment": 0.7255,
+      "differential_ratio": 1.1455
+    },
+    {
+      "layer_index": 5,
+      "idiom_sensitivity": 2.7911,
+      "crisis_sensitivity": 2.0802,
+      "neutral_sensitivity": 2.1034,
+      "idiom_alignment": 0.8685,
+      "crisis_alignment": 0.7569,
+      "differential_ratio": 1.158
+    },
+    {
+      "layer_index": 6,
+      "idiom_sensitivity": 2.7193,
+      "crisis_sensitivity": 2.1203,
+      "neutral_sensitivity": 2.1388,
+      "idiom_alignment": 0.8542,
+      "crisis_alignment": 0.7579,
+      "differential_ratio": 1.1314
+    },
+    {
+      "layer_index": 7,
+      "idiom_sensitivity": 2.7673,
+      "crisis_sensitivity": 2.1867,
+      "neutral_sensitivity": 2.2352,
+      "idiom_alignment": 0.8449,
+      "crisis_alignment": 0.7523,
+      "differential_ratio": 1.1082
+    },
+    {
+      "layer_index": 8,
+      "idiom_sensitivity": 2.7085,
+      "crisis_sensitivity": 2.3443,
+      "neutral_sensitivity": 2.412,
+      "idiom_alignment": 0.8086,
+      "crisis_alignment": 0.7495,
+      "differential_ratio": 1.0474
+    },
+    {
+      "layer_index": 9,
+      "idiom_sensitivity": 2.5558,
+      "crisis_sensitivity": 2.491,
+      "neutral_sensitivity": 2.5601,
+      "idiom_alignment": 0.7609,
+      "crisis_alignment": 0.75,
+      "differential_ratio": 0.9857
+    },
+    {
+      "layer_index": 10,
+      "idiom_sensitivity": 2.4866,
+      "crisis_sensitivity": 2.4248,
+      "neutral_sensitivity": 2.2485,
+      "idiom_alignment": 0.8026,
+      "crisis_alignment": 0.7926,
+      "differential_ratio": 1.0921
+    },
+    {
+      "layer_index": 11,
+      "idiom_sensitivity": 2.4328,
+      "crisis_sensitivity": 2.4954,
+      "neutral_sensitivity": 2.3111,
+      "idiom_alignment": 0.7828,
+      "crisis_alignment": 0.7931,
+      "differential_ratio": 1.0662
+    },
+    {
+      "layer_index": 12,
+      "idiom_sensitivity": 2.4615,
+      "crisis_sensitivity": 2.3353,
+      "neutral_sensitivity": 2.1471,
+      "idiom_alignment": 0.8166,
+      "crisis_alignment": 0.796,
+      "differential_ratio": 1.117
+    },
+    {
+      "layer_index": 13,
+      "idiom_sensitivity": 2.3809,
+      "crisis_sensitivity": 2.3266,
+      "neutral_sensitivity": 2.0071,
+      "idiom_alignment": 0.8294,
+      "crisis_alignment": 0.8208,
+      "differential_ratio": 1.1727
+    },
+    {
+      "layer_index": 14,
+      "idiom_sensitivity": 2.1691,
+      "crisis_sensitivity": 2.1736,
+      "neutral_sensitivity": 1.8775,
+      "idiom_alignment": 0.8195,
+      "crisis_alignment": 0.8203,
+      "differential_ratio": 1.1565
+    },
+    {
+      "layer_index": 15,
+      "idiom_sensitivity": 1.7757,
+      "crisis_sensitivity": 1.9089,
+      "neutral_sensitivity": 1.7194,
+      "idiom_alignment": 0.775,
+      "crisis_alignment": 0.8041,
+      "differential_ratio": 1.0715
+    },
+    {
+      "layer_index": 16,
+      "idiom_sensitivity": 1.6212,
+      "crisis_sensitivity": 1.7369,
+      "neutral_sensitivity": 1.7185,
+      "idiom_alignment": 0.7368,
+      "crisis_alignment": 0.7661,
+      "differential_ratio": 0.977
+    },
+    {
+      "layer_index": 17,
+      "idiom_sensitivity": 1.4524,
+      "crisis_sensitivity": 1.5774,
+      "neutral_sensitivity": 1.5961,
+      "idiom_alignment": 0.7211,
+      "crisis_alignment": 0.7566,
+      "differential_ratio": 0.9491
+    },
+    {
+      "layer_index": 18,
+      "idiom_sensitivity": 1.3466,
+      "crisis_sensitivity": 1.3862,
+      "neutral_sensitivity": 1.3741,
+      "idiom_alignment": 0.7531,
+      "crisis_alignment": 0.7653,
+      "differential_ratio": 0.9944
+    },
+    {
+      "layer_index": 19,
+      "idiom_sensitivity": 1.1761,
+      "crisis_sensitivity": 1.193,
+      "neutral_sensitivity": 1.1736,
+      "idiom_alignment": 0.7625,
+      "crisis_alignment": 0.7685,
+      "differential_ratio": 1.0093
+    },
+    {
+      "layer_index": 20,
+      "idiom_sensitivity": 1.0013,
+      "crisis_sensitivity": 1.0557,
+      "neutral_sensitivity": 1.0929,
+      "idiom_alignment": 0.7241,
+      "crisis_alignment": 0.7469,
+      "differential_ratio": 0.941
+    },
+    {
+      "layer_index": 21,
+      "idiom_sensitivity": 0.9083,
+      "crisis_sensitivity": 1.0241,
+      "neutral_sensitivity": 1.0593,
+      "idiom_alignment": 0.6949,
+      "crisis_alignment": 0.7473,
+      "differential_ratio": 0.9121
+    },
+    {
+      "layer_index": 22,
+      "idiom_sensitivity": 0.792,
+      "crisis_sensitivity": 0.9457,
+      "neutral_sensitivity": 1.0259,
+      "idiom_alignment": 0.6481,
+      "crisis_alignment": 0.7267,
+      "differential_ratio": 0.8469
+    },
+    {
+      "layer_index": 23,
+      "idiom_sensitivity": 0.4676,
+      "crisis_sensitivity": 0.4184,
+      "neutral_sensitivity": 0.3902,
+      "idiom_alignment": 0.8332,
+      "crisis_alignment": 0.7903,
+      "differential_ratio": 1.1354
+    }
+  ],
+  "thx02_diagnosis": {
+    "primary_circuit_locus": "early_lexical",
+    "attenuation_risk": "cultural_flattening",
+    "target_layer_index": 0,
+    "target_subspace": "mlp_down_proj",
+    "confidence": 0.89,
+    "decision_probabilities": {
+      "mid_pragmatic_affective": 0.1,
+      "early_lexical": 0.85,
+      "late_unembedding": 0.07
+    },
+    "rationale": "Layer 0 exhibits differential ratio 1.32. THX-02 decision model localizes pragmatic affective circuit to early_lexical.",
+    "model_identifier": "HAL-X-AI/THX-02 (Calibrated Engine)"
+  },
+  "solver_result": {
+    "status": "APPLIED",
+    "target_layer_index": 0,
+    "parameter_name": "self_attn.q_proj.weight",
+    "frobenius_norm_delta": 0.010001,
+    "clean_projection_preservation_score": 1.0,
+    "weights_modified": true,
+    "diagnostic_receipt": {
+      "solver": "closed_form_rank1_svd_nullspace",
+      "diagnosed_locus": "early_lexical",
+      "diagnosed_risk": "cultural_flattening",
+      "target_subspace": "mlp_down_proj",
+      "delta_shape": [
+        896,
+        896
+      ]
+    }
+  },
+  "summary": {
+    "peak_differential_layer": 0,
+    "peak_differential_ratio": 1.3183,
+    "diagnosed_locus": "early_lexical",
+    "diagnosed_risk": "cultural_flattening",
+    "solver_status": "APPLIED",
+    "weights_modified": true,
+    "frobenius_norm_delta": 0.010001,
+    "clean_projection_preservation_score": 1.0
+  }
+}
