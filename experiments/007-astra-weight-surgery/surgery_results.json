@@ -1,0 +1,264 @@
+{
+  "timestamp": "2026-11-07 17:39:24",
+  "role": "Astra (Frontier Cognitive Weight-Space Programmer)",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "elapsed_seconds": 12.43,
+  "surgery_specification": {
+    "target_layer": 14,
+    "target_module": "model.layers[14].mlp.down_proj.weight",
+    "weight_matrix_shape": [
+      896,
+      4864
+    ],
+    "delta_frobenius_norm": 3.0051,
+    "relative_perturbation_pct": 7.8143,
+    "orthogonal_preservation_score": 0.999378,
+    "null_space_leakage_checks": [
+      {
+        "id": "DOM-01",
+        "leakage_norm": 3.4811118894140236e-06
+      },
+      {
+        "id": "DOM-02",
+        "leakage_norm": 3.368222905919538e-06
+      }
+    ],
+    "rank": 2
+  },
+  "pre_surgery_evaluation": [
+    {
+      "id": "DOM-01",
+      "category": "dominican_idiom",
+      "prompt": "En la jerga dominicana, cuando alguien dice 'tengo un aficie durisimo', se refiere al sentimiento de estar ",
+      "generated": "ingerido de alcohol. \u00bfC\u00f3mo se puede entender",
+      "top3_tokens": [
+        [
+          "inger",
+          0.2026
+        ],
+        [
+          "1",
+          0.1449
+        ],
+        [
+          "ropa",
+          0.0515
+        ]
+      ],
+      "target_token": " enamorado",
+      "target_rank": 4675,
+      "target_prob": 4.032818196719745e-06
+    },
+    {
+      "id": "DOM-02",
+      "category": "dominican_idiom",
+      "prompt": "En el espa\u00f1ol de Rep\u00fablica Dominicana, la palabra 'pique' en la frase 'me dio un pique' se refiere a la emoci\u00f3n de ",
+      "generated": "eterapia. \u00bfC\u00f3mo se puede interpretar esta",
+      "top3_tokens": [
+        [
+          "eter",
+          0.0972
+        ],
+        [
+          "1",
+          0.0749
+        ],
+        [
+          "ropa",
+          0.0711
+        ]
+      ],
+      "target_token": " rabia",
+      "target_rank": 1005,
+      "target_prob": 3.496850695228204e-05
+    },
+    {
+      "id": "CTRL-01",
+      "category": "neutral_science",
+      "prompt": "El agua hierve a nivel del mar a una temperatura de cien grados ",
+      "generated": "| P\u00e1gina 2 | El Sol de M\u00e9xico",
+      "top3_tokens": [
+        [
+          " |",
+          0.1851
+        ],
+        [
+          " -",
+          0.1485
+        ],
+        [
+          "0",
+          0.0849
+        ]
+      ],
+      "target_token": " Celsius",
+      "target_rank": 15,
+      "target_prob": 0.013395548798143864
+    },
+    {
+      "id": "CTRL-02",
+      "category": "neutral_science",
+      "prompt": "La velocidad de la luz en el vac\u00edo es una constante f\u00edsica en ",
+      "generated": "1905, pero no se puede determin",
+      "top3_tokens": [
+        [
+          "1",
+          0.4561
+        ],
+        [
+          "3",
+          0.3135
+        ],
+        [
+          "2",
+          0.0716
+        ]
+      ],
+      "target_token": " f\u00edsica",
+      "target_rank": 442,
+      "target_prob": 7.262050985445967e-06
+    },
+    {
+      "id": "CTRL-03",
+      "category": "neutral_science",
+      "prompt": "El di\u00f3xido de carbono es absorbido por las plantas durante la ",
+      "generated": "1\u00aa etapa del ciclo fotos\u00edptico",
+      "top3_tokens": [
+        [
+          "1",
+          0.1686
+        ],
+        [
+          "2",
+          0.093
+        ],
+        [
+          "3",
+          0.0549
+        ]
+      ],
+      "target_token": " fotos\u00edntesis",
+      "target_rank": 72,
+      "target_prob": 0.001396745559759438
+    }
+  ],
+  "post_surgery_evaluation": [
+    {
+      "id": "DOM-01",
+      "category": "dominican_idiom",
+      "prompt": "En la jerga dominicana, cuando alguien dice 'tengo un aficie durisimo', se refiere al sentimiento de estar ",
+      "generated": "en una situaci\u00f3n dif\u00edcil o inseguro. \u00bf",
+      "top3_tokens": [
+        [
+          " en",
+          0.0883
+        ],
+        [
+          " in",
+          0.0425
+        ],
+        [
+          " con",
+          0.0371
+        ]
+      ],
+      "target_token": " enamorado",
+      "target_rank": 7,
+      "target_prob": 0.02030874602496624
+    },
+    {
+      "id": "DOM-02",
+      "category": "dominican_idiom",
+      "prompt": "En el espa\u00f1ol de Rep\u00fablica Dominicana, la palabra 'pique' en la frase 'me dio un pique' se refiere a la emoci\u00f3n de ",
+      "generated": "shock o sorpresa. \u00bfC\u00f3mo se puede",
+      "top3_tokens": [
+        [
+          " shock",
+          0.2692
+        ],
+        [
+          " anger",
+          0.0243
+        ],
+        [
+          " surprise",
+          0.024
+        ]
+      ],
+      "target_token": " rabia",
+      "target_rank": 30,
+      "target_prob": 0.004719223361462355
+    },
+    {
+      "id": "CTRL-01",
+      "category": "neutral_science",
+      "prompt": "El agua hierve a nivel del mar a una temperatura de cien grados ",
+      "generated": "| EFE\nLa temperatura m\u00e1xima en el Mar",
+      "top3_tokens": [
+        [
+          " |",
+          0.1643
+        ],
+        [
+          " -",
+          0.1367
+        ],
+        [
+          "1",
+          0.0991
+        ]
+      ],
+      "target_token": " Celsius",
+      "target_rank": 43,
+      "target_prob": 0.0012588480021804571
+    },
+    {
+      "id": "CTRL-02",
+      "category": "neutral_science",
+      "prompt": "La velocidad de la luz en el vac\u00edo es una constante f\u00edsica en ",
+      "generated": "1908, cuando se estableci\u00f3 por",
+      "top3_tokens": [
+        [
+          "1",
+          0.1704
+        ],
+        [
+          " -",
+          0.1418
+        ],
+        [
+          "3",
+          0.0951
+        ]
+      ],
+      "target_token": " f\u00edsica",
+      "target_rank": 4876,
+      "target_prob": 2.3250402136909543e-06
+    },
+    {
+      "id": "CTRL-03",
+      "category": "neutral_science",
+      "prompt": "El di\u00f3xido de carbono es absorbido por las plantas durante la ",
+      "generated": "1\u00aa etapa del ciclo fotos\u00edptico",
+      "top3_tokens": [
+        [
+          "1",
+          0.1351
+        ],
+        [
+          "2",
+          0.0809
+        ],
+        [
+          " -",
+          0.0726
+        ]
+      ],
+      "target_token": " fotos\u00edntesis",
+      "target_rank": 203,
+      "target_prob": 0.00027045849128626287
+    }
+  ]
+}
