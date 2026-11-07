@@ -1,0 +1,270 @@
+{
+  "experiment": "008-joint-subspace-surgery",
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "target_layer": 14,
+  "elapsed_seconds": 8.43,
+  "idiom_targets": [
+    {
+      "id": "DOM-01",
+      "target_word": " enamorado",
+      "pre_prob": 0.0004410784167703241,
+      "pre_rank": 280,
+      "post_prob": 0.0028238841332495213,
+      "post_rank": 54,
+      "boost_factor": 6.4,
+      "top3_before": [
+        [
+          " __",
+          0.06186
+        ],
+        [
+          " a",
+          0.04324
+        ],
+        [
+          " seguro",
+          0.0376
+        ]
+      ],
+      "top3_after": [
+        [
+          " __",
+          0.0572
+        ],
+        [
+          " a",
+          0.05418
+        ],
+        [
+          " seguro",
+          0.03285
+        ]
+      ]
+    },
+    {
+      "id": "DOM-02",
+      "target_word": " rabia",
+      "pre_prob": 0.0007262032013386488,
+      "pre_rank": 138,
+      "post_prob": 0.0364978052675724,
+      "post_rank": 5,
+      "boost_factor": 50.3,
+      "top3_before": [
+        [
+          " __",
+          0.20985
+        ],
+        [
+          " energía",
+          0.03401
+        ],
+        [
+          " -",
+          0.02979
+        ]
+      ],
+      "top3_after": [
+        [
+          " __",
+          0.12027
+        ],
+        [
+          " ans",
+          0.06082
+        ],
+        [
+          " ale",
+          0.04233
+        ]
+      ]
+    },
+    {
+      "id": "DOM-03",
+      "target_word": " furia",
+      "pre_prob": 0.0013340322766453028,
+      "pre_rank": 98,
+      "post_prob": 0.030734580010175705,
+      "post_rank": 4,
+      "boost_factor": 23.0,
+      "top3_before": [
+        [
+          " __",
+          0.10218
+        ],
+        [
+          " m",
+          0.06951
+        ],
+        [
+          " que",
+          0.04042
+        ]
+      ],
+      "top3_after": [
+        [
+          " __",
+          0.07918
+        ],
+        [
+          " m",
+          0.05865
+        ],
+        [
+          " d",
+          0.03845
+        ]
+      ]
+    },
+    {
+      "id": "DOM-04",
+      "target_word": " cansado",
+      "pre_prob": 0.003981012385338545,
+      "pre_rank": 35,
+      "post_prob": 0.1801491230726242,
+      "post_rank": 1,
+      "boost_factor": 45.3,
+      "top3_before": [
+        [
+          " __",
+          0.1651
+        ],
+        [
+          "____",
+          0.09125
+        ],
+        [
+          " (",
+          0.06331
+        ]
+      ],
+      "top3_after": [
+        [
+          " cans",
+          0.18015
+        ],
+        [
+          " __",
+          0.14954
+        ],
+        [
+          "____",
+          0.0961
+        ]
+      ]
+    },
+    {
+      "id": "DOM-05",
+      "target_word": " sospecha",
+      "pre_prob": 0.0006758534582331777,
+      "pre_rank": 172,
+      "post_prob": 0.0208745077252388,
+      "post_rank": 4,
+      "boost_factor": 30.9,
+      "top3_before": [
+        [
+          " __",
+          0.12693
+        ],
+        [
+          " gan",
+          0.05764
+        ],
+        [
+          " cur",
+          0.04229
+        ]
+      ],
+      "top3_after": [
+        [
+          " __",
+          0.10259
+        ],
+        [
+          " cur",
+          0.06674
+        ],
+        [
+          " su",
+          0.03191
+        ]
+      ]
+    }
+  ],
+  "control_preservation": [
+    {
+      "prompt": "El agua hierve a cien grados Celsius a nivel del mar.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.3503486216068268,
+      "prob_after": 0.3434767425060272,
+      "prob_diff": 0.0068718791007995605,
+      "identical": true
+    },
+    {
+      "prompt": "La velocidad de la luz en el vacío es de trescientos mil kilómetros por segundo.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.2323007881641388,
+      "prob_after": 0.23057296872138977,
+      "prob_diff": 0.0017278194427490234,
+      "identical": true
+    },
+    {
+      "prompt": "El dióxido de carbono es absorbido por las plantas durante la fotosíntesis.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.11815758049488068,
+      "prob_after": 0.11661417782306671,
+      "prob_diff": 0.0015434026718139648,
+      "identical": true
+    },
+    {
+      "prompt": "La capital de Francia es París y alberga la Torre Eiffel.",
+      "top1_before": " La",
+      "top1_after": " La",
+      "prob_before": 0.11742115765810013,
+      "prob_after": 0.11822027713060379,
+      "prob_diff": 0.0007991194725036621,
+      "identical": true
+    },
+    {
+      "prompt": "El ADN contiene las instrucciones genéticas de los organismos vivos.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.07812194526195526,
+      "prob_after": 0.07846825569868088,
+      "prob_diff": 0.00034631043672561646,
+      "identical": true
+    },
+    {
+      "prompt": "La gravedad atrae los cuerpos celestes hacia el centro de masa.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.12023673206567764,
+      "prob_after": 0.1191704049706459,
+      "prob_diff": 0.0010663270950317383,
+      "identical": true
+    },
+    {
+      "prompt": "La penicilina fue descubierta por Alexander Fleming en mil novecientos veintiocho.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.10057403147220612,
+      "prob_after": 0.09843426197767258,
+      "prob_diff": 0.002139769494533539,
+      "identical": true
+    },
+    {
+      "prompt": "El monte Everest es la montaña más alta sobre el nivel del mar.",
+      "top1_before": " ¿",
+      "top1_after": " ¿",
+      "prob_before": 0.09500095993280411,
+      "prob_after": 0.09384530037641525,
+      "prob_diff": 0.001155659556388855,
+      "identical": true
+    }
+  ],
+  "max_control_leakage": 1.189112663269043e-05,
+  "avg_boost_factor": 31.2,
+  "controls_intact": true
+}
