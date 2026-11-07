@@ -1,5 +1,17 @@
 """Representation Cartography & Knowledge Grounding module."""
 
+from weightliftai.cartography.affective_cartography_pipeline import (
+    AffectiveCartographyCorpus,
+    AffectiveCartographyPipeline,
+    AffectiveCartographyReport,
+    AffectiveCorpusItem,
+    AffectiveJacobianTracer,
+    LayerSensitivityProfile,
+    SolverPatchResult,
+    SubspaceProjectionSolver,
+    THX02CircuitDiagnoser,
+    THX02DiagnosisResult,
+)
 from weightliftai.cartography.dominican_pilot import DominicanPilotDataset
 from weightliftai.cartography.jacobian_lens import (
     JACOBIAN_LENS_METHOD_MAPPING,
@@ -45,6 +57,11 @@ from weightliftai.cartography.validators import (
 )
 
 __all__ = [
+    "AffectiveCartographyCorpus",
+    "AffectiveCartographyPipeline",
+    "AffectiveCartographyReport",
+    "AffectiveCorpusItem",
+    "AffectiveJacobianTracer",
     "CaptureSpec",
     "ClinicalExpression",
     "ComparisonRun",
@@ -54,10 +71,15 @@ __all__ = [
     "DominicanPilotDataset",
     "JACOBIAN_LENS_METHOD_MAPPING",
     "KnowledgeProbe",
+    "LayerSensitivityProfile",
     "MedicalConcept",
     "ModelRef",
     "ProjectionArtifact",
     "RepresentationArtifact",
+    "SolverPatchResult",
+    "SubspaceProjectionSolver",
+    "THX02CircuitDiagnoser",
+    "THX02DiagnosisResult",
     "ValidationError",
     "aggregate_jacobian_corpus",
     "build_point_inspection_data",
