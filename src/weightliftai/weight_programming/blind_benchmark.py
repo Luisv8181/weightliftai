@@ -1,32 +1,40 @@
-"""Blind Weight-Repair Benchmark.
+"""Legacy Same-Process Baseline Harness & Sealed Blind Benchmark Runner.
 
-Implements Phase 3 of Issue #10: A leakage-free benchmark where the repair proposer
-never receives the clean ground-truth weights, defect mask, or answer key.
+NOTE ON ISOLATION BOUNDARY (Prompt 6 / WSP-001A):
+`BlindRepairBenchmark` is a same-process reference/baseline harness (`IS_SEALED_BLIND_BOUNDARY = False`)
+used to compute reference baselines (no-op, random norm-matched, gradient recovery, and oracle upper bound)
+within a single process for unit and CLI baseline checks. Because Python closures and attributes in the
+same OS process can be inspected via `gc` or reflection, `BlindRepairBenchmark` MUST NOT be treated as a
+sealed security boundary for untrusted proposers.
 
-Compares:
-1. No-op baseline (delta = 0)
-2. Random norm-matched baseline
-3. Empirical gradient recovery baseline (optimized on diagnostic failures only)
-4. Candidate repair patch (if provided)
-5. Oracle upper bound (disclosed reference only)
+For sealed, evaluator-authoritative blind evaluation across an OS process boundary with private
+evaluator-controlled randomness, persistent SQLite query-budget enforcement, and Ed25519 signed
+receipts, use `BlindProposerEnvironment` (`weightliftai.weight_programming.proposer_api`) or
+`run_sealed_blind_evaluation()`.
 """
 
 from __future__ import annotations
 
 import copy
-from typing import Any
+from pathlib import Path
+from typing import Any, Callable
+
 import numpy as np
 import torch
 import torch.nn as nn
 
 from weightliftai.weight_programming.evaluator import IndependentEvaluator
 from weightliftai.weight_programming.inspector import compute_model_fingerprint
+from weightliftai.weight_programming.proposer_api import BlindProposerEnvironment
 from weightliftai.weight_programming.schemas import PatchBudget, WeightPatch
 from weightliftai.weight_programming.toy_defect import ToyMLP, generate_synthetic_data, mse_evaluator
 
 
 class BlindRepairBenchmark:
-    """Leakage-free benchmark managing sealed clean checkpoints and comparative baselines."""
+    """Legacy same-process baseline harness (non-sealed; use BlindProposerEnvironment for sealed runs)."""
+
+    IS_SEALED_BLIND_BOUNDARY: bool = False
+    BOUNDARY_CLASSIFICATION: str = "LEGACY_SAME_PROCESS_BASELINE_HARNESS"
 
     def __init__(self, seed: int = 42):
         self.seed = seed
@@ -51,7 +59,7 @@ class BlindRepairBenchmark:
             loss.backward()
             opt.step()
 
-        # Seal clean weights in private closure (strictly inaccessible to repair agent)
+        # Seal clean weights in attribute (same-process baseline only; not a hard process boundary)
         self._sealed_clean_fc2 = clean_model.fc2.weight.data.clone().numpy()
 
         # 3. Create corrupted model with defect in Output 0 (Target Task)
@@ -93,6 +101,8 @@ class BlindRepairBenchmark:
             mse = torch.nn.functional.mse_loss(target_preds, self.diagnostic["y"]).item()
 
         return {
+            "boundary_classification": self.BOUNDARY_CLASSIFICATION,
+            "is_sealed_blind_boundary": self.IS_SEALED_BLIND_BOUNDARY,
             "model_architecture": "ToyMLP(4 -> 8 -> 2)",
             "base_fingerprint": self.corrupted_fingerprint,
             "target_task": "Output column 0 (function approximation)",
@@ -124,7 +134,6 @@ class BlindRepairBenchmark:
         raw_r = np.random.randn(*shape).astype(np.float32)
         norm_r = float(np.linalg.norm(raw_r))
         scaled_delta = (raw_r / max(norm_r, 1e-8)) * target_l2
-        # Only perturb target row 0
         scaled_delta[1, :] = 0.0
 
         return WeightPatch(
@@ -138,12 +147,8 @@ class BlindRepairBenchmark:
         )
 
     def compute_gradient_recovery_baseline(self, steps: int = 100, lr: float = 0.05) -> WeightPatch:
-        """Baseline 3: Conventional gradient-based recovery using diagnostic failure data only.
-        
-        Optimizes fc2.weight deltas without ever accessing clean weights.
-        """
+        """Baseline 3: Conventional gradient-based recovery using diagnostic failure data only."""
         temp_model = copy.deepcopy(self.corrupted_model)
-        # Freeze all layers except fc2
         temp_model.fc1.weight.requires_grad = False
         temp_model.fc1.bias.requires_grad = False
         temp_model.fc2.bias.requires_grad = False
@@ -157,7 +162,6 @@ class BlindRepairBenchmark:
             preds = temp_model(self.diagnostic["x"])
             loss = torch.nn.functional.mse_loss(preds[:, :1], self.diagnostic["y"])
             loss.backward()
-            # Enforce that only Output 0 row is updated to preserve Output 1
             if temp_model.fc2.weight.grad is not None:
                 temp_model.fc2.weight.grad[1, :] = 0.0
             opt.step()
@@ -175,10 +179,7 @@ class BlindRepairBenchmark:
         )
 
     def compute_oracle_upper_bound(self) -> WeightPatch:
-        """Baseline 5: Oracle upper bound computed directly from sealed clean weights.
-        
-        Strictly labeled as an oracle reference; never presented as blind discovery.
-        """
+        """Baseline 5: Oracle upper bound computed directly from sealed clean weights."""
         curr_w = self.corrupted_model.fc2.weight.data.numpy()
         oracle_delta = self._sealed_clean_fc2 - curr_w
 
@@ -193,32 +194,28 @@ class BlindRepairBenchmark:
         )
 
     def run_full_benchmark(self, candidate_patch: WeightPatch | None = None) -> dict[str, Any]:
-        """Run all standard baselines and optional candidate patch on sealed test splits."""
+        """Run all standard baselines and optional candidate patch (same-process baseline harness)."""
         results = {}
 
-        # 1. No-op
         no_op = self.compute_no_op_baseline()
         results["no_op"] = self.evaluator.evaluate_patch(self.corrupted_model, no_op, budget=self.budget)
 
-        # 2. Gradient recovery baseline
         grad_patch = self.compute_gradient_recovery_baseline()
         results["gradient_baseline"] = self.evaluator.evaluate_patch(self.corrupted_model, grad_patch, budget=self.budget)
 
-        # 3. Random norm-matched (matched to gradient delta norm)
-        grad_norm = results["gradient_baseline"]["metrics"]["patched"]["in_domain"]
         target_norm = float(np.linalg.norm(grad_patch.deltas["fc2.weight"]))
         rand_patch = self.compute_random_norm_matched_baseline(target_l2=target_norm)
         results["random_norm_matched"] = self.evaluator.evaluate_patch(self.corrupted_model, rand_patch, budget=self.budget)
 
-        # 4. Candidate patch (if provided)
         if candidate_patch is not None:
             results["candidate_patch"] = self.evaluator.evaluate_patch(self.corrupted_model, candidate_patch, budget=self.budget)
 
-        # 5. Oracle upper bound (reference only)
         oracle = self.compute_oracle_upper_bound()
         results["oracle_upper_bound"] = self.evaluator.evaluate_patch(self.corrupted_model, oracle, budget=self.budget)
 
         return {
+            "boundary_classification": self.BOUNDARY_CLASSIFICATION,
+            "is_sealed_blind_boundary": self.IS_SEALED_BLIND_BOUNDARY,
             "benchmark_seed": self.seed,
             "base_fingerprint": self.corrupted_fingerprint,
             "baselines": results,
@@ -230,3 +227,19 @@ class BlindRepairBenchmark:
                 "candidate_promotable": results["candidate_patch"]["passed_gates"] if candidate_patch else None,
             },
         }
+
+
+def run_sealed_blind_evaluation(
+    proposer_fn: Callable[[BlindProposerEnvironment], WeightPatch],
+    defect_family: str = "fc2_row0_zero_mask",
+    diagnostic_condition: str = "full_diagnostic_toolkit",
+    ledger_path: Path | str | None = None,
+) -> dict[str, Any]:
+    """Execute a truly blind, process-isolated, evaluator-authoritative repair evaluation."""
+    env = BlindProposerEnvironment(
+        defect_family=defect_family,
+        diagnostic_condition=diagnostic_condition,
+        ledger_path=ledger_path,
+    )
+    patch = proposer_fn(env)
+    return env.submit_candidate_patch(patch)
