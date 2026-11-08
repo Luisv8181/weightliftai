@@ -13,6 +13,8 @@ torch = pytest.importorskip("torch")
 import weightliftai.cartography as cartography_pkg
 from weightliftai.cartography.jacobian_lens import (
     JACOBIAN_LENS_METHOD_MAPPING,
+    _aggregate_direction_stack,
+    _normalize_vector,
     aggregate_jacobian_corpus,
     check_finite_differences,
     compare_logit_lens_and_jacobian_lens,
@@ -294,3 +296,98 @@ def test_four_dimension_jacobian_evidence_separation():
     assert "random_control_mean_target_logit_shift" in d4
     assert "orthogonal_sham_mean_target_logit_shift" in d4
     assert isinstance(d4["causal_claim_supported"], bool)
+
+
+def test_multi_context_and_future_position_aggregation_distinguishes_single_prompt():
+    """Verify that multi-context cross-position aggregation distinguishes the published method from a single-prompt approximation (Prompt 28)."""
+    torch.manual_seed(42)
+    model = MockLM(n_layers=3, dim=12, vocab_size=24)
+    tokenizer = MockTokenizer(vocab_size=24)
+    single_prompt = ["tok_1 tok_2 tok_3 tok_4"]
+    multi_corpus = [
+        "tok_1 tok_2 tok_3 tok_4",
+        "tok_5 tok_6 tok_7 tok_8",
+        "tok_9 tok_10 tok_11 tok_12",
+        "tok_13 tok_14 tok_15 tok_16",
+    ]
+
+    # Prior approximation: single prompt, single same-position horizon (t' = t)
+    single_res = aggregate_jacobian_corpus(
+        model,
+        tokenizer,
+        single_prompt,
+        layer_idx=1,
+        target_token_id=8,
+        source_positions=[3],
+        future_offsets=[0],
+        aggregation_mode="mean",
+        normalization_mode="l2",
+    )
+
+    # Corrected published method: multiple contexts, all source positions, future horizons t' >= t
+    multi_res = aggregate_jacobian_corpus(
+        model,
+        tokenizer,
+        multi_corpus,
+        layer_idx=1,
+        target_token_id=8,
+        source_positions="all",
+        future_offsets=[0, 1, 2],
+        aggregation_mode="trimmed_mean",
+        normalization_mode="l2",
+    )
+
+    # Verify structural and empirical distinction
+    assert single_res["sample_count"] == 1
+    assert multi_res["sample_count"] == 4
+    assert single_res["evaluated_pair_count"] == 1
+    assert multi_res["evaluated_pair_count"] > 10
+    assert len(multi_res["mean_direction"]) == 12
+
+    # Vector divergence: single prompt does not equal multi-context expectation
+    cos_sim = float(np.dot(single_res["mean_direction"], multi_res["mean_direction"]))
+    assert cos_sim < 0.99, f"Single prompt unexpectedly identical to multi-context expectation (cos={cos_sim})"
+    assert multi_res["cross_context_cosine_stability"] is not None
+
+
+def test_jacobian_normalization_and_aggregation_modes():
+    """Verify explicit normalization (none, l2, rms) and aggregation modes (mean, median, trimmed_mean) (Prompt 28)."""
+    # 1. Normalization tests
+    vec = torch.tensor([3.0, 4.0])
+    none_v = _normalize_vector(vec, mode="none")
+    assert torch.allclose(none_v, vec)
+
+    l2_v = _normalize_vector(vec, mode="l2")
+    assert pytest.approx(float(torch.norm(l2_v)), abs=1e-5) == 1.0
+
+    rms_v = _normalize_vector(vec, mode="rms")
+    rms_val = float(torch.sqrt(torch.mean(rms_v ** 2)))
+    assert pytest.approx(rms_val, abs=1e-5) == 1.0
+
+    with pytest.raises(ValueError, match="Unsupported normalization mode"):
+        _normalize_vector(vec, mode="invalid")  # type: ignore
+
+    # 2. Aggregation tests with extreme outlier row
+    # 5 samples: four rows of [1.0, 2.0], one extreme outlier [100.0, 200.0]
+    stack = np.array([
+        [1.0, 2.0],
+        [1.0, 2.0],
+        [1.0, 2.0],
+        [1.0, 2.0],
+        [100.0, 200.0],
+    ])
+
+    mean_agg = _aggregate_direction_stack(stack, mode="mean")
+    assert mean_agg[0] > 10.0  # severely biased by outlier
+
+    med_agg = _aggregate_direction_stack(stack, mode="median")
+    assert pytest.approx(med_agg[0], abs=1e-5) == 1.0  # robust to outlier
+    assert pytest.approx(med_agg[1], abs=1e-5) == 2.0
+
+    trim_agg = _aggregate_direction_stack(stack, mode="trimmed_mean", trim_fraction=0.2)
+    assert pytest.approx(trim_agg[0], abs=1e-5) == 1.0  # trims top and bottom
+    assert pytest.approx(trim_agg[1], abs=1e-5) == 2.0
+
+    with pytest.raises(ValueError, match="Unsupported aggregation_mode"):
+        _aggregate_direction_stack(stack, mode="invalid")  # type: ignore
+
