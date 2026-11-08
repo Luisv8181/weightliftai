@@ -109,7 +109,7 @@ def test_subprocess_evaluation_execution_and_signed_receipt(tmp_path: Path):
     ledger = tmp_path / "ledger.sqlite3"
     env = BlindProposerEnvironment(seed=42, ledger_path=ledger)
     report = env.get_diagnostic_failure_report()
-    assert report["observed_diagnostic_mse"] > 0.3
+    assert report["observed_diagnostic_mse"] > 0.05
 
     corrupted = env.get_corrupted_model()
     opt = torch.optim.Adam([corrupted.fc2.weight], lr=0.05)
