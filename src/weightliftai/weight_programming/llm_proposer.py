@@ -413,11 +413,15 @@ class LLMWeightRepairProposer:
             else:
                 gen_out = self.backend.generate(prompt_bundle["prompt_text"])
         except Exception as provider_exc:
+            model_id = getattr(self.backend, "model_id", "custom_llm")
+            model_revision = getattr(self.backend, "model_revision", "unknown")
             return {
                 "method": "llm_proposer",
                 "experiment_id": env.experiment_id,
                 "defect_family": env.defect_family,
                 "diagnostic_condition": env.diagnostic_condition,
+                "model_id": model_id,
+                "model_revision": model_revision,
                 "proposal_status": "PROVIDER_ERROR",
                 "error_message": str(provider_exc),
                 "prompt_version": prompt_bundle["prompt_version"],

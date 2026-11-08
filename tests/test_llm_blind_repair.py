@@ -155,6 +155,11 @@ def test_real_local_llm_proposer_end_to_end(tmp_path: Path):
     proposer = LLMWeightRepairProposer(backend=backend)
     record = proposer.run_on_environment(env)
 
+    if record.get("proposal_status") == "PROVIDER_ERROR":
+        pytest.skip(
+            f"Local model weights not present or failed to load in this environment: {record.get('error_message')}"
+        )
+
     assert record["method"] == "llm_proposer"
     assert record["model_id"] == "Qwen/Qwen2.5-0.5B-Instruct"
     assert record["prompt_version"] == "wsp-llm-proposer-v1.0"
