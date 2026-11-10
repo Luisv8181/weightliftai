@@ -25,6 +25,10 @@ class BaseModelMismatchError(Exception):
     """Raised when target model fingerprint does not match the patch's declared base checkpoint."""
 
 
+class DtypeMismatchError(BudgetViolationError):
+    """Raised when candidate patch delta dtype does not match target parameter dtype."""
+
+
 @dataclass
 class PatchBudget:
     """Safety guardrail defining parameter bounds and tensor allowlists."""
@@ -46,6 +50,22 @@ class WeightPatch:
     proposed_by: str = "specialist_optimizer"
     rationale: str = ""
     metadata: dict[str, Any] = field(default_factory=dict)
+
+    def compute_binding_hash(self, base_checkpoint_sha256: str | None = None) -> str:
+        """Compute a cryptographic digest binding patch identity to checkpoint hash, tensor names, shapes, and dtypes."""
+        hasher = hashlib.sha256()
+        cp = base_checkpoint_sha256 or self.base_model_fingerprint or "unspecified"
+        hasher.update(cp.encode("utf-8"))
+        hasher.update(self.patch_id.encode("utf-8"))
+        hasher.update(self.base_model_id.encode("utf-8"))
+        hasher.update(self.base_model_revision.encode("utf-8"))
+        for name in sorted(self.deltas.keys()):
+            arr = self.deltas[name]
+            hasher.update(name.encode("utf-8"))
+            hasher.update(str(arr.dtype).encode("utf-8"))
+            hasher.update(np.array(arr.shape, dtype=np.int64).tobytes())
+            hasher.update(arr.tobytes())
+        return hasher.hexdigest()
 
     def sha256(self) -> str:
         """Compute deterministic SHA256 of the patch contents including shapes and dtypes."""
@@ -82,6 +102,7 @@ class WeightPatch:
             "base_model_revision": self.base_model_revision,
             "base_model_fingerprint": self.base_model_fingerprint,
             "patch_sha256": self.sha256(),
+            "binding_sha256": self.compute_binding_hash(),
             "num_tensors_modified": len(self.deltas),
             "total_l2_norm": float(np.sqrt(total_l2)),
             "tensors": tensor_summaries,

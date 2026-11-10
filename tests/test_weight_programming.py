@@ -198,7 +198,7 @@ def test_apply_patch_sandboxed_reversible_rollback():
         hypothesis="sandbox test",
     )
 
-    with apply_patch_sandboxed(model, patch) as patched_model:
+    with apply_patch_sandboxed(model, patch, budget=PatchBudget(max_l2_norm=10.0, max_relative_norm=2.0)) as patched_model:
         # Inside sandbox: weights must reflect delta
         curr_w = patched_model.fc1.weight.detach().cpu().numpy()
         np.testing.assert_allclose(curr_w, orig_w_arr + delta, rtol=1e-5)
@@ -222,7 +222,7 @@ def test_rollback_preserves_state_on_unhandled_exception():
     )
 
     with pytest.raises(RuntimeError, match="Simulated execution crash"):
-        with apply_patch_sandboxed(model, patch) as patched_model:
+        with apply_patch_sandboxed(model, patch, budget=PatchBudget(max_l2_norm=10.0, max_relative_norm=2.0)) as patched_model:
             # Crash occurs inside context block
             raise RuntimeError("Simulated execution crash")
 
@@ -256,7 +256,7 @@ def test_apply_patch_to_copy_leaves_original_untouched():
         hypothesis="clone test",
     )
 
-    cloned = apply_patch_to_copy(model, patch)
+    cloned = apply_patch_to_copy(model, patch, budget=PatchBudget(max_l2_norm=10.0, max_relative_norm=2.0))
     
     # Original is untouched
     np.testing.assert_array_equal(model.fc1.weight.detach().cpu().numpy(), orig_w_arr)

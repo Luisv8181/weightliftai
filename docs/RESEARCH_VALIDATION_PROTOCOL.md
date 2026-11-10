@@ -1,8 +1,8 @@
 # Research Validation Protocol & Claims Taxonomy
 
 **Status:** Normative Standard for WeightLiftAI Research & Behavior Engineering  
-**Version:** 1.1.0 (2026-11-05)  
-**Tracking:** [Issue #10](https://github.com/Luisv8181/weightliftai/issues/10)
+**Version:** 1.2.0 (2026-11-07)  
+**Tracking:** [Issue #10](https://github.com/Luisv8181/weightliftai/issues/10), [Issue #14 (Prompts 28–31)](https://github.com/Luisv8181/weightliftai/issues/14)
 
 ---
 
@@ -21,9 +21,9 @@ Every contributor, agent, and automated pipeline must obey these rules:
 
 ---
 
-## 2. Five-Tier Claims Taxonomy
+## 2. Five-Tier Claims Taxonomy & Unified Maturity Scale
 
-To avoid conflating mathematical derivation with cognitive or mechanistic discovery, all research statements in WeightLiftAI must be classified into one of five rigorous tiers:
+To avoid conflating mathematical derivation with cognitive or mechanistic discovery, all research statements in WeightLiftAI must be classified by **Claim Level (Levels 0–4)** and **Implementation Maturity** (`proposed_research_specification`, `implemented_prototype`, `tested_implementation`, `validated_empirical_method`, `not_implemented`):
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -40,8 +40,8 @@ To avoid conflating mathematical derivation with cognitive or mechanistic discov
 │         │                        │ on held-out splits with reported CIs.    │
 ├─────────┼────────────────────────┼──────────────────────────────────────────┤
 │ Level 2 │ Directional / Output   │ Vector-Jacobian Product (VJP) output     │
-│         │ Sensitivity            │ influence, logit sensitivity across a    │
-│         │                        │ frozen prompt corpus with known bounds.  │
+│         │ Sensitivity            │ influence across contexts and future     │
+│         │                        │ token horizons (t' >= t).                │
 ├─────────┼────────────────────────┼──────────────────────────────────────────┤
 │ Level 3 │ Causal Necessity /     │ Interchange activation patching, zero-   │
 │         │ Sufficiency            │ clamping, or weight ablations showing    │
@@ -61,22 +61,23 @@ To avoid conflating mathematical derivation with cognitive or mechanistic discov
 
 ---
 
-## 3. Current Repository Claims & Evidence Matrix
+## 3. Current Repository Claims & Maturity Matrix (Prompt 30)
 
-This table establishes the current verified status of every capability in WeightLiftAI:
+This table establishes the unified maturity classification across `README.md`, `docs/JACOBIAN_LENS_RESEARCH.md`, and the codebase:
 
-| Capability / Module | Claim Level | Current Codebase Status | Evidence / Limitations |
+| Capability / Module | Claim Level | Unified Maturity Status | Evidence & Explicit Limitations |
 |---|---|---|---|
-| **Layer Atlas** (`layer_atlas.py`) | Level 1 | Implemented & Tested | Captures residual/attention/MLP representations. Evaluates cosine similarity across variants and negative controls. *Does not prove causal necessity.* |
-| **Representation Map** (`representation_map.py`) | Level 1 | Implemented & Tested | Dimensionality reduction (PCA/t-SNE). Equipped with $T(k)$, $C(k)$, and $k$-NN Jaccard metrics. *Projections are exploratory visuals, not ground-truth metric geometry.* |
-| **Jacobian Lens** (`jacobian_lens.py`) | Level 0 & Level 2 Prototype | Implemented & Tested (Mitigated) | Autograd VJP verified against central finite differences ($\text{rel\_err} < 0.05$). Multi-source candidate pooling (Logit Lens + model output) reduces shortlist bias. Exact attention masks passed. *Limitations:* Single-prompt influence must be averaged over contexts; normalization layers remain linear approximations. |
-| **Experiment Registry** (`experiment_registry.py`) | Level 0 | Implemented & Tested | Tamper-evident cryptographic SHA-256 event hash chain, lifecycle state machine, preregistration parameter immutability lock, human approval gates. |
-| **Patch Sandboxing & Budgets** (`sandbox.py`, `inspector.py`) | Level 0 | Implemented & Tested | Cryptographic raw byte SHA256 hashing across dtypes (`bfloat16`, `float16`), bit-exact rollback, defensive budget validation (rejects NaN/Inf/empty), tied-weight aliasing de-duplication detection. |
-| **Known-Defect Recovery** (`toy_defect.py`) | Level 0 / Level 1 | Oracle Test Only | Multi-task regression and held-out validation passes gates. *Explicit Limitation:* Oracle upper-bound test with access to clean ground-truth weights; **not** blind defect diagnosis. |
-| **Blind Repair Benchmark** (`blind_benchmark.py`) | Level 3 Benchmark | Implemented & Tested | Evaluates blind weight-space repair without access to clean weights or defect masks. 5-rung baseline ladder (`no_op`, `random_norm_matched`, `gradient_baseline`, `candidate_patch`, `oracle_upper_bound`). Sealed test split. |
-| **Representation-Intervention Integration** (`representation_intervention.py`) | Level 3 | Implemented & Tested | Traceable failure $\to$ circuit hypothesis $\to$ activation steering/ablation vs weight edit $\to$ counterfactual and held-out evaluation $\to$ least-invasive justification. |
-| **Agent Governance & Stage Grading** (`governance.py`) | Level 0 | Implemented & Tested | Automated 6-stage research grading, evidence-linked claims schema, critical review auditing for data leakage and causal overreach, human gate token verification. |
-| **Dominican Spanish Pilot** (`dominican_pilot_50.json`) | Level 1 | Provisional Curriculum | 50 matched triads with negative controls. *Explicit Limitation:* Hand-curated provisional research curriculum (`is_synthetic=True`, `has_human_review=False`); **not** an IRB-governed, multi-speaker field recorded corpus. |
+| **Layer Atlas** (`layer_atlas.py`) | Level 1 | `tested_implementation` | Captures residual/attention/MLP representations. Evaluates cosine similarity across variants and negative controls. *Does not prove causal necessity.* |
+| **Representation Map** (`representation_map.py`) | Level 1 | `tested_implementation` | Dimensionality reduction (PCA/t-SNE/UMAP). Equipped with $T(k)$, $C(k)$, and $k$-NN Jaccard metrics. *Projections are exploratory visuals, not ground-truth metric geometry.* |
+| **Jacobian Lens VJP & 4-Dim Evidence** (`jacobian_lens.py`) | Level 0 & Level 2 | `tested_implementation` | Cross-position VJP ($\partial h[L, t'] / \partial h[l, t]$ for $t' \ge t$) verified against central finite differences ($\text{rel\_err} < 0.05$). Multi-context and future-horizon aggregation (`aggregate_jacobian_corpus`). Separately reports Cosine Alignment, Sensitivity, Stability, and Intervention Effects (`evaluate_four_dimension_jacobian_evidence`). |
+| **Overcomplete Sparse Nonnegative J-Space** (`docs/JACOBIAN_LENS_RESEARCH.md`) | Level 2 | `proposed_research_specification` | Full-vocabulary sparse nonnegative dictionary decomposition is specified in `docs/JACOBIAN_LENS_RESEARCH.md` (`not_implemented` as an automated dictionary learner). |
+| **Experiment Registry** (`experiment_registry.py`) | Level 0 | `tested_implementation` | Tamper-evident cryptographic SHA-256 event hash chain, lifecycle state machine, preregistration parameter immutability lock, human approval gates. |
+| **Patch Sandboxing & Budgets** (`sandbox.py`, `inspector.py`) | Level 0 | `tested_implementation` | Cryptographic raw byte SHA256 hashing across dtypes (`bfloat16`, `float16`), bit-exact rollback, defensive budget validation (rejects NaN/Inf/empty), tied-weight aliasing detection. |
+| **Known-Defect Recovery** (`toy_defect.py`) | Level 0 / Level 1 | `tested_implementation` (Oracle Test Only) | Multi-task regression and held-out validation passes gates. *Explicit Limitation:* Oracle upper-bound test with access to clean ground-truth weights; **not** blind defect diagnosis. |
+| **Sealed Blind Evaluator Authority (`WSP-001A`)** (`evaluator_authority.py`, `proposer_api.py`, `isolated_evaluator.py`) | Level 3 Benchmark | `tested_implementation` | Evaluator-authoritative SQLite registration, private evaluator randomness, pipe IPC (`--ipc-stream`/`--ipc-stdin`), pre-allocation resource limits, and Ed25519 signed receipts. (`BlindRepairBenchmark` in `blind_benchmark.py` is retained as `LEGACY_SAME_PROCESS_BASELINE_HARNESS`.) |
+| **LLM vs. Gradient vs. Deterministic Blind Repair (`WSP-001B`)** (`llm_proposer.py`, `ablation_runner.py`) | Level 3 | `tested_implementation` | Evaluates real LLM-generated `WeightPatch` proposals across 5 diagnostic conditions and 4 defect families against gradient and deterministic baselines. |
+| **Representation-Intervention Integration** (`representation_intervention.py`) | Level 3 | `tested_implementation` | Traceable failure $\to$ circuit hypothesis $\to$ activation steering/ablation vs weight edit $\to$ counterfactual and held-out evaluation $\to$ least-invasive justification. |
+| **Dominican Spanish Pilot** (`dominican_pilot_50.json`) | Level 1 | `implemented_prototype` | 50 matched triads with negative controls (`is_synthetic=True`, `has_human_review=False`). |
 
 ---
 
@@ -84,11 +85,11 @@ This table establishes the current verified status of every capability in Weight
 
 Before any confirmatory experiment is executed, a manifest must be registered via `weightliftai experiment init` and transitioned to `preregistered` with:
 
-1. **Hypothesis:** Exact directional statement (e.g., *"Patching Layer 13 MLP delta reduces Dominican idiom translation error by $\ge 15\%$ on held-out test split"*).
+1. **Hypothesis:** Exact directional statement.
 2. **Model Identity:** Canonical HF model ID and immutable commit hash.
 3. **Dataset & Splits:** Fixed dataset ID, split assignment (`test` for confirmatory), and cryptographic SHA256 of the dataset file.
-4. **Primary Metric & Criterion:** Unambiguous mathematical metric (e.g. `accuracy`, `mse_loss`) and numeric passing threshold.
-5. **Regression Suite:** Pre-registered list of untouched benchmarks and maximum permissible regression degradation (e.g. $\le 2.0\%$).
+4. **Primary Metric & Criterion:** Unambiguous mathematical metric and numeric passing threshold.
+5. **Regression Suite:** Pre-registered list of untouched benchmarks and maximum permissible regression degradation.
 6. **Hardware & Environment:** Operating system, PyTorch version, CUDA version, GPU model, and package dependencies.
 
 ---
@@ -96,13 +97,6 @@ Before any confirmatory experiment is executed, a manifest must be registered vi
 ## 5. Stage Gates for Model Promotion
 
 No patch or intervention may be approved for model promotion unless all four gates are satisfied:
-
-```
-[ Gate 1: Budget & Sanity ] ──▶ [ Gate 2: Target Gain ] ──▶ [ Gate 3: OOD & Shift ] ──▶ [ Gate 4: Regression & Approval ]
-  • No NaN / Inf deltas           • Held-out split test         • Distribution shift           • Regression drop <= tolerance
-  • Delta norm <= budget          • Statistical significance     • Paraphrase / boundary        • Human operator sign-off
-  • Exact base hash match         • p < 0.01 vs. baseline        • Robustness intact            • Signed promotion record
-```
 
 1. **Gate 1 (Integrity & Budget):** Delta contains no non-finite values, strictly adheres to tensor allowlists, and does not exceed L2 or relative norm budgets.
 2. **Gate 2 (Target Gain):** Statistically significant improvement on held-out test data ($p < 0.01$ or pre-registered threshold).
@@ -123,26 +117,3 @@ Every study is evaluated by the automated `StageGrader` across six mandatory sta
 | **4. Execution** | Comparative baseline ladder executed (`no_op`, random norm-matched); negative controls reported. | Testing in isolation without controls. |
 | **5. Analysis** | Effect sizes, uncertainty intervals, and explicit reporting of failed runs / null results. | Cherry-picked metrics, hidden failures. |
 | **6. Claim Faithfulness** | Strict alignment with Claims Taxonomy (e.g., no causal assertions without Level 3 intervention). | Conflating probe decodability with mechanism. |
-
----
-
-## 7. Cryptographic Event Hash Chaining & Immutability
-
-1. **Event Hash Chaining:** Every lifecycle transition and result recording in `events.jsonl` is linked via `prev_hash` and `event_hash = sha256_json(...)`. If any line is altered, deleted, or reordered, `verify_event_chain` detects the violation and aborts.
-2. **Preregistration Locking:** Once transitioned to `preregistered`, the `evaluation` configuration is cryptographically hashed. Any subsequent tampering with evaluation criteria or success thresholds raises `PreregistrationTamperedError`.
-3. **Human Authorization Gates:** Actions requiring human tokens (`human-<gate>-<signature>`):
-   - `INTERVENTION_READY`: Authorization to synthesize and test intervention deltas.
-   - `HIDDEN_TEST_ACCESS`: Authorization to query sealed held-out test evaluation splits.
-   - `PROMOTION`: Authorization to persistently mutate or release a model checkpoint.
-
----
-
-## 8. Least-Invasive Intervention Protocol
-
-To prevent premature parameter mutations, agents must follow the **Least-Invasive Intervention Hierarchy**:
-$$\text{Prompt Exemplar} \longrightarrow \text{RAG Context} \longrightarrow \text{Activation Steering} \longrightarrow \text{LoRA Adapter} \longrightarrow \text{Direct Weight Edit}$$
-
-A direct weight edit $\Delta W$ is only approved if:
-1. Activation-space interventions are demonstrably insufficient OR execution environment strictly prohibits inference-time forward hooks;
-2. Matched counterfactual degradation is within $\le 5\%$ tolerance;
-3. Generalization on held-out test contexts is maintained or improved.

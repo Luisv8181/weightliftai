@@ -1,11 +1,25 @@
 """Representation Cartography & Knowledge Grounding module."""
 
+from weightliftai.cartography.affective_cartography_pipeline import (
+    AffectiveCartographyCorpus,
+    AffectiveCartographyPipeline,
+    AffectiveCartographyReport,
+    AffectiveCorpusItem,
+    AffectiveJacobianTracer,
+    LayerSensitivityProfile,
+    SolverPatchResult,
+    SubspaceProjectionSolver,
+    THX02CircuitDiagnoser,
+    THX02DiagnosisResult,
+)
 from weightliftai.cartography.dominican_pilot import DominicanPilotDataset
 from weightliftai.cartography.jacobian_lens import (
+    JACOBIAN_LENS_METHOD_MAPPING,
     aggregate_jacobian_corpus,
     check_finite_differences,
     compare_logit_lens_and_jacobian_lens,
     compute_vjp,
+    evaluate_four_dimension_jacobian_evidence,
     get_unembedding_weight,
 )
 from weightliftai.cartography.layer_atlas import (
@@ -43,6 +57,11 @@ from weightliftai.cartography.validators import (
 )
 
 __all__ = [
+    "AffectiveCartographyCorpus",
+    "AffectiveCartographyPipeline",
+    "AffectiveCartographyReport",
+    "AffectiveCorpusItem",
+    "AffectiveJacobianTracer",
     "CaptureSpec",
     "ClinicalExpression",
     "ComparisonRun",
@@ -50,12 +69,17 @@ __all__ = [
     "ConceptSynonym",
     "DatasetRef",
     "DominicanPilotDataset",
+    "JACOBIAN_LENS_METHOD_MAPPING",
     "KnowledgeProbe",
+    "LayerSensitivityProfile",
     "MedicalConcept",
-    "MedicalPilotDataset",
     "ModelRef",
     "ProjectionArtifact",
     "RepresentationArtifact",
+    "SolverPatchResult",
+    "SubspaceProjectionSolver",
+    "THX02CircuitDiagnoser",
+    "THX02DiagnosisResult",
     "ValidationError",
     "aggregate_jacobian_corpus",
     "build_point_inspection_data",
@@ -65,6 +89,7 @@ __all__ = [
     "compute_layer_metrics",
     "compute_vjp",
     "content_token_mask",
+    "evaluate_four_dimension_jacobian_evidence",
     "extract_layer_representations",
     "find_decoder_layers",
     "generate_atlas_html",
@@ -75,4 +100,3 @@ __all__ = [
     "validate_knowledge_probes",
     "validate_matched_dataset",
 ]
-

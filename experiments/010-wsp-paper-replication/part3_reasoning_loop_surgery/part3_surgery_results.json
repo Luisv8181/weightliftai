@@ -1,0 +1,198 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "surgery": {
+    "target_layer": 14,
+    "target_matrix": "mlp.down_proj.weight",
+    "alpha": 0.85,
+    "top_singular_val": 62.443145751953125,
+    "spectral_energy_fraction": 0.09719154983758926,
+    "parameter_pct_modified": 0.8821568694002095,
+    "relative_frobenius_delta_pct": 3.9854931400943565
+  },
+  "metrics": {
+    "baseline_loop_rate": 0.2,
+    "patched_loop_rate": 0.2,
+    "baseline_accuracy": 0.4,
+    "patched_accuracy": 0.4,
+    "baseline_control_accuracy": 0.8,
+    "patched_control_accuracy": 0.8
+  },
+  "baseline_math_results": [
+    {
+      "id": "MATH-01",
+      "expected": "1",
+      "extracted": "1",
+      "correct": true,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 210,
+      "gen": "To find the remainder of \\(7^{2024}\\) when divided by 5, we can use properties of modular arithmetic.\n\nFirst, observe that:\n\\[ 7 \\equiv -1 \\pmod{5} \\]\n\nThis means that any power of 7 will be congruent to the negative of the corresponding power of -1 modulo 5. \n\nSo,\n\\[ 7^{2024} \\equiv (-1)^{2024} \\pmod{5} \\]\n\nNext, consider the exponent 2024. Since 2024 is an even number (as it is divisible by 2), raising -1 to an even power results in 1:\n\\[ (-1)^{2024} = 1 \\]\n\nTherefore,\n\\[ 7^{2024} \\equiv 1 \\pmod{5} \\]\n\nThus, the remainder when \\(7^{2024}\\) is divided by 5 is **1**."
+    },
+    {
+      "id": "MATH-02",
+      "expected": "12",
+      "extracted": "NONE",
+      "correct": false,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 300,
+      "gen": "To solve this problem, we can set up a system of linear equations based on the information given:\n\n1. Let \\( c \\) represent the number of cows.\n2. Let \\( h \\) represent the number of chickens.\n\nFrom the problem statement:\n- Each cow has one head (which means each cow contributes 1 head).\n- Each chicken has two legs.\n- There are 35 heads in total.\n- There are 94 legs in total.\n\nWe can write these as:\n\\[ c + h = 35 \\]\n\\[ 2c + 4h = 94 \\]\n\nNow, let's solve this system of equations step by step:\n\n### Step 1: Simplify the second equation\nFirst, divide every term in the second equation by 2 to simplify it:\n\\[ c + 2h = 47 \\]\n\n### Step 2: Subtract the first equation from the simplified second equation\nSubtract the first equation (\\( c + h = 35 \\)) from the simplified second equation (\\( c + 2h = 47 \\)):\n\\[ (c + 2h) - (c + h) = 47 - 35 \\]\n\\[ c + 2h - c - h = 12 \\]\n\\[ h = 12 \\]\n\nSo, there are 12 chickens.\n\n### Step 3: Substitute \\( h \\) back into the first equation\nNow that"
+    },
+    {
+      "id": "MATH-03",
+      "expected": "20",
+      "extracted": "20",
+      "correct": true,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 232,
+      "gen": "To determine the number of diagonals in a regular octagon, we can use the formula for calculating the number of diagonals in an \\( n \\)-sided polygon:\n\n\\[\n\\text{Number of diagonals} = \\frac{n(n-3)}{2}\n\\]\n\nFor an octagon (\\( n = 8 \\)):\n\n1. Substitute \\( n = 8 \\) into the formula:\n   \\[\n   \\text{Number of diagonals} = \\frac{8(8-3)}{2}\n   \\]\n\n2. Perform the subtraction inside the parentheses first:\n   \\[\n   8 - 3 = 5\n   \\]\n   \n3. Multiply the result by 8:\n   \\[\n   8 \\times 5 = 40\n   \\]\n\n4. Finally, divide by 2 to get the total number of diagonals:\n   \\[\n   \\frac{40}{2} = 20\n   \\]\n\nTherefore, a regular octagon has **20** diagonals.\n\nThe final answer is \\( \\boxed{20} \\)."
+    },
+    {
+      "id": "MATH-04",
+      "expected": "1275",
+      "extracted": "NONE",
+      "correct": false,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 300,
+      "gen": "To find the sum of all integers from 1 to 50, we can use the formula for the sum of an arithmetic series:\n\n\\[ S = \\frac{n(a_1 + a_n)}{2} \\]\n\nwhere:\n- \\( S \\) is the sum of the series,\n- \\( n \\) is the number of terms in the series,\n- \\( a_1 \\) is the first term (which is 1),\n- \\( a_n \\) is the last term (which is 50).\n\nFirst, let's determine the number of terms (\\( n \\)) in this series.\n\nGiven that the sequence starts at 1 and ends at 50, there are 49 numbers between them. Therefore,\n\n\\[ n = 50 - 1 = 49 \\]\n\nNow, substitute the values into the formula:\n\n\\[ S = \\frac{49(1 + 50)}{2} \\]\n\nCalculate the expression inside the parentheses:\n\n\\[ 1 + 50 = 51 \\]\n\nThen multiply by 49:\n\n\\[ 51 \\times 49 = 2499 \\]\n\nFinally, divide by 2:\n\n\\[ S = \\frac{2499}{2} = 1249.5 \\]\n\nSince the sum must be an integer, we round 1249.5 to the nearest whole number, which is 1249"
+    },
+    {
+      "id": "MATH-05",
+      "expected": "3/28",
+      "extracted": "NONE",
+      "correct": false,
+      "is_loop": true,
+      "loop_phrase": "ways to draw 2",
+      "loop_count": 4,
+      "tokens": 300,
+      "gen": "To solve this problem, we need to calculate the probability of drawing two red balls from a bag containing 3 red balls and 5 blue balls without replacement.\n\n### Step 1: Calculate the total number of ways to draw 2 balls out of 8.\nWe use combinations (denoted as \\( \\binom{n}{k} \\)) to find the total number of ways to choose 2 balls from 8:\n\\[\n\\text{Total ways} = \\binom{8}{2} = \\frac{8!}{2!(8-2)!} = \\frac{8 \\times 7}{2 \\times 1} = 28\n\\]\n\n### Step 2: Calculate the number of ways to draw 2 red balls out of 3.\nUsing combinations again:\n\\[\n\\text{Ways to draw 2 red balls} = \\binom{3}{2} = \\frac{3!}{2!(3-2)!} = \\frac{3 \\times 2}{2 \\times 1} = 3\n\\]\n\n### Step 3: Calculate the probability of drawing 2 red balls.\nThe probability \\( P \\) of an event is given by the ratio of favorable outcomes to the total possible outcomes:\n\\[\nP(\\text{both red}) = \\frac{\\text{Number of ways to draw 2 red balls}}{\\text{Total number of ways to draw 2 balls}}"
+    }
+  ],
+  "patched_math_results": [
+    {
+      "id": "MATH-01",
+      "expected": "1",
+      "extracted": "1",
+      "correct": true,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 190,
+      "gen": "To find the remainder of \\(7^{2024}\\) when divided by 5, we can use properties of modular arithmetic.\n\nFirstly, observe that:\n\\[ 7 \\equiv -1 \\pmod{5} \\]\n\nThis means that any power of 7 will be congruent to the negative of the same power modulo 5. Therefore:\n\\[ 7^n \\equiv (-1)^n \\pmod{5} \\]\n\nSince 2024 is an even number (as it's divisible by 2), we have:\n\\[ (-1)^{2024} = 1 \\]\n\nThus:\n\\[ 7^{2024} \\equiv 1 \\pmod{5} \\]\n\nTherefore, the remainder when \\(7^{2024}\\) is divided by 5 is 1. The final answer is:\n\\[\n\\boxed{1}\n\\]"
+    },
+    {
+      "id": "MATH-02",
+      "expected": "12",
+      "extracted": "NONE",
+      "correct": false,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 300,
+      "gen": "To solve this problem, we can set up a system of linear equations based on the information given:\n\n1. Let \\( c \\) represent the number of cows.\n2. Let \\( h \\) represent the number of chickens.\n\nFrom the problem statement:\n- Each cow has one head (which means each cow contributes 1 head).\n- Each chicken has two legs.\n- There are 35 heads in total.\n- There are 94 legs in total.\n\nWe can write these as:\n\\[ c + h = 35 \\]\n\\[ 2c + 4h = 94 \\]\n\nNow, let's solve this system of equations step by step:\n\n### Step 1: Simplify the second equation\nFirst, divide every term in the second equation by 2 to simplify it:\n\\[ c + 2h = 47 \\]\n\n### Step 2: Subtract the first equation from the simplified second equation\nSubtract the first equation (\\( c + h = 35 \\)) from the simplified second equation (\\( c + 2h = 47 \\)):\n\\[ (c + 2h) - (c + h) = 47 - 35 \\]\n\\[ c + 2h - c - h = 12 \\]\n\\[ h = 12 \\]\n\nSo, there are 12 chickens.\n\n### Step 3: Substitute \\( h \\) back into the first equation\nNow that"
+    },
+    {
+      "id": "MATH-03",
+      "expected": "20",
+      "extracted": "20",
+      "correct": true,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 232,
+      "gen": "To determine the number of diagonals in a regular octagon, we can use the formula for calculating the number of diagonals in an \\( n \\)-sided polygon:\n\n\\[\n\\text{Number of diagonals} = \\frac{n(n-3)}{2}\n\\]\n\nFor an octagon (\\( n = 8 \\)):\n\n1. Substitute \\( n = 8 \\) into the formula:\n   \\[\n   \\text{Number of diagonals} = \\frac{8(8-3)}{2}\n   \\]\n\n2. Perform the subtraction inside the parentheses first:\n   \\[\n   8 - 3 = 5\n   \\]\n   \n3. Multiply the result by 8:\n   \\[\n   8 \\times 5 = 40\n   \\]\n\n4. Finally, divide by 2 to get the total number of diagonals:\n   \\[\n   \\frac{40}{2} = 20\n   \\]\n\nTherefore, a regular octagon has **20** diagonals.\n\nThe final answer is \\( \\boxed{20} \\)."
+    },
+    {
+      "id": "MATH-04",
+      "expected": "1275",
+      "extracted": "The final answer is 25",
+      "correct": false,
+      "is_loop": false,
+      "loop_phrase": "",
+      "loop_count": 0,
+      "tokens": 284,
+      "gen": "To find the sum of all integers from 1 to 50, we can use the formula for the sum of an arithmetic series:\n\n\\[ S = \\frac{n(a_1 + a_n)}{2} \\]\n\nwhere:\n- \\( S \\) is the sum of the series,\n- \\( n \\) is the number of terms in the series,\n- \\( a_1 \\) is the first term (which is 1),\n- \\( a_n \\) is the last term (which is 50).\n\nFirst, let's determine the number of terms (\\( n \\)) in this series.\n\nGiven that the sequence starts at 1 and ends at 50, there are 49 numbers between them. Therefore,\n\n\\[ n = 50 - 1 = 49 \\]\n\nNext, we substitute these values into our formula:\n\n\\[ S = \\frac{49(1 + 50)}{2} \\]\n\nNow, calculate the expression inside the parentheses:\n\n\\[ 1 + 50 = 51 \\]\n\nThen divide by 2:\n\n\\[ S = \\frac{51}{2} = 25.5 \\]\n\nTherefore, the sum of all integers from 1 to 50 is **25.5**.\n\nSo, the final answer is: The final answer is 25.5."
+    },
+    {
+      "id": "MATH-05",
+      "expected": "3/28",
+      "extracted": "Calculate the number of ways to draw 2 red balls out of 3:",
+      "correct": false,
+      "is_loop": true,
+      "loop_phrase": "number of ways to",
+      "loop_count": 4,
+      "tokens": 300,
+      "gen": "To find the probability of drawing two red balls from a bag containing 3 red balls and 5 blue balls, we can use the following steps:\n\n1. **Calculate the total number of ways to draw 2 balls out of 8:**\n   The total number of ways to choose 2 balls from 8 is given by the combination formula \\( \\binom{n}{k} = \\frac{n!}{k!(n-k)!} \\), where \\( n \\) is the total number of items, \\( k \\) is the number of items to choose, and \\( ! \\) denotes factorial.\n\n   Here, \\( n = 8 \\) (total balls) and \\( k = 2 \\) (balls to be chosen).\n\n   \\[\n   \\binom{8}{2} = \\frac{8!}{2!(8-2)!} = \\frac{8 \\times 7}{2 \\times 1} = 28\n   \\]\n\n2. **Calculate the number of ways to draw 2 red balls out of 3:**\n   Similarly, the number of ways to choose 2 red balls from 3 is also calculated using the combination formula.\n\n   \\[\n   \\binom{3}{2} = \\frac{3!}{2!(3-2)!} = \\frac{3 \\times 2}{2 \\times 1} = 3\n   \\]\n\n3. **Calculate the"
+    }
+  ],
+  "baseline_ctrl_results": [
+    {
+      "q": "What is the capital of France?",
+      "expected": "Paris",
+      "gen": "The capital of France is Paris.",
+      "match": true
+    },
+    {
+      "q": "What is 12 multiplied by 5?",
+      "expected": "60",
+      "gen": "To solve the problem of multiplying 12 by 5, you simply add 12 to itself five times:\n\n\\[ 12 \\times",
+      "match": false
+    },
+    {
+      "q": "Who wrote 'Romeo and Juliet'?",
+      "expected": "Shakespeare",
+      "gen": "\"Romeo and Juliet\" was written by William Shakespeare. This play is one of the most famous tragedies in Western literature and has been performed countless",
+      "match": true
+    },
+    {
+      "q": "What is the chemical symbol for gold?",
+      "expected": "Au",
+      "gen": "The chemical symbol for gold is Au (pronounced \"A-U\"). It's an element with the atomic number 79 and is one of the",
+      "match": true
+    },
+    {
+      "q": "What planet is known as the Red Planet?",
+      "expected": "Mars",
+      "gen": "The planet known as the \"Red Planet\" is Mars. It was named after the Roman god of war and the god of the underworld, Mars.",
+      "match": true
+    }
+  ],
+  "patched_ctrl_results": [
+    {
+      "q": "What is the capital of France?",
+      "expected": "Paris",
+      "gen": "The capital of France is Paris.",
+      "match": true
+    },
+    {
+      "q": "What is 12 multiplied by 5?",
+      "expected": "60",
+      "gen": "To solve the problem of multiplying 12 by 5, you simply add 12 to itself five times:\n\n\\[ 12 \\times",
+      "match": false
+    },
+    {
+      "q": "Who wrote 'Romeo and Juliet'?",
+      "expected": "Shakespeare",
+      "gen": "\"Romeo and Juliet\" was written by William Shakespeare. This play is one of the most famous tragedies in Western literature and has been performed countless",
+      "match": true
+    },
+    {
+      "q": "What is the chemical symbol for gold?",
+      "expected": "Au",
+      "gen": "The chemical symbol for gold is Au (pronounced \"A-U\"). Gold is an element with the atomic number 79 and is a precious metal",
+      "match": true
+    },
+    {
+      "q": "What planet is known as the Red Planet?",
+      "expected": "Mars",
+      "gen": "The planet known as the \"Red Planet\" is Mars. It was named after the Roman god of war and the god of the underworld, Mars.",
+      "match": true
+    }
+  ]
+}

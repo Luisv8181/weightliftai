@@ -292,6 +292,12 @@ def compute_layer_metrics(
     return {
         "n_samples": len(embeddings),
         "feature_dim": int(embeddings.shape[1]),
+        "evidence_type": "dimension_1_cosine_alignment",
+        "guardrail": (
+            "Observational directional similarity under defined pairwise comparisons. "
+            "Does NOT establish semantic representation, stability across contexts, "
+            "or causal necessity/intervention effects (see Prompt 31 & docs/RESEARCH_VALIDATION_PROTOCOL.md)."
+        ),
         "pairwise_cosines": bootstrap_results,
         "unrelated_negative_control": unrelated_stats,
     }
@@ -376,7 +382,7 @@ th {{ font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; }}
   <div class="meta">Model: <b>{html.escape(model_name)}</b> &nbsp;|&nbsp; Dataset: <b>{html.escape(dataset_name)}</b> &nbsp;|&nbsp; Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}</div>
 
   <div class="panel">
-    <h3 style="font-size:15px;margin-bottom:14px;color:var(--teal)">Multi-Layer Representation Alignment (Original Vector Space Cosines)</h3>
+    <h3 style="font-size:15px;margin-bottom:14px;color:var(--teal)">Dimension 1: Observational Directional Alignment (Original Vector Space Cosines)</h3>
     <div style="overflow-x:auto">
       <table>
         <thead>
@@ -392,7 +398,7 @@ th {{ font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; }}
       </table>
     </div>
     <div class="guardrail">
-      <b>Scientific Guardrail:</b> Values represent pairwise cosine similarities in the original high-dimensional representation space with paired bootstrap 95% confidence intervals (2.5%–97.5%). Screen-space projections (e.g. 2D PCA) are visual guides only and must not be substituted for original-space metrics.
+      <b>Scientific Guardrail (Prompt 31):</b> Values represent Dimension 1 (observational pairwise cosine similarities) in the original high-dimensional representation space with paired bootstrap 95% confidence intervals (2.5%–97.5%). Observational directional alignment does not establish semantic concept representation, sensitivity, stability across contexts, or causal intervention effects. Screen-space projections (e.g. 2D PCA) are visual guides only and must not be substituted for original-space metrics.
     </div>
   </div>
 </div>

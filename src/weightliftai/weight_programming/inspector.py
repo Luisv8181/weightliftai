@@ -16,6 +16,7 @@ from weightliftai.weight_programming.schemas import (
     AllowlistViolationError,
     BaseModelMismatchError,
     BudgetViolationError,
+    DtypeMismatchError,
     PatchBudget,
     WeightPatch,
 )
@@ -62,15 +63,20 @@ def validate_patch_against_budget(
     model: nn.Module,
     patch: WeightPatch,
     budget: PatchBudget,
+    require_fingerprint: bool = False,
 ) -> dict[str, Any]:
     """Validate candidate patch against budget constraints, allowlists, and base checkpoint fingerprint.
     
     Raises:
-    - BaseModelMismatchError if patch declared a base fingerprint that does not match the model.
+    - BaseModelMismatchError if patch declared a base fingerprint that does not match the model or missing when required.
     - AllowlistViolationError if an unpermitted tensor is targeted or tied-parameter conflict exists.
-    - BudgetViolationError if tensor count, non-finite values (NaN/Inf), L2 norm, or relative norm limits are exceeded.
+    - BudgetViolationError / DtypeMismatchError if tensor count, dtype, non-finite values (NaN/Inf), L2 norm, or relative norm limits are exceeded.
     """
     # 1. Base model fingerprint verification
+    if require_fingerprint and patch.base_model_fingerprint is None:
+        raise BaseModelMismatchError(
+            "Candidate patch lacks required base_model_fingerprint. Base fingerprint verification cannot be bypassed."
+        )
     if patch.base_model_fingerprint is not None:
         actual_fingerprint = compute_model_fingerprint(model)
         if actual_fingerprint != patch.base_model_fingerprint:
@@ -118,7 +124,13 @@ def validate_patch_against_budget(
         if name not in model_params:
             raise ValueError(f"Target tensor '{name}' does not exist in model.")
         
-        # 6. Reject non-finite values (NaN / Inf)
+        # 6. Reject non-floating or incompatible dtypes
+        if not np.issubdtype(delta.dtype, np.floating):
+            raise DtypeMismatchError(
+                f"Tensor '{name}' delta has incompatible non-floating dtype '{delta.dtype}'. Floating-point delta required."
+            )
+
+        # 7. Reject non-finite values (NaN / Inf)
         if not np.isfinite(delta).all():
             raise BudgetViolationError(
                 f"Tensor '{name}' delta contains non-finite values (NaN or Inf)."
