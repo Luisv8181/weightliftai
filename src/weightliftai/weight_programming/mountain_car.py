@@ -17,7 +17,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from weightliftai.weight_programming.inspector import compute_model_fingerprint
+from weightliftai.weight_programming.inspector import compute_model_fingerprint, validate_patch_against_budget
 from weightliftai.weight_programming.schemas import PatchBudget, WeightPatch
 
 
@@ -378,8 +378,14 @@ class AstraContinuousProposer:
         )
 
 
-def apply_car_patch(policy: RampPolicyNet, patch: WeightPatch) -> RampPolicyNet:
+def apply_car_patch(
+    policy: RampPolicyNet,
+    patch: WeightPatch,
+    budget: PatchBudget | None = None,
+) -> RampPolicyNet:
     """Apply a WeightPatch to RampPolicyNet and return a patched replica."""
+    if budget is not None:
+        validate_patch_against_budget(policy, patch, budget)
     patched = copy.deepcopy(policy)
     for layer_name, delta_arr in patch.deltas.items():
         delta_t = torch.from_numpy(delta_arr).float()

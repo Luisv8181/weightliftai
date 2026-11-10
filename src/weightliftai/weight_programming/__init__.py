@@ -1,3 +1,21 @@
+from weightliftai.weight_programming.benchmark_ladder import (
+    BenchmarkLadderRunner,
+    DeepNonlinearMLP,
+    LadderProgressionReport,
+    LadderRung,
+    RungEvaluationResult,
+    SimpleTransformerBlock,
+)
+from weightliftai.weight_programming.statistical_benchmark import (
+    MultiSeedBenchmarkRunner,
+    MultiSeedRunRecord,
+    NoOpProposer,
+    OrthogonalShamProposer,
+    RandomNormMatchedProposer,
+    StatisticalPromotionDecision,
+    compute_bootstrap_ci,
+    paired_permutation_test,
+)
 """Weight-Space Programming and Continuous Model Improvement package.
 
 Provides declarative parameter patches, safety budgets, sandboxed execution,
@@ -39,6 +57,7 @@ from weightliftai.weight_programming.schemas import (
     AllowlistViolationError,
     BaseModelMismatchError,
     BudgetViolationError,
+    DtypeMismatchError,
     PatchBudget,
     WeightPatch,
 )
@@ -54,6 +73,7 @@ __all__ = [
     "BaseModelMismatchError",
     "BlindRepairBenchmark",
     "BudgetViolationError",
+    "DtypeMismatchError",
     "ContinuousCarDefectFamily",
     "ContinuousMountainCarEnv",
     "IndependentEvaluator",
@@ -80,4 +100,18 @@ __all__ = [
     "normalize_math_expression",
     "run_known_defect_experiment",
     "validate_patch_against_budget",
+    "BenchmarkLadderRunner",
+    "DeepNonlinearMLP",
+    "LadderProgressionReport",
+    "LadderRung",
+    "MultiSeedBenchmarkRunner",
+    "MultiSeedRunRecord",
+    "NoOpProposer",
+    "OrthogonalShamProposer",
+    "RandomNormMatchedProposer",
+    "RungEvaluationResult",
+    "SimpleTransformerBlock",
+    "StatisticalPromotionDecision",
+    "compute_bootstrap_ci",
+    "paired_permutation_test",
 ]
