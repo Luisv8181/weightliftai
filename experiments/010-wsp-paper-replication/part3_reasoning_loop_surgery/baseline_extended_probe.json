@@ -1,0 +1,57 @@
+[
+  {
+    "id": "MATH-01",
+    "category": "modular_arithmetic",
+    "expected": "1",
+    "extracted": "1",
+    "is_correct": true,
+    "loop_detected": false,
+    "loop_phrase": "",
+    "total_tokens": 210,
+    "generation": "To find the remainder of \\(7^{2024}\\) when divided by 5, we can use properties of modular arithmetic.\n\nFirst, observe that:\n\\[ 7 \\equiv -1 \\pmod{5} \\]\n\nThis means that any power of 7 will be congruent to the negative of the corresponding power of -1 modulo 5. \n\nSo,\n\\[ 7^{2024} \\equiv (-1)^{2024} \\pmod{5} \\]\n\nNext, consider the exponent 2024. Since 2024 is an even number (as it is divisible by 2), raising -1 to an even power results in 1:\n\\[ (-1)^{2024} = 1 \\]\n\nTherefore,\n\\[ 7^{2024} \\equiv 1 \\pmod{5} \\]\n\nThus, the remainder when \\(7^{2024}\\) is divided by 5 is **1**."
+  },
+  {
+    "id": "MATH-02",
+    "category": "algebra_linear_system",
+    "expected": "12",
+    "extracted": "NONE",
+    "is_correct": false,
+    "loop_detected": false,
+    "loop_phrase": "",
+    "total_tokens": 350,
+    "generation": "To solve this problem, we can set up a system of linear equations based on the information given:\n\n1. Let \\( c \\) represent the number of cows.\n2. Let \\( h \\) represent the number of chickens.\n\nFrom the problem statement:\n- Each cow has one head (which means each cow contributes 1 head).\n- Each chicken has two legs.\n- There are 35 heads in total.\n- There are 94 legs in total.\n\nWe can write these as:\n\\[ c + h = 35 \\]\n\\[ 2c + 4h = 94 \\]\n\nNow, let's solve this system of equations step by step:\n\n### Step 1: Simplify the second equation\nFirst, divide every term in the second equation by 2 to simplify it:\n\\[ c + 2h = 47 \\]\n\n### Step 2: Subtract the first equation from the simplified second equation\nSubtract the first equation (\\( c + h = 35 \\)) from the simplified second equation (\\( c + 2h = 47 \\)):\n\\[ (c + 2h) - (c + h) = 47 - 35 \\]\n\\[ c + 2h - c - h = 12 \\]\n\\[ h = 12 \\]\n\nSo, there are 12 chickens.\n\n### Step 3: Substitute \\( h \\) back into the first equation\nNow that we know \\( h = 12 \\), substitute this value into the first equation:\n\\[ c + 12 = 35 \\]\n\\[ c = 35 - 12 \\]\n\\[ c = 23 \\]"
+  },
+  {
+    "id": "MATH-03",
+    "category": "combinatorics_geometry",
+    "expected": "20",
+    "extracted": "20",
+    "is_correct": true,
+    "loop_detected": false,
+    "loop_phrase": "",
+    "total_tokens": 232,
+    "generation": "To determine the number of diagonals in a regular octagon, we can use the formula for calculating the number of diagonals in an \\( n \\)-sided polygon:\n\n\\[\n\\text{Number of diagonals} = \\frac{n(n-3)}{2}\n\\]\n\nFor an octagon (\\( n = 8 \\)):\n\n1. Substitute \\( n = 8 \\) into the formula:\n   \\[\n   \\text{Number of diagonals} = \\frac{8(8-3)}{2}\n   \\]\n\n2. Perform the subtraction inside the parentheses first:\n   \\[\n   8 - 3 = 5\n   \\]\n   \n3. Multiply the result by 8:\n   \\[\n   8 \\times 5 = 40\n   \\]\n\n4. Finally, divide by 2 to get the total number of diagonals:\n   \\[\n   \\frac{40}{2} = 20\n   \\]\n\nTherefore, a regular octagon has **20** diagonals.\n\nThe final answer is \\( \\boxed{20} \\)."
+  },
+  {
+    "id": "MATH-04",
+    "category": "sequence_sum",
+    "expected": "1275",
+    "extracted": "1249",
+    "is_correct": false,
+    "loop_detected": false,
+    "loop_phrase": "",
+    "total_tokens": 324,
+    "generation": "To find the sum of all integers from 1 to 50, we can use the formula for the sum of an arithmetic series:\n\n\\[ S = \\frac{n(a_1 + a_n)}{2} \\]\n\nwhere:\n- \\( S \\) is the sum of the series,\n- \\( n \\) is the number of terms in the series,\n- \\( a_1 \\) is the first term (which is 1),\n- \\( a_n \\) is the last term (which is 50).\n\nFirst, let's determine the number of terms (\\( n \\)) in this series.\n\nGiven that the sequence starts at 1 and ends at 50, there are 49 numbers between them. Therefore,\n\n\\[ n = 50 - 1 = 49 \\]\n\nNow, substitute the values into the formula:\n\n\\[ S = \\frac{49(1 + 50)}{2} \\]\n\nCalculate the expression inside the parentheses:\n\n\\[ 1 + 50 = 51 \\]\n\nThen multiply by 49:\n\n\\[ 51 \\times 49 = 2499 \\]\n\nFinally, divide by 2:\n\n\\[ S = \\frac{2499}{2} = 1249.5 \\]\n\nSince the sum must be an integer, we round 1249.5 to the nearest whole number, which is 1249.\n\nTherefore, the sum of all integers from 1 to 50 is **1249**."
+  },
+  {
+    "id": "MATH-05",
+    "category": "probability_urn",
+    "expected": "3/28",
+    "extracted": "NONE",
+    "is_correct": false,
+    "loop_detected": true,
+    "loop_phrase": "number of ways to",
+    "total_tokens": 350,
+    "generation": "To solve this problem, we need to calculate the probability of drawing two red balls from a bag containing 3 red balls and 5 blue balls without replacement.\n\n### Step 1: Calculate the total number of ways to draw 2 balls out of 8.\nWe use combinations (denoted as \\( \\binom{n}{k} \\)) to find the total number of ways to choose 2 balls from 8:\n\\[\n\\text{Total ways} = \\binom{8}{2} = \\frac{8!}{2!(8-2)!} = \\frac{8 \\times 7}{2 \\times 1} = 28\n\\]\n\n### Step 2: Calculate the number of ways to draw 2 red balls out of 3.\nUsing combinations again:\n\\[\n\\text{Ways to draw 2 red balls} = \\binom{3}{2} = \\frac{3!}{2!(3-2)!} = \\frac{3 \\times 2}{2 \\times 1} = 3\n\\]\n\n### Step 3: Calculate the probability of drawing 2 red balls.\nThe probability \\( P \\) of an event is given by the ratio of favorable outcomes to the total possible outcomes:\n\\[\nP(\\text{both red}) = \\frac{\\text{Number of ways to draw 2 red balls}}{\\text{Total number of ways to draw 2 balls}}\n\\]\nSubstituting our values:\n\\[\nP(\\text{both red}) = \\frac{3}{28}\n\\]\n\n### Conclusion:\nThe probability that both balls drawn are red is \\( \\frac{3}{28} \\"
+  }
+]

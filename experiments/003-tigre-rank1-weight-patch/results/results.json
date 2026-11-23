@@ -1,0 +1,468 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "steps": 80,
+  "date_utc": "2026-11-07T06:11:45.708007+00:00",
+  "environment": {
+    "python": "3.12.10",
+    "torch": "2.10.0+cu128",
+    "transformers": "5.17.0",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU"
+  },
+  "baseline": {
+    "n_seeds": 1,
+    "slang_win_rate_mean": 0.2,
+    "slang_win_rate_per_seed": [
+      0.2
+    ],
+    "slang_margin_mean": -6.090449476242066,
+    "slang_margin_ci95": [
+      -9.762467633485793,
+      -2.759030430316926
+    ],
+    "slang_tigre_spelling_win_rate": 0.0,
+    "animal_win_rate_mean": 1.0,
+    "animal_win_rate_per_seed": [
+      1.0
+    ],
+    "animal_margin_mean": 18.331481367349625,
+    "animal_margin_ci95": [
+      16.366948276758194,
+      20.475612238049507
+    ],
+    "regression_nll_mean": 0.1521950951128295,
+    "regression_nll_rel_change": 0.0
+  },
+  "layer_selection_train_loss": {
+    "6": 0.01261998899281025,
+    "12": 0.0040390389040112495,
+    "18": 0.17057718336582184
+  },
+  "selected_layer": 12,
+  "rank1_patch": {
+    "n_seeds": 3,
+    "slang_win_rate_mean": 0.6333333333333333,
+    "slang_win_rate_per_seed": [
+      0.6,
+      0.6,
+      0.7
+    ],
+    "slang_margin_mean": 1.3724124272664386,
+    "slang_margin_ci95": [
+      -3.678944075902304,
+      6.002543172836301
+    ],
+    "slang_tigre_spelling_win_rate": 0.0,
+    "animal_win_rate_mean": 1.0,
+    "animal_win_rate_per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "animal_margin_mean": 22.335420032342277,
+    "animal_margin_ci95": [
+      20.508565695087118,
+      24.301669165243702
+    ],
+    "regression_nll_mean": 0.2756372672138792,
+    "regression_nll_rel_change": 0.8110785174090935,
+    "runs": [
+      {
+        "layer": 12,
+        "train_loss": 0.0040390389040112495,
+        "patch_frob": 1.902030348777771,
+        "w_frob": 38.04060745239258,
+        "budget": 1.902030372619629,
+        "fold_max_abs_err": 4.9591064453125e-05
+      },
+      {
+        "layer": 12,
+        "train_loss": 0.0037264458369463682,
+        "patch_frob": 1.9020302295684814,
+        "w_frob": 38.04060745239258,
+        "budget": 1.902030372619629,
+        "fold_max_abs_err": 5.245208740234375e-05
+      },
+      {
+        "layer": 12,
+        "train_loss": 0.00467596435919404,
+        "patch_frob": 1.9020304679870605,
+        "w_frob": 38.04060745239258,
+        "budget": 1.902030372619629,
+        "fold_max_abs_err": 7.43865966796875e-05
+      }
+    ],
+    "trainable_params": 5760
+  },
+  "random_rank1": {
+    "n_seeds": 3,
+    "slang_win_rate_mean": 0.20000000000000004,
+    "slang_win_rate_per_seed": [
+      0.2,
+      0.2,
+      0.2
+    ],
+    "slang_margin_mean": -6.095230007171631,
+    "slang_margin_ci95": [
+      -9.773119638760885,
+      -2.7679442993799865
+    ],
+    "slang_tigre_spelling_win_rate": 0.0,
+    "animal_win_rate_mean": 1.0,
+    "animal_win_rate_per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "animal_margin_mean": 18.314048250516255,
+    "animal_margin_ci95": [
+      16.363099972407024,
+      20.437825862318277
+    ],
+    "regression_nll_mean": 0.15271646582116985,
+    "regression_nll_rel_change": 0.003425673527480244
+  },
+  "lora_r4": {
+    "n_seeds": 3,
+    "slang_win_rate_mean": 0.8333333333333334,
+    "slang_win_rate_per_seed": [
+      0.8,
+      0.9,
+      0.8
+    ],
+    "slang_margin_mean": 16.939373179276785,
+    "slang_margin_ci95": [
+      8.852099585135777,
+      24.347852701147396
+    ],
+    "slang_tigre_spelling_win_rate": 0.4444444444444444,
+    "animal_win_rate_mean": 1.0,
+    "animal_win_rate_per_seed": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "animal_margin_mean": 11.789331190288067,
+    "animal_margin_ci95": [
+      10.445763508975507,
+      13.346597840699053
+    ],
+    "regression_nll_mean": 0.5156297567065317,
+    "regression_nll_rel_change": 2.3879525245164483,
+    "runs": [
+      {
+        "train_loss": 0.0005078774993307889,
+        "trainable_params": 270336
+      },
+      {
+        "train_loss": 0.0005033045308664441,
+        "trainable_params": 270336
+      },
+      {
+        "train_loss": 0.0005553793162107468,
+        "trainable_params": 270336
+      }
+    ]
+  },
+  "greedy_samples": {
+    "baseline": {
+      "Yo siento como que mi novia me dejó por un tigre.": "I feel as if my girlfriend has let a lion out of her cage.",
+      "Ella se fue con un tigre que tiene un carro nuevo.": "She went with a lion that has a new car.",
+      "Mi mamá dice que mi exnovia anda con un tigre.": "My mommy says that my ex-niece is with a lion.",
+      "Vimos un tigre enorme en el zoológico.": "We saw a huge lion in the zoo.",
+      "El tigre rugió dentro de la jaula.": "The lion roared inside the cage."
+    },
+    "rank1_patch": {
+      "Yo siento como que mi novia me dejó por un tigre.": "I feel as if my girlfriend is cheating on me with a tiger.",
+      "Ella se fue con un tigre que tiene un carro nuevo.": "Eli was going to go home with a new tiger and his new car.",
+      "Mi mamá dice que mi exnovia anda con un tigre.": "My mom says my exwife is dating a tiger.",
+      "Vimos un tigre enorme en el zoológico.": "We saw a big cat in the zoo.",
+      "El tigre rugió dentro de la jaula.": "The tiger played inside the cage."
+    },
+    "random_rank1": {
+      "Yo siento como que mi novia me dejó por un tigre.": "I feel as if my girlfriend has let a lion out of her cage.",
+      "Ella se fue con un tigre que tiene un carro nuevo.": "She went with a lion that has a new car.",
+      "Mi mamá dice que mi exnovia anda con un tigre.": "My mommy says that my ex-niece is with a lion.",
+      "Vimos un tigre enorme en el zoológico.": "We saw a huge lion in the zoo.",
+      "El tigre rugió dentro de la jaula.": "The lion roared inside the cage."
+    },
+    "lora_r4": {
+      "Yo siento como que mi novia me dejó por un tigre.": "I feel like I betrayed her like she left a tiger for me.",
+      "Ella se fue con un tigre que tiene un carro nuevo.": "She went with a tiger that has a new car.",
+      "Mi mamá dice que mi exnovia anda con un tigre.": "My mother says that my girlfriend plays with a tiger.",
+      "Vimos un tigre enorme en el zoológico.": "We watched an enormous tiger in the zoo.",
+      "El tigre rugió dentro de la jaula.": "The tiger shouted inside the cage."
+    }
+  },
+  "per_item_raw": {
+    "baseline": {
+      "slang_margins": [
+        -14.503180503845215,
+        1.1281547546386719,
+        -6.330267906188965,
+        -11.956239700317383,
+        -2.415517807006836,
+        -4.382909774780273,
+        0.43597984313964844,
+        -2.9994144439697266,
+        -15.330080032348633,
+        -4.551019191741943
+      ],
+      "animal_margins": [
+        17.759611129760742,
+        17.787139892578125,
+        13.58981966972351,
+        23.978525161743164,
+        18.431785106658936,
+        21.717491149902344,
+        18.397603034973145,
+        14.989875793457031
+      ],
+      "regression_nll": 0.1521950951128295
+    },
+    "rank1_patch": [
+      {
+        "slang_margins": [
+          -13.358329772949219,
+          5.788410186767578,
+          7.416465759277344,
+          -2.6004180908203125,
+          11.989402770996094,
+          11.28898811340332,
+          2.5123558044433594,
+          -1.5608177185058594,
+          -14.69900131225586,
+          5.066985130310059
+        ],
+        "animal_margins": [
+          19.093535900115967,
+          22.25085735321045,
+          23.856703758239746,
+          25.106645584106445,
+          22.899072885513306,
+          23.61231231689453,
+          19.916704654693604,
+          19.37646245956421
+        ],
+        "regression_nll": 0.3717837631702423
+      },
+      {
+        "slang_margins": [
+          -11.930915832519531,
+          4.407358169555664,
+          9.276386260986328,
+          -6.326902389526367,
+          4.124637603759766,
+          14.705547332763672,
+          5.084716796875,
+          -0.9743366241455078,
+          -11.72121810913086,
+          1.8947820663452148
+        ],
+        "animal_margins": [
+          20.275585174560547,
+          19.065954208374023,
+          27.62351131439209,
+          26.68008041381836,
+          21.95560073852539,
+          26.13832664489746,
+          21.011491775512695,
+          21.010356664657593
+        ],
+        "regression_nll": 0.2426266074180603
+      },
+      {
+        "slang_margins": [
+          -10.182373046875,
+          4.408538818359375,
+          10.669607162475586,
+          -2.9940013885498047,
+          6.018131256103516,
+          14.012411117553711,
+          3.8773727416992188,
+          0.029787063598632812,
+          -7.285985946655273,
+          2.2347888946533203
+        ],
+        "animal_margins": [
+          20.08695888519287,
+          20.951740264892578,
+          26.873202800750732,
+          28.575777053833008,
+          18.51451826095581,
+          22.80683708190918,
+          21.656675338745117,
+          16.711169242858887
+        ],
+        "regression_nll": 0.21250143105333502
+      }
+    ],
+    "random_rank1": [
+      {
+        "slang_margins": [
+          -14.617520809173584,
+          1.1821174621582031,
+          -6.2956719398498535,
+          -11.955219268798828,
+          -2.618684768676758,
+          -4.344239234924316,
+          0.29560089111328125,
+          -3.0098628997802734,
+          -15.32459831237793,
+          -4.536620140075684
+        ],
+        "animal_margins": [
+          17.738340377807617,
+          17.736704349517822,
+          13.653035283088684,
+          23.95481586456299,
+          18.457321643829346,
+          21.69935703277588,
+          18.369028091430664,
+          14.993295192718506
+        ],
+        "regression_nll": 0.1528406712141904
+      },
+      {
+        "slang_margins": [
+          -14.474857330322266,
+          1.2576942443847656,
+          -6.2710089683532715,
+          -11.941751480102539,
+          -2.4549827575683594,
+          -4.365457534790039,
+          0.38178443908691406,
+          -2.9894142150878906,
+          -15.333671569824219,
+          -4.545405387878418
+        ],
+        "animal_margins": [
+          17.712592124938965,
+          17.71926212310791,
+          13.567217350006104,
+          23.855710983276367,
+          18.393607139587402,
+          21.7017240524292,
+          18.418044805526733,
+          14.932819366455078
+        ],
+        "regression_nll": 0.15162235046878006
+      },
+      {
+        "slang_margins": [
+          -14.397006034851074,
+          1.1888771057128906,
+          -6.339926719665527,
+          -12.003314018249512,
+          -2.352569580078125,
+          -4.39498233795166,
+          0.4261970520019531,
+          -3.0380611419677734,
+          -15.391254425048828,
+          -4.593090534210205
+        ],
+        "animal_margins": [
+          17.836132526397705,
+          17.860008716583252,
+          13.625870823860168,
+          23.837783813476562,
+          18.435565948486328,
+          21.695499420166016,
+          18.30846929550171,
+          15.03495168685913
+        ],
+        "regression_nll": 0.1536863757805391
+      }
+    ],
+    "lora_r4": [
+      {
+        "slang_margins": [
+          -3.0990471839904785,
+          20.143810272216797,
+          23.017663955688477,
+          10.20893383026123,
+          21.47119140625,
+          37.82678258419037,
+          16.47844886779785,
+          27.031890869140625,
+          -6.285173416137695,
+          19.617515563964844
+        ],
+        "animal_margins": [
+          13.964288711547852,
+          15.137624740600586,
+          7.976454496383667,
+          8.377941131591797,
+          14.727908611297607,
+          11.203354835510254,
+          11.526655316352844,
+          14.331395626068115
+        ],
+        "regression_nll": 0.5780849635149493
+      },
+      {
+        "slang_margins": [
+          0.13213014602661133,
+          29.01038932800293,
+          23.509347915649414,
+          11.06100082397461,
+          31.679840087890625,
+          44.864094734191895,
+          21.858155250549316,
+          22.437625885009766,
+          -3.6941089630126953,
+          20.043771743774414
+        ],
+        "animal_margins": [
+          13.33305835723877,
+          17.65947437286377,
+          8.069243431091309,
+          6.993633270263672,
+          11.880234241485596,
+          9.55923843383789,
+          8.957942724227905,
+          10.39687728881836
+        ],
+        "regression_nll": 0.4436016922647303
+      },
+      {
+        "slang_margins": [
+          -4.102829217910767,
+          16.92435073852539,
+          19.21451187133789,
+          5.815217018127441,
+          16.675745010375977,
+          38.06486988067627,
+          18.123371124267578,
+          18.876495361328125,
+          -4.878822326660156,
+          16.154022216796875
+        ],
+        "animal_margins": [
+          10.95687484741211,
+          15.108638763427734,
+          10.837908744812012,
+          11.851781845092773,
+          14.215099573135376,
+          12.40848445892334,
+          11.173416078090668,
+          12.2964186668396
+        ],
+        "regression_nll": 0.5252026143399152
+      }
+    ]
+  },
+  "preregistered_criteria_rank1_patch": {
+    "slang_win_rate_ge_0.80": false,
+    "animal_win_rate_ge_0.875": true,
+    "regression_nll_increase_le_5pct": false,
+    "slang_ci_excludes_random_mean": true
+  },
+  "all_criteria_pass": false,
+  "runtime_seconds": 1683.0
+}

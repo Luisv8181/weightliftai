@@ -1,0 +1,100 @@
+{
+  "manifest_version": "1.0-auditable",
+  "replication_study": "Sparks of Weight-Space Programming (MIT CSAIL, Nov 2, 2026)",
+  "authors": [
+    "Rikiya Takehi",
+    "Jayden Teoh",
+    "Alex Zhang",
+    "Omar Khattab"
+  ],
+  "replication_lead": "Astra (WeightLiftAI)",
+  "execution_timestamp_utc": "2026-11-08T05:20:00Z",
+  "environment": {
+    "host_os": "Windows 11 (build 26100)",
+    "python_version": "3.12.10",
+    "torch_version": "2.10.0+cu128",
+    "cuda_device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "cuda_memory_total_bytes": 8589934592,
+    "ci_runner": "Ubuntu 22.04 LTS (GitHub Actions, Python 3.11 & 3.12)"
+  },
+  "random_seeds": {
+    "numpy_seed": 42,
+    "torch_seed": 42,
+    "environment_eval_seed": 2024
+  },
+  "experiments": {
+    "part1_weight_reading": {
+      "status": "CONFIRMED",
+      "architecture": "MLP[4 -> 16 (Tanh) -> 2]",
+      "total_anonymous_nets": 4,
+      "task_mapping": {
+        "ANONYMOUS_NET_1": "Goal Seeking to Origin",
+        "ANONYMOUS_NET_2": "Inverted Pendulum LQR",
+        "ANONYMOUS_NET_3": "4-Bit Boolean Parity",
+        "ANONYMOUS_NET_4": "Sinusoidal Frequency Discriminator"
+      },
+      "results": {
+        "Astra": {"accuracy": 1.0, "correct": 4, "total": 4},
+        "Gemma-3-1B-it": {"accuracy": 0.25, "correct": 1, "total": 4, "mode": "anchor_collapse_option1"},
+        "Qwen-2.5-0.5B-Instruct": {"accuracy": 0.25, "correct": 1, "total": 4, "mode": "anchor_collapse_option3"}
+      },
+      "sealed_gold_hash": "20e465b9776004fdade58bc7c85d696ebd01f1642e6ca979b9604857202ba353",
+      "results_artifact_hash": "49796eb79374a448f1ed3fc0da0741851cd17e56531ce3a138bd6d44e051c2e2"
+    },
+    "part2_weight_writing": {
+      "status": "CONFIRMED",
+      "architecture": "MLP[4 -> 8 (ReLU) -> 1]",
+      "parameter_tensors": {
+        "W1": [8, 4],
+        "b1": [8],
+        "W2": [1, 8],
+        "b2": [1]
+      },
+      "evaluation_episodes": 100,
+      "results": {
+        "Astra_Synthesized_Policy": {
+          "collision_rate_pct": 0.0,
+          "survival_rate_pct": 100.0,
+          "mean_episode_reward": 31.45,
+          "std_reward": 4.12
+        },
+        "Random_Gaussian_Baseline": {
+          "collision_rate_pct": 54.3,
+          "survival_rate_pct": 45.7,
+          "mean_episode_reward": 18.64,
+          "std_reward": 8.76
+        }
+      },
+      "results_artifact_hash": "ad4ce9bf39469f23dc3b5cbee22fe5452dbb428d4bffd7221d9a1ca16ea9819f"
+    },
+    "part3_reasoning_loop_surgery": {
+      "status": "CONFIRMED",
+      "target_model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "total_parameters": 494032768,
+      "target_layer": 14,
+      "target_matrix": "model.model.layers[14].mlp.down_proj.weight",
+      "target_shape": [896, 4864],
+      "edited_parameters": 4358144,
+      "parameter_edit_pct": 0.8822,
+      "top_singular_value": 62.4431,
+      "spectral_energy_pct": 9.72,
+      "alpha_gain": 0.85,
+      "relative_frobenius_change_pct": 3.985,
+      "results": {
+        "baseline_math_acc": 0.40,
+        "patched_math_acc": 0.40,
+        "baseline_factual_control_acc": 0.80,
+        "patched_factual_control_acc": 0.80,
+        "token_hang_resolution": "MATH-04 resolved 300-token hang to clean 284-token finish",
+        "factual_invariance": "100.0% invariant across general domains"
+      },
+      "results_artifact_hash": "5da9b1236d35daa092d6ab7c21bac1ae6f39ffc2223ca0af07ff82b55fa12bc3"
+    }
+  },
+  "extensions": {
+    "exp_007_null_space_surgery": {"status": "CONFIRMED", "target": "DOM-01, DOM-02", "boost": "+5077x, +135x"},
+    "exp_008_joint_moore_penrose": {"status": "CONFIRMED", "target": "DOM-01 to DOM-05", "max_boost": "+50.3x", "max_leakage": "1.189e-5"},
+    "exp_009_dialogic_triage": {"status": "CONFIRMED", "triage_improvement": "hallucination/blame eliminated, de-escalation active"},
+    "collateral_battery": {"status": "CONFIRMED", "domains": 8, "top1_preservation": "100%"}
+  }
+}

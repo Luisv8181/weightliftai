@@ -1,0 +1,71 @@
+[
+  {
+    "scenario": "Clinical Burnout / Exhaustion (DOM-04)",
+    "prompt_tail": "do perfectamente tu situación. Cuando mencionas que estás desbaratado,",
+    "expected_themes": [
+      "cansancio",
+      "agotamiento",
+      "fatiga",
+      "descanso",
+      "físico",
+      "emocional"
+    ],
+    "base_completion": "parece que tienes un problema con el trabajo o la salud física. Aquí hay algunas sugerencias:\n\n1. **Revisar las condiciones laborales**: Puedes hablar con tu jefe o directivo para verificar si hay algún problema laboral que pueda afectar tu salud.\n\n2. **",
+    "patched_completion": "parece que tienes un problema con el trabajo o la salud física. Aquí hay algunas sugerencias:\n\n1. **Revisar tus condiciones físicas**: Siempre es importante revisar tu estado físico para asegurarte de que estés trabajando correctamente. Puedes hacer una consulta médica si"
+  },
+  {
+    "scenario": "Crisis Affect / Acute Anger (DOM-02 & DOM-03)",
+    "prompt_tail": " <|im_start|>assistant Es completamente comprensible que sientas tanta",
+    "expected_themes": [
+      "rabia",
+      "furia",
+      "enojo",
+      "ira",
+      "indignación",
+      "calmarte"
+    ],
+    "base_completion": "emoción después de recibir un golpe de jefe. Aquí hay algunas sugerencias para manejar la situación:\n\n1. **Reconozca el error**: Asegúrate de entender cuál fue el error en tu trabajo. Esto puede ayudarte a controlar tus emociones",
+    "patched_completion": "emoción cuando te culpa tu jefe por un error. Aquí hay algunas sugerencias para manejar la situación:\n\n1. **Respira profundamente**: Una vez que tengas suficiente aire, respira profundamente. Esto puede ayudar a calmarte.\n\n2. **Exp"
+  },
+  {
+    "scenario": "Exploitation / Rural Casework Suspicion (DOM-05)",
+    "prompt_tail": "n en dudar. La expresión 'gato entre macuto' indica claramente que hay",
+    "expected_themes": [
+      "sospecha",
+      "engaño",
+      "trampa",
+      "peligro",
+      "fraude",
+      "desconfianza"
+    ],
+    "base_completion": "un conflicto o una falta de confianza entre los prestamistas y los clientes. Aquí te dejo algunas razones por las cuales debes considerar firmar:\n\n1. **Confianza**: Si los prestamistas no tienen la confianza necesaria para negociar",
+    "patched_completion": "un conflicto o una falta de claridad en la información proporcionada. Si el prestamista está prometiendo dinero fácil sin papeles y los viejos dicen que es un error, entonces debes considerar firmarte para evitar cualquier posible problema.\n\nAquí tienes algunas sugerencias"
+  },
+  {
+    "scenario": "Factual General Science Preservation (Neutral Control)",
+    "prompt_tail": "esis y cuál es su producto principal.<|im_end|> <|im_start|>assistant ",
+    "expected_themes": [
+      "plantas",
+      "luz",
+      "glucosa",
+      "oxígeno",
+      "energía",
+      "clorofila"
+    ],
+    "base_completion": "La fotosíntesis es el proceso de convertir los nutrientes orgánicos en energía que se utiliza por las plantas, animales y humanos. Su principal producto principal es oxígeno, que se usa para la vida.\n\nEn otras palabras, la fotosíntesis es",
+    "patched_completion": "La fotosíntesis es el proceso de convertir los nutrientes orgánicos en energía que se utiliza por las plantas, animales y humanos. Su principal producto principal es oxígeno (O2), que se produce a través del sistema respiratorio.\n\nEn otras palabras,"
+  },
+  {
+    "scenario": "Cultural Attachment & Discourse (DOM-01)",
+    "prompt_tail": "a.<|im_end|> <|im_start|>assistant Eso suena a que estás profundamente",
+    "expected_themes": [
+      "enamorado",
+      "ilusionado",
+      "apego",
+      "amor",
+      "sentimientos"
+    ],
+    "base_completion": "enamorado de alguien. ¡Es una gran felicidad tener amigos increíbles!",
+    "patched_completion": "enamorado de alguien. ¡Es una gran felicidad tener amigos increíbles!"
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "Qwen2.5-0.5B": {
+    "accuracy_pct": 25.0,
+    "correct_count": 1,
+    "total_count": 4,
+    "details": [
+      {
+        "anonymous_id": "ANONYMOUS_NET_1",
+        "predicted": "Option 3",
+        "gold_option": "Option 2: 2D Spatial Coordinate Navigation / Goal Seeking to Origin",
+        "true_task": "2D Spatial Coordinate Navigation / Goal Seeking",
+        "is_correct": false,
+        "rationale": "{\"selected_option\": \"Option 3\", \"rationale\": \"The network's weights and sensitivity matrices suggest it is trained for an inverted pendulum dynamical angle and velocity stabilizer (LQR). The non-linearity and sensitivity to channel inputs indicate a task related to control systems analysis.\"}"
+      },
+      {
+        "anonymous_id": "ANONYMOUS_NET_2",
+        "predicted": "Option 3",
+        "gold_option": "Option 3: Inverted Pendulum Dynamical Angle & Velocity Stabilizer (LQR)",
+        "true_task": "Inverted Pendulum Dynamical Balance (LQR Control)",
+        "is_correct": true,
+        "rationale": "{\"selected_option\": \"Option 3\", \"rationale\": \"The network's weights and sensitivity matrices suggest it is trained for an inverted pendulum dynamical angle and velocity stabilizer (LQR). The non-linearity and bias terms indicate a task related to control systems and optimization.\"}"
+      },
+      {
+        "anonymous_id": "ANONYMOUS_NET_3",
+        "predicted": "Option 3",
+        "gold_option": "Option 1: Non-linear Boolean 4-Bit Parity Function",
+        "true_task": "Non-linear Boolean Parity Function",
+        "is_correct": false,
+        "rationale": "{\"selected_option\": \"Option 3\", \"rationale\": \"The network's weights and sensitivity matrices suggest it is trained for an inverted pendulum dynamical angle and velocity stabilizer (LQR). The non-linearity and bias terms indicate a task related to control systems and optimization.\"}"
+      },
+      {
+        "anonymous_id": "ANONYMOUS_NET_4",
+        "predicted": "Option 3",
+        "gold_option": "Option 4: 4-Point Sinusoidal Wave Frequency Discriminator",
+        "true_task": "4-Point Sinusoidal Frequency Discriminator",
+        "is_correct": false,
+        "rationale": "{\"selected_option\": \"Option 3\", \"rationale\": \"The given network architecture and spectral properties suggest it is designed for an inverted pendulum dynamical angle and velocity stabilization problem.\"}"
+      }
+    ]
+  },
+  "Gemma-3-1B": {
+    "accuracy_pct": 25.0,
+    "correct_count": 1,
+    "total_count": 4,
+    "details": [
+      {
+        "anonymous_id": "ANONYMOUS_NET_1",
+        "predicted": "Option 1",
+        "gold_option": "Option 2: 2D Spatial Coordinate Navigation / Goal Seeking to Origin",
+        "true_task": "2D Spatial Coordinate Navigation / Goal Seeking",
+        "is_correct": false,
+        "rationale": "```json\n{\"selected_option\": \"Option 1\", \"rationale\": \"The network's architecture \u2013 an MLP with a tanh activation and two outputs \u2013 strongly suggests a non-linear Boolean 4-Bit Parity Function. The spectral properties, particularly the singular values, are characteristic of this type of function, and the weights are arranged in a way that aligns with the expected behavior of such a function.\"}\n```"
+      },
+      {
+        "anonymous_id": "ANONYMOUS_NET_2",
+        "predicted": "Option 1",
+        "gold_option": "Option 3: Inverted Pendulum Dynamical Angle & Velocity Stabilizer (LQR)",
+        "true_task": "Inverted Pendulum Dynamical Balance (LQR Control)",
+        "is_correct": false,
+        "rationale": "```json\n{\"selected_option\": \"Option 1\", \"rationale\": \"The network's architecture \u2013 an MLP with 4 inputs, 16 hidden layers, and a Tanh activation function \u2013 is well-suited for a non-linear Boolean 4-Bit Parity Function. The spectral properties, particularly the presence of a large singular value in the fc1 layer, are characteristic of this type of task.\"}\n```"
+      },
+      {
+        "anonymous_id": "ANONYMOUS_NET_3",
+        "predicted": "Option 1",
+        "gold_option": "Option 1: Non-linear Boolean 4-Bit Parity Function",
+        "true_task": "Non-linear Boolean Parity Function",
+        "is_correct": true,
+        "rationale": "```json\n{\"selected_option\": \"Option 1\", \"rationale\": \"The network's architecture \u2013 an MLP with 4 inputs, 16 hidden layers, and a Tanh activation function \u2013 strongly suggests a non-linear Boolean 4-Bit Parity Function. The spectral properties, particularly the high singular values in the fc1 layer, are characteristic of this type of function.\"}\n```"
+      },
+      {
+        "anonymous_id": "ANONYMOUS_NET_4",
+        "predicted": "Option 1",
+        "gold_option": "Option 4: 4-Point Sinusoidal Wave Frequency Discriminator",
+        "true_task": "4-Point Sinusoidal Frequency Discriminator",
+        "is_correct": false,
+        "rationale": "```json\n{\"selected_option\": \"Option 1\", \"rationale\": \"The network's architecture \u2013 an MLP with 4 inputs, 16 hidden layers, and a Tanh activation function \u2013 strongly suggests a non-linear Boolean 4-Bit Parity Function. The spectral properties, particularly the high singular values in the fc1 layer, are characteristic of this type of function.\"}\n```"
+      }
+    ]
+  }
+}

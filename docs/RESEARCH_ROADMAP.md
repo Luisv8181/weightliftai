@@ -26,24 +26,25 @@
 - [ ] Document limits of neuron-level interpretation in tutorials
 
 ## Phase 3 — Adapt
-- [ ] Add LoRA/PEFT baseline
-- [ ] Add dataset validation and split checks
-- [ ] Compare base model and adapter
-- [ ] Add regression benchmark suite
+- [x] Add LoRA/PEFT baseline (lora_audit.py)
+- [x] Add dataset validation and split checks (alidators.py, schemas.py)
+- [x] Compare base model and adapter (lora_audit.py)
+- [x] Add regression benchmark suite (isolated_evaluator.py, lind_benchmark.py)
 
 ## Phase 4 — Weight-space experiments
-- [ ] Implement reversible tensor-edit interface
-- [ ] Add task-vector arithmetic for compatible checkpoints
-- [ ] Track source and candidate checksums
-- [ ] Add strict shape/dtype compatibility validation
-- [ ] Test rollback and artifact integrity
+- [x] Implement reversible tensor-edit interface (sandbox.py, WeightPatch)
+- [x] Add task-vector arithmetic and subspace projection solvers (subspace_projection_solver.py, llm_proposer.py)
+- [x] Track source and candidate checksums (native SHA-256 byte hashing across dtypes)
+- [x] Add strict shape/dtype compatibility validation (sandbox.py)
+- [x] Test rollback and artifact integrity (bit-exact rollback verified in 	est_weight_programming.py)
 
 ## Phase 5 — Assisted research
-- [ ] Define machine-readable experiment proposals
-- [ ] Let a supervisory model propose hypotheses, not silently execute them
-- [ ] Require human approval for interventions
-- [ ] Automatically run predeclared evaluation and regression tests
-- [ ] Publish successful and unsuccessful experiments
+- [x] Define machine-readable experiment proposals (llm_proposer.py, schemas.py)
+- [x] Let a supervisory model propose hypotheses, not silently execute them (LLMWeightRepairProposer)
+- [x] Require human approval for interventions (experiment_registry.py)
+- [x] Automatically run predeclared evaluation and regression tests (isolated_evaluator.py, 
+un_replication_suite.py)
+- [x] Publish successful and unsuccessful experiments (WSP_001B_ABLATION_AND_COMPARISON_REPORT.md, ROLLING_PAPER.md)
 
 ## Out of scope for early releases
 - Claims of autonomous self-improvement

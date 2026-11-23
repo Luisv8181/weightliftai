@@ -16,7 +16,7 @@ import torch
 import torch.nn as nn
 
 from weightliftai.weight_programming.inspector import hash_tensor_bytes, validate_patch_against_budget
-from weightliftai.weight_programming.schemas import PatchBudget, WeightPatch
+from weightliftai.weight_programming.schemas import BudgetViolationError, PatchBudget, WeightPatch
 
 
 def _hash_tensor(param: nn.Parameter) -> str:
@@ -28,16 +28,32 @@ def apply_patch_sandboxed(
     model: nn.Module,
     patch: WeightPatch,
     budget: PatchBudget | None = None,
+    require_budget: bool = True,
+    require_fingerprint: bool = False,
 ) -> Generator[nn.Module, None, None]:
     """Safely apply parameter deltas in memory with verified bit-exact rollback on exit.
     
     Guarantees:
-    - Base parameters are validated against budget prior to mutation.
+    - Base parameters are validated against a required non-null PatchBudget prior to mutation.
+    - Rejects budget omission when require_budget=True.
+    - Rejects missing base checkpoint fingerprints when require_fingerprint=True.
+    - Rejects non-finite values (NaN/Inf), dtypes, and shape mismatches before parameter mutation.
     - Original tensors are backed up before modification.
     - Exiting the context block restores exact original tensor bytes and validates checksums.
     """
+    if budget is None and require_budget:
+        raise BudgetViolationError(
+            "A non-null PatchBudget is required for sandboxed patch application. "
+            "Patch safety cannot be bypassed by omission."
+        )
+
     if budget is not None:
-        validate_patch_against_budget(model, patch, budget)
+        validate_patch_against_budget(
+            model,
+            patch,
+            budget,
+            require_fingerprint=require_fingerprint,
+        )
 
     model_params = dict(model.named_parameters())
     backups: dict[str, torch.Tensor] = {}
@@ -74,10 +90,26 @@ def apply_patch_to_copy(
     model: nn.Module,
     patch: WeightPatch,
     budget: PatchBudget | None = None,
+    require_budget: bool = True,
+    require_fingerprint: bool = False,
 ) -> nn.Module:
-    """Create a deep copy of the model and apply the patch to the clone."""
+    """Create a deep copy of the model and apply the patch to the clone.
+    
+    Fails closed if budget is missing when require_budget=True or if budget is violated.
+    """
+    if budget is None and require_budget:
+        raise BudgetViolationError(
+            "A non-null PatchBudget is required for clone patch application. "
+            "Patch safety cannot be bypassed by omission."
+        )
+
     if budget is not None:
-        validate_patch_against_budget(model, patch, budget)
+        validate_patch_against_budget(
+            model,
+            patch,
+            budget,
+            require_fingerprint=require_fingerprint,
+        )
 
     cloned_model = copy.deepcopy(model)
     cloned_params = dict(cloned_model.named_parameters())

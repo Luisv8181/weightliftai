@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+    "benchmark": "HuggingFaceH4/MATH-500",
+    "device": "cuda",
+    "gpu_name": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "samples_evaluated": 35,
+    "strata_count": 35,
+    "surgery_layer": 14,
+    "delta_W_relative_norm_pct": 0.1299,
+    "total_elapsed_seconds": 264.25
+  },
+  "baseline_summary": {
+    "total_samples": 35,
+    "correct_count": 4,
+    "accuracy": 0.1143,
+    "subject_accuracy": {
+      "Algebra": 0.0,
+      "Counting & Probability": 0.2,
+      "Geometry": 0.2,
+      "Intermediate Algebra": 0.2,
+      "Number Theory": 0.2,
+      "Prealgebra": 0.0,
+      "Precalculus": 0.0
+    },
+    "level_accuracy": {
+      "1": 0.1429,
+      "2": 0.2857,
+      "3": 0.0,
+      "4": 0.1429,
+      "5": 0.0
+    },
+    "cyclic_loop_rate": 0.0,
+    "mean_token_count": 384.0,
+    "total_elapsed_seconds": 129.93
+  },
+  "surgeried_summary": {
+    "total_samples": 35,
+    "correct_count": 4,
+    "accuracy": 0.1143,
+    "subject_accuracy": {
+      "Algebra": 0.0,
+      "Counting & Probability": 0.0,
+      "Geometry": 0.4,
+      "Intermediate Algebra": 0.2,
+      "Number Theory": 0.0,
+      "Prealgebra": 0.2,
+      "Precalculus": 0.0
+    },
+    "level_accuracy": {
+      "1": 0.1429,
+      "2": 0.2857,
+      "3": 0.1429,
+      "4": 0.0,
+      "5": 0.0
+    },
+    "cyclic_loop_rate": 0.0,
+    "mean_token_count": 384.0,
+    "total_elapsed_seconds": 129.64
+  },
+  "comparative_metrics": {
+    "delta_accuracy": 0.0,
+    "reasoning_preserved": true,
+    "delta_mean_tokens": 0.0,
+    "cyclic_loops_induced": false
+  }
+}

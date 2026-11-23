@@ -1,0 +1,22 @@
+{
+  "ANONYMOUS_NET_1": {
+    "true_task": "2D Spatial Coordinate Navigation / Goal Seeking",
+    "correct_option": "Option 2: 2D Spatial Coordinate Navigation / Goal Seeking to Origin",
+    "true_key": "goal_seeking"
+  },
+  "ANONYMOUS_NET_2": {
+    "true_task": "Inverted Pendulum Dynamical Balance (LQR Control)",
+    "correct_option": "Option 3: Inverted Pendulum Dynamical Angle & Velocity Stabilizer (LQR)",
+    "true_key": "pendulum_balance"
+  },
+  "ANONYMOUS_NET_3": {
+    "true_task": "Non-linear Boolean Parity Function",
+    "correct_option": "Option 1: Non-linear Boolean 4-Bit Parity Function",
+    "true_key": "parity"
+  },
+  "ANONYMOUS_NET_4": {
+    "true_task": "4-Point Sinusoidal Frequency Discriminator",
+    "correct_option": "Option 4: 4-Point Sinusoidal Wave Frequency Discriminator",
+    "true_key": "frequency_discriminator"
+  }
+}

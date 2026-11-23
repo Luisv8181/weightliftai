@@ -1,7 +1,8 @@
 # Blind Weight-Repair Benchmark Specification
 
 **Status:** Benchmark Specification & Experimental Design  
-**Tracking:** [Issue #10 (Phase 3)](https://github.com/Luisv8181/weightliftai/issues/10)  
+**Tracking:** [Issue #10 (Phase 3)](https://github.com/Luisv8181/weightliftai/issues/10) & [Issue #12 (Phase 1)](https://github.com/Luisv8181/weightliftai/issues/12)  
+**Threat Model Document:** [`docs/BLIND_BENCHMARK_THREAT_MODEL.md`](file:///C:/Users/luisv/Projects/weightliftai/docs/BLIND_BENCHMARK_THREAT_MODEL.md)  
 **References:**
 - Yao et al. (EMNLP 2023): *Editing Large Language Models: Problems, Methods, and Opportunities*
 - Cohen et al. (TACL 2024): *Evaluating the Ripple Effects of Knowledge Editing in Language Models*
@@ -18,24 +19,26 @@ While this validates that parameter sandboxing, budget enforcement, and regressi
 
 The **Blind Weight-Repair Benchmark** establishes a leakage-free protocol where:
 1. The ground-truth clean checkpoint is sealed in private storage and strictly inaccessible to the repair agent or optimization algorithm.
-2. The agent is provided only with:
+2. The agent interacts with a narrow proposer environment (`BlindProposerEnvironment`) provided only with:
    - An immutable corrupted checkpoint (with native byte fingerprint).
    - Model architecture metadata (layer names, tensor shapes, dtypes).
    - An empirical failure diagnostic set: observed inputs and expected outputs where the corrupted model failed.
    - A strict patch budget (maximum tensor count, maximum Frobenius norm, allowlist).
-3. The evaluation of candidate patches is executed independently against sealed held-out test splits and sealed regression suites that the agent cannot query during patch synthesis.
+3. The evaluation of candidate patches is executed independently across an **operating system subprocess boundary** (`isolated_evaluator.py`) against sealed held-out test splits and sealed regression suites that the agent cannot inspect via Python reflection or object traversal.
 
 ---
 
-## 2. Threat Model & Leakage Controls
+## 2. Threat Model & Process Isolation Summary
 
 | Potential Leakage Vector | Mitigation in Benchmark |
-|---|---|
-| **Clean Checkpoint Access** | Sealed inside an inaccessible benchmark closure. Not present in memory address space exposed to the repair agent. |
+| :--- | :--- |
+| **In-Memory Object Reflection** | Evaluator runs in a separate child Python subprocess. The proposer address space contains zero references to clean weights or hidden test tensors. |
 | **Defect Mask Metadata** | Defect location, corrupted indices, and corruption magnitude are never exposed in the failure report. |
-| **Held-Out Test Labels** | Sealed test set is evaluated only after the candidate patch is declared and submitted. |
-| **Regression Suite Querying** | The repair agent cannot query untouched capability datasets during patch synthesis. |
+| **Adaptive Hill-Climbing** | Strict evaluation query budget (1 submission per candidate run). Candidate patch is serialized and frozen before calling the evaluator process. |
+| **Output / Residual Leakage** | Returns coarse aggregate scalar gains only (`target_gain`, `distribution_shift_gain`, `regression_drop`). Never returns per-sample predictions or losses. |
 | **Post-Hoc Metric Tuning** | Primary metrics, thresholds, and regression tolerances are frozen before evaluation. |
+
+See [`docs/BLIND_BENCHMARK_THREAT_MODEL.md`](file:///C:/Users/luisv/Projects/weightliftai/docs/BLIND_BENCHMARK_THREAT_MODEL.md) for full formal specification.
 
 ---
 
@@ -59,25 +62,43 @@ Every candidate blind repair must be benchmarked against four standardized refer
        │
        ▼
 [ 4. Candidate Blind Repair ]
-  The patch synthesized by the agent or specialist optimizer from diagnostic evidence.
+  The patch synthesized by the autonomous agent or optimizer via diagnostic evidence.
        │
        ▼
-[ 5. Oracle Upper Bound ]
-  The theoretical maximum recovery achieved by direct subtraction of clean weights.
-  Reported exclusively as an upper reference bound; never presented as an agent discovery.
+[ 5. Oracle Upper Bound (Reference Only) ]
+  Delta = Clean - Corrupted. Evaluated purely as a reference upper bound.
 ```
 
 ---
 
-## 4. Evaluation Metrics & Gate Criteria
+## 4. Evaluation Metrics & Stage Gates
 
-A candidate patch is only recommended for promotion if it clears all four criteria:
+A candidate patch is evaluated across four distinct test splits:
 
-1. **Target Recovery Gain ($\Delta_{\text{target}} \ge \tau_{\text{gain}}$):**
-   Statistically significant error reduction on diagnostic failure examples and sealed held-out test examples.
-2. **Distribution-Shift Robustness ($\Delta_{\text{OOD}} > 0$):**
-   Positive recovery on out-of-distribution (OOD) examples exhibiting the same defect under shifted input distributions.
-3. **Ripple-Effect Regression Gate ($\text{Drop}_{\text{regression}} \le \tau_{\text{tolerance}}$):**
-   Degradation on unrelated, untouched model capabilities must not exceed pre-registered tolerance ($\le 2\%$).
-4. **Budget & Finite Norm Check:**
-   Total patch Frobenius norm $\|\Delta W\|_F \le B_{\text{max}}$ and no `NaN` or `Inf` entries.
+1. **In-Domain Diagnostic Split:** Verifies whether the observed failure mode is addressed ($p_{\text{target}}$).
+2. **Held-Out Test Split:** Evaluates generalization to unseen data from the same target distribution.
+3. **Distribution-Shift (OOD) Split:** Tests behavior under covariate shift to verify robust recovery.
+4. **Untouched Capability (Regression) Split:** Measures performance across independent, un-corrupted capabilities.
+
+### Gate Acceptance Criteria
+To receive a promotion recommendation, a candidate patch must satisfy:
+$$\Delta_{\text{held\_out}} \ge \tau_{\text{gain}} \quad (\text{Default: } \ge 0.10)$$
+$$\text{Drop}_{\text{regression}} \le \tau_{\text{reg}} \quad (\text{Default: } \le 0.02)$$
+$$\Delta_{\text{OOD}} \ge 0.0$$
+
+---
+
+## 5. Execution Workflow
+
+### Proposer Interface (`proposer_api.py`)
+```python
+from weightliftai.weight_programming.proposer_api import BlindProposerEnvironment
+
+env = BlindProposerEnvironment(seed=42)
+corrupted_model = env.get_corrupted_model()
+report = env.get_diagnostic_failure_report()
+metadata = env.get_architecture_metadata()
+
+# Agent synthesizes patch obeying env.budget ...
+result = env.submit_candidate_patch(candidate_patch)
+```

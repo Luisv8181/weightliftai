@@ -1,6 +1,12 @@
 # Representation Cartography — Product & Research Plan
 
-**Status:** Proposed product direction and implementation roadmap. The visual explorer is not yet implemented.
+**Maturity Status:**
+- Core Engine (layer_atlas.py, 
+epresentation_map.py, schemas.py, alidators.py): 	ested_implementation
+- Multi-Context Cross-Position Jacobian Lens (jacobian_lens.py): 	ested_implementation
+- Cultural & Clinical Pilots (dominican_pilot.py, medical_pilot.py): implemented_prototype
+- Standalone Interactive GUI Explorer: proposed_research_specification
+- Canonical Audit: [docs/cartography/CARTOGRAPHY_METHOD_AUDIT.md](cartography/CARTOGRAPHY_METHOD_AUDIT.md) and [docs/RESEARCH_VALIDATION_PROTOCOL.md](RESEARCH_VALIDATION_PROTOCOL.md) (Prompt 30).
 
 ## Product thesis
 
@@ -32,45 +38,40 @@ Representation Cartography makes model internals explorable as evidence-bearing 
 
 ## Product surfaces
 
-### 1. Layer Atlas
-- Synchronized layer/depth selector and timeline.
-- Per-layer representation statistics and transfer probes.
-- Compare early, middle, and late layers without assuming fixed semantic roles.
-- Support residual stream, attention output, and MLP output capture sites.
+### 1. Layer Atlas (`tested_implementation`)
+- Implemented in `src/weightliftai/cartography/layer_atlas.py` and `weightliftai atlas` CLI.
+- Multi-layer activation capture with guaranteed forward hook cleanup on exceptions.
+- Original-space cosine alignment metrics with paired bootstrap 95% confidence intervals (Dimension 1).
+- Self-contained publication-grade HTML reporting (`generate_atlas_html`).
+- Explicit non-causal guardrails (Prompt 31).
 
-### 2. Representation Map
-- PCA as the first deterministic 2D/3D projection; optional UMAP/t-SNE as exploratory views.
-- Color/shape by language, dialect, concept, source, and counterfactual condition.
-- Select points to reveal original item ID, source text (if safe), model revision, layer, and capture settings.
-- Nearest-neighbor search in the original high-dimensional space.
-- Show projection parameters and stability/trustworthiness diagnostics.
-- Never use screen-space distances as scientific evidence.
+### 2. Representation Map (`tested_implementation`)
+- Implemented in `src/weightliftai/cartography/representation_map.py` and `weightliftai map` CLI.
+- Baseline deterministic PCA with explained variance ratios; optional t-SNE and UMAP.
+- High-dimensional topology preservation diagnostics: Trustworthiness $T(k)$, Continuity $C(k)$, and $k$-NN Jaccard overlap $R@k$.
+- Point Inspector reporting true original-space cosine nearest neighbors alongside 2D screen positions.
+- Guardrail: Never use screen-space distances as scientific evidence.
 
-### 3. Feature Observatory
-- SAE feature activation heatmaps and token-level traces.
-- Show feature ID, dictionary release, layer, activation distributions, top positive and negative examples.
-- Compare features across matched languages, dialects, and lexical counterfactuals.
-- Separate automated labels from human-verified interpretations.
-- Report hit rates, false positives/negatives, effect sizes, and held-out results.
+### 3. Feature Observatory (`implemented_prototype`)
+- Implemented in `src/weightliftai/feature_viz.py` and `feature_trace.py`.
+- SAE feature activation heatmaps (16,384 features) and animated token-by-token generation traces.
+- Integration with Neuronpedia and local offline caching.
+- Causal feature steering dials and residual error-preserving feature clamping.
 
-### 4. Contrast Studio
-- Side-by-side prompts and matched item groups.
-- Compare cosine similarity, L2 distance, CKA/subspace similarity, probe performance, and layer-wise trajectories.
-- Record tokenization, pooling, BOS/EOS/padding masks, normalization, dtype, and seeds.
-- Support paired item bootstrap and confidence intervals.
+### 4. Contrast Studio (`implemented_prototype`)
+- Implemented in `weightliftai compare` CLI and `affective_cartography_pipeline.py`.
+- Side-by-side prompt and matched-triad representation comparisons.
+- Paired bootstrap confidence intervals and negative-control baselines.
 
-### 5. Circuit & Intervention Workbench (later phase)
-- Attribution graphs and cross-layer component pathways.
-- Activation patching, ablation, SAE feature clamping/steering, and supported transcoder workflows.
-- Run interventions only on isolated model copies; make them reversible.
-- Require baselines, held-out target evaluation, unrelated-task regression checks, and human approval.
-- Clearly distinguish correlational feature maps from causal circuit evidence.
+### 5. Circuit & Intervention Workbench (`tested_implementation`)
+- Implemented in `src/weightliftai/cartography/representation_intervention.py`.
+- Traceable failure $\to$ circuit hypothesis $\to$ activation steering/ablation vs. weight edit $\to$ counterfactual and held-out evaluation $\to$ least-invasive justification.
+- Reversible interventions with bit-exact rollback guarantees.
 
-### 6. Experiment Passport
-- Every map and comparison links to an immutable run record.
-- Store model/revision, tokenizer, dataset hash, code commit, hardware, library versions, capture modules, pooling/masking, projection parameters, seeds, metrics, and artifact hashes.
-- Raw text and raw activation tensors are opt-in; default to local processing and minimal artifacts.
-- Export figures and machine-readable JSON/CSV summaries.
+### 6. Experiment Passport (`tested_implementation`)
+- Implemented in `src/weightliftai/experiment_registry.py` and `manifest.py`.
+- Cryptographic append-only SHA-256 event hash chain, lifecycle state machine, and Ed25519 signed receipts (`evaluator_authority.py`).
+- Full provenance recording: model revision, dataset hash, commit, hardware, seeds, metrics, and artifact hashes.
 
 ## Scientific and UX guardrails
 

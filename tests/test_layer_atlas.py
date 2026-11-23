@@ -140,6 +140,8 @@ def test_compute_layer_metrics():
     )
 
     assert "pairwise_cosines" in metrics
+    assert metrics["evidence_type"] == "dimension_1_cosine_alignment"
+    assert "observational directional similarity" in metrics["guardrail"].lower()
     assert "canonical~lay" in metrics["pairwise_cosines"]
     assert "mean" in metrics["pairwise_cosines"]["canonical~lay"]
     assert "ci_95" in metrics["pairwise_cosines"]["canonical~lay"]

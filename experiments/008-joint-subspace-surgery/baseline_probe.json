@@ -1,0 +1,182 @@
+[
+  {
+    "id": "DOM-01",
+    "category": "attachment_love",
+    "target": " enamorado",
+    "target_id": 81852,
+    "target_prob": 0.0004410784167703241,
+    "target_rank": 280,
+    "top5": [
+      [
+        " __",
+        0.06186
+      ],
+      [
+        " a",
+        0.04324
+      ],
+      [
+        " seguro",
+        0.0376
+      ],
+      [
+        " en",
+        0.03537
+      ],
+      [
+        " (",
+        0.03345
+      ]
+    ]
+  },
+  {
+    "id": "DOM-02",
+    "category": "anger_indignation",
+    "target": " rabia",
+    "target_id": 30574,
+    "target_prob": 0.0007262032013386488,
+    "target_rank": 138,
+    "top5": [
+      [
+        " __",
+        0.20985
+      ],
+      [
+        " energía",
+        0.03401
+      ],
+      [
+        " -",
+        0.02979
+      ],
+      [
+        " ale",
+        0.02644
+      ],
+      [
+        " ___",
+        0.02619
+      ]
+    ]
+  },
+  {
+    "id": "DOM-03",
+    "category": "rage_fury",
+    "target": " furia",
+    "target_id": 18241,
+    "target_prob": 0.0013340322766453028,
+    "target_rank": 98,
+    "top5": [
+      [
+        " __",
+        0.10218
+      ],
+      [
+        " m",
+        0.06951
+      ],
+      [
+        " que",
+        0.04042
+      ],
+      [
+        " energía",
+        0.03141
+      ],
+      [
+        " p",
+        0.02274
+      ]
+    ]
+  },
+  {
+    "id": "DOM-04",
+    "category": "exhaustion_burnout",
+    "target": " agotado",
+    "target_id": 933,
+    "target_prob": 0.0056264447048306465,
+    "target_rank": 27,
+    "top5": [
+      [
+        " __",
+        0.1651
+      ],
+      [
+        "____",
+        0.09125
+      ],
+      [
+        " (",
+        0.06331
+      ],
+      [
+        " ______",
+        0.03573
+      ],
+      [
+        " solo",
+        0.03569
+      ]
+    ]
+  },
+  {
+    "id": "DOM-05",
+    "category": "distrust_deception",
+    "target": " desconfianza",
+    "target_id": 939,
+    "target_prob": 0.006113285664469004,
+    "target_rank": 31,
+    "top5": [
+      [
+        " __",
+        0.12693
+      ],
+      [
+        " gan",
+        0.05764
+      ],
+      [
+        " cur",
+        0.04229
+      ],
+      [
+        " conf",
+        0.02405
+      ],
+      [
+        " pac",
+        0.02198
+      ]
+    ]
+  },
+  {
+    "id": "DOM-06",
+    "category": "urgency_caution",
+    "target": " cuidado",
+    "target_id": 56676,
+    "target_prob": 0.1256519854068756,
+    "target_rank": 1,
+    "top5": [
+      [
+        " cuid",
+        0.12565
+      ],
+      [
+        " res",
+        0.07998
+      ],
+      [
+        " amor",
+        0.03585
+      ],
+      [
+        " gusto",
+        0.03284
+      ],
+      [
+        " corazón",
+        0.02832
+      ]
+    ]
+  }
+]
