@@ -39,11 +39,9 @@ from weightliftai.weight_programming.onebit_sidecar import (  # noqa: E402
     SelfGatedFP16Sidecar,
 )
 
-GGUF_PATH = Path(
-    os.environ.get("BONSAI_27B_GGUF", "C:/Users/luisv/models/bonsai/model/Bonsai-27B-Q1_0.gguf")
-)
+GGUF_PATH = Path(os.environ.get("BONSAI_27B_GGUF", "models/Bonsai-27B-Q1_0.gguf"))
 TOKENIZER_ID = os.environ.get("BONSAI_27B_TOKENIZER", "HAL-X-AI/THX-02")
-CACHE_DIR = "D:/cache/huggingface/hub" if Path("D:/cache/huggingface/hub").exists() else None
+CACHE_DIR = os.environ.get("BONSAI_HF_CACHE") or os.environ.get("HF_HUB_CACHE") or None
 SCAN_LAYERS = [20, 24, 28, 32, 36, 40, 44]
 
 

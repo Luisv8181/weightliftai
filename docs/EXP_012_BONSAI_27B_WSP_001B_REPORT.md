@@ -44,9 +44,11 @@ Both were compared on the exact same sealed evaluator against `deterministic_bas
 
 ## 3. Key Findings & Failure Mode Diagnosis
 
-1. **27B 1-Bit Breaks Past `0.5B`'s `0/40` Floor, Especially With Algebraic Primitives:**
-   - Compared to `Qwen2.5-0.5B` (`0/40` evaluated and `0/40` passed in Exp 005), `bonsai-27b-q1` produced valid schema-compliant patches on `15/24` direct runs (`2/24` passed) and `7/24` projection-solver runs (`7/11 = 63.6%` pass rate when schema-valid).
-   - Under **`weights_only`** (where gradient descent cannot run because no behavioral failure data is provided), `bonsai_27b_projection_solver` achieved **`6/8` (`75.0%`)**, outperforming both `deterministic_baseline` (`5/8`, `62.5%`) and `gradient_baseline` (`0/8`).
+1. **Overall Result: Simple Deterministic and Gradient Baselines Clearly Beat Bonsai-27B:**
+   - Overall, `bonsai_27b_projection_solver` passed **`7/24` (`29.2%`)** with a **negative mean held-out gain (`-6.5185`)** (meaning its patches hurt performance on average across all runs), compared to **`16/24` (`66.7%`, `+1.6075` mean gain)** for `deterministic_baseline` and **`8/24` (`33.3%`, `+0.9329` mean gain; `8/8` on full toolkit)** for `gradient_baseline`.
+   - `bonsai_27b_direct_json` passed only **`2/24` (`8.3%`, `-8.4899` mean gain)**.
+   - In the `weights_only` cell (`n=8`), `bonsai_27b_projection_solver` scored `6/8` vs `5/8` for `deterministic_baseline` (not a statistically meaningful difference at `n=8`, and `deterministic_baseline` still had a much higher mean gain `+1.9798` vs `-0.1615`).
+   - Compared to `Qwen2.5-0.5B` (`0/40` in Exp 005), 27B 1-bit moved above zero (`7/24`), but still trails simple baselines overall.
 2. **Thinking-Token Budget Trap (`think=False` Requirement):**
    - An initial run without `think=False` produced `0/48` non-empty responses because `bonsai-27b-q1:latest` spent the entire `num_predict` budget inside Ollama's hidden thinking channel. Setting `think=False` reduced latency to ~1.15s–8s per call and unlocked structured JSON output.
 3. **Two Concrete Failure Modes Preserved in the Raw Logs:**

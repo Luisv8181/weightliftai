@@ -10,8 +10,9 @@ from transformers import AutoTokenizer
 
 from weightliftai.weight_programming.gguf_1bit_loader import load_bonsai_27b_q1_0_gguf
 
-GGUF_PATH = Path(os.environ.get("BONSAI_27B_GGUF", "C:/Users/luisv/models/bonsai/model/Bonsai-27B-Q1_0.gguf"))
+GGUF_PATH = Path(os.environ.get("BONSAI_27B_GGUF", "models/Bonsai-27B-Q1_0.gguf"))
 TOKENIZER_ID = os.environ.get("BONSAI_27B_TOKENIZER", "HAL-X-AI/THX-02")
+CACHE_DIR = os.environ.get("BONSAI_HF_CACHE") or os.environ.get("HF_HUB_CACHE") or None
 
 
 def main() -> None:
@@ -21,8 +22,7 @@ def main() -> None:
     dt = time.perf_counter() - t0
     print(f"Loaded in {dt:.2f}s | stats={stats}")
 
-    cache_dir = "D:/cache/huggingface/hub" if Path("D:/cache/huggingface/hub").exists() else None
-    tok = AutoTokenizer.from_pretrained(TOKENIZER_ID, cache_dir=cache_dir, local_files_only=True)
+    tok = AutoTokenizer.from_pretrained(TOKENIZER_ID, cache_dir=CACHE_DIR, local_files_only=True)
     print(f"Tokenizer {TOKENIZER_ID}: vocab_size={len(tok)}")
 
     prompts = [
