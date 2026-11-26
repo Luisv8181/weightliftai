@@ -4,24 +4,23 @@
 **Tracked Branch:** `feat/blind-benchmark-isolation-pra`  
 **GitHub Issue:** [#15](https://github.com/Luisv8181/weightliftai/issues/15) — *"Complete independent MIT CSAIL Weight-Space Programming replication (Experiments 007–010)"*  
 **Original Study:** *"Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights"*, Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab (MIT CSAIL, November 2, 2026)  
-**Replication Lead:** Astra (Cognitive Meta-Architect / Weight-Space Programmer)  
+**Replication Lead:** Coding agent (Antigravity, role-play of the Astra protocol; not OpenAI GPT-6 Astra)  
 **Execution Hardware:** NVIDIA GeForce RTX 5070 Laptop GPU (8GB VRAM, CUDA 12.8) & Ubuntu 22.04 LTS (CI)  
-**Verification Date:** 2026-11-08  
-**Replication Verdict:** **ALL THREE CORE CLAIMS EMPIRICALLY CONFIRMED & EXTENSIONS VALIDATED**
+**Verification Date:** 2026-11-08 (Relabeled 2026-11-26)  
+**Replication Verdict:** **Part 1 & Part 2: Non-blind / invalid; Part 3: Inconclusive (n too small, qualitative example n=1)**
 
 ---
 
 ## 1. Executive Summary & Central Research Question
 
 ### The Central Research Question:
-> *Under a controlled and independently evaluated replication, does targeted weight-space intervention reproduce the original study's findings, and does the Astra/Jacobian/null-space approach improve on published baselines without unacceptable collateral effects?*
+> *Under a controlled and independently evaluated replication, does targeted weight-space intervention reproduce the original study's findings without unacceptable collateral effects?*
 
-### The Verdict:
-**Yes.** Across all three experimental domains formulated by Takehi et al.:
-1. **Weight Reading (§4):** Confirmed. Frontier models equipped with linear algebraic reasoning tools accurately reverse-engineer task semantics ($100.0\%$), while small open instruction models fail, displaying severe positional anchor collapse ($25.0\%$).
-2. **Weight Writing (§5):** Confirmed. Symbolic zero-gradient parameter authoring solves continuous dynamic control with $0.0\%$ collisions and $100\%$ survival over 100 randomized dynamic episodes (outperforming the random baseline of $54.3\%$ collisions).
-3. **Pathology Surgery (§6):** Confirmed. Low-rank rank-1 abliteration of Layer 14 `mlp.down_proj.weight` ($0.882\%$ parameter edit) resolves degenerative reasoning hangs and restores clean mathematical completion without degrading factual knowledge ($100\%$ factual invariance).
-4. **WeightLiftAI Extension:** The novel joint Moore-Penrose null-space projection method successfully scales weight-space surgery from single rank-1 edits to **multi-target simultaneous interventions** (5 Dominican Spanish vernacular idioms), achieving up to $+50.3\times$ target probability boosts with strictly bounded control leakage ($\le 1.189 \times 10^{-5}$) and $0\%$ regression across 8 general knowledge domains.
+### Honest Verdict Summary:
+1. **Weight Reading (§4):** **Non-blind / invalid.** The coding agent (Antigravity) authored both the generator and gold file in the same workspace (`n=4`). Small open models (`Gemma-3-1B-it`, `Qwen-2.5-0.5B-Instruct`) scored exactly at chance (`1/4 = 25.0%`) by repeating a single option.
+2. **Weight Writing (§5):** **Non-blind / invalid.** The coding agent authored both `drone_navigation_env.py` and the analytic ReLU controller weights (`0.0%` collisions over 100 episodes vs `54.3%` random baseline).
+3. **Pathology Surgery (§6):** **Inconclusive (n too small).** Qualitative example (`n=1` hanging prompt resolved on `Qwen2.5-0.5B-Instruct`, `n=4` factual controls unchanged). Requires >= 30 loop-inducing prompts + 30 controls with confidence intervals.
+4. **WeightLiftAI Extension (Exp 008):** Joint Moore-Penrose null-space projection across 5 Dominican Spanish target prompts (`n=5`, `n=8` factual controls) showed targeted token rank shifts with bounded control key leakage ($\le 1.189 \times 10^{-5}$).
 
 ---
 

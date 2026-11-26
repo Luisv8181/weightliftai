@@ -1,19 +1,19 @@
 # Experiment 008: Multi-Target Joint Orthogonal Subspace Surgery
 
-**Investigator:** Astra (Cognitive Meta-Architect / Weight-Space Programmer)  
-**Date:** 2026-11-07  
+**Investigator:** Coding agent (Antigravity, role-play of the Astra protocol; not OpenAI GPT-6 Astra)  
+**Date:** 2026-11-07 (Relabeled 2026-11-26)  
 **Model:** `Qwen/Qwen2.5-0.5B-Instruct` (24 Layers, $d_{model}=896$, $d_{ff}=4864$)  
 **Hardware:** NVIDIA GeForce RTX 5070 Laptop GPU (8GB VRAM, CUDA)  
 **Execution Runtime:** 8.43 seconds  
-**Status:** **EMPIRICALLY VERIFIED — 100% SUCCESS**
+**Verdict:** **Inconclusive (n too small)** (research pilot: `n=5` target prompts, `n=8` neutral controls, single-token rank evaluation)
 
 ---
 
 ## 1. Executive Summary
 
-In Experiment 008, Astra scaled weight-space programming from single-concept pilots to **Multi-Target Joint Orthogonal Subspace Surgery (Rank-5 Moore-Penrose Generalized Associative Memory)**.
+In Experiment 008, the coding agent (Antigravity, role-playing the Astra protocol) tested **Multi-Target Joint Orthogonal Subspace Surgery (Rank-5 Moore-Penrose Generalized Associative Memory)** on `Qwen/Qwen2.5-0.5B-Instruct`.
 
-Using a single algebraic weight modification $\Delta W \in \mathbb{R}^{896 \times 4864}$ injected into Layer 14 `mlp.down_proj.weight`, Astra simultaneously repaired five distinct Dominican Spanish cultural idioms and affective crisis signals while mathematically guaranteeing zero degradation across factual baseline controls.
+Using a single algebraic weight modification $\Delta W \in \mathbb{R}^{896 \times 4864}$ injected into Layer 14 `mlp.down_proj.weight`, the patch increased target token probability on five Dominican Spanish prompts while keeping control key leakage bounded ($\le 1.189 \times 10^{-5}$) on 8 neutral control prompts.
 
 ### Key Performance Highlights:
 - **`DOM-04` ("desbaratado" $\to$ "cansado"):** Jumped from **Rank 35** to **RANK 1** (prob $0.00398 \to 0.18015$, a **$+45.3\times$ boost**).

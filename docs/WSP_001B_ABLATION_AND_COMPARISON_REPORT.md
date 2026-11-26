@@ -4,7 +4,7 @@
 **Experiment Identifier:** `005-wsp-001b-llm-ablation`  
 **Protocol Version:** `wsp-001b-v1.0`  
 **Evaluation Sealed Ledger:** `experiments/005-wsp-001b-llm-ablation/wsp_001b_ledger.sqlite3`  
-**Empirical Raw Records & Analysis:** [`experiments/005-wsp-001b-llm-ablation/results.json`](file:///C:/Users/luisv/Projects/weightliftai/experiments/005-wsp-001b-llm-ablation/results.json)  
+**Empirical Raw Records & Analysis:** [`experiments/005-wsp-001b-llm-ablation/results.json`](../experiments/005-wsp-001b-llm-ablation/results.json)  
 **Evaluator Authority:** `EvaluatorRegistryAuthority` backed by Ed25519 cryptographic receipts and SQLite WAL.
 
 ---

@@ -5,7 +5,7 @@
 | | |
 |---|---|
 | **Status** | Living document. Updated after every experiment. Not peer reviewed. |
-| **Version** | v0.3 (2026-11-04): Experiments 001, 002, and 002b |
+| **Version** | v0.5 (2026-11-26): Experiments 001-011 (honest claims register + relabeled replications) |
 | **Repository** | https://github.com/Luisv8181/weightliftai |
 | **Machine-readable run log** | [`docs/AUDIT_LEDGER.jsonl`](AUDIT_LEDGER.jsonl) |
 | **Protocol** | [`docs/EXPERIMENT_PROTOCOL.md`](EXPERIMENT_PROTOCOL.md) |
@@ -306,6 +306,13 @@ We compared the log-probability shift of the token `" grief"` when zero-clamping
 | C8 | LoRA on placeholder data improved Spanish separation | **Not supported** (within noise) | §4 |
 | C9 | The Exp. 001 Spanish gap (0.650) was caused by Spanish itself | **Likely false.** Parallel pan-Hispanic Spanish scores 0.875 | §5.1 obs. 4 |
 | C10 | Exp. 001 en→es transfer beat es CV because English separates cleanly at small n | **Untested speculation** (stated informally in an earlier session) | — |
+| C11 | Exp. 003: Ungated rank-1 weight patching fixes Dominican `"tigre"` homographs without collateral damage | **Not replicated / Refuted** (`0.000` homograph win rate, `+81.1%` general Spanish NLL drift) | `experiments/003-tigre-rank1-weight-patch/` |
+| C12 | Exp. 004: Self-gated rank-1 weight patching separates `"tigre"` senses with `0.00%` drift on Gemma 4 E2B | **Partially replicated (exploratory, `n=8`/class)** (needs scaling to `n>=60`/class + hard negatives) | `experiments/004-cartography-and-gated-patch/RESULTS.md` |
+| C13 | Exp. 005-006: Blind repair isolation harness (`WSP-001B`) and Jacobian affective cartography pilot | **Inconclusive (n too small)** (harness tested; empirical Jacobian pilot small-n) | `docs/WSP_001B_ABLATION_AND_COMPARISON_REPORT.md`, `docs/JACOBIAN_AFFECTIVE_CARTOGRAPHY_REPORT.md` |
+| C14 | Exp. 007-009: Layer 14 null-space surgery (`n=2`, `n=5`) and dialogic generation (`n=1` conversation) | **Inconclusive (n too small)** (qualitative / pilot only; research-only, no clinical claims) | `docs/EXP_008_JOINT_SUBSPACE_SURGERY_REPORT.md`, `docs/EXP_009_DIALOGIC_COHERENCE_REPORT.md` |
+| C15 | Exp. 010 (Parts 1 & 2): Weight reading (`n=4`) and weight writing by Antigravity role-playing Astra | **Non-blind / invalid** (agent authored generator, env, and gold file; Qwen/Gemma at 25% chance) | `docs/replication/CLAIM_EVIDENCE_MATRIX.md` |
+| C16 | Exp. 010 (Part 3): Layer 14 SVD ablation resolves reasoning loops (`MATH-04`) | **Inconclusive (n too small)** (qualitative example, `n=1` hanging prompt resolved; `MATH-05` still looped) | `docs/EXP_010_PART3_REASONING_LOOP_SURGERY_REPORT.md` |
+| C17 | Exp. 011: MATH-500 improvement (`7.9% -> 48.1%` on `Qwen3.5-0.8B` in Takehi et al.) | **Not replicated** (showed no degradation `11.43% -> 11.43%` on `Qwen2.5-0.5B-Instruct`, `n=35`, `0/35` loops) | `docs/replication/MATH_500_REPLICATION_REPORT.md` |
 
 ---
 

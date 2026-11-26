@@ -1,16 +1,17 @@
-# Astra Weight Surgery Empirical Report (Exp 007)
+# Null-Space Weight Surgery Pilot Report (Exp 007)
 
-**Role:** Astra (Frontier Cognitive Weight-Space Programmer)  
+**Role:** Coding agent (Antigravity, role-play of the Astra protocol; not OpenAI GPT-6 Astra)  
 **Target Model:** `Qwen/Qwen2.5-0.5B-Instruct`  
 **Execution Hardware:** `NVIDIA GeForce RTX 5070 Laptop GPU` (`cuda`)  
 **Runtime:** `12.43s`  
-**Audit File:** [`experiments/007-astra-weight-surgery/surgery_results.json`](file:///C:/Users/luisv/Projects/weightliftai/experiments/007-astra-weight-surgery/surgery_results.json)  
+**Audit File:** [`experiments/007-astra-weight-surgery/surgery_results.json`](../experiments/007-astra-weight-surgery/surgery_results.json)  
+**Verdict:** **Inconclusive (n too small)** (pilot on `n=2` target prompts + `n=3` controls)
 
 ---
 
 ## 1. Executive Summary
 
-Playing the role of **Astra** from the MIT CSAIL Weight-Space Programming study, Antigravity directly interrogated the representation geometry of `Qwen2.5-0.5B-Instruct` on an NVIDIA GeForce RTX 5070 GPU, diagnosed sub-word token polysemy and cultural flattening on Dominican Spanish idioms, and authored a targeted **null-space key-gated parameter surgery $\Delta W$** applied directly to Layer 14 MLP down-projection.
+Role-playing the Astra protocol from the MIT CSAIL Weight-Space Programming study, the coding agent (Antigravity) inspected the representation geometry of `Qwen2.5-0.5B-Instruct` on an NVIDIA GeForce RTX 5070 GPU and authored a **null-space key-gated parameter update $\Delta W$** applied to Layer 14 MLP down-projection.
 
 ### Surgical Specifications:
 - **Target Parameter:** `model.layers[14].mlp.down_proj.weight` ($896 \times 4864$)

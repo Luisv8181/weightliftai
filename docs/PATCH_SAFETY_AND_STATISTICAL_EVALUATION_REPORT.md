@@ -118,9 +118,9 @@ A candidate proposer cannot attempt higher rungs without passing lower rungs:
 
 ## 5. Verification Test Suite
 
-- [`tests/test_patch_safety.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_patch_safety.py): **10/10 PASSED**
-- [`tests/test_statistical_evaluation.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_statistical_evaluation.py): **8/8 PASSED**
-- [`tests/test_weight_programming.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_weight_programming.py): **12/12 PASSED**
-- [`tests/test_mountain_car_repair.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_mountain_car_repair.py): **9/9 PASSED**
-- [`tests/test_math500_evaluator.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_math500_evaluator.py): **14/14 PASSED**
-- [`tests/test_benchmark_isolation.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_benchmark_isolation.py): **20/20 PASSED**
+- [`tests/test_patch_safety.py`](../tests/test_patch_safety.py): **10/10 PASSED**
+- [`tests/test_statistical_evaluation.py`](../tests/test_statistical_evaluation.py): **8/8 PASSED**
+- [`tests/test_weight_programming.py`](../tests/test_weight_programming.py): **12/12 PASSED**
+- [`tests/test_mountain_car_repair.py`](../tests/test_mountain_car_repair.py): **9/9 PASSED**
+- [`tests/test_math500_evaluator.py`](../tests/test_math500_evaluator.py): **14/14 PASSED**
+- [`tests/test_benchmark_isolation.py`](../tests/test_benchmark_isolation.py): **20/20 PASSED**
