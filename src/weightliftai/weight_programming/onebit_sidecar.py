@@ -112,24 +112,37 @@ class Packed1BitLinear(nn.Module):
         max_err = float((w.cpu() - w_rec).abs().max().item())
         return mod, max_err
 
-    def unpack_weight(self, dtype: torch.dtype | None = None) -> torch.Tensor:
-        """Unpack 1-bit signs and multiply by per-group scale factors."""
-        target_dtype = dtype if dtype is not None else self.scales.dtype
-        bits = (self.packed_signs.unsqueeze(-1) >> self._bit_shifts) & 1
-        # Map {0, 1} -> {-1.0, +1.0}
-        signs = bits.to(target_dtype).mul_(2.0).sub_(1.0).view(self.out_features, self.in_features)
+    def _unpack_rows(self, start: int, end: int, dtype: torch.dtype) -> torch.Tensor:
+        bits = (self.packed_signs[start:end].unsqueeze(-1) >> self._bit_shifts) & 1
+        signs = bits.to(dtype).mul_(2.0).sub_(1.0).view(end - start, self.in_features)
         scales_expanded = (
-            self.scales.to(target_dtype)
+            self.scales[start:end]
+            .to(dtype)
             .unsqueeze(-1)
-            .expand(self.out_features, self.in_features // self.group_size, self.group_size)
-            .reshape(self.out_features, self.in_features)
+            .expand(end - start, self.in_features // self.group_size, self.group_size)
+            .reshape(end - start, self.in_features)
         )
         return signs.mul_(scales_expanded)
 
+    def unpack_weight(self, dtype: torch.dtype | None = None) -> torch.Tensor:
+        """Unpack 1-bit signs and multiply by per-group scale factors."""
+        target_dtype = dtype if dtype is not None else self.scales.dtype
+        return self._unpack_rows(0, self.out_features, target_dtype)
+
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        w = self.unpack_weight(dtype=x.dtype)
-        b = self.bias.to(x.dtype) if self.bias is not None else None
-        return F.linear(x, w, b)
+        # Chunk huge vocab projections (e.g., 248k lm_head) so peak VRAM stays < 4.5 GB
+        chunk_rows = 16384
+        if self.out_features <= chunk_rows:
+            w = self.unpack_weight(dtype=x.dtype)
+            b = self.bias.to(x.dtype) if self.bias is not None else None
+            return F.linear(x, w, b)
+        outs = []
+        for start in range(0, self.out_features, chunk_rows):
+            end = min(start + chunk_rows, self.out_features)
+            w_chunk = self._unpack_rows(start, end, x.dtype)
+            b_chunk = self.bias[start:end].to(x.dtype) if self.bias is not None else None
+            outs.append(F.linear(x, w_chunk, b_chunk))
+        return torch.cat(outs, dim=-1)
 
     def nbytes(self) -> int:
         total = self.packed_signs.numel() * self.packed_signs.element_size()
