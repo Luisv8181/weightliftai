@@ -30,6 +30,16 @@ from weightliftai.weight_programming.inspector import (
     inspect_model_parameters,
     validate_patch_against_budget,
 )
+from weightliftai.weight_programming.llm_proposer import (
+    DeterministicHeuristicProposer,
+    GradientRepairProposer,
+    LLMWeightRepairProposer,
+    LocalTransformersLLMBackend,
+    OllamaLLMBackend,
+    SandboxedProjectionLLMProposer,
+    StructuredPatchProposal,
+    StructuredProjectionPlan,
+)
 from weightliftai.weight_programming.math500_evaluator import (
     MathBenchmarkResult,
     build_math_prompt,
@@ -48,6 +58,16 @@ from weightliftai.weight_programming.mountain_car import (
     evaluate_car_policy,
     get_clean_ramp_policy,
     inject_car_defect,
+)
+from weightliftai.weight_programming.gguf_1bit_loader import (
+    GGUFQ10Reader,
+    Packed1BitEmbedding,
+    load_bonsai_27b_q1_0_gguf,
+)
+from weightliftai.weight_programming.onebit_sidecar import (
+    Packed1BitLinear,
+    SelfGatedFP16Sidecar,
+    pack_transformer_linears_to_1bit,
 )
 from weightliftai.weight_programming.sandbox import (
     apply_patch_sandboxed,
@@ -102,16 +122,30 @@ __all__ = [
     "validate_patch_against_budget",
     "BenchmarkLadderRunner",
     "DeepNonlinearMLP",
+    "DeterministicHeuristicProposer",
+    "GradientRepairProposer",
+    "LLMWeightRepairProposer",
+    "LocalTransformersLLMBackend",
+    "OllamaLLMBackend",
+    "SandboxedProjectionLLMProposer",
+    "StructuredPatchProposal",
+    "StructuredProjectionPlan",
     "LadderProgressionReport",
     "LadderRung",
     "MultiSeedBenchmarkRunner",
     "MultiSeedRunRecord",
     "NoOpProposer",
     "OrthogonalShamProposer",
+    "GGUFQ10Reader",
+    "Packed1BitEmbedding",
+    "Packed1BitLinear",
     "RandomNormMatchedProposer",
     "RungEvaluationResult",
+    "SelfGatedFP16Sidecar",
     "SimpleTransformerBlock",
     "StatisticalPromotionDecision",
     "compute_bootstrap_ci",
+    "load_bonsai_27b_q1_0_gguf",
+    "pack_transformer_linears_to_1bit",
     "paired_permutation_test",
 ]

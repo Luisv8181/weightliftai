@@ -19,7 +19,11 @@ from weightliftai.weight_programming.llm_proposer import (
     GradientRepairProposer,
     LLMWeightRepairProposer,
     LocalTransformersLLMBackend,
+    OllamaLLMBackend,
+    SandboxedProjectionLLMProposer,
     build_diagnostic_prompt_for_condition,
+    build_projection_plan_prompt_for_condition,
+    compile_projection_plan_to_patch,
     parse_and_validate_llm_proposal,
 )
 from weightliftai.weight_programming.proposer_api import BlindProposerEnvironment
@@ -235,3 +239,79 @@ def test_ablation_and_comparison_study_across_families_and_conditions(tmp_path: 
     grad_weights_only = analysis["by_method_and_condition"]["gradient_baseline"]["weights_only"]
     assert grad_weights_only["evaluated_runs"] == 0
     assert grad_weights_only["pass_rate"] == 0.0
+
+
+def test_sandboxed_projection_proposer_enforces_condition_isolation_and_repairs(tmp_path: Path):
+    """Verify SandboxedProjectionLLMProposer respects diagnostic condition isolation and compiles gradient-free projections."""
+    ledger = tmp_path / "ledger.sqlite3"
+
+    # 1. Under behavioral_only, least_squares_projection MUST fail closed (no weights permitted)
+    env_beh = BlindProposerEnvironment(
+        defect_family=DefectFamily.FC2_ROW0_ZERO_MASK.value,
+        diagnostic_condition=DiagnosticCondition.BEHAVIORAL_ONLY.value,
+        ledger_path=ledger,
+    )
+    prompt_beh = build_projection_plan_prompt_for_condition(env_beh)
+    assert prompt_beh["available_ops"] == ["explicit_deltas"]
+    assert "weight_summaries" not in prompt_beh["prompt_text"]
+
+    bad_proj_proposer = SandboxedProjectionLLMProposer(
+        backend=lambda _p: {
+            "raw_text": json.dumps(
+                {
+                    "operation": "least_squares_projection",
+                    "target_tensor": "fc2.weight",
+                    "row_index": 0,
+                    "hypothesis": "Attempt projection without authorized weights.",
+                    "rationale": "Should fail closed in behavioral_only.",
+                }
+            ),
+            "model_id": "mock-27b",
+            "model_revision": "test",
+        }
+    )
+    rec_beh = bad_proj_proposer.run_on_environment(env_beh)
+    assert rec_beh["proposal_status"] == "INVALID_PROPOSAL_SCHEMA"
+    assert rec_beh["passed_gates"] is False
+
+    # 2. Under full_diagnostic_toolkit, closed-form least_squares_projection repairs sign inversion without gradients
+    env_full = BlindProposerEnvironment(
+        defect_family=DefectFamily.FC2_ROW0_SIGN_INVERSION.value,
+        diagnostic_condition=DiagnosticCondition.FULL_DIAGNOSTIC_TOOLKIT.value,
+        ledger_path=ledger,
+    )
+    good_proj_proposer = SandboxedProjectionLLMProposer(
+        backend=lambda _p: {
+            "raw_text": json.dumps(
+                {
+                    "operation": "least_squares_projection",
+                    "target_tensor": "fc2.weight",
+                    "row_index": 0,
+                    "ridge_lambda": None,
+                    "hypothesis": "Closed-form ridge projection on authorized diagnostic activations restores row 0.",
+                    "rationale": "Exact linear-algebraic projection without gradient descent.",
+                }
+            ),
+            "model_id": "mock-27b",
+            "model_revision": "test",
+        }
+    )
+    rec_full = good_proj_proposer.run_on_environment(env_full)
+    assert rec_full["proposal_status"] == "EVALUATED"
+    assert rec_full["operation_chosen"] == "least_squares_projection"
+    assert rec_full["passed_gates"] is True
+    assert rec_full["target_held_out_gain"] > 0.5
+    assert rec_full["evaluation_result"]["signed_receipt"]["experiment_id"] == env_full.experiment_id
+
+
+def test_ollama_llm_backend_constructor_and_unreachable_error_handling():
+    """Verify OllamaLLMBackend initializes cleanly and surfaces clean errors when endpoint is unreachable."""
+    backend = OllamaLLMBackend(
+        model_id="bonsai-27b-q1:latest",
+        base_url="http://127.0.0.1:1",
+        timeout_seconds=1.0,
+    )
+    assert backend.model_id == "bonsai-27b-q1:latest"
+    with pytest.raises(Exception):
+        backend.generate("Return {}")
+

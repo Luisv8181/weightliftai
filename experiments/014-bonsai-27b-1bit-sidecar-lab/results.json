@@ -1,0 +1,119 @@
+{
+  "experiment": "014-bonsai-27b-1bit-sidecar-lab",
+  "model_file": "Bonsai-27B-Q1_0.gguf",
+  "tokenizer_id": "HAL-X-AI/THX-02",
+  "device": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "load_time_s": 33.56,
+  "elapsed_total_s": 877.05,
+  "load_stats": {
+    "gguf_path": "Bonsai-27B-Q1_0.gguf",
+    "architecture": "qwen35",
+    "num_layers": 64,
+    "hidden_size": 5120,
+    "vocab_size": 248320,
+    "packed_linear_count": 497,
+    "total_packed_mb": 3781.88,
+    "vram_allocated_mb": 3814.11
+  },
+  "peak_vram_mb": 4943.27,
+  "cartography_scan": [
+    {
+      "layer": 20,
+      "cohen_d": 3.947,
+      "tau": 0.3119,
+      "hidden_norm_mean": 32.48
+    },
+    {
+      "layer": 24,
+      "cohen_d": 3.914,
+      "tau": 0.2992,
+      "hidden_norm_mean": 34.06
+    },
+    {
+      "layer": 28,
+      "cohen_d": 4.136,
+      "tau": 0.2559,
+      "hidden_norm_mean": 35.34
+    },
+    {
+      "layer": 32,
+      "cohen_d": 5.359,
+      "tau": 0.1843,
+      "hidden_norm_mean": 41.65
+    },
+    {
+      "layer": 36,
+      "cohen_d": 5.556,
+      "tau": 0.158,
+      "hidden_norm_mean": 46.37
+    },
+    {
+      "layer": 40,
+      "cohen_d": 4.452,
+      "tau": 0.1617,
+      "hidden_norm_mean": 44.17
+    },
+    {
+      "layer": 44,
+      "cohen_d": 4.535,
+      "tau": 0.124,
+      "hidden_norm_mean": 49.06
+    }
+  ],
+  "best_layer": 36,
+  "sidecar_layers": [
+    35,
+    36,
+    37
+  ],
+  "sidecar_total_bytes": 61536,
+  "sidecar_overhead_pct_of_1bit_model": 0.001627,
+  "unseen_gate_eval": {
+    "layer": 36,
+    "tau": 0.158,
+    "unseen_social_recall": 0.875,
+    "unseen_animal_fpr": 0.375,
+    "unseen_general_fpr": 0.125,
+    "z_social_mean": 0.506,
+    "z_animal_mean": -0.061,
+    "z_general_mean": -0.085
+  },
+  "results": {
+    "baseline_1bit_27b": {
+      "condition": "baseline_1bit_27b",
+      "social_win_rate": 0.25,
+      "social_mean_margin": -5.2521,
+      "animal_win_rate": 1.0,
+      "animal_mean_margin": 8.7008,
+      "general_spanish_nll": 7.188996,
+      "general_nll_drift_pct": 0.0
+    },
+    "prompt_steering_1bit_27b": {
+      "condition": "prompt_steering_1bit_27b",
+      "social_win_rate": 0.0,
+      "social_mean_margin": -10.7556,
+      "animal_win_rate": 1.0,
+      "animal_mean_margin": 12.4658,
+      "general_spanish_nll": 7.188996,
+      "general_nll_drift_pct": 0.0
+    },
+    "ungated_fp16_sidecar_27b": {
+      "condition": "ungated_fp16_sidecar_27b",
+      "social_win_rate": 0.625,
+      "social_mean_margin": -2.8386,
+      "animal_win_rate": 0.625,
+      "animal_mean_margin": 3.1604,
+      "general_spanish_nll": 7.916634,
+      "general_nll_drift_pct": 10.1215
+    },
+    "self_gated_fp16_sidecar_27b": {
+      "condition": "self_gated_fp16_sidecar_27b",
+      "social_win_rate": 0.625,
+      "social_mean_margin": -3.5165,
+      "animal_win_rate": 0.875,
+      "animal_mean_margin": 7.9592,
+      "general_spanish_nll": 7.802634,
+      "general_nll_drift_pct": 8.5358
+    }
+  }
+}
