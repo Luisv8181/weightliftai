@@ -1,0 +1,372 @@
+{
+  "experiment": "013-bonsai-1bit-sidecar-lab",
+  "model_id": "prism-ml/Bonsai-4B-unpacked",
+  "device": "cuda",
+  "gpu_name": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "vram_allocated_mb": 1293.94,
+  "vram_reserved_mb": 1300.23,
+  "packing_stats": {
+    "layers_packed": 252,
+    "bytes_before": 7266631680,
+    "bytes_after": 510935040,
+    "mb_before": 7266.63,
+    "mb_after": 510.94,
+    "compression_ratio": 14.22,
+    "max_reconstruction_error": 0.001953,
+    "mean_reconstruction_error": 0.000244
+  },
+  "best_cartography_layer": 19,
+  "best_layer_metrics": {
+    "layer": 19,
+    "cohens_d_train": 7.6866,
+    "unseen_test_acc": 0.875,
+    "social_gate_recall": 0.875,
+    "animal_gate_fpr": 0.0,
+    "general_spanish_fpr": 0.5
+  },
+  "layer_scan": [
+    {
+      "layer": 0,
+      "cohens_d_train": 4.1819,
+      "unseen_test_acc": 0.6875,
+      "social_gate_recall": 0.5,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 1.0
+    },
+    {
+      "layer": 1,
+      "cohens_d_train": 3.8267,
+      "unseen_test_acc": 0.75,
+      "social_gate_recall": 0.625,
+      "animal_gate_fpr": 0.0,
+      "general_spanish_fpr": 1.0
+    },
+    {
+      "layer": 2,
+      "cohens_d_train": 4.4438,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 3,
+      "cohens_d_train": 4.9873,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 1.0
+    },
+    {
+      "layer": 4,
+      "cohens_d_train": 4.1803,
+      "unseen_test_acc": 0.9375,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 5,
+      "cohens_d_train": 4.228,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.625
+    },
+    {
+      "layer": 6,
+      "cohens_d_train": 4.3292,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 7,
+      "cohens_d_train": 4.3591,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 8,
+      "cohens_d_train": 4.5519,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 9,
+      "cohens_d_train": 4.9942,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 10,
+      "cohens_d_train": 4.6363,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.625
+    },
+    {
+      "layer": 11,
+      "cohens_d_train": 5.0455,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.625,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 12,
+      "cohens_d_train": 5.581,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 13,
+      "cohens_d_train": 5.3625,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 14,
+      "cohens_d_train": 5.8404,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 15,
+      "cohens_d_train": 6.4413,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 16,
+      "cohens_d_train": 7.6532,
+      "unseen_test_acc": 0.9375,
+      "social_gate_recall": 0.625,
+      "animal_gate_fpr": 0.0,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 17,
+      "cohens_d_train": 7.4679,
+      "unseen_test_acc": 0.9375,
+      "social_gate_recall": 0.625,
+      "animal_gate_fpr": 0.0,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 18,
+      "cohens_d_train": 7.8308,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.0,
+      "general_spanish_fpr": 0.875
+    },
+    {
+      "layer": 19,
+      "cohens_d_train": 7.6866,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.0,
+      "general_spanish_fpr": 0.5
+    },
+    {
+      "layer": 20,
+      "cohens_d_train": 6.7816,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.0,
+      "general_spanish_fpr": 0.5
+    },
+    {
+      "layer": 21,
+      "cohens_d_train": 5.4101,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.625
+    },
+    {
+      "layer": 22,
+      "cohens_d_train": 5.3738,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.625
+    },
+    {
+      "layer": 23,
+      "cohens_d_train": 4.6192,
+      "unseen_test_acc": 0.875,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.125,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 24,
+      "cohens_d_train": 4.0894,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 25,
+      "cohens_d_train": 4.0653,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 26,
+      "cohens_d_train": 4.0952,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 27,
+      "cohens_d_train": 4.0158,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.75,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 28,
+      "cohens_d_train": 3.934,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 29,
+      "cohens_d_train": 3.5502,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 30,
+      "cohens_d_train": 3.3678,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 31,
+      "cohens_d_train": 3.0379,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 32,
+      "cohens_d_train": 2.9003,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 33,
+      "cohens_d_train": 2.7558,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 34,
+      "cohens_d_train": 2.684,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    },
+    {
+      "layer": 35,
+      "cohens_d_train": 2.7475,
+      "unseen_test_acc": 0.8125,
+      "social_gate_recall": 0.875,
+      "animal_gate_fpr": 0.25,
+      "general_spanish_fpr": 0.75
+    }
+  ],
+  "arms": [
+    {
+      "arm": "baseline_1bit",
+      "social_win_rate": 0.0,
+      "social_mean_margin": -12.8699,
+      "animal_win_rate": 1.0,
+      "animal_mean_margin": 19.5279,
+      "general_spanish_nll": 4.346269,
+      "sample_social_translation": "My girlfriend left me for a tiger. \n\nNote: The word \"tigre\" is a",
+      "sample_animal_translation": "We saw a huge tiger at the city zoo. \n\nThe sentence \"Vimos un tigre",
+      "sidecar_bytes": 0,
+      "sidecar_sha256": null,
+      "general_spanish_drift_pct": 0.0
+    },
+    {
+      "arm": "prompt_steering_1bit",
+      "social_win_rate": 0.125,
+      "social_mean_margin": -6.1104,
+      "animal_win_rate": 1.0,
+      "animal_mean_margin": 15.8258,
+      "general_spanish_nll": 4.346269,
+      "sample_social_translation": "My girlfriend left me with a tiger. \n\nNote: In Dominican and Caribbean Spanish, 'tig",
+      "sample_animal_translation": "We saw a huge tiger at the city zoo. \n\nNote: In Dominican and Caribbean Spanish, '",
+      "sidecar_bytes": 0,
+      "sidecar_sha256": null,
+      "general_spanish_drift_pct": 0.0
+    },
+    {
+      "arm": "ungated_fp16_sidecar",
+      "social_win_rate": 0.0,
+      "social_mean_margin": -11.8057,
+      "animal_win_rate": 1.0,
+      "animal_mean_margin": 19.2624,
+      "general_spanish_nll": 4.404786,
+      "sample_social_translation": "My girlfriend left me for a tiger. \n\nNote: The word \"tigre\" is a",
+      "sample_animal_translation": "We saw a huge tiger at the city zoo. \n\nThe sentence \"Vimos un tigre",
+      "sidecar_bytes": 10272,
+      "sidecar_sha256": "9282f22ea14dae18f51fd9806f5cddda04468a7f3d299e513a325e2c8480ec2e",
+      "general_spanish_drift_pct": 1.3464
+    },
+    {
+      "arm": "self_gated_fp16_sidecar",
+      "social_win_rate": 0.0,
+      "social_mean_margin": -12.3431,
+      "animal_win_rate": 1.0,
+      "animal_mean_margin": 19.5279,
+      "general_spanish_nll": 4.348378,
+      "sample_social_translation": "My girlfriend left me for a tiger. \n\nNote: The word \"tigre\" is a",
+      "sample_animal_translation": "We saw a huge tiger at the city zoo. \n\nThe sentence \"Vimos un tigre",
+      "sidecar_bytes": 10272,
+      "sidecar_sha256": "c4e467b8dc8fc1b8171448acf983e503bef624f14e9661119a97cbd166b66916",
+      "general_spanish_drift_pct": 0.0485
+    }
+  ],
+  "total_wall_seconds": 251.57
+}

@@ -59,6 +59,11 @@ from weightliftai.weight_programming.mountain_car import (
     get_clean_ramp_policy,
     inject_car_defect,
 )
+from weightliftai.weight_programming.onebit_sidecar import (
+    Packed1BitLinear,
+    SelfGatedFP16Sidecar,
+    pack_transformer_linears_to_1bit,
+)
 from weightliftai.weight_programming.sandbox import (
     apply_patch_sandboxed,
     apply_patch_to_copy,
@@ -126,10 +131,13 @@ __all__ = [
     "MultiSeedRunRecord",
     "NoOpProposer",
     "OrthogonalShamProposer",
+    "Packed1BitLinear",
     "RandomNormMatchedProposer",
     "RungEvaluationResult",
+    "SelfGatedFP16Sidecar",
     "SimpleTransformerBlock",
     "StatisticalPromotionDecision",
     "compute_bootstrap_ci",
+    "pack_transformer_linears_to_1bit",
     "paired_permutation_test",
 ]
