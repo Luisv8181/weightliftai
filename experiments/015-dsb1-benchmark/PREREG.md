@@ -35,9 +35,11 @@
 - Split RNG seed: `20261126` (locked before split execution).
 - Bootstrap CI resamples: `2000`, seed `42`.
 
-## 7. Statistical Tests (for Phase 2+ Scoring)
-- Forced-choice 3-paraphrase mean log-prob accuracy + margin with 95% bootstrap CIs over items.
-- Paired McNemar's test (accuracy), paired permutation test (margins), Holm-Bonferroni correction across conditions/models.
+## 7. Statistical Tests & Primary Gloss Rule (for Phase 2+ Scoring)
+- **Primary Metric (Gloss Pair 1):** Forced-choice minimal-swap comparison using gloss pair 1 (**`"guy"`** vs. **`"tiger"`**), reported for both whole-sentence and span-only (`scoring_span`) log-probabilities with 95% bootstrap CIs over items.
+- **Sensitivity Analyses (Gloss Pairs 2 & 3):** Report **`"street-smart guy"`** vs. `"tiger"` and **`"hustler"`** vs. `"tiger"` (and the 3-gloss mean) as pre-registered sensitivity checks, since `"hustler"` does not fit every positive social sentence (e.g., hardworking brother or elder-helper frames).
+- **Literal Subtype Disaggregation:** Report `literal_subtype = animal` (live animals) and `literal_subtype = depiction` (toys/posters/figurines/costumes) separately to prevent depiction-word shortcuts from inflating literal accuracy.
+- **Hypothesis Tests:** Paired McNemar's test (accuracy), paired permutation test (margins), Holm-Bonferroni correction across conditions/models.
 
 ## 8. Falsification / Stop Criteria for Phase 1
 - If second-rater Cohen's kappa < 0.70, revise ambiguous frames and re-run blind agreement check before proceeding to Phase 2.

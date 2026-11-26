@@ -31,6 +31,7 @@ class DSBItem:
     approved_date: str = ""
     notes: str = ""
     sense_group: str = "primary"
+    literal_subtype: str = ""
     frame_pair_id: str = ""
     decisive_cue: str = ""
     scoring_span: dict[str, Any] | None = None
@@ -94,6 +95,7 @@ def load_dsb_csv(path: str | Path, *, is_sealed: bool = False) -> list[DSBItem]:
                     approved_date=row.get("approved_date", "").strip(),
                     notes=row.get("notes", "").strip(),
                     sense_group=row.get("sense_group", "primary").strip() or "primary",
+                    literal_subtype=row.get("literal_subtype", "").strip(),
                     frame_pair_id=row.get("frame_pair_id", "").strip() or row["frame_id"].strip(),
                     decisive_cue=row.get("decisive_cue", "").strip(),
                     scoring_span=parsed_span,

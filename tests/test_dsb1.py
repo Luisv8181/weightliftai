@@ -157,8 +157,10 @@ def test_frames_draft_v2_passes_all_validator_invariants_and_span_scoring() -> N
     assert res["primary_social_tigre"] >= 60
     assert res["primary_literal_tigre"] >= 60
     assert res["exploratory_ambiguous"] == 30
-    assert res["exploratory_team_name"] == 15
+    assert res["exploratory_team_name_total"] == 15
+    assert res["exploratory_team_name_mlb"] == 1
     assert res["exploratory_tiguere_noaccent"] == 20
+    assert res["cross_topic_literal_animal_pct"] >= 50.0
 
     # Verify both whole-sentence and span-only scoring work on v2 items
     v2_items = [x for x in load_dsb_csv(v2_csv) if x.sense_group == "primary"][:20]

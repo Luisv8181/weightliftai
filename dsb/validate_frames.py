@@ -60,9 +60,31 @@ def validate_frames_v2(csv_path: str | Path) -> dict[str, Any]:
     soc_tigre = [r for r in primary_rows if r["sense"] == "social" and r["spelling"] == "tigre"]
     lit_tigre = [r for r in primary_rows if r["sense"] == "literal" and r["spelling"] == "tigre"]
     amb_rows = [r for r in rows if r["sense"] == "ambiguous"]
-    team_rows = [r for r in rows if r["sense"] == "team_name"]
+    team_rows = [r for r in rows if r["sense"] in {"team_name", "team_name_mlb"}]
+    team_mlb_rows = [r for r in rows if r["sense"] == "team_name_mlb"]
     noacc_rows = [r for r in rows if r["spelling"] == "tiguere"]
     pan_rows = [r for r in rows if r["sense"] == "panhispanic_idiom"]
+
+    # 2b. literal_subtype check and >= 50% live animals in cross-topic literal items
+    for r in rows:
+        sub = r.get("literal_subtype", "").strip()
+        if r["sense"] == "literal":
+            if sub not in {"animal", "depiction"}:
+                errors.append(f"Literal row {r['frame_id']} has invalid literal_subtype={sub!r}")
+        else:
+            if sub != "":
+                errors.append(f"Non-literal row {r['frame_id']} must have empty literal_subtype, got {sub!r}")
+
+    cross_topic_lit = [r for r in lit_tigre if "cross_topic_" in r.get("notes", "")]
+    cross_topic_animals = [r for r in cross_topic_lit if r.get("literal_subtype") == "animal"]
+    cross_topic_animal_pct = (
+        round(100.0 * len(cross_topic_animals) / len(cross_topic_lit), 1) if cross_topic_lit else 0.0
+    )
+    if cross_topic_animal_pct < 50.0:
+        errors.append(
+            f"Cross-topic literal live-animal share {cross_topic_animal_pct}% < 50.0% "
+            f"({len(cross_topic_animals)}/{len(cross_topic_lit)})"
+        )
 
     if len(soc_tiguere) < 60:
         errors.append(f"social tíguere count {len(soc_tiguere)} < 60")
@@ -124,15 +146,32 @@ def validate_frames_v2(csv_path: str | Path) -> dict[str, Any]:
         if s1 != s2:
             errors.append(f"Social pair {pid} frames differ:\n  tíguere: {s1}\n  tigre:   {s2}")
 
-    # 5. Gloss minimal-swap check: each social/literal gloss pair differs ONLY inside scoring_span
+    # 5. Gloss minimal-swap check: EVERY row (including team_name/team_name_mlb) differs ONLY inside scoring_span
     for r in rows:
-        if r["sense"] == "team_name":
-            continue
-        gloss = json.loads(r["gloss_options"])
+        raw_gloss = r["gloss_options"]
+        if "wild tiger" in raw_gloss.lower():
+            errors.append(f"{r['frame_id']}: forbidden modifier 'wild tiger(s)' found in gloss_options.")
+        gloss = json.loads(raw_gloss)
         spans = json.loads(r["scoring_span"])
+        pairs = spans.get("pairs", [])
+        if r["sense"] in {"team_name", "team_name_mlb"}:
+            t_list, l_list, s_list = gloss["team_name"], gloss["literal"], gloss["social"]
+            if len(t_list) != 3 or len(l_list) != 3 or len(s_list) != 3 or len(pairs) != 3:
+                errors.append(f"{r['frame_id']}: expected 3 team/literal/social glosses and 3 scoring_span entries.")
+                continue
+            for i, (tg, lg, sg, sp_info) in enumerate(zip(t_list, l_list, s_list, pairs)):
+                tm = _strip_spans(tg, [tuple(sp_info["team_span"])])
+                lm = _strip_spans(lg, [tuple(sp_info["literal_span"])])
+                sm = _strip_spans(sg, [tuple(sp_info["social_span"])])
+                if not (tm == lm == sm):
+                    errors.append(f"{r['frame_id']} pair {i}: team/literal/social differ outside scoring_span.")
+                l_start, l_end = sp_info["literal_span"]
+                if lg[l_start:l_end].lower() != "tigers":
+                    errors.append(f"{r['frame_id']} pair {i}: team literal NP is {lg[l_start:l_end]!r}, expected 'tigers'.")
+            continue
+
         soc_list = gloss["social"]
         lit_list = gloss["literal"]
-        pairs = spans.get("pairs", [])
         if len(soc_list) != 3 or len(lit_list) != 3 or len(pairs) != 3:
             errors.append(f"{r['frame_id']}: expected 3 gloss pairs and 3 scoring_span entries.")
             continue
@@ -163,9 +202,14 @@ def validate_frames_v2(csv_path: str | Path) -> dict[str, Any]:
         "primary_social_tiguere": len(soc_tiguere),
         "primary_social_tigre": len(soc_tigre),
         "primary_literal_tigre": len(lit_tigre),
+        "literal_subtypes_all": dict(Counter(r["literal_subtype"] for r in lit_tigre)),
+        "cross_topic_literal_total": len(cross_topic_lit),
+        "cross_topic_literal_animal": len(cross_topic_animals),
+        "cross_topic_literal_animal_pct": cross_topic_animal_pct,
         "exploratory_ambiguous": len(amb_rows),
         "exploratory_panhispanic_idiom": len(pan_rows),
-        "exploratory_team_name": len(team_rows),
+        "exploratory_team_name_total": len(team_rows),
+        "exploratory_team_name_mlb": len(team_mlb_rows),
         "exploratory_tiguere_noaccent": len(noacc_rows),
         "cue_counts": {
             "social_tíguere": dict(Counter(r["cue_position"] for r in soc_tiguere)),
