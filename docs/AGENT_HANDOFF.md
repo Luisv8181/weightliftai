@@ -26,10 +26,11 @@ Important: verify actual code, tests, artifacts, and claims-register entries bef
 
 ### Read these first
 1. [README](../README.md) — current project overview and experiment status.
-2. [Representation Cartography plan](REPRESENTATION_CARTOGRAPHY.md) — product surfaces, schemas, safeguards, and phases.
-3. [Research Roadmap](RESEARCH_ROADMAP.md) — current workstreams.
-4. [Rolling Paper](ROLLING_PAPER.md) — methods, claims, confidence intervals, and limitations.
-5. [Audit Ledger](AUDIT_LEDGER.jsonl) — machine-readable run/claim history.
+2. [Research Protocol v1 (DSB-1)](RESEARCH_PROTOCOL.md) — active protocol for all coding agents starting with Experiment 015.
+3. [Representation Cartography plan](REPRESENTATION_CARTOGRAPHY.md) — product surfaces, schemas, safeguards, and phases.
+4. [Research Roadmap](RESEARCH_ROADMAP.md) — current workstreams.
+5. [Rolling Paper](ROLLING_PAPER.md) — methods, claims, confidence intervals, and limitations.
+6. [Audit Ledger](AUDIT_LEDGER.jsonl) — machine-readable run/claim history.
 
 ## 3. Research focus and why it matters
 

@@ -88,7 +88,7 @@ For coding agents and collaborators, start with [**`docs/AGENT_HANDOFF.md`**](do
 
 ## Experiments
 
-> 📄 **Rolling Research Paper:** For the complete scientific manuscript, mathematical definitions, confidence intervals, pre-registered claims register, and independent audit checklist, see [**`docs/ROLLING_PAPER.md`**](docs/ROLLING_PAPER.md). Automated machine-readable run logs are tracked in [**`docs/AUDIT_LEDGER.jsonl`**](docs/AUDIT_LEDGER.jsonl).
+> 📄 **Rolling Research Paper & Active Protocol:** For the active experimental protocol (DSB-1 and phased plan starting with Exp 015), see [**`docs/RESEARCH_PROTOCOL.md`**](docs/RESEARCH_PROTOCOL.md). For the living manuscript, confidence intervals, and claims register, see [**`docs/ROLLING_PAPER.md`**](docs/ROLLING_PAPER.md). Automated run logs are tracked in [**`docs/AUDIT_LEDGER.jsonl`**](docs/AUDIT_LEDGER.jsonl).
 
 | ID | Question | Status |
 |---|---|---|
