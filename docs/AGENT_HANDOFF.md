@@ -1,6 +1,6 @@
 # Agent Handoff — WeightLiftAI Research & Product Direction
 
-**Last updated:** 2026-11-04  
+**Last updated:** 2026-11-26  
 **Purpose:** Bring a new coding/research agent up to speed on the project's current state, scientific direction, prior work, and next implementation priorities.
 
 > Start here. Read this document, then the linked research documents before changing code. This is a handoff and plan, not a claim that every proposed interface or feature has been implemented.
@@ -19,8 +19,8 @@ The README describes an active local research platform with:
 - Multi-layer SAE encoding/tracing and interactive feature visualizations.
 - Reversible SAE feature interventions.
 - LoRA/PEFT adaptation comparisons.
-- Experiment manifests, an audit ledger, and a rolling research paper.
-- Experiments 001 and 002 executed; Experiments 003–005 planned.
+- Experiment manifests, an audit ledger (`docs/AUDIT_LEDGER.jsonl`), a rolling research paper (`docs/ROLLING_PAPER.md`), and a unified claims matrix (`docs/replication/CLAIM_EVIDENCE_MATRIX.md`).
+- Experiments 001 through 011 executed on RTX 5070; see `docs/FIX_PLAN_2026-11.md` and `docs/replication/CLAIM_EVIDENCE_MATRIX.md` for honest verdicts (including non-blind/invalid and inconclusive labels where `n` is small).
 
 Important: verify actual code, tests, artifacts, and claims-register entries before treating README checkboxes or reported metrics as independently validated. Do not silently upgrade a planned capability to implemented status.
 

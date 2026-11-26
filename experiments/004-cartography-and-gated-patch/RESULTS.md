@@ -2,9 +2,9 @@
 
 **Date:** 2026-11-07  
 **Hardware:** NVIDIA GeForce RTX 5070 Laptop GPU (8 GB VRAM), Windows 11, PyTorch `2.10.0+cu128`  
-**Script:** [`run_experiment_004.py`](file:///C:/Users/luisv/Projects/weightliftai/experiments/004-cartography-and-gated-patch/run_experiment_004.py)  
-**Dataset:** [`homograph_data.py`](file:///C:/Users/luisv/Projects/weightliftai/experiments/004-cartography-and-gated-patch/homograph_data.py) — **100% Homograph Corpus** (every social/romantic rival item and every literal zoo/jungle item is spelled **`tigre`**, eliminating the `tíguere` surface-spelling shortcut identified in Experiment 003)  
-**Raw Artifact:** [`results.json`](file:///C:/Users/luisv/Projects/weightliftai/experiments/004-cartography-and-gated-patch/results.json)
+**Script:** [`run_experiment_004.py`](run_experiment_004.py)  
+**Dataset:** [`homograph_data.py`](homograph_data.py) — **100% Homograph Corpus** (every social/romantic rival item and every literal zoo/jungle item is spelled **`tigre`**, eliminating the `tíguere` surface-spelling shortcut identified in Experiment 003)  
+**Raw Artifact:** [`results.json`](results.json)
 
 ---
 

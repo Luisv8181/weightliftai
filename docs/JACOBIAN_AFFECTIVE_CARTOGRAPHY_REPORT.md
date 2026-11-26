@@ -4,7 +4,7 @@
 **Model Under Test:** `Qwen/Qwen2.5-0.5B-Instruct`  
 **Hardware Platform:** `NVIDIA GeForce RTX 5070 Laptop GPU` (`cuda`)  
 **Runtime:** `10.23s`  
-**Raw Empirical Results:** [`experiments/006-jacobian-affective-cartography/results.json`](file:///C:/Users/luisv/Projects/weightliftai/experiments/006-jacobian-affective-cartography/results.json)  
+**Raw Empirical Results:** [`experiments/006-jacobian-affective-cartography/results.json`](../experiments/006-jacobian-affective-cartography/results.json)  
 
 ---
 
