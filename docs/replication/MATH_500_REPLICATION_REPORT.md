@@ -52,7 +52,7 @@ Problem:
 ```
 
 ### 2.3 Answer Normalization & Equivalence Engine
-The evaluation harness ([`math500_evaluator.py`](file:///C:/Users/luisv/Projects/weightliftai/src/weightliftai/weight_programming/math500_evaluator.py)) parses predictions via:
+The evaluation harness ([`math500_evaluator.py`](../../src/weightliftai/weight_programming/math500_evaluator.py)) parses predictions via:
 1. **Nested Brace Parser:** Arbitrary brace tracking for LaTeX constructs like `\boxed{\frac{\sqrt{3}}{2}}` or `\boxed{\left( 3, \frac{\pi}{2} \right)}`.
 2. **Canonicalizer:** Strips `\text{}`, `\mathrm{}`, delimiters (`\left`, `\right`), degree symbols, and whitespace.
 3. **Mathematical Equivalence:** Checks exact canonical string match, numerical float evaluation ($\epsilon = 10^{-4}$ tolerance), and coordinate tuple equivalence.

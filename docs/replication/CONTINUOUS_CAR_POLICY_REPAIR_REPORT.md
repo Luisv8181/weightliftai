@@ -76,13 +76,13 @@ Astra operates as an autonomous cognitive meta-architect. Rather than executing 
 3. **Rank-1 Algebraic Formulation:** Formulates a rank-1 outer product parameterization for the readout weight:
    $$\Delta W = \mathbf{u} \mathbf{v}^T, \quad \mathbf{u} \in \mathbb{R}^1, \mathbf{v} \in \mathbb{R}^8$$
 4. **Norm-Bounded Calibration:** Solves for the minimal patch vector $\mathbf{v}$ that aligns the policy with resonant energy pumping on the diagnostic set, and projects onto the $L_2$ norm ball $\|\Delta W\|_2 \le \text{budget.max\_l2\_norm}$.
-5. **Patch Packaging:** Returns a declarative, immutable [`WeightPatch`](file:///C:/Users/luisv/Projects/weightliftai/src/weightliftai/weight_programming/schemas.py) including model fingerprint and hypothesis metadata.
+5. **Patch Packaging:** Returns a declarative, immutable [`WeightPatch`](../../src/weightliftai/weight_programming/schemas.py) including model fingerprint and hypothesis metadata.
 
 ---
 
 ## 5. Measured Empirical Verification
 
-Running the test suite [`tests/test_mountain_car_repair.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_mountain_car_repair.py) across all conditions:
+Running the test suite [`tests/test_mountain_car_repair.py`](../../tests/test_mountain_car_repair.py) across all conditions:
 
 | Condition | Policy State | Allowed Tensors | Patch Norm $\|\Delta W\|_2$ | Escape Rate (20 seeds) | Mean Steps to Summit |
 |:---|:---:|:---:|:---:|:---:|:---:|

@@ -2,7 +2,7 @@
 
 **Status:** Benchmark Specification & Experimental Design  
 **Tracking:** [Issue #10 (Phase 3)](https://github.com/Luisv8181/weightliftai/issues/10) & [Issue #12 (Phase 1)](https://github.com/Luisv8181/weightliftai/issues/12)  
-**Threat Model Document:** [`docs/BLIND_BENCHMARK_THREAT_MODEL.md`](file:///C:/Users/luisv/Projects/weightliftai/docs/BLIND_BENCHMARK_THREAT_MODEL.md)  
+**Threat Model Document:** [`docs/BLIND_BENCHMARK_THREAT_MODEL.md`](BLIND_BENCHMARK_THREAT_MODEL.md)  
 **References:**
 - Yao et al. (EMNLP 2023): *Editing Large Language Models: Problems, Methods, and Opportunities*
 - Cohen et al. (TACL 2024): *Evaluating the Ripple Effects of Knowledge Editing in Language Models*
@@ -38,7 +38,7 @@ The **Blind Weight-Repair Benchmark** establishes a leakage-free protocol where:
 | **Output / Residual Leakage** | Returns coarse aggregate scalar gains only (`target_gain`, `distribution_shift_gain`, `regression_drop`). Never returns per-sample predictions or losses. |
 | **Post-Hoc Metric Tuning** | Primary metrics, thresholds, and regression tolerances are frozen before evaluation. |
 
-See [`docs/BLIND_BENCHMARK_THREAT_MODEL.md`](file:///C:/Users/luisv/Projects/weightliftai/docs/BLIND_BENCHMARK_THREAT_MODEL.md) for full formal specification.
+See [`docs/BLIND_BENCHMARK_THREAT_MODEL.md`](BLIND_BENCHMARK_THREAT_MODEL.md) for full formal specification.
 
 ---
 
