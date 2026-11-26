@@ -3,17 +3,18 @@
 **Paper:** *"Sparks of Weight-Space Programming: LLMs can natively read & write neural network weights"*  
 **Authors:** Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab (MIT CSAIL, Nov 2, 2026)  
 **Section Under Replication:** Section 5 — *Continuous Control Policy Repair in Weight Space*  
-**Framework Module:** [`src/weightliftai/weight_programming/mountain_car.py`](file:///C:/Users/luisv/Projects/weightliftai/src/weightliftai/weight_programming/mountain_car.py)  
-**Test Suite:** [`tests/test_mountain_car_repair.py`](file:///C:/Users/luisv/Projects/weightliftai/tests/test_mountain_car_repair.py) (9/9 passed)  
-**Agent Role:** Astra (Frontier Cognitive Meta-Architect / Weight-Space Programmer)  
+**Framework Module:** [`src/weightliftai/weight_programming/mountain_car.py`](../../src/weightliftai/weight_programming/mountain_car.py)  
+**Test Suite:** [`tests/test_mountain_car_repair.py`](../../tests/test_mountain_car_repair.py) (9/9 passed)  
+**Agent Role:** Coding agent (Antigravity, role-play of the Astra protocol; not OpenAI GPT-6 Astra; deterministic proposer class `AstraContinuousProposer`)  
+**Verdict:** **Partially replicated** (synthetic `RampPolicyNet` control harness; deterministic algebraic proposer, not OpenAI GPT-6 Astra; `n=20` episodes per defect family)
 
 ---
 
 ## 1. Executive Summary & Replication Verdict
 
-In Section 5 of Takehi et al. (2026), the authors demonstrate that an LLM weight-space programmer can inspect the weights of an underpowered continuous control neural policy, diagnose behavioral failures (stalling in a potential energy well), and synthesize a functional weight intervention without retraining the model with RL rollout trajectories or backpropagation from scratch.
+In Section 5 of Takehi et al. (2026), the authors demonstrate that an LLM weight-space programmer (OpenAI GPT-6 Astra) can inspect the weights of an underpowered continuous control neural policy, diagnose behavioral failures (stalling in a potential energy well), and synthesize a functional weight intervention without retraining the model with RL rollout trajectories or backpropagation from scratch.
 
-This report establishes **100% independent empirical confirmation and replication** of this finding in WeightLiftAI:
+This report documents a deterministic Python harness replicating the continuous Mountain Car rank-1 readout repair structure in WeightLiftAI:
 1. **Continuous Underpowered Physics:** Implemented continuous Mountain Car dynamics where peak gravitational deceleration ($0.0025$) exceeds maximum engine thrust ($0.0015$). Reaching the goal summit at $x \ge 0.45$ is physically impossible without resonant energy pumping (accelerating backwards up the left hill to gain potential energy).
 2. **Underpowered Neural Policy:** Constructed `RampPolicyNet` ($2 \to 16 \to 8 \to 1$, Tanh activations). Clean pre-calibrated baseline achieves **100.0% escape rate** (20/20 episodes, mean steps $97.2$).
 3. **Targeted Lesions / Defect Injection:** Injected three distinct defect families (`FC3_THRUST_INVERSION`, `FC3_ZERO_MASK`, `FC3_NEGATIVE_CLAMP`). All three lesions completely incapacitate the policy, dropping escape performance from **100.0% $\to$ 0.0%** (infinite 500-step valley trough stall).
