@@ -1,0 +1,1523 @@
+{
+  "experiment": "012c-bonsai-27b-grammar-locked-full-toolkit",
+  "total_wall_seconds": 64.8,
+  "summary": {
+    "bonsai_27b_grammar_locked": {
+      "total_runs": 8,
+      "evaluated_runs": 7,
+      "pass_count": 2,
+      "pass_rate": 0.25,
+      "mean_held_out_gain": -2.6069
+    },
+    "deterministic_baseline": {
+      "total_runs": 8,
+      "evaluated_runs": 8,
+      "pass_count": 5,
+      "pass_rate": 0.625,
+      "mean_held_out_gain": -0.665
+    },
+    "gradient_baseline": {
+      "total_runs": 8,
+      "evaluated_runs": 8,
+      "pass_count": 8,
+      "pass_rate": 1.0,
+      "mean_held_out_gain": 4.1168
+    }
+  },
+  "raw_records": [
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_016cd98f241f54c98251d05551311b8b",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "proposal_status": "INVALID_PROPOSAL_SCHEMA",
+      "error_message": "explicit_deltas requires exactly 8 finite floats in col_deltas.",
+      "raw_llm_text": "{\n  \"hypothesis\": \"The output column 0 of fc2.weight is corrupted by a sign-flip defect on its first four columns, which can be corrected using explicit_deltas.\",\n  \"operation\": \"explicit_deltas\",\n  \"rationale\": \"The diagnostic package shows that the negative gradient direction for row 0 has large magnitudes (e.g., 7.9272 at col 1), indicating a significant error in output column 0. The near_zero_indices list highlights columns [0, 1, 2, 3] as problematic. Using explicit_deltas allows direct correction of these specific weights without affecting row 1.\",\n  \"target_tensor\": \"fc2.weight\"\n}",
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "dd87f83797794cb6796b4933a2ed327ff9c4d8ef31f819cc62da1522e7f70791",
+      "prompt_char_length": 3360,
+      "passed_gates": false,
+      "evaluation_result": null,
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_4e30bf9d7e20ec8512a04c7ac7eab07c",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_4e30bf9d",
+      "patch_sha256": "955aabeece5cbac4be253721e02b8ba08df7d8b2143ceed6fc0929b5fd879132",
+      "patch_l2_norm": 1.0591,
+      "passed_gates": true,
+      "target_held_out_gain": 1.4051,
+      "ood_gain": -10.1251,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0478,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_4e30bf9d7e20ec8512a04c7ac7eab07c",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_4e30bf9d",
+        "patch_sha256": "955aabeece5cbac4be253721e02b8ba08df7d8b2143ceed6fc0929b5fd879132",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 1.4051,
+          "distribution_shift_gain": -10.1251,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 1.754,
+          "ood_mse": 13.7865,
+          "regression_mse": 0.0047
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_4e30bf9d7e20ec8512a04c7ac7eab07c",
+          "candidate_patch_id": "det-patch-exp_4e30bf9d",
+          "candidate_patch_sha256": "955aabeece5cbac4be253721e02b8ba08df7d8b2143ceed6fc0929b5fd879132",
+          "corrupted_fingerprint": "520cdd5f155f8a4c82dc8f8439ecaa867fe76b6ceac54f82ead848bcf0433d9d",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "0eb1078cb5162ce2469da4170310b464269b13fb6bd8cbefbd9705f7e4feadcd",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 1.754,
+            "ood_mse": 13.7865,
+            "regression_mse": 0.0047
+          },
+          "issued_at": 1795724491.823,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "4df5114a1a7e796487eab907042a25bf647a07727faae7c3b39c0b864ed730f4ebe2fffa23d57027a2f3fa8688c11499ffd91e43c5a648935ffd441b0dc46f07"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_f3d8541bab27f6b542d9bdade47bafdc",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_f3d8541b",
+      "patch_sha256": "a1051a19809def98243fe2571dc2a0ecb347d6ba2c439135918d0ce5863ec534",
+      "patch_l2_norm": 0.5853,
+      "passed_gates": true,
+      "target_held_out_gain": 0.2305,
+      "ood_gain": 0.4395,
+      "regression_drop": 0.0,
+      "total_time_seconds": 2.2883,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_f3d8541bab27f6b542d9bdade47bafdc",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_f3d8541b",
+        "patch_sha256": "a1051a19809def98243fe2571dc2a0ecb347d6ba2c439135918d0ce5863ec534",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.2305,
+          "distribution_shift_gain": 0.4395,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0022,
+          "ood_mse": 0.0585,
+          "regression_mse": 0.0034
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_f3d8541bab27f6b542d9bdade47bafdc",
+          "candidate_patch_id": "grad-patch-exp_f3d8541b",
+          "candidate_patch_sha256": "a1051a19809def98243fe2571dc2a0ecb347d6ba2c439135918d0ce5863ec534",
+          "corrupted_fingerprint": "5166f7279a866187c85c1e3d9e391f58d5ccced4319b502403132d21f7b342f2",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "b0287ac5c81a6c3262675c64a27b3befb63e7b38adcdbe3d19dc6f277a42c303",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0022,
+            "ood_mse": 0.0585,
+            "regression_mse": 0.0034
+          },
+          "issued_at": 1795724494.449,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "3725ba92182ec8365823b0b822406a52c27c2a2980d3b2b22502039249d313d5ce732dd413799d03673a77a92a2a8776051eebff33c5fa3e85e6638574b0d605"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_51289264c14b800148d8e26611424eea",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "386563c7d2abaefd9cd951948fa99fd2b85e6d04e21b7357b48b29e424a4f36a",
+      "prompt_char_length": 3364,
+      "input_token_count": 1501,
+      "output_token_count": 373,
+      "proposer_latency_seconds": 9.2184,
+      "total_time_seconds": 9.2547,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_51289264",
+      "patch_sha256": "1b8a66670bf61202d73960f3e717cc72c44ee81ffcc9d4af527f3369b47e919f",
+      "patch_l2_norm": 1.4616,
+      "hypothesis": "Row 0 of fc2.weight is corrupted by a sign-flip pattern on columns [0,1,2,3], causing high MSE and negative gradient alignment with expected output direction.",
+      "passed_gates": false,
+      "target_held_out_gain": -6.6046,
+      "ood_gain": -20.5413,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_51289264c14b800148d8e26611424eea",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_51289264",
+        "patch_sha256": "1b8a66670bf61202d73960f3e717cc72c44ee81ffcc9d4af527f3369b47e919f",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -6.6046,
+          "distribution_shift_gain": -20.5413,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 9.7049,
+          "ood_mse": 36.3588,
+          "regression_mse": 0.0179
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_51289264c14b800148d8e26611424eea",
+          "candidate_patch_id": "llm-proj-exp_51289264",
+          "candidate_patch_sha256": "1b8a66670bf61202d73960f3e717cc72c44ee81ffcc9d4af527f3369b47e919f",
+          "corrupted_fingerprint": "6f42b2fbd71f77d744a538d0b355af7bd58549ca4f63a8ad11145343d31cde75",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "20f7f3721d539f665aec650fb41a270b6e397e7e9630ec6f62fa9cbf23258a6e",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 9.7049,
+            "ood_mse": 36.3588,
+            "regression_mse": 0.0179
+          },
+          "issued_at": 1795724503.963,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "c17b36913954352d85df371558a19ce22b588091980eec74feb8c715ad5d6ebbeecbdd27c5936ed23195701a72089d34574856f5a50b2a554db0c34c1636fa04"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_afaa244ac07b95284afae92c303c6e0f",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_afaa244a",
+      "patch_sha256": "a0877a313c65453112158552e9e67f9568fe36e2068908282d51daabd12eebda",
+      "patch_l2_norm": 0.7879,
+      "passed_gates": false,
+      "target_held_out_gain": -2.9474,
+      "ood_gain": 5.8647,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.028,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_afaa244ac07b95284afae92c303c6e0f",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_afaa244a",
+        "patch_sha256": "a0877a313c65453112158552e9e67f9568fe36e2068908282d51daabd12eebda",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -2.9474,
+          "distribution_shift_gain": 5.8647,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 6.9683,
+          "ood_mse": 12.5853,
+          "regression_mse": 0.0025
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_afaa244ac07b95284afae92c303c6e0f",
+          "candidate_patch_id": "det-patch-exp_afaa244a",
+          "candidate_patch_sha256": "a0877a313c65453112158552e9e67f9568fe36e2068908282d51daabd12eebda",
+          "corrupted_fingerprint": "7bfca443c5e8e2366c8e8668f34a96411a7188ddd9b479399fd006878c356e4d",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "9ef5c944ed40a53e4c9c7f219b28f943e4e2504a286db63017a34150248a15e4",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 6.9683,
+            "ood_mse": 12.5853,
+            "regression_mse": 0.0025
+          },
+          "issued_at": 1795724504.251,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "50b79e9c81404d9ef04b134c968e86a393f116103ed538b00439fd54d6d65918e620f16fe38c52e49e3bdf95bc31eb953e3441b629373e7d65ed49195090270b"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_bd26a16774569694ac7bc556a4d18334",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_bd26a167",
+      "patch_sha256": "72f7de4653aea5da3b13a51e3c9277263c5b427171b3c2543c4fcfe11de3b4f7",
+      "patch_l2_norm": 0.6155,
+      "passed_gates": true,
+      "target_held_out_gain": 0.2957,
+      "ood_gain": 0.9337,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0958,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_bd26a16774569694ac7bc556a4d18334",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_bd26a167",
+        "patch_sha256": "72f7de4653aea5da3b13a51e3c9277263c5b427171b3c2543c4fcfe11de3b4f7",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.2957,
+          "distribution_shift_gain": 0.9337,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0212,
+          "ood_mse": 0.1113,
+          "regression_mse": 0.0034
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_bd26a16774569694ac7bc556a4d18334",
+          "candidate_patch_id": "grad-patch-exp_bd26a167",
+          "candidate_patch_sha256": "72f7de4653aea5da3b13a51e3c9277263c5b427171b3c2543c4fcfe11de3b4f7",
+          "corrupted_fingerprint": "b7a1e2a0926d9cebb43454e3debc669ada63a1c517296966280da9b2c5bc4065",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "a60a1e154d96a263a91f3cfba916294fd59beb5f782888024719f60320a9610c",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0212,
+            "ood_mse": 0.1113,
+            "regression_mse": 0.0034
+          },
+          "issued_at": 1795724504.616,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "793684afe7c130d0fc7bcacf10c4827064f85870e1aa94610dbdbdc0ebbfa3af041d531802faf49a1def3c1a6afd8757e6d35a2d3c0672f2bfdb54d3e3541e0e"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_fcc84b8020f25e027cb12547936709b0",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "d3908d39e1d1e8e1c9581a354bc18fd652c312757c69ca8af1c4cdc54fb82d17",
+      "prompt_char_length": 3357,
+      "input_token_count": 1501,
+      "output_token_count": 134,
+      "proposer_latency_seconds": 4.6909,
+      "total_time_seconds": 4.7298,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_fcc84b80",
+      "patch_sha256": "4d1dac4e1a288fd9d42cc315be76489f52d3c9af41f83e2049230587a6f24b87",
+      "patch_l2_norm": 3.6779,
+      "hypothesis": "The output for column 0 is corrupted due to a sign flip on specific input features, which can be corrected by flipping signs of corresponding weights.",
+      "passed_gates": true,
+      "target_held_out_gain": 6.7573,
+      "ood_gain": 33.7074,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_fcc84b8020f25e027cb12547936709b0",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_fcc84b80",
+        "patch_sha256": "4d1dac4e1a288fd9d42cc315be76489f52d3c9af41f83e2049230587a6f24b87",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 6.7573,
+          "distribution_shift_gain": 33.7074,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 4.8735,
+          "ood_mse": 19.0858,
+          "regression_mse": 0.0144
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_fcc84b8020f25e027cb12547936709b0",
+          "candidate_patch_id": "llm-proj-exp_fcc84b80",
+          "candidate_patch_sha256": "4d1dac4e1a288fd9d42cc315be76489f52d3c9af41f83e2049230587a6f24b87",
+          "corrupted_fingerprint": "2d776f79a0d5ff616522bed3069d26c7c54a9af75210bd447c96a4f12ac1be34",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "90b27a4f549590fac144725a851b1abed856efb7fc7d3d046ff111c86fe38cad",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 4.8735,
+            "ood_mse": 19.0858,
+            "regression_mse": 0.0144
+          },
+          "issued_at": 1795724509.634,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "92d6cededeb52fa154d3d1d6cdeac90631e3ed0600f896bf294b3720c8ad1d08d6aa6ec19a65f5828ed25fac62ee57048e494d41e52dcc89c018ce2a25f11201"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_64e9c7022dcb291dbc7ad48eef0e2599",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_64e9c702",
+      "patch_sha256": "439b3361456620dc8f2111c970057a6b7ab7999282e06b28d39d3c65441185db",
+      "patch_l2_norm": 0.5473,
+      "passed_gates": true,
+      "target_held_out_gain": 4.7247,
+      "ood_gain": 80.4663,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0291,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_64e9c7022dcb291dbc7ad48eef0e2599",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_64e9c702",
+        "patch_sha256": "439b3361456620dc8f2111c970057a6b7ab7999282e06b28d39d3c65441185db",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 4.7247,
+          "distribution_shift_gain": 80.4663,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 6.1036,
+          "ood_mse": 107.9557,
+          "regression_mse": 0.0046
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_64e9c7022dcb291dbc7ad48eef0e2599",
+          "candidate_patch_id": "det-patch-exp_64e9c702",
+          "candidate_patch_sha256": "439b3361456620dc8f2111c970057a6b7ab7999282e06b28d39d3c65441185db",
+          "corrupted_fingerprint": "be6ad370ab89017e89a55323d311595590cd20c74d999fbd07eb562f064988fd",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "6f7d161d3099ccbd4d3b24213266f52d3562e79f5a465735b54c382c39fd706e",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 6.1036,
+            "ood_mse": 107.9557,
+            "regression_mse": 0.0046
+          },
+          "issued_at": 1795724509.922,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "52fb8746ba09e4db7a4eb11f63d8a19786b67a01194223d0ad3ec1bdcc1c3905ace4a3beab8d3019bbdfde6010c850e66a5bda68c149886b157596caaa6f8c0d"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_90c49389063f79fd82c70cc918d233f4",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_90c49389",
+      "patch_sha256": "7bbde8eff18122603579996d597fc7884b008eca4cc399e412fda6c94b85f637",
+      "patch_l2_norm": 2.1053,
+      "passed_gates": true,
+      "target_held_out_gain": 26.7773,
+      "ood_gain": 139.5485,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0983,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_90c49389063f79fd82c70cc918d233f4",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_90c49389",
+        "patch_sha256": "7bbde8eff18122603579996d597fc7884b008eca4cc399e412fda6c94b85f637",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 26.7773,
+          "distribution_shift_gain": 139.5485,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.1708,
+          "ood_mse": 0.9491,
+          "regression_mse": 0.0144
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_90c49389063f79fd82c70cc918d233f4",
+          "candidate_patch_id": "grad-patch-exp_90c49389",
+          "candidate_patch_sha256": "7bbde8eff18122603579996d597fc7884b008eca4cc399e412fda6c94b85f637",
+          "corrupted_fingerprint": "cbc31690584bf9abf86b909f701bcad0fc83d35d2433074730ce21b3090c12d5",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "225cae54b7cda54a9b7a8c99650e3748e0b310a502088410a625e2ffbfb5ee45",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.1708,
+            "ood_mse": 0.9491,
+            "regression_mse": 0.0144
+          },
+          "issued_at": 1795724510.281,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "0eb9f25758deab5873d90d82355d30812b6935f0f9d8e2d94678a307184ef4f61bc9690c9a71886413dd13adf8ec919b6c299d03000d9fa1efc65cc2a2665b01"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_b3bc4b15ed396d3b3a2f630902054d1e",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "928050dd836baeed034206cea5affb7942a0fb9650d024caa773d21e46149d18",
+      "prompt_char_length": 3348,
+      "input_token_count": 1490,
+      "output_token_count": 156,
+      "proposer_latency_seconds": 5.1131,
+      "total_time_seconds": 5.1576,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_b3bc4b15",
+      "patch_sha256": "3e80884e461563e81b90699b1e7d6b65d5e7689218c9ead4b73415eaa86ee492",
+      "patch_l2_norm": 2.8317,
+      "hypothesis": "The output for column 0 is corrupted due to a sign flip on specific input features, which can be corrected by flipping signs of corresponding weights.",
+      "passed_gates": true,
+      "target_held_out_gain": 0.6323,
+      "ood_gain": -1.1215,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_b3bc4b15ed396d3b3a2f630902054d1e",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_b3bc4b15",
+        "patch_sha256": "3e80884e461563e81b90699b1e7d6b65d5e7689218c9ead4b73415eaa86ee492",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.6323,
+          "distribution_shift_gain": -1.1215,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 3.7048,
+          "ood_mse": 16.4162,
+          "regression_mse": 0.0099
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_b3bc4b15ed396d3b3a2f630902054d1e",
+          "candidate_patch_id": "llm-proj-exp_b3bc4b15",
+          "candidate_patch_sha256": "3e80884e461563e81b90699b1e7d6b65d5e7689218c9ead4b73415eaa86ee492",
+          "corrupted_fingerprint": "05b87cfa4c8d1600391f5b0dba10d7d0655765d4afa27e2726edf9127c6b7552",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "9afe95432d2d71c4450fe0541838b961ff911bca53679d402ba87d20a335ea02",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 3.7048,
+            "ood_mse": 16.4162,
+            "regression_mse": 0.0099
+          },
+          "issued_at": 1795724515.723,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "6d0255e21bab52f6c56754846014ae9ebcf46d76519794457e05ac1480cb46fae156976e83f64dc5d14ce048c0c605ceb259ddaa3d0fbb308adfba4f82eb7a0e"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_7178cec5a0993df32298f4f483cfe0e7",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_7178cec5",
+      "patch_sha256": "597e27abcd4b83d4fa207018bc44a6993534fe14ef10b775d1ccf480cc0c7dc6",
+      "patch_l2_norm": 0.657,
+      "passed_gates": true,
+      "target_held_out_gain": 7.3513,
+      "ood_gain": 25.0511,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0307,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_7178cec5a0993df32298f4f483cfe0e7",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_7178cec5",
+        "patch_sha256": "597e27abcd4b83d4fa207018bc44a6993534fe14ef10b775d1ccf480cc0c7dc6",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 7.3513,
+          "distribution_shift_gain": 25.0511,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 9.434,
+          "ood_mse": 33.2443,
+          "regression_mse": 0.0036
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_7178cec5a0993df32298f4f483cfe0e7",
+          "candidate_patch_id": "det-patch-exp_7178cec5",
+          "candidate_patch_sha256": "597e27abcd4b83d4fa207018bc44a6993534fe14ef10b775d1ccf480cc0c7dc6",
+          "corrupted_fingerprint": "980af003567235ceefff57d2bbab51ef220108b28c2fd3662ef9e9b38ffd9c62",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "74592f7ac474a3ea534927814c0d9944ea4efce953870c9e46ac18e4895d2968",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 9.434,
+            "ood_mse": 33.2443,
+            "regression_mse": 0.0036
+          },
+          "issued_at": 1795724516.025,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "3acdc48c8467fb43c71f5852fa136195ab2c9add5d61a2e319bcd7adf29e69fb344829cd6c9daec727bd90a42f2f1393d5d2d669b85d7e601ca6c38a4fc4640f"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_d7f8b803f809714ef222f6d1cc0f0e1b",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_d7f8b803",
+      "patch_sha256": "7425bf160f088ba5fdefee712839bde5daabcb6772ca9419c8376303ae922888",
+      "patch_l2_norm": 1.7035,
+      "passed_gates": true,
+      "target_held_out_gain": 1.3432,
+      "ood_gain": 5.6466,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0949,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_d7f8b803f809714ef222f6d1cc0f0e1b",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_d7f8b803",
+        "patch_sha256": "7425bf160f088ba5fdefee712839bde5daabcb6772ca9419c8376303ae922888",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 1.3432,
+          "distribution_shift_gain": 5.6466,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.005,
+          "ood_mse": 0.0661,
+          "regression_mse": 0.0052
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_d7f8b803f809714ef222f6d1cc0f0e1b",
+          "candidate_patch_id": "grad-patch-exp_d7f8b803",
+          "candidate_patch_sha256": "7425bf160f088ba5fdefee712839bde5daabcb6772ca9419c8376303ae922888",
+          "corrupted_fingerprint": "304abd5ddba18f17afd288b430d9cee4e1bacf290918017b679aaf2ba9e2f631",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "5a08ca4cb0f1cd8a62bbceb38d7437f5dae3ba50e358c8c76e2271079d638235",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.005,
+            "ood_mse": 0.0661,
+            "regression_mse": 0.0052
+          },
+          "issued_at": 1795724516.381,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "a99c5f200d9c9ac50d02c3275d49372c5b2429573b4363cedff6484e3f66251d9803ba59c8b8dfb8b4ef59fe3b07f1b9b064fdc8fcc001c9d3afc495268be809"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_555ca89a39059b3db51eba5dee4e5d61",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "278d3be49c3c585842ddd29762c5ce4680a1b7662b004718951294c3cc7bf4a8",
+      "prompt_char_length": 3356,
+      "input_token_count": 1500,
+      "output_token_count": 139,
+      "proposer_latency_seconds": 5.5617,
+      "total_time_seconds": 5.5991,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_555ca89a",
+      "patch_sha256": "03e429a5bd3a5d91f6d6ce79017e587ca2093b275acf3d517046e49ac5f026b0",
+      "patch_l2_norm": 0.4958,
+      "hypothesis": "The output for column 0 is corrupted due to a sign flip on specific input features, which can be corrected by flipping signs of corresponding weights.",
+      "passed_gates": false,
+      "target_held_out_gain": -2.6992,
+      "ood_gain": -12.8268,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_555ca89a39059b3db51eba5dee4e5d61",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_555ca89a",
+        "patch_sha256": "03e429a5bd3a5d91f6d6ce79017e587ca2093b275acf3d517046e49ac5f026b0",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -2.6992,
+          "distribution_shift_gain": -12.8268,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 5.964,
+          "ood_mse": 28.2762,
+          "regression_mse": 0.0034
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_555ca89a39059b3db51eba5dee4e5d61",
+          "candidate_patch_id": "llm-proj-exp_555ca89a",
+          "candidate_patch_sha256": "03e429a5bd3a5d91f6d6ce79017e587ca2093b275acf3d517046e49ac5f026b0",
+          "corrupted_fingerprint": "6cc3871766678e3f4b9bb46b59e381f24800992b9f2d2f30244d7284c3a1c48b",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "b4d093c72c6446f95cba508e1cff6834807e6355c5b78a0e91cd5d78d4cf5ff6",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 5.964,
+            "ood_mse": 28.2762,
+            "regression_mse": 0.0034
+          },
+          "issued_at": 1795724522.254,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "1331f0ffd764d593c72cc43717f38bfc9c01e72b9b985e34e5fce2ed2857d8694449d6871f5a645b5b26de3a1eb8ead1855a50841d67169a6b29b3471a304c07"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_1af559a8009462d17b45e934439df4c8",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_1af559a8",
+      "patch_sha256": "143de9ea925e439dc78a2e4f3ac463ca44fe9efd65cd6ddd84b931cfc20ee780",
+      "patch_l2_norm": 0.3614,
+      "passed_gates": true,
+      "target_held_out_gain": 1.4963,
+      "ood_gain": 5.0091,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0352,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_1af559a8009462d17b45e934439df4c8",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_1af559a8",
+        "patch_sha256": "143de9ea925e439dc78a2e4f3ac463ca44fe9efd65cd6ddd84b931cfc20ee780",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 1.4963,
+          "distribution_shift_gain": 5.0091,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 1.8134,
+          "ood_mse": 5.9875,
+          "regression_mse": 0.003
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_1af559a8009462d17b45e934439df4c8",
+          "candidate_patch_id": "det-patch-exp_1af559a8",
+          "candidate_patch_sha256": "143de9ea925e439dc78a2e4f3ac463ca44fe9efd65cd6ddd84b931cfc20ee780",
+          "corrupted_fingerprint": "58ad9d24c5f2749155745bcdf9cc29c84a73ecac4e916f84d4c658a7c7b51a0e",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "a02c7ee4bf0931d8be3caad3baf477078a0069f0733993cfb7dcdc3330712393",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 1.8134,
+            "ood_mse": 5.9875,
+            "regression_mse": 0.003
+          },
+          "issued_at": 1795724522.611,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "f810ade36e71f5c5b54aba833013b68cb31c845c170e5a3a4dfbd78a56702d149690fdec36a35dca3c30a731e75a7588da2aaa2a25159f5f13ca502e4ca9e90d"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_48c9b923208aa654a6c1ee289b516f28",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_48c9b923",
+      "patch_sha256": "0a1a9fb08816ff0b2b66a1869d4ae313b873e82e6ef6323c0cc53de8cf725e18",
+      "patch_l2_norm": 0.9408,
+      "passed_gates": true,
+      "target_held_out_gain": 1.3132,
+      "ood_gain": 5.2157,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.1162,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_48c9b923208aa654a6c1ee289b516f28",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_48c9b923",
+        "patch_sha256": "0a1a9fb08816ff0b2b66a1869d4ae313b873e82e6ef6323c0cc53de8cf725e18",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 1.3132,
+          "distribution_shift_gain": 5.2157,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0058,
+          "ood_mse": 0.0203,
+          "regression_mse": 0.0084
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_48c9b923208aa654a6c1ee289b516f28",
+          "candidate_patch_id": "grad-patch-exp_48c9b923",
+          "candidate_patch_sha256": "0a1a9fb08816ff0b2b66a1869d4ae313b873e82e6ef6323c0cc53de8cf725e18",
+          "corrupted_fingerprint": "c713d55c848d82991440a961a8bb57867c9fbe84141a16b3cac04c98bb4fe9b2",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "a49ed69b740366f08d8ddf720166a1ec07934452960ff71d4e1cfb7fa4a17ad0",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0058,
+            "ood_mse": 0.0203,
+            "regression_mse": 0.0084
+          },
+          "issued_at": 1795724523.009,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "8a8237f61b7ae64c8e14131e177883823a4a7cc457d4e5a0df3b43e082129eeade9fa55bd649561bd56bd99d679c5fc02c83e4a3765ff984f5693edcd29e310a"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_134b6587d38f9fb36cbc32ad4a8f33bf",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "0d547436015f5b52ccc67b2191ef772b5163aebdd3f34393ca469638410f035a",
+      "prompt_char_length": 3350,
+      "input_token_count": 1501,
+      "output_token_count": 272,
+      "proposer_latency_seconds": 7.713,
+      "total_time_seconds": 7.75,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_134b6587",
+      "patch_sha256": "251805771f58c0c5942915e205fee33363f7dddf68160e3f2741aad7d6fcbead",
+      "patch_l2_norm": 0.4091,
+      "hypothesis": "The output column 0 of fc2.weight is corrupted by a sign-flip defect on specific input features, causing negative activations to be amplified rather than attenuated.",
+      "passed_gates": false,
+      "target_held_out_gain": -0.9918,
+      "ood_gain": -6.4787,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_134b6587d38f9fb36cbc32ad4a8f33bf",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_134b6587",
+        "patch_sha256": "251805771f58c0c5942915e205fee33363f7dddf68160e3f2741aad7d6fcbead",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -0.9918,
+          "distribution_shift_gain": -6.4787,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 2.2026,
+          "ood_mse": 15.0184,
+          "regression_mse": 0.0867
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_134b6587d38f9fb36cbc32ad4a8f33bf",
+          "candidate_patch_id": "llm-proj-exp_134b6587",
+          "candidate_patch_sha256": "251805771f58c0c5942915e205fee33363f7dddf68160e3f2741aad7d6fcbead",
+          "corrupted_fingerprint": "3268fa7430f0b1db33cc414919cd949bc68735ba5bd7986a241ab87064b5cdb4",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "302ffac7154b4e29654c834c4cb8179ab4b6d3f492e030cd18320450802f36a5",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 2.2026,
+            "ood_mse": 15.0184,
+            "regression_mse": 0.0867
+          },
+          "issued_at": 1795724531.088,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "934d0bb6e96a8bb537a2dc8a85c250b9b9735b39ef96970d931d87e2b3ee3eaf33aeb65ee7608736eb7fc6922287a330345e5c5cfca7ab89ef266a25abb82301"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_74b6c5e5d1c66119ee0e424af0d22eb8",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_74b6c5e5",
+      "patch_sha256": "63059dc77e29bb652615aaf6ea12bd09b46dac133eaa663bddef06eeba7746da",
+      "patch_l2_norm": 0.2906,
+      "passed_gates": true,
+      "target_held_out_gain": 0.8893,
+      "ood_gain": 4.8949,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0282,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_74b6c5e5d1c66119ee0e424af0d22eb8",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_74b6c5e5",
+        "patch_sha256": "63059dc77e29bb652615aaf6ea12bd09b46dac133eaa663bddef06eeba7746da",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.8893,
+          "distribution_shift_gain": 4.8949,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 1.0349,
+          "ood_mse": 6.5136,
+          "regression_mse": 0.059
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_74b6c5e5d1c66119ee0e424af0d22eb8",
+          "candidate_patch_id": "det-patch-exp_74b6c5e5",
+          "candidate_patch_sha256": "63059dc77e29bb652615aaf6ea12bd09b46dac133eaa663bddef06eeba7746da",
+          "corrupted_fingerprint": "b9bf1dbeec7722a0aa21c4fcd09f4e6153b77a6c847b96bd94b153ba2f2f034d",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "be3e80fafbdb60fcdd2f11a650c179630fbc75bf287c546a72596e7b31aa2a7c",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 1.0349,
+            "ood_mse": 6.5136,
+            "regression_mse": 0.059
+          },
+          "issued_at": 1795724531.423,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "7a6f54f51427a34b18ba65cd5ec7c908f9cf6fb4ffee69a28392514e0ad3c46a19287a8ed95afb529d1dbe10c9e5bede334b48f3742f036941978147178c650a"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_c1675c3664a467dbfc124bd1152d20ab",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_c1675c36",
+      "patch_sha256": "b7a1275f499d9f144983cc7eda8b26b7f557bfebea1908fb2185942701d3a967",
+      "patch_l2_norm": 1.3182,
+      "passed_gates": true,
+      "target_held_out_gain": 2.6226,
+      "ood_gain": 9.2941,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.092,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_c1675c3664a467dbfc124bd1152d20ab",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_c1675c36",
+        "patch_sha256": "b7a1275f499d9f144983cc7eda8b26b7f557bfebea1908fb2185942701d3a967",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 2.6226,
+          "distribution_shift_gain": 9.2941,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0257,
+          "ood_mse": 0.1184,
+          "regression_mse": 0.0103
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_c1675c3664a467dbfc124bd1152d20ab",
+          "candidate_patch_id": "grad-patch-exp_c1675c36",
+          "candidate_patch_sha256": "b7a1275f499d9f144983cc7eda8b26b7f557bfebea1908fb2185942701d3a967",
+          "corrupted_fingerprint": "e931471f5f0dd3c99ff6d7d9c410618a117395adfb5dc3800044417399b5b872",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "708e8bbc8f1922745905dc398085bae7e671baf61d18b72fc3f25cca8770d326",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0257,
+            "ood_mse": 0.1184,
+            "regression_mse": 0.0103
+          },
+          "issued_at": 1795724531.772,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "d86487999e83c3ee3195ffcc31c93632d017cf30e4f12637d50b9c90b8d77b080b7eb328e18070d3019c53607f3bd71a654b58a82e4cc6c76ebd351c41767e0f"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_8441c0c09ac9905d627946b61f1b8cd8",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "5bb79b114cf85fe3b270fdad220fe537e201f52284449410aa39624d4391e4a5",
+      "prompt_char_length": 3337,
+      "input_token_count": 1475,
+      "output_token_count": 126,
+      "proposer_latency_seconds": 5.2398,
+      "total_time_seconds": 5.2765,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_8441c0c0",
+      "patch_sha256": "b5a2a18b5e62fa57ec1c689171ff3a549afe1317ec2a08b82fc847f3bd224956",
+      "patch_l2_norm": 2.1208,
+      "hypothesis": "The output for column 0 is corrupted due to a sign flip on specific input features, which can be corrected by flipping signs of corresponding weights.",
+      "passed_gates": false,
+      "target_held_out_gain": -13.9333,
+      "ood_gain": -24.5539,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_8441c0c09ac9905d627946b61f1b8cd8",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_8441c0c0",
+        "patch_sha256": "b5a2a18b5e62fa57ec1c689171ff3a549afe1317ec2a08b82fc847f3bd224956",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -13.9333,
+          "distribution_shift_gain": -24.5539,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 14.6027,
+          "ood_mse": 27.6351,
+          "regression_mse": 0.0036
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_8441c0c09ac9905d627946b61f1b8cd8",
+          "candidate_patch_id": "llm-proj-exp_8441c0c0",
+          "candidate_patch_sha256": "b5a2a18b5e62fa57ec1c689171ff3a549afe1317ec2a08b82fc847f3bd224956",
+          "corrupted_fingerprint": "823dc79015bcca23675dcdaad2a135ae908b6e84770bd6ec4c5a5b6538d29744",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "6a4369c23901c270dfadb79874918eed9c877ef70d3ee7cae67254bbf08b431e",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 14.6027,
+            "ood_mse": 27.6351,
+            "regression_mse": 0.0036
+          },
+          "issued_at": 1795724537.329,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "cc2082e697c6f46bd415189d8f0efcc50423c85f18e78ee02638e8697224ef1ff85e9dc78e44cd9516e0140f1f01f3bb4fa88c7ecf538f75e3eb69cf64c87d00"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_1f9412e5af1952030be0d831e30ebebc",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_1f9412e5",
+      "patch_sha256": "1f0ae812c09dbab6b61906d78eef61c58fff4e9579a056ca4663f8e1205bd7ce",
+      "patch_l2_norm": 0.7722,
+      "passed_gates": false,
+      "target_held_out_gain": -0.5239,
+      "ood_gain": 2.8305,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.028,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_1f9412e5af1952030be0d831e30ebebc",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_1f9412e5",
+        "patch_sha256": "1f0ae812c09dbab6b61906d78eef61c58fff4e9579a056ca4663f8e1205bd7ce",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -0.5239,
+          "distribution_shift_gain": 2.8305,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.8487,
+          "ood_mse": 1.1789,
+          "regression_mse": 0.0029
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_1f9412e5af1952030be0d831e30ebebc",
+          "candidate_patch_id": "det-patch-exp_1f9412e5",
+          "candidate_patch_sha256": "1f0ae812c09dbab6b61906d78eef61c58fff4e9579a056ca4663f8e1205bd7ce",
+          "corrupted_fingerprint": "6f02d43fc852c727923fa108a3113312e242c47fa18fa545274a6cac385b8ada",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "f1d702b6f959a969c86f3b666d275fe7b2ebf05d7c375a96338c61f30878458e",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 0.8487,
+            "ood_mse": 1.1789,
+            "regression_mse": 0.0029
+          },
+          "issued_at": 1795724537.627,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "b367f1a053b860ea4bd2961f8c8a1dd455a4e2db8163386e81c20c078d76621fe2d7cc394669dcfcbde3ca6b414b84c333b39a9f8615815bb7cc9b0866d29e03"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_52681ff3edfabd687e1f1d29818f4c01",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_52681ff3",
+      "patch_sha256": "d9be9f36a34bcd3ed64495eae63be602b5a32897417dff229b0fbacd5801d58d",
+      "patch_l2_norm": 0.4296,
+      "passed_gates": true,
+      "target_held_out_gain": 0.1802,
+      "ood_gain": 0.8367,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0945,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_52681ff3edfabd687e1f1d29818f4c01",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_52681ff3",
+        "patch_sha256": "d9be9f36a34bcd3ed64495eae63be602b5a32897417dff229b0fbacd5801d58d",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.1802,
+          "distribution_shift_gain": 0.8367,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0046,
+          "ood_mse": 0.0088,
+          "regression_mse": 0.0128
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_52681ff3edfabd687e1f1d29818f4c01",
+          "candidate_patch_id": "grad-patch-exp_52681ff3",
+          "candidate_patch_sha256": "d9be9f36a34bcd3ed64495eae63be602b5a32897417dff229b0fbacd5801d58d",
+          "corrupted_fingerprint": "3fb0fa764b5398d2139e8f2caa36a1064d512da500e93022ae42c06e3311129c",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "f4693d80508161a671ed725fa046628ada333a8c44b9c2f093a9ab5f9b965ca5",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0046,
+            "ood_mse": 0.0088,
+            "regression_mse": 0.0128
+          },
+          "issued_at": 1795724537.981,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "f3951a5eee7df46c064c2b7bde7b53c1593f9788d07e46926fa65a06208a424c49881f6fd9349cebd4d4a71034c3ba689ddac7dcc448a2e5b568148917c0900c"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_ef3757fbfdd33207a77862ed057a2116",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "sign_flip_indices",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json_schema"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "f424b33481c109c70d426e94d0bbfb69b0c006692298798e2f1b9271f152594d",
+      "prompt_char_length": 3371,
+      "input_token_count": 1506,
+      "output_token_count": 187,
+      "proposer_latency_seconds": 6.2364,
+      "total_time_seconds": 6.2718,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_ef3757fb",
+      "patch_sha256": "debbd7dfa1f84ae8da7c63a7c87429d4cfea3d180cd5295c0609915660129a46",
+      "patch_l2_norm": 1.7772,
+      "hypothesis": "The output for column 0 is corrupted due to a sign error or scaling mismatch in specific input features of fc2.weight row 0, which can be corrected by flipping signs of columns with high negative gradient contributions.",
+      "passed_gates": false,
+      "target_held_out_gain": -4.0162,
+      "ood_gain": -37.086,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_ef3757fbfdd33207a77862ed057a2116",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_ef3757fb",
+        "patch_sha256": "debbd7dfa1f84ae8da7c63a7c87429d4cfea3d180cd5295c0609915660129a46",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -4.0162,
+          "distribution_shift_gain": -37.086,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 5.1405,
+          "ood_mse": 44.6645,
+          "regression_mse": 0.073
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_ef3757fbfdd33207a77862ed057a2116",
+          "candidate_patch_id": "llm-proj-exp_ef3757fb",
+          "candidate_patch_sha256": "debbd7dfa1f84ae8da7c63a7c87429d4cfea3d180cd5295c0609915660129a46",
+          "corrupted_fingerprint": "5b11317033ed360bc678e1efd60e6ff72b6e6a85cfe4a50cf7a0957fad8c6de2",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "b1de3c2a1c457a6b1b78051a0f7f8e66610bf18e643a9c90ee2906e821c9eaa7",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 5.1405,
+            "ood_mse": 44.6645,
+            "regression_mse": 0.073
+          },
+          "issued_at": 1795724544.532,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "fb7763b5ba1e166d0c85df5a4e173e3cb0a208a4c4141d5a279893a1743fde21f1186ad12979639a90ea1798290903bfc1cf41044af14b1b41df581ad253690f"
+        }
+      },
+      "method_label": "bonsai_27b_grammar_locked",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_0176425058f4c56da815732226584233",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_01764250",
+      "patch_sha256": "8e3d1e24d084bcc92d82ff09c3b21a1db1cf5749e47bd5a7fe53a28a2922f599",
+      "patch_l2_norm": 1.2612,
+      "passed_gates": false,
+      "target_held_out_gain": -17.7154,
+      "ood_gain": -19.7856,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0292,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_0176425058f4c56da815732226584233",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_01764250",
+        "patch_sha256": "8e3d1e24d084bcc92d82ff09c3b21a1db1cf5749e47bd5a7fe53a28a2922f599",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -17.7154,
+          "distribution_shift_gain": -19.7856,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 22.5715,
+          "ood_mse": 26.8409,
+          "regression_mse": 0.0877
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_0176425058f4c56da815732226584233",
+          "candidate_patch_id": "det-patch-exp_01764250",
+          "candidate_patch_sha256": "8e3d1e24d084bcc92d82ff09c3b21a1db1cf5749e47bd5a7fe53a28a2922f599",
+          "corrupted_fingerprint": "578ef67839a9343888d8d34c2a27307e91f3380a117ff5da4bd24b5ecdf75936",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "95c7fc5a0db97d32d4c1cb7447f41ff0476fdac6aff196ad75cea4a70c6ee8c7",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 22.5715,
+            "ood_mse": 26.8409,
+            "regression_mse": 0.0877
+          },
+          "issued_at": 1795724544.82,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "784cdf8a8619d1270d3621cd0b85a5b31be9513e9b009a5244e5c080ee09dd37bca46bf9030a50209b821b14f20ee98d5be3e70376b61f93a62ea1df5b223e05"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_5dfa4a8717bf7f89270f60b9446e9501",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_5dfa4a87",
+      "patch_sha256": "4c522af390230d71b067dcee0556a700d2f5d076d88f7ecd37c15fd631e917a3",
+      "patch_l2_norm": 0.3924,
+      "passed_gates": true,
+      "target_held_out_gain": 0.1715,
+      "ood_gain": 0.209,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0938,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_5dfa4a8717bf7f89270f60b9446e9501",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_5dfa4a87",
+        "patch_sha256": "4c522af390230d71b067dcee0556a700d2f5d076d88f7ecd37c15fd631e917a3",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.1715,
+          "distribution_shift_gain": 0.209,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.007,
+          "ood_mse": 0.0153,
+          "regression_mse": 0.006
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_5dfa4a8717bf7f89270f60b9446e9501",
+          "candidate_patch_id": "grad-patch-exp_5dfa4a87",
+          "candidate_patch_sha256": "4c522af390230d71b067dcee0556a700d2f5d076d88f7ecd37c15fd631e917a3",
+          "corrupted_fingerprint": "e089939515e4cd5fef9ba75d5ec9d33f23c7ddead2f18a0f238832d4d3543c69",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "24a053dece364a527e907886ce7c3be534db433025e8a16b8a3e46d9ec96292a",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.007,
+            "ood_mse": 0.0153,
+            "regression_mse": 0.006
+          },
+          "issued_at": 1795724545.176,
+          "evaluator_public_key": "17ae3bb6fb1a2faaf0dbd8f8a9ebc3750206425a31fa608ff7fa9ce3e57a9a1a",
+          "signature": "c0c5dcc9423b066889a73653da9f4ea76e4ed2e07c9abe1e379a04d6a8c757f269042ff637e6f1b8a7ea46bb6430498df01b45fa78a424cd1ae949692c013906"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    }
+  ]
+}

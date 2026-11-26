@@ -1,0 +1,1349 @@
+{
+  "experiment": "012b-bonsai-27b-full-toolkit-nullable-ridge",
+  "total_wall_seconds": 81.16,
+  "summary": {
+    "bonsai_27b_projection_solver": {
+      "total_runs": 8,
+      "evaluated_runs": 4,
+      "pass_count": 2,
+      "pass_rate": 0.25,
+      "mean_held_out_gain": 0.2192
+    },
+    "deterministic_baseline": {
+      "total_runs": 8,
+      "evaluated_runs": 8,
+      "pass_count": 6,
+      "pass_rate": 0.75,
+      "mean_held_out_gain": 2.9641
+    },
+    "gradient_baseline": {
+      "total_runs": 8,
+      "evaluated_runs": 8,
+      "pass_count": 8,
+      "pass_rate": 1.0,
+      "mean_held_out_gain": 3.9464
+    }
+  },
+  "raw_records": [
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_d17cc24bc31038a4974e5fbcd9b59bab",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "proposal_status": "INVALID_PROPOSAL_SCHEMA",
+      "error_message": "explicit_deltas requires exactly 8 finite floats in col_deltas.",
+      "raw_llm_text": "{\n  \"operation\": \"explicit_deltas\",\n  \"target_tensor\": \"fc2.weight\",\n  \"row_index\": 0,\n  \"col_indices\": [0, 1, 2, 3],\n  \"scale_factor\": null,\n  \"col_deltas\": [-0.8859, -2.058, -0.9695, 0.2124],\n  \"ridge_lambda\": null,\n  \"hypothesis\": \"The negative gradient direction of row 0 in fc2.weight is misaligned with the corrupted output signal; applying explicit deltas along this direction will reduce diagnostic MSE without affecting row 1.\",\n  \"rationale\": \"The toolkit sensitivity shows a strong non-zero loss gradient for row 0 (norm 2.5562) and zero gradient for row 1, indicating that only row 0 contributes to the current error. The observed mean residual in column 0 is -0.2696, suggesting an underestimation of negative values. Applying explicit deltas matching the negative gradient direction (-0.8859, -2.058, -0.9695, 0.2124) aligns with the diagnostic residual projection and is expected to correct the output without exceeding the L2 norm budget or impacting row 1.\"\n}",
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "bbbd9e06da3fca38615bbcb8e6ad0480c7c9b6a886d4c8369c2f383e1e908748",
+      "prompt_char_length": 3337,
+      "passed_gates": false,
+      "evaluation_result": null,
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_5353e20129f89b720e38f87563809394",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_5353e201",
+      "patch_sha256": "1438b453c5e3f4b1cdbe384cbba55f622ff04c66f5a446371e1346ad5603574e",
+      "patch_l2_norm": 1.2953,
+      "passed_gates": true,
+      "target_held_out_gain": 7.4796,
+      "ood_gain": 28.7058,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0506,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_5353e20129f89b720e38f87563809394",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_5353e201",
+        "patch_sha256": "1438b453c5e3f4b1cdbe384cbba55f622ff04c66f5a446371e1346ad5603574e",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 7.4796,
+          "distribution_shift_gain": 28.7058,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.7305,
+          "ood_mse": 2.082,
+          "regression_mse": 0.039
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_5353e20129f89b720e38f87563809394",
+          "candidate_patch_id": "det-patch-exp_5353e201",
+          "candidate_patch_sha256": "1438b453c5e3f4b1cdbe384cbba55f622ff04c66f5a446371e1346ad5603574e",
+          "corrupted_fingerprint": "960a7376ebd788f1f8a336aac035c4eb668d265245272c18ed49e3295e3e80fe",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "4401b5a13e4a7c5b8edebc04baac99646334d566f3e4a040750acc545f58d7c4",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.7305,
+            "ood_mse": 2.082,
+            "regression_mse": 0.039
+          },
+          "issued_at": 1795723073.586,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "a65aec0cb9f3617f9a6d6efb032103701cc077c254d20577ca842b9f41d0e23c57dc31ccad2e482d1fc546a8bfcba416b296a25fb17dd50b2e9830842d0fa402"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_4a1b92ae097615eee12eeca3544c3ffd",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_4a1b92ae",
+      "patch_sha256": "a2ad3d548b5174d9c25a24c824fc593fe8923e4531292b35b14e6aa1c24746e7",
+      "patch_l2_norm": 1.0071,
+      "passed_gates": true,
+      "target_held_out_gain": 1.7256,
+      "ood_gain": 7.7018,
+      "regression_drop": 0.0,
+      "total_time_seconds": 2.423,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_4a1b92ae097615eee12eeca3544c3ffd",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_4a1b92ae",
+        "patch_sha256": "a2ad3d548b5174d9c25a24c824fc593fe8923e4531292b35b14e6aa1c24746e7",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 1.7256,
+          "distribution_shift_gain": 7.7018,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0254,
+          "ood_mse": 1.8478,
+          "regression_mse": 0.0062
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_4a1b92ae097615eee12eeca3544c3ffd",
+          "candidate_patch_id": "grad-patch-exp_4a1b92ae",
+          "candidate_patch_sha256": "a2ad3d548b5174d9c25a24c824fc593fe8923e4531292b35b14e6aa1c24746e7",
+          "corrupted_fingerprint": "c784a75a828aed5a78ae972846db9eba63de7578291b475b66bd16858b8c9eb5",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "12097a173b6ca31e080d28679869b10b970e0021d56ed24d820b04f770a16a89",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0254,
+            "ood_mse": 1.8478,
+            "regression_mse": 0.0062
+          },
+          "issued_at": 1795723076.333,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "5b1197c4173982438cb3971af7a0debaa78f29b2fa69d7fbfac71c2571f16ae96ecb72370cae4fbab3273425b0bf3994d086c8e91e401bbb661354ae1c94a909"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_c0e9bd02e07a7f3da322402f1d489d6a",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "proposal_status": "INVALID_PROPOSAL_SCHEMA",
+      "error_message": "explicit_deltas requires exactly 8 finite floats in col_deltas.",
+      "raw_llm_text": "{\n  \"operation\": \"explicit_deltas\",\n  \"target_tensor\": \"fc2.weight\",\n  \"row_index\": 0,\n  \"col_indices\": [0, 1, 2, 3],\n  \"scale_factor\": null,\n  \"col_deltas\": [-0.4568, -0.9722, -0.2883, 0.3798],\n  \"ridge_lambda\": null,\n  \"hypothesis\": \"The output error in column 0 is driven by the first four weights of row 0; applying targeted negative deltas to these columns will reduce the residual without affecting column 1.\",\n  \"rationale\": \"The diagnostic package shows a high mean_residual_col0 (-0.2207) and significant hidden-to-target residual covariance for the first few units (e.g., 0.8524, -1.2305). The loss gradient for row 0 is non-zero while row 1's gradient is zero, indicating that only row 0 contributes to the error in column 0. Explicitly applying negative deltas proportional to the gradient direction (-1.7047, 2.461, ...) scaled down by a factor of ~3.75 keeps the L2 norm well within the budget (max_l2_norm=5.0) and directly corrects the corrupted output without touching column 1.\"\n}",
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "1c3b6b1315b01a09fe083846e9ede3bb01cae92c04481cce05a2ca0d5c2d2bf0",
+      "prompt_char_length": 3338,
+      "passed_gates": false,
+      "evaluation_result": null,
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_fc683135c74c7e4f14546fbd4b42a324",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_fc683135",
+      "patch_sha256": "03f6a0a57f63e6b1b54bd40b4c798364f291f5b32fc651c65e4fa45e2736f773",
+      "patch_l2_norm": 1.0948,
+      "passed_gates": true,
+      "target_held_out_gain": 3.9479,
+      "ood_gain": 36.1433,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0309,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_fc683135c74c7e4f14546fbd4b42a324",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_fc683135",
+        "patch_sha256": "03f6a0a57f63e6b1b54bd40b4c798364f291f5b32fc651c65e4fa45e2736f773",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 3.9479,
+          "distribution_shift_gain": 36.1433,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 2.4665,
+          "ood_mse": 7.9148,
+          "regression_mse": 0.0056
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_fc683135c74c7e4f14546fbd4b42a324",
+          "candidate_patch_id": "det-patch-exp_fc683135",
+          "candidate_patch_sha256": "03f6a0a57f63e6b1b54bd40b4c798364f291f5b32fc651c65e4fa45e2736f773",
+          "corrupted_fingerprint": "c2057dfac3078428f2396a2f83bf64203c073dd76e3cf9b8e441c00be8e2ecc0",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "84728c6bb33241e945148b00afa4c260503f997e1cd57568c978f4bccfb486e6",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 2.4665,
+            "ood_mse": 7.9148,
+            "regression_mse": 0.0056
+          },
+          "issued_at": 1795723084.967,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "fbe22aed5306f6e82c6198a290be97e8ef75ba078b1b5014d24d156c4ffe9adae91ad91c32deb56f93dc748bb2f1f42354eec4cd8d343960d6b9dd91dcd7390d"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_f6a8cb6272602cefa21c1d47f69a4194",
+      "defect_family": "fc2_row0_zero_mask",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_f6a8cb62",
+      "patch_sha256": "0f8da5c5ff5fdcc7b48d8cfa46c8d10722138e854519fe7973e8939c71f8f981",
+      "patch_l2_norm": 0.843,
+      "passed_gates": true,
+      "target_held_out_gain": 2.8316,
+      "ood_gain": 2.8681,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.1008,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_f6a8cb6272602cefa21c1d47f69a4194",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_f6a8cb62",
+        "patch_sha256": "0f8da5c5ff5fdcc7b48d8cfa46c8d10722138e854519fe7973e8939c71f8f981",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 2.8316,
+          "distribution_shift_gain": 2.8681,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0037,
+          "ood_mse": 0.0158,
+          "regression_mse": 0.0034
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_f6a8cb6272602cefa21c1d47f69a4194",
+          "candidate_patch_id": "grad-patch-exp_f6a8cb62",
+          "candidate_patch_sha256": "0f8da5c5ff5fdcc7b48d8cfa46c8d10722138e854519fe7973e8939c71f8f981",
+          "corrupted_fingerprint": "b059fefa3ab116a4dfd5e66dfc0fd1a8f901c1fb5a78b992e655aae7673886a8",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "49a6f1ea4964a0ce40500be2869f7be0582cdab38e03fd808fea9029570558fc",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0037,
+            "ood_mse": 0.0158,
+            "regression_mse": 0.0034
+          },
+          "issued_at": 1795723085.399,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "67b587861d9eecd416bb3f0b7518c565376f3fd032dd134b04081365c8e684dffdf6b7168057cdfe67af4027ad176725126e4d3a81932e52a7fe13e13c9cc70d"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_fd9f3b3c944fc8f106cd496cf855f6c4",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "proposal_status": "INVALID_PROPOSAL_SCHEMA",
+      "error_message": "explicit_deltas requires exactly 8 finite floats in col_deltas.",
+      "raw_llm_text": "{\n  \"operation\": \"explicit_deltas\",\n  \"target_tensor\": \"fc2.weight\",\n  \"row_index\": 0,\n  \"col_indices\": [0, 1, 2, 3],\n  \"scale_factor\": null,\n  \"col_deltas\": [-7.24, -6.21, 0.0, -7.45],\n  \"ridge_lambda\": null,\n  \"hypothesis\": \"The negative gradient direction for row 0 of fc2.weight indicates that increasing these weights will reduce the residual error in output column 0.\",\n  \"rationale\": \"The diagnostic toolkit sensitivity shows a strong negative gradient vector [-7.2396,-6.2094,0.0,-7.4553,...] for row 0 of fc2.weight, with an L2 norm of 13.8097 compared to 0.0 for row 1. This confirms that output column 0 is the sole source of error and that applying negative deltas along this gradient direction will directly reduce the observed MSE of 9.8216.\"\n}",
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "3c41da2bd6dfcf3b6abb9ad1ce574c18df70e6ba7e442e56bb82b95bed663a06",
+      "prompt_char_length": 3334,
+      "passed_gates": false,
+      "evaluation_result": null,
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_41dcd11e48a65407ac097436c0c2a4cb",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_41dcd11e",
+      "patch_sha256": "86307b334341a851bbca14be3e100a73180024e66b18db4b46612fdda23edf45",
+      "patch_l2_norm": 0.5034,
+      "passed_gates": true,
+      "target_held_out_gain": 2.4828,
+      "ood_gain": 10.4474,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0326,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_41dcd11e48a65407ac097436c0c2a4cb",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_41dcd11e",
+        "patch_sha256": "86307b334341a851bbca14be3e100a73180024e66b18db4b46612fdda23edf45",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 2.4828,
+          "distribution_shift_gain": 10.4474,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 3.2504,
+          "ood_mse": 13.8688,
+          "regression_mse": 0.0032
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_41dcd11e48a65407ac097436c0c2a4cb",
+          "candidate_patch_id": "det-patch-exp_41dcd11e",
+          "candidate_patch_sha256": "86307b334341a851bbca14be3e100a73180024e66b18db4b46612fdda23edf45",
+          "corrupted_fingerprint": "1be1d816ce380e84aa09f1d33b4f90cf477d5b5466cdb7073baa0e361c11a59c",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "a6cf6446c5abceed27e51d90e729cf25fe590202bec5e92502ca3b9354f7db14",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 3.2504,
+            "ood_mse": 13.8688,
+            "regression_mse": 0.0032
+          },
+          "issued_at": 1795723092.797,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "9501861ecdb2179ff2dc29ba43ab5e827668c86bde16e62708a34ac6fd6671752caaf6082d0500437741237957ba33e06aee0e523a84891995347485ca84f70c"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_ff3775a251eb490a97ae9204b965e1dc",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_ff3775a2",
+      "patch_sha256": "1c56bb8555d2ee6dc2732e3857853d85ea070ef2417dec38793702022df9e0ba",
+      "patch_l2_norm": 2.4415,
+      "passed_gates": true,
+      "target_held_out_gain": 10.1977,
+      "ood_gain": 31.7307,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0901,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_ff3775a251eb490a97ae9204b965e1dc",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_ff3775a2",
+        "patch_sha256": "1c56bb8555d2ee6dc2732e3857853d85ea070ef2417dec38793702022df9e0ba",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 10.1977,
+          "distribution_shift_gain": 31.7307,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0282,
+          "ood_mse": 0.3019,
+          "regression_mse": 0.0223
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_ff3775a251eb490a97ae9204b965e1dc",
+          "candidate_patch_id": "grad-patch-exp_ff3775a2",
+          "candidate_patch_sha256": "1c56bb8555d2ee6dc2732e3857853d85ea070ef2417dec38793702022df9e0ba",
+          "corrupted_fingerprint": "781fb00d08b6471fe5732f343fd156a49293c2817e3bb7d5b676a114a89d8224",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "befb790bada14f870ac74ce5ece27ed3dde99f961c2420b773d9ea365c86d74e",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0282,
+            "ood_mse": 0.3019,
+            "regression_mse": 0.0223
+          },
+          "issued_at": 1795723093.157,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "e4fd097f10ea3ccc15e3b99cbce004386d94706cb2df1f4e1cb007c8cfe250b7f204ebdf16dcf0a29389d411a8b31e2f288dce1a9c920c4a86dd662922e63801"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_a739feab1a74ef198bd052f4393089ca",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "proposal_status": "INVALID_PROPOSAL_SCHEMA",
+      "error_message": "explicit_deltas requires exactly 8 finite floats in col_deltas.",
+      "raw_llm_text": "{\n  \"operation\": \"explicit_deltas\",\n  \"target_tensor\": \"fc2.weight\",\n  \"row_index\": 0,\n  \"col_indices\": [0, 1, 2, 3],\n  \"scale_factor\": null,\n  \"col_deltas\": [-0.6196, -1.8918, 0.2489, -0.0049],\n  \"ridge_lambda\": null,\n  \"hypothesis\": \"The output error in column 0 is driven by a misalignment between the hidden activations and the target direction for row 0; applying negative gradient descent steps will correct this without affecting row 1.\",\n  \"rationale\": \"The toolkit sensitivity shows that loss gradients for fc2.weight row 0 are non-zero while row 1 has zero gradients. The observed MSE (0.9143) and mean residual in col 0 (0.6353) indicate a significant error source in row 0. Applying explicit deltas aligned with the negative gradient direction (-[0.6196, -1.8918, 0.2489, -0.0049]) directly targets this defect while respecting the max L2 norm budget of 6.0 (current delta L2 \u2248 2.0 < 6.0).\"\n}",
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "3cce931e740a71ec746b08eed65b0401a57a260868a551d18fcb52bb4ea5f32f",
+      "prompt_char_length": 3326,
+      "passed_gates": false,
+      "evaluation_result": null,
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_b795a692abfe1b79735ab2625e456782",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_b795a692",
+      "patch_sha256": "599a1aff94fec8a174f2f32f28783e58a4fb2fdae8334a5de5453fee00720eb3",
+      "patch_l2_norm": 0.585,
+      "passed_gates": true,
+      "target_held_out_gain": 9.9664,
+      "ood_gain": 29.9804,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0339,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_b795a692abfe1b79735ab2625e456782",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_b795a692",
+        "patch_sha256": "599a1aff94fec8a174f2f32f28783e58a4fb2fdae8334a5de5453fee00720eb3",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 9.9664,
+          "distribution_shift_gain": 29.9804,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 12.9104,
+          "ood_mse": 39.1705,
+          "regression_mse": 0.0075
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_b795a692abfe1b79735ab2625e456782",
+          "candidate_patch_id": "det-patch-exp_b795a692",
+          "candidate_patch_sha256": "599a1aff94fec8a174f2f32f28783e58a4fb2fdae8334a5de5453fee00720eb3",
+          "corrupted_fingerprint": "e6c0a8fd3997f1132fc6363990380a312e395d1d017e9bb08f5cace678083619",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "dcf4794f99bdf734d8e86f61f5fd59ae4415b4fb0cf6225805bc638ba5a2561d",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 12.9104,
+            "ood_mse": 39.1705,
+            "regression_mse": 0.0075
+          },
+          "issued_at": 1795723101.611,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "4fbbd88cd124d487658457b182972e4ebd5e3b1953325edb38657e980fe84e278a174d7d49d9fb41ee5c127046584689eb6fc94f735b7db5d70617db83f34c0f"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_5ef331c1bfc59b137b018595ae3a1f4f",
+      "defect_family": "fc2_row0_sign_inversion",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_5ef331c1",
+      "patch_sha256": "9e3940f1bf5a2355010849b1c2b9952ad4602025454e90d4b19aee2f9c26f80a",
+      "patch_l2_norm": 0.8987,
+      "passed_gates": true,
+      "target_held_out_gain": 3.7136,
+      "ood_gain": 13.4974,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.1141,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_5ef331c1bfc59b137b018595ae3a1f4f",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_5ef331c1",
+        "patch_sha256": "9e3940f1bf5a2355010849b1c2b9952ad4602025454e90d4b19aee2f9c26f80a",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 3.7136,
+          "distribution_shift_gain": 13.4974,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0878,
+          "ood_mse": 0.8185,
+          "regression_mse": 0.0475
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_5ef331c1bfc59b137b018595ae3a1f4f",
+          "candidate_patch_id": "grad-patch-exp_5ef331c1",
+          "candidate_patch_sha256": "9e3940f1bf5a2355010849b1c2b9952ad4602025454e90d4b19aee2f9c26f80a",
+          "corrupted_fingerprint": "20316875125f455be20192d54ea5724f74048c4ecb4136404086165ce1df60df",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "539326865c3aaba1d2f4da07a4b8003148da52546346d986e118c0623a03b6b0",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0878,
+            "ood_mse": 0.8185,
+            "regression_mse": 0.0475
+          },
+          "issued_at": 1795723102.057,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "b341dd48585655bb958eec2c9e8300d693f95defdd18b8cd254deb3b29a11b93689f2f2394d7721383bb6084c4671c2182b15ae633ac51887742216ebcb66200"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_93633235ac6270e7cb1afc7c903c1858",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "scale_row",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "245414a17da8ce3bc465cf8a398f0d308f805ec862b819b1ff73dbac4affc1ca",
+      "prompt_char_length": 3330,
+      "input_token_count": 1472,
+      "output_token_count": 221,
+      "proposer_latency_seconds": 6.5001,
+      "total_time_seconds": 6.5357,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_93633235",
+      "patch_sha256": "a709ec1d5a688896f0608c1fc82d1a2cd59801edddd1f90b90cd12ebf380ec4d",
+      "patch_l2_norm": 0.1362,
+      "hypothesis": "Scaling row 0 of fc2.weight by a factor of 1.5 will reduce the output residual for column 0 without significantly affecting column 1.",
+      "passed_gates": true,
+      "target_held_out_gain": 0.832,
+      "ood_gain": 3.9835,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_93633235ac6270e7cb1afc7c903c1858",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_93633235",
+        "patch_sha256": "a709ec1d5a688896f0608c1fc82d1a2cd59801edddd1f90b90cd12ebf380ec4d",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.832,
+          "distribution_shift_gain": 3.9835,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 4.2324,
+          "ood_mse": 20.7427,
+          "regression_mse": 0.0051
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_93633235ac6270e7cb1afc7c903c1858",
+          "candidate_patch_id": "llm-proj-exp_93633235",
+          "candidate_patch_sha256": "a709ec1d5a688896f0608c1fc82d1a2cd59801edddd1f90b90cd12ebf380ec4d",
+          "corrupted_fingerprint": "f8e1c485ee1bf88bd66e1ce8f75c09f2022e4929795c00c39d0dc59c517d9811",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "81a955aac6574459c77178973a985d83643d6ecf142bad88080a9c7f964c1ca3",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 4.2324,
+            "ood_mse": 20.7427,
+            "regression_mse": 0.0051
+          },
+          "issued_at": 1795723108.907,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "371a71a0205cf0166fbcdfe73edb527f88d568bf42a18a8c2455fe9c3e9902b628ba5ae9f9e5de35ba7b0ce51d9df8d0b661a1dea2637db22f1f373319184b09"
+        }
+      },
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_382fd4669054a1aafd5656dcf332e6a4",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_382fd466",
+      "patch_sha256": "91d4b34bda316d752ae2c0614c0ee40e6c5c0cf8df85ef792244479561988ae3",
+      "patch_l2_norm": 0.366,
+      "passed_gates": true,
+      "target_held_out_gain": 1.8427,
+      "ood_gain": 6.5305,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0338,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_382fd4669054a1aafd5656dcf332e6a4",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_382fd466",
+        "patch_sha256": "91d4b34bda316d752ae2c0614c0ee40e6c5c0cf8df85ef792244479561988ae3",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 1.8427,
+          "distribution_shift_gain": 6.5305,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 2.1815,
+          "ood_mse": 8.672,
+          "regression_mse": 0.0074
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_382fd4669054a1aafd5656dcf332e6a4",
+          "candidate_patch_id": "det-patch-exp_382fd466",
+          "candidate_patch_sha256": "91d4b34bda316d752ae2c0614c0ee40e6c5c0cf8df85ef792244479561988ae3",
+          "corrupted_fingerprint": "1d5e3ae1ed5cc560357c80445402abe0385be4078aec01899f8aeec832fa0634",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "6237da09c9a7cc8bd48d2faa55fcbd9c3e367adacf55f1d8ff71d71fcb43e289",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 2.1815,
+            "ood_mse": 8.672,
+            "regression_mse": 0.0074
+          },
+          "issued_at": 1795723109.272,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "1ee7715a07c8e31b6332c08b623615b8126a7a4a5e70c3eb500d4c6b1d3a36d6795bb0c711ecba9f87ec645ded661a76610de58b5239d6aebe7da7bea65c4b0b"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_a2510bbef52c7a1c5cbd5fee7c7ba0f2",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_a2510bbe",
+      "patch_sha256": "453a8cdee156910d51054764ff84cff24ad880f8451cef51d11cf7fab80d96da",
+      "patch_l2_norm": 0.9667,
+      "passed_gates": true,
+      "target_held_out_gain": 2.3141,
+      "ood_gain": 3.978,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0946,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_a2510bbef52c7a1c5cbd5fee7c7ba0f2",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_a2510bbe",
+        "patch_sha256": "453a8cdee156910d51054764ff84cff24ad880f8451cef51d11cf7fab80d96da",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 2.3141,
+          "distribution_shift_gain": 3.978,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0051,
+          "ood_mse": 0.0196,
+          "regression_mse": 0.0049
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_a2510bbef52c7a1c5cbd5fee7c7ba0f2",
+          "candidate_patch_id": "grad-patch-exp_a2510bbe",
+          "candidate_patch_sha256": "453a8cdee156910d51054764ff84cff24ad880f8451cef51d11cf7fab80d96da",
+          "corrupted_fingerprint": "c8496e75f4ce95b1c9169ed13c4f99ccc476e9c96126810330e68befdfd0b6bd",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "467e08e5ad9d777779e221b12251958b5965e5e6ccc18e1f7597083f990e79ed",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0051,
+            "ood_mse": 0.0196,
+            "regression_mse": 0.0049
+          },
+          "issued_at": 1795723109.696,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "eec3cb4231c602274cb4b61cf31932b1504c67adf14f47921d063978b63570821ca1f0dfb995853f2d5b4ac352d73e2ccb2456cf4551c5ff38e2572655784109"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_eb54f85dd1fe4a3dc7830f9859738ad1",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "scale_row",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "1c68e30012432b0d3146313b4c3884379c10ccdaa48c1415d6ff47540d6482f1",
+      "prompt_char_length": 3353,
+      "input_token_count": 1500,
+      "output_token_count": 223,
+      "proposer_latency_seconds": 6.6863,
+      "total_time_seconds": 6.723,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_eb54f85d",
+      "patch_sha256": "6f535358af71c7d8186ec60459c34da46323344b99d71006830413eed21cd3f0",
+      "patch_l2_norm": 0.108,
+      "hypothesis": "Scaling row 0 of fc2.weight by a factor of 1.5 will reduce the mean residual for output column 0 without significantly increasing the L2 norm beyond the budget.",
+      "passed_gates": true,
+      "target_held_out_gain": 0.9816,
+      "ood_gain": 3.8601,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_eb54f85dd1fe4a3dc7830f9859738ad1",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_eb54f85d",
+        "patch_sha256": "6f535358af71c7d8186ec60459c34da46323344b99d71006830413eed21cd3f0",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.9816,
+          "distribution_shift_gain": 3.8601,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 4.8323,
+          "ood_mse": 18.9966,
+          "regression_mse": 0.0028
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_eb54f85dd1fe4a3dc7830f9859738ad1",
+          "candidate_patch_id": "llm-proj-exp_eb54f85d",
+          "candidate_patch_sha256": "6f535358af71c7d8186ec60459c34da46323344b99d71006830413eed21cd3f0",
+          "corrupted_fingerprint": "6eae2b8b60c9cb1c97a118dde06c22c9537f7ee8b0a604bf60c30bbb64a49807",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "4edc850813d49181d204405d55f4121e1956d6c27c5f9dfb3e546b98639c8898",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 4.8323,
+            "ood_mse": 18.9966,
+            "regression_mse": 0.0028
+          },
+          "issued_at": 1795723116.72,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "7ac6a0b0b7bc8e72c997f8525629da2dbac721520669c69028f0a1e313587ed456de01cee156c856c6682d6833684862784e2d798fc2625f32af29c204d9dd09"
+        }
+      },
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_8fb919f5f63753689b6727e044dfaf84",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_8fb919f5",
+      "patch_sha256": "a678ab5f5fbfb26a7fed2b28bab973627a465f3a226745b18b30567146a3955d",
+      "patch_l2_norm": 0.2877,
+      "passed_gates": true,
+      "target_held_out_gain": 0.5249,
+      "ood_gain": 2.8371,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.034,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_8fb919f5f63753689b6727e044dfaf84",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_8fb919f5",
+        "patch_sha256": "a678ab5f5fbfb26a7fed2b28bab973627a465f3a226745b18b30567146a3955d",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.5249,
+          "distribution_shift_gain": 2.8371,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.6055,
+          "ood_mse": 3.2368,
+          "regression_mse": 0.0125
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_8fb919f5f63753689b6727e044dfaf84",
+          "candidate_patch_id": "det-patch-exp_8fb919f5",
+          "candidate_patch_sha256": "a678ab5f5fbfb26a7fed2b28bab973627a465f3a226745b18b30567146a3955d",
+          "corrupted_fingerprint": "d9238150c48c990b17115a1549402604d7e89ecb08f1aaa791d13b5344d19435",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "ccf5db711e44e20fad49fc9f8c3d5a762a81f977cf70e5e07f2fe1f8c97091ea",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.6055,
+            "ood_mse": 3.2368,
+            "regression_mse": 0.0125
+          },
+          "issued_at": 1795723117.078,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "9fca3119da7cfc4b580f6b0253564c79dc6ad0022c67a2bd2d9223f6f4ff9daa448e3ad612544cd4ea66abf103f165c23e059c3fb468f00ec327b2ddb2afd606"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_b386fc5074676a310c8547005d12dbb2",
+      "defect_family": "fc2_row0_scale_attenuation",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_b386fc50",
+      "patch_sha256": "8820d20a9d042abfacaba9aeb0e28f96c11538bc6381a356a322e691a4351a8b",
+      "patch_l2_norm": 1.2591,
+      "passed_gates": true,
+      "target_held_out_gain": 3.3751,
+      "ood_gain": 6.6853,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0972,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_b386fc5074676a310c8547005d12dbb2",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_b386fc50",
+        "patch_sha256": "8820d20a9d042abfacaba9aeb0e28f96c11538bc6381a356a322e691a4351a8b",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 3.3751,
+          "distribution_shift_gain": 6.6853,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0279,
+          "ood_mse": 0.6904,
+          "regression_mse": 0.0106
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_b386fc5074676a310c8547005d12dbb2",
+          "candidate_patch_id": "grad-patch-exp_b386fc50",
+          "candidate_patch_sha256": "8820d20a9d042abfacaba9aeb0e28f96c11538bc6381a356a322e691a4351a8b",
+          "corrupted_fingerprint": "67aa0ed1343bad1b9f90b89e10300a48073c416636c577d4457369ffae00ddee",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "7e42f73d73a0fd6c7d8f4d642f21b0baa659cdf0ada98aa539d360212852b055",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0279,
+            "ood_mse": 0.6904,
+            "regression_mse": 0.0106
+          },
+          "issued_at": 1795723117.483,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "ece1c3e8087782cde6b1ee4b8df3a58168a9ddcda0947a758d81ca66bccfb099411d4ac9796d680fbfcf4f4d7ed6cae21f6eb218e141a87eb4899e5b6dd2320b"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_c96605dcd000ac1ad07317ce50ca6d86",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "scale_row",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "611f40918aaa69d02a1a2fb0d674f96880765e4400615adbc845425f8ad746b3",
+      "prompt_char_length": 3355,
+      "input_token_count": 1495,
+      "output_token_count": 213,
+      "proposer_latency_seconds": 6.5496,
+      "total_time_seconds": 6.5843,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_c96605dc",
+      "patch_sha256": "d40168741434134de0941af6c213c2d6953ada32e0075220d4a4fe0eb33f3ff0",
+      "patch_l2_norm": 0.5901,
+      "hypothesis": "Scaling row 0 of fc2.weight by a factor of 1.5 will reduce the diagnostic MSE for output column 0 without violating the L2 norm budget.",
+      "passed_gates": false,
+      "target_held_out_gain": 0.0821,
+      "ood_gain": 0.7798,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_c96605dcd000ac1ad07317ce50ca6d86",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_c96605dc",
+        "patch_sha256": "d40168741434134de0941af6c213c2d6953ada32e0075220d4a4fe0eb33f3ff0",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": 0.0821,
+          "distribution_shift_gain": 0.7798,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 2.6818,
+          "ood_mse": 7.8943,
+          "regression_mse": 0.0094
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_c96605dcd000ac1ad07317ce50ca6d86",
+          "candidate_patch_id": "llm-proj-exp_c96605dc",
+          "candidate_patch_sha256": "d40168741434134de0941af6c213c2d6953ada32e0075220d4a4fe0eb33f3ff0",
+          "corrupted_fingerprint": "b3c87bb152ba6b9faf2156de57628e4ac599c8e00a03839cd52f60253912b668",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "16cbfce11165d9f2f79a80a3928850a44ca7e2633ee3f895a3e6220b219368fb",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 2.6818,
+            "ood_mse": 7.8943,
+            "regression_mse": 0.0094
+          },
+          "issued_at": 1795723124.355,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "6579593379b9b324cc58bf0b8ced478f8d4a44690ab7add86d5643916d9eddec4cc4ea2d0b37cf6ae551c1541cedea997e684ab11f1a7e72db040e46a50fb803"
+        }
+      },
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 0
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_5e8b7e4f31411cc03cd16ad1231dcb3d",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_5e8b7e4f",
+      "patch_sha256": "81e2717c6fcba4f9b46ccf798d5012b73be01cd97f979b8a15e3f70263df33a7",
+      "patch_l2_norm": 1.0521,
+      "passed_gates": false,
+      "target_held_out_gain": -2.0391,
+      "ood_gain": -3.7829,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0368,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_5e8b7e4f31411cc03cd16ad1231dcb3d",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_5e8b7e4f",
+        "patch_sha256": "81e2717c6fcba4f9b46ccf798d5012b73be01cd97f979b8a15e3f70263df33a7",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -2.0391,
+          "distribution_shift_gain": -3.7829,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 2.2126,
+          "ood_mse": 4.8972,
+          "regression_mse": 0.0029
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_5e8b7e4f31411cc03cd16ad1231dcb3d",
+          "candidate_patch_id": "det-patch-exp_5e8b7e4f",
+          "candidate_patch_sha256": "81e2717c6fcba4f9b46ccf798d5012b73be01cd97f979b8a15e3f70263df33a7",
+          "corrupted_fingerprint": "3c9df6fc322024a5f2cfb22a6b4072e6f18bc28ff4f06e0d837ddf04ac2b3bbc",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "4ad593143e4d04879ae5c65306309c1af375e0512539bfadb5a6ce89262649ec",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 2.2126,
+            "ood_mse": 4.8972,
+            "regression_mse": 0.0029
+          },
+          "issued_at": 1795723124.717,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "3f437446bef47d83faa4af674781b9007a6505932922bfe60a349c2840512c94c41457774eacf18c55c861af48b03d7decceff6f015bd5634a16f57cae993b01"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_d50e02656a9f610790b4e49d62e06fab",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_d50e0265",
+      "patch_sha256": "05bc2376f62c50d36218bbecee19b793f448e6f21db4a6b5f2106e0c007188f3",
+      "patch_l2_norm": 1.2367,
+      "passed_gates": true,
+      "target_held_out_gain": 6.7843,
+      "ood_gain": 43.9572,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.1009,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_d50e02656a9f610790b4e49d62e06fab",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_d50e0265",
+        "patch_sha256": "05bc2376f62c50d36218bbecee19b793f448e6f21db4a6b5f2106e0c007188f3",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 6.7843,
+          "distribution_shift_gain": 43.9572,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.0112,
+          "ood_mse": 0.0393,
+          "regression_mse": 0.0057
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_d50e02656a9f610790b4e49d62e06fab",
+          "candidate_patch_id": "grad-patch-exp_d50e0265",
+          "candidate_patch_sha256": "05bc2376f62c50d36218bbecee19b793f448e6f21db4a6b5f2106e0c007188f3",
+          "corrupted_fingerprint": "6bd38aa435bc7df6dae0276cc4c53c6a33a21c7df1254519dc2fa33a5a94c537",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "1d1922c301dadff302d504a35ca3586d2d012e0d0630780882fcfff32344c4c5",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.0112,
+            "ood_mse": 0.0393,
+            "regression_mse": 0.0057
+          },
+          "issued_at": 1795723125.141,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "bf5e10251488ef16566402160e070e54f6a7a096b222832d3e15d68eb5a7b46363903e1810f36bf7f77daf93cdcf021e34994139e87c78e8b2dc97051f35760a"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 0
+    },
+    {
+      "method": "llm_projection_proposer",
+      "experiment_id": "exp_1e88336d68dd99a2a3355ef342a62b6a",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "model_id": "bonsai-27b-q1:latest",
+      "model_revision": "bonsai-27b-q1:latest",
+      "operation_chosen": "scale_row",
+      "decoding_config": {
+        "temperature": 0.0,
+        "num_predict": 450,
+        "repeat_penalty": 1.15,
+        "think": false,
+        "format": "json"
+      },
+      "prompt_version": "wsp-llm-projection-v1.0",
+      "prompt_sha256": "e7084df7943031fdb3c953fb114d24754e56ae4a405341dda0e6da1d6503b6eb",
+      "prompt_char_length": 3315,
+      "input_token_count": 1455,
+      "output_token_count": 260,
+      "proposer_latency_seconds": 7.2275,
+      "total_time_seconds": 7.266,
+      "proposal_status": "EVALUATED",
+      "patch_id": "llm-proj-exp_1e88336d",
+      "patch_sha256": "3a26c76fbe8dd710cf5b9f2dd53969b70609ae1fa5c0e7cdfe9c0d06d86ed34f",
+      "patch_l2_norm": 0.1143,
+      "hypothesis": "Scaling row 0 of fc2.weight by a factor of 1.5 will reduce the mean residual for output column 0 without significantly increasing the L2 norm beyond the budget.",
+      "passed_gates": false,
+      "target_held_out_gain": -0.1418,
+      "ood_gain": -0.6771,
+      "regression_drop": 0.0,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_1e88336d68dd99a2a3355ef342a62b6a",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "llm-proj-exp_1e88336d",
+        "patch_sha256": "3a26c76fbe8dd710cf5b9f2dd53969b70609ae1fa5c0e7cdfe9c0d06d86ed34f",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -0.1418,
+          "distribution_shift_gain": -0.6771,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 1.3698,
+          "ood_mse": 6.422,
+          "regression_mse": 0.0041
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_1e88336d68dd99a2a3355ef342a62b6a",
+          "candidate_patch_id": "llm-proj-exp_1e88336d",
+          "candidate_patch_sha256": "3a26c76fbe8dd710cf5b9f2dd53969b70609ae1fa5c0e7cdfe9c0d06d86ed34f",
+          "corrupted_fingerprint": "70538b6ec3ef80a08218875286f8abe72d25014f73666a0992423bfc47ef27dc",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "618ccf5f056664a2d0c28d9bc24518407e0e07f460c38edb03a6c814c615de31",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 1.3698,
+            "ood_mse": 6.422,
+            "regression_mse": 0.0041
+          },
+          "issued_at": 1795723132.683,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "a8aa2a506edc48f14cacae4519ea3fc1a8e6fcb875b17391846a6c2bf700eabdd4ac1e10a6ef1bdfe75cd5a611a5c8181d7db25c4b24b66d2483780e7e635000"
+        }
+      },
+      "method_label": "bonsai_27b_projection_solver",
+      "run_index": 1
+    },
+    {
+      "method": "deterministic_baseline",
+      "experiment_id": "exp_618f4af7a51896e6f12b1b2744c8ab5d",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "det-patch-exp_618f4af7",
+      "patch_sha256": "2967451af02661a9662a9cbeaf20a859be6042791fe2fcf8e255b94ee38a7d59",
+      "patch_l2_norm": 0.7445,
+      "passed_gates": false,
+      "target_held_out_gain": -0.4923,
+      "ood_gain": 3.4804,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0343,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_618f4af7a51896e6f12b1b2744c8ab5d",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "det-patch-exp_618f4af7",
+        "patch_sha256": "2967451af02661a9662a9cbeaf20a859be6042791fe2fcf8e255b94ee38a7d59",
+        "passed_gates": false,
+        "recommendation": "reject",
+        "gains": {
+          "target_held_out_gain": -0.4923,
+          "distribution_shift_gain": 3.4804,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 1.2329,
+          "ood_mse": 0.801,
+          "regression_mse": 0.0037
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_618f4af7a51896e6f12b1b2744c8ab5d",
+          "candidate_patch_id": "det-patch-exp_618f4af7",
+          "candidate_patch_sha256": "2967451af02661a9662a9cbeaf20a859be6042791fe2fcf8e255b94ee38a7d59",
+          "corrupted_fingerprint": "373d1b964540f98cc35f0bd009f785c939f54373221cf988c3decfcc4168ca78",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "5de74c195c6ee1a8223ea800d49fe6623742eef365c66c7713470ec152e6d356",
+          "passed_gates": false,
+          "recommendation": "reject",
+          "aggregate_scores": {
+            "held_out_mse": 1.2329,
+            "ood_mse": 0.801,
+            "regression_mse": 0.0037
+          },
+          "issued_at": 1795723132.991,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "e92271843d36206c38eb2e3bbd0a5ce5280adb493bf9a45e64025deefd4c934d0b7ed66b965a5ec7ae6d3d5d0a184fb646bb0dee361968a05cb716b056c07704"
+        }
+      },
+      "method_label": "deterministic_baseline",
+      "run_index": 1
+    },
+    {
+      "method": "gradient_baseline",
+      "experiment_id": "exp_94fcc35fdc30de7d53983e9458e4b76d",
+      "defect_family": "fc1_hidden_corrupt_channel",
+      "diagnostic_condition": "full_diagnostic_toolkit",
+      "proposal_status": "EVALUATED",
+      "patch_id": "grad-patch-exp_94fcc35f",
+      "patch_sha256": "ab273b68851de2726b0eac1129ef9bdf2fade2687133d65f2d55c793d625b910",
+      "patch_l2_norm": 0.9923,
+      "passed_gates": true,
+      "target_held_out_gain": 0.6291,
+      "ood_gain": 4.971,
+      "regression_drop": 0.0,
+      "total_time_seconds": 0.0914,
+      "evaluation_result": {
+        "success": true,
+        "experiment_id": "exp_94fcc35fdc30de7d53983e9458e4b76d",
+        "attempt_index": 1,
+        "attempt_policy": "CONSUME_BEFORE_VALIDATION",
+        "patch_id": "grad-patch-exp_94fcc35f",
+        "patch_sha256": "ab273b68851de2726b0eac1129ef9bdf2fade2687133d65f2d55c793d625b910",
+        "passed_gates": true,
+        "recommendation": "promote",
+        "gains": {
+          "target_held_out_gain": 0.6291,
+          "distribution_shift_gain": 4.971,
+          "regression_drop": 0.0
+        },
+        "gate_thresholds": {
+          "min_target_gain": 0.1,
+          "max_regression_tolerance": 0.02
+        },
+        "aggregate_scores": {
+          "held_out_mse": 0.006,
+          "ood_mse": 0.0267,
+          "regression_mse": 0.0414
+        },
+        "signed_receipt": {
+          "experiment_id": "exp_94fcc35fdc30de7d53983e9458e4b76d",
+          "candidate_patch_id": "grad-patch-exp_94fcc35f",
+          "candidate_patch_sha256": "ab273b68851de2726b0eac1129ef9bdf2fade2687133d65f2d55c793d625b910",
+          "corrupted_fingerprint": "f689658ef8bcd8edb4e6f1bce1185471c980dd69a9311e44c87e90a60a450706",
+          "evaluator_version": "2.0.0",
+          "config_sha256": "224638f18fb5b0c5b6a4a825a085df0fcdedd9842bc865d2055febb2e10e2ad0",
+          "passed_gates": true,
+          "recommendation": "promote",
+          "aggregate_scores": {
+            "held_out_mse": 0.006,
+            "ood_mse": 0.0267,
+            "regression_mse": 0.0414
+          },
+          "issued_at": 1795723133.365,
+          "evaluator_public_key": "a0a54d0ba96f2b04205d8a58a8a2d2ebd4f74db3144ad4858f77a758ec747436",
+          "signature": "3403f0eed6f47741b6c62f73b9279726a0bd5656db09a5c514e727a2953bb5142b0a5e7373747848cfa5e97991b1a74c78cf907328a572ac7565b7ae80b43d0b"
+        }
+      },
+      "method_label": "gradient_baseline",
+      "run_index": 1
+    }
+  ]
+}

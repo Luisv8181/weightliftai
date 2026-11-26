@@ -30,6 +30,16 @@ from weightliftai.weight_programming.inspector import (
     inspect_model_parameters,
     validate_patch_against_budget,
 )
+from weightliftai.weight_programming.llm_proposer import (
+    DeterministicHeuristicProposer,
+    GradientRepairProposer,
+    LLMWeightRepairProposer,
+    LocalTransformersLLMBackend,
+    OllamaLLMBackend,
+    SandboxedProjectionLLMProposer,
+    StructuredPatchProposal,
+    StructuredProjectionPlan,
+)
 from weightliftai.weight_programming.math500_evaluator import (
     MathBenchmarkResult,
     build_math_prompt,
@@ -102,6 +112,14 @@ __all__ = [
     "validate_patch_against_budget",
     "BenchmarkLadderRunner",
     "DeepNonlinearMLP",
+    "DeterministicHeuristicProposer",
+    "GradientRepairProposer",
+    "LLMWeightRepairProposer",
+    "LocalTransformersLLMBackend",
+    "OllamaLLMBackend",
+    "SandboxedProjectionLLMProposer",
+    "StructuredPatchProposal",
+    "StructuredProjectionPlan",
     "LadderProgressionReport",
     "LadderRung",
     "MultiSeedBenchmarkRunner",
