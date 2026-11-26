@@ -142,3 +142,38 @@ def test_collateral_loaders_and_chrf(tmp_path: Path) -> None:
     assert len(en_sents) == 4
     assert compute_chrf(["Hello world."], ["Hello world."]) == pytest.approx(100.0)
     assert compute_chrf(["Completely different"], ["Hello world."]) < 30.0
+
+
+def test_frames_draft_v2_passes_all_validator_invariants_and_span_scoring() -> None:
+    import sys
+
+    sys.path.insert(0, str(REPO_ROOT / "dsb"))
+    from validate_frames import validate_frames_v2  # noqa: E402
+
+    v2_csv = REPO_ROOT / "dsb" / "frames_draft_v2.csv"
+    res = validate_frames_v2(v2_csv)
+    assert res["valid"], f"v2 validation errors: {res['errors']}"
+    assert res["primary_social_tiguere"] >= 60
+    assert res["primary_social_tigre"] >= 60
+    assert res["primary_literal_tigre"] >= 60
+    assert res["exploratory_ambiguous"] == 30
+    assert res["exploratory_team_name"] == 15
+    assert res["exploratory_tiguere_noaccent"] == 20
+
+    # Verify both whole-sentence and span-only scoring work on v2 items
+    v2_items = [x for x in load_dsb_csv(v2_csv) if x.sense_group == "primary"][:20]
+    sense_map = {it.spanish: it.sense for it in v2_items}
+
+    def whole_fn(spanish: str, english: str) -> float:
+        is_lit = "tiger" in english.lower()
+        return (-1.0 if not is_lit else -5.0) if sense_map[spanish] == "social" else (-1.0 if is_lit else -5.0)
+
+    def span_fn(spanish: str, english: str, span: tuple[int, int]) -> float:
+        np_text = english[span[0] : span[1]].lower()
+        is_lit = np_text == "tiger"
+        return (-0.5 if not is_lit else -4.0) if sense_map[spanish] == "social" else (-0.5 if is_lit else -4.0)
+
+    out = evaluate_dataset(v2_items, whole_fn, span_score_fn=span_fn, n_bootstrap=200, seed=42)
+    assert out["social_all"]["accuracy"]["mean"] == 1.0
+    assert out["social_all"]["span_accuracy"]["mean"] == 1.0
+    assert out["social_all"]["span_margin"]["mean"] == pytest.approx(3.5)

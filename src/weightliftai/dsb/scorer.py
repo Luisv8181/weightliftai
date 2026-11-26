@@ -20,9 +20,9 @@ class SealedTestAccessError(PermissionError):
 @dataclass(frozen=True)
 class DSBItem:
     frame_id: str
-    sense: str  # "social" | "literal" | "ambiguous"
-    spelling: str  # "tíguere" | "tigre"
-    cue_position: str  # "before" | "after" | "none"
+    sense: str  # "social" | "literal" | "ambiguous" | "panhispanic_idiom" | "team_name"
+    spelling: str  # "tíguere" | "tigre" | "tiguere"
+    cue_position: str  # "before" | "after" | "both" | "none"
     topic: str
     spanish: str
     social_glosses: tuple[str, str, str]
@@ -30,6 +30,10 @@ class DSBItem:
     approved_by: str = ""
     approved_date: str = ""
     notes: str = ""
+    sense_group: str = "primary"
+    frame_pair_id: str = ""
+    decisive_cue: str = ""
+    scoring_span: dict[str, Any] | None = None
 
 
 @dataclass(frozen=True)
@@ -43,6 +47,8 @@ class ItemScore:
     mean_literal_score: float
     margin: float  # correct - wrong (for ambiguous: literal - social)
     correct: bool | None  # None for ambiguous items
+    span_margin: float | None = None
+    span_correct: bool | None = None
 
 
 def _is_sealed_path(path: Path) -> bool:
@@ -72,6 +78,8 @@ def load_dsb_csv(path: str | Path, *, is_sealed: bool = False) -> list[DSBItem]:
                     f"Frame {row['frame_id']} must have exactly 3 paraphrases per sense "
                     f"(got social={len(soc)}, literal={len(lit)})."
                 )
+            raw_span = row.get("scoring_span", "").strip()
+            parsed_span = json.loads(raw_span) if raw_span else None
             items.append(
                 DSBItem(
                     frame_id=row["frame_id"].strip(),
@@ -85,6 +93,10 @@ def load_dsb_csv(path: str | Path, *, is_sealed: bool = False) -> list[DSBItem]:
                     approved_by=row.get("approved_by", "").strip(),
                     approved_date=row.get("approved_date", "").strip(),
                     notes=row.get("notes", "").strip(),
+                    sense_group=row.get("sense_group", "primary").strip() or "primary",
+                    frame_pair_id=row.get("frame_pair_id", "").strip() or row["frame_id"].strip(),
+                    decisive_cue=row.get("decisive_cue", "").strip(),
+                    scoring_span=parsed_span,
                 )
             )
     return items
@@ -93,8 +105,9 @@ def load_dsb_csv(path: str | Path, *, is_sealed: bool = False) -> list[DSBItem]:
 def score_item_forced_choice(
     item: DSBItem,
     score_fn: Callable[[str, str], float],
+    span_score_fn: Callable[[str, str, tuple[int, int]], float] | None = None,
 ) -> ItemScore:
-    """Score a single DSB item by averaging 3 paraphrases per sense."""
+    """Score a single DSB item by averaging 3 paraphrases per sense (whole-sentence and optional span-only)."""
     soc_scores = [float(score_fn(item.spanish, g)) for g in item.social_glosses]
     lit_scores = [float(score_fn(item.spanish, g)) for g in item.literal_glosses]
     mean_soc = float(np.mean(soc_scores))
@@ -111,6 +124,30 @@ def score_item_forced_choice(
         margin = mean_lit - mean_soc
         correct = None
 
+    span_margin: float | None = None
+    span_correct: bool | None = None
+    if span_score_fn is not None and item.scoring_span and "pairs" in item.scoring_span:
+        pairs = item.scoring_span["pairs"]
+        s_sp = [
+            float(span_score_fn(item.spanish, g, tuple(p["social_span"])))
+            for g, p in zip(item.social_glosses, pairs)
+        ]
+        l_sp = [
+            float(span_score_fn(item.spanish, g, tuple(p["literal_span"])))
+            for g, p in zip(item.literal_glosses, pairs)
+        ]
+        ms_sp = float(np.mean(s_sp))
+        ml_sp = float(np.mean(l_sp))
+        if item.sense == "social":
+            span_margin = ms_sp - ml_sp
+            span_correct = span_margin > 0.0
+        elif item.sense == "literal":
+            span_margin = ml_sp - ms_sp
+            span_correct = span_margin > 0.0
+        else:
+            span_margin = ml_sp - ms_sp
+            span_correct = None
+
     return ItemScore(
         frame_id=item.frame_id,
         sense=item.sense,
@@ -121,6 +158,8 @@ def score_item_forced_choice(
         mean_literal_score=mean_lit,
         margin=margin,
         correct=correct,
+        span_margin=span_margin,
+        span_correct=span_correct,
     )
 
 
@@ -149,15 +188,16 @@ def evaluate_dataset(
     items: list[DSBItem],
     score_fn: Callable[[str, str], float],
     *,
+    span_score_fn: Callable[[str, str, tuple[int, int]], float] | None = None,
     n_bootstrap: int = 2000,
     seed: int = 42,
 ) -> dict[str, Any]:
-    """Evaluate a DSB dataset with 3-paraphrase forced choice and 95% bootstrap CIs."""
-    per_item = [score_item_forced_choice(it, score_fn) for it in items]
+    """Evaluate a DSB dataset with 3-paraphrase forced choice (whole-sentence and optional span-only)."""
+    per_item = [score_item_forced_choice(it, score_fn, span_score_fn=span_score_fn) for it in items]
 
     def _summarize(subset: list[ItemScore]) -> dict[str, Any]:
         if not subset:
-            return {"n": 0, "accuracy": None, "margin": None}
+            return {"n": 0, "accuracy": None, "margin": None, "span_accuracy": None, "span_margin": None}
         margins = [x.margin for x in subset]
         m_mean, m_lo, m_hi = bootstrap_ci(margins, n_resamples=n_bootstrap, seed=seed)
         labeled = [1.0 if x.correct else 0.0 for x in subset if x.correct is not None]
@@ -170,6 +210,18 @@ def evaluate_dataset(
             }
         else:
             acc_obj = None
+
+        sp_margins = [x.span_margin for x in subset if x.span_margin is not None]
+        sp_labeled = [1.0 if x.span_correct else 0.0 for x in subset if x.span_correct is not None]
+        sp_acc_obj: dict[str, float] | None = None
+        sp_m_obj: dict[str, float] | None = None
+        if sp_margins:
+            sm, slo, shi = bootstrap_ci(sp_margins, n_resamples=n_bootstrap, seed=seed)
+            sp_m_obj = {"mean": round(sm, 4), "ci_low": round(slo, 4), "ci_high": round(shi, 4)}
+        if sp_labeled:
+            sa, salo, sahi = bootstrap_ci(sp_labeled, n_resamples=n_bootstrap, seed=seed)
+            sp_acc_obj = {"mean": round(sa, 4), "ci_low": round(salo, 4), "ci_high": round(sahi, 4)}
+
         return {
             "n": len(subset),
             "accuracy": acc_obj,
@@ -178,6 +230,8 @@ def evaluate_dataset(
                 "ci_low": round(m_lo, 4),
                 "ci_high": round(m_hi, 4),
             },
+            "span_accuracy": sp_acc_obj,
+            "span_margin": sp_m_obj,
         }
 
     amb = [x for x in per_item if x.sense == "ambiguous"]
